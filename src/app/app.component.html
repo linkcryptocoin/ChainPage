@@ -1,0 +1,25 @@
+<!-- <div>
+    <p>
+        <strong>{{idleState}}</strong>
+    </p>
+    <p *ngIf="lastPing">
+        <small>Last keepalive ping
+            <strong>{{lastPing | amTimeAgo}}</strong>
+        </small>
+    </p>
+    <button (click)="reset()" *ngIf="timedOut">Restart</button>
+    <p>You can pass an existing component as content of the modal window. In this case remember to add content component
+        as an <code>entryComponents</code> section of your <code>NgModule</code>.</p>
+        
+        <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+</div> -->
+<div>
+    <app-top-nav></app-top-nav>
+</div>
+<div>
+    <toaster-container></toaster-container>
+    <router-outlet></router-outlet>
+    <footer class="panel-footer media-bottom">
+        <p>&copy; 2018 - LinkGear</p>
+    </footer>
+</div>

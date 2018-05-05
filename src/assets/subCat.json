@@ -1,0 +1,1778 @@
+[
+ {
+   "Subcategory": 2000,
+   "Description": "Antiques.",
+   "Category": 1000,
+   "Merchant category": 5932
+ },
+ {
+   "Subcategory": 2001,
+   "Description": "Art and craft supplies.",
+   "Category": 1000,
+   "Merchant category": 5970
+ },
+ {
+   "Subcategory": 2002,
+   "Description": "Art dealers and galleries.",
+   "Category": 1000,
+   "Merchant category": 5971
+ },
+ {
+   "Subcategory": 2003,
+   "Description": "Camera and photographic supplies.",
+   "Category": 1000,
+   "Merchant category": 5946
+ },
+ {
+   "Subcategory": 2004,
+   "Description": "Digital art.",
+   "Category": 1000,
+   "Merchant category": 5971
+ },
+ {
+   "Subcategory": 2005,
+   "Description": "Memorabilia.",
+   "Category": 1000,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2006,
+   "Description": "Music store (instruments and sheet music).",
+   "Category": 1000,
+   "Merchant category": 5733
+ },
+ {
+   "Subcategory": 2007,
+   "Description": "Sewing, needlework, and fabrics.",
+   "Category": 1000,
+   "Merchant category": 5949
+ },
+ {
+   "Subcategory": 2008,
+   "Description": "Stamp and coin.",
+   "Category": 1000,
+   "Merchant category": 5972
+ },
+ {
+   "Subcategory": 2009,
+   "Description": "Stationary, printing and writing paper.",
+   "Category": 1000,
+   "Merchant category": 5111
+ },
+ {
+   "Subcategory": 2010,
+   "Description": "Vintage and collectibles.",
+   "Category": 1000,
+   "Merchant category": 5931
+ },
+ {
+   "Subcategory": 2011,
+   "Description": "Clothing.",
+   "Category": 1001,
+   "Merchant category": 5641
+ },
+ {
+   "Subcategory": 2012,
+   "Description": "Furniture.",
+   "Category": 1001,
+   "Merchant category": 5712
+ },
+ {
+   "Subcategory": 2013,
+   "Description": "Baby products (other).",
+   "Category": 1001,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2014,
+   "Description": "Safety and health.",
+   "Category": 1001,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2015,
+   "Description": "Bath and body.",
+   "Category": 1002,
+   "Merchant category": 5122
+ },
+ {
+   "Subcategory": 2016,
+   "Description": "Fragrances and perfumes.",
+   "Category": 1002,
+   "Merchant category": 5977
+ },
+ {
+   "Subcategory": 2017,
+   "Description": "Makeup and cosmetics.",
+   "Category": 1002,
+   "Merchant category": 5977
+ },
+ {
+   "Subcategory": 2018,
+   "Description": "Audio books.",
+   "Category": 1003,
+   "Merchant category": 5942
+ },
+ {
+   "Subcategory": 2019,
+   "Description": "Digital content.",
+   "Category": 1003,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2020,
+   "Description": "Educational and textbooks.",
+   "Category": 1003,
+   "Merchant category": 5942
+ },
+ {
+   "Subcategory": 2021,
+   "Description": "Fiction and nonfiction.",
+   "Category": 1003,
+   "Merchant category": 5942
+ },
+ {
+   "Subcategory": 2022,
+   "Description": "Magazines.",
+   "Category": 1003,
+   "Merchant category": 5192
+ },
+ {
+   "Subcategory": 2023,
+   "Description": "Publishing and printing.",
+   "Category": 1003,
+   "Merchant category": 2741
+ },
+ {
+   "Subcategory": 2024,
+   "Description": "Rare and used books.",
+   "Category": 1003,
+   "Merchant category": 5942
+ },
+ {
+   "Subcategory": 2025,
+   "Description": "Accounting.",
+   "Category": 1004,
+   "Merchant category": 8931
+ },
+ {
+   "Subcategory": 2026,
+   "Description": "Advertising.",
+   "Category": 1004,
+   "Merchant category": 7311
+ },
+ {
+   "Subcategory": 2027,
+   "Description": "Agricultural.",
+   "Category": 1004,
+   "Merchant category": 780
+ },
+ {
+   "Subcategory": 2028,
+   "Description": "Architectural, engineering, and surveying services.",
+   "Category": 1004,
+   "Merchant category": 8911
+ },
+ {
+   "Subcategory": 2029,
+   "Description": "Chemicals and allied products.",
+   "Category": 1004,
+   "Merchant category": 5169
+ },
+ {
+   "Subcategory": 2030,
+   "Description": "Commercial photography, art, and graphics.",
+   "Category": 1004,
+   "Merchant category": 7333
+ },
+ {
+   "Subcategory": 2031,
+   "Description": "Construction.",
+   "Category": 1004,
+   "Merchant category": 5039
+ },
+ {
+   "Subcategory": 2032,
+   "Description": "Consulting services.",
+   "Category": 1004,
+   "Merchant category": 7392
+ },
+ {
+   "Subcategory": 2033,
+   "Description": "Educational services.",
+   "Category": 1004,
+   "Merchant category": 8299
+ },
+ {
+   "Subcategory": 2034,
+   "Description": "Equipment rentals and leasing services.",
+   "Category": 1004,
+   "Merchant category": 7394
+ },
+ {
+   "Subcategory": 2035,
+   "Description": "Equipment repair services.",
+   "Category": 1004,
+   "Merchant category": 7699
+ },
+ {
+   "Subcategory": 2036,
+   "Description": "Hiring services.",
+   "Category": 1004,
+   "Merchant category": 7361
+ },
+ {
+   "Subcategory": 2037,
+   "Description": "Industrial and manufacturing supplies.",
+   "Category": 1004,
+   "Merchant category": 5085
+ },
+ {
+   "Subcategory": 2038,
+   "Description": "Mailing lists.",
+   "Category": 1004,
+   "Merchant category": 5969
+ },
+ {
+   "Subcategory": 2039,
+   "Description": "Marketing.",
+   "Category": 1004,
+   "Merchant category": 5969
+ },
+ {
+   "Subcategory": 2040,
+   "Description": "Multi-level marketing.",
+   "Category": 1004,
+   "Merchant category": 5969
+ },
+ {
+   "Subcategory": 2041,
+   "Description": "Office and commercial furniture.",
+   "Category": 1004,
+   "Merchant category": 5021
+ },
+ {
+   "Subcategory": 2042,
+   "Description": "Office supplies and equipment.",
+   "Category": 1004,
+   "Merchant category": 5943
+ },
+ {
+   "Subcategory": 2043,
+   "Description": "Publishing and printing.",
+   "Category": 1004,
+   "Merchant category": 2741
+ },
+ {
+   "Subcategory": 2044,
+   "Description": "Quick copy and reproduction services.",
+   "Category": 1004,
+   "Merchant category": 7338
+ },
+ {
+   "Subcategory": 2045,
+   "Description": "Shipping and packing.",
+   "Category": 1004,
+   "Merchant category": 7399
+ },
+ {
+   "Subcategory": 2046,
+   "Description": "Stenographic and secretarial support services.",
+   "Category": 1004,
+   "Merchant category": 7339
+ },
+ {
+   "Subcategory": 2047,
+   "Description": "Wholesale.",
+   "Category": 1004,
+   "Merchant category": 7399
+ },
+ {
+   "Subcategory": 2048,
+   "Description": "Children's clothing.",
+   "Category": 1005,
+   "Merchant category": 5641
+ },
+ {
+   "Subcategory": 2049,
+   "Description": "Men's clothing.",
+   "Category": 1005,
+   "Merchant category": 5611
+ },
+ {
+   "Subcategory": 2050,
+   "Description": "Women's clothing.",
+   "Category": 1005,
+   "Merchant category": 5621
+ },
+ {
+   "Subcategory": 2051,
+   "Description": "Shoes.",
+   "Category": 1005,
+   "Merchant category": 5661
+ },
+ {
+   "Subcategory": 2052,
+   "Description": "Military and civil service uniforms.",
+   "Category": 1005,
+   "Merchant category": 5699
+ },
+ {
+   "Subcategory": 2053,
+   "Description": "Accessories.",
+   "Category": 1005,
+   "Merchant category": 5699
+ },
+ {
+   "Subcategory": 2054,
+   "Description": "Retail (fine jewelry and watches).",
+   "Category": 1005,
+   "Merchant category": 5094
+ },
+ {
+   "Subcategory": 2055,
+   "Description": "Wholesale (precious stones and metals).",
+   "Category": 1005,
+   "Merchant category": 5094
+ },
+ {
+   "Subcategory": 2056,
+   "Description": "Fashion jewelry.",
+   "Category": 1005,
+   "Merchant category": 5944
+ },
+ {
+   "Subcategory": 2057,
+   "Description": "Computer and data processing services.",
+   "Category": 1006,
+   "Merchant category": 7372
+ },
+ {
+   "Subcategory": 2058,
+   "Description": "Desktops, laptops, and notebooks.",
+   "Category": 1006,
+   "Merchant category": 5045
+ },
+ {
+   "Subcategory": 2059,
+   "Description": "Digital content.",
+   "Category": 1006,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2060,
+   "Description": "eCommerce services.",
+   "Category": 1006,
+   "Merchant category": 4816
+ },
+ {
+   "Subcategory": 2061,
+   "Description": "Maintenance and repair services.",
+   "Category": 1006,
+   "Merchant category": 7379
+ },
+ {
+   "Subcategory": 2062,
+   "Description": "Monitors and projectors.",
+   "Category": 1006,
+   "Merchant category": 7379
+ },
+ {
+   "Subcategory": 2063,
+   "Description": "Networking.",
+   "Category": 1006,
+   "Merchant category": 4816
+ },
+ {
+   "Subcategory": 2064,
+   "Description": "Online gaming.",
+   "Category": 1006,
+   "Merchant category": 7999
+ },
+ {
+   "Subcategory": 2065,
+   "Description": "Parts and accessories.",
+   "Category": 1006,
+   "Merchant category": 5045
+ },
+ {
+   "Subcategory": 2066,
+   "Description": "Peripherals.",
+   "Category": 1006,
+   "Merchant category": 5045
+ },
+ {
+   "Subcategory": 2067,
+   "Description": "Software.",
+   "Category": 1006,
+   "Merchant category": 5734
+ },
+ {
+   "Subcategory": 2068,
+   "Description": "Training services.",
+   "Category": 1006,
+   "Merchant category": 8299
+ },
+ {
+   "Subcategory": 2069,
+   "Description": "Web hosting and design.",
+   "Category": 1006,
+   "Merchant category": 4816
+ },
+ {
+   "Subcategory": 2070,
+   "Description": "Business and secretarial schools.",
+   "Category": 1007,
+   "Merchant category": 8244
+ },
+ {
+   "Subcategory": 2071,
+   "Description": "Child daycare services.",
+   "Category": 1007,
+   "Merchant category": 8351
+ },
+ {
+   "Subcategory": 2072,
+   "Description": "Colleges and universities.",
+   "Category": 1007,
+   "Merchant category": 8220
+ },
+ {
+   "Subcategory": 2073,
+   "Description": "Dance halls, studios, and schools.",
+   "Category": 1007,
+   "Merchant category": 7911
+ },
+ {
+   "Subcategory": 2074,
+   "Description": "Elementary and secondary schools.",
+   "Category": 1007,
+   "Merchant category": 8211
+ },
+ {
+   "Subcategory": 2075,
+   "Description": "Vocational and trade schools.",
+   "Category": 1007,
+   "Merchant category": 8249
+ },
+ {
+   "Subcategory": 2076,
+   "Description": "Cameras, camcorders, and equipment.",
+   "Category": 1008,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2078,
+   "Description": "Cell phones, PDAs, and pagers.",
+   "Category": 1008,
+   "Merchant category": 4812
+ },
+ {
+   "Subcategory": 2079,
+   "Description": "General electronic accessories.",
+   "Category": 1008,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2080,
+   "Description": "Home audio.",
+   "Category": 1008,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2081,
+   "Description": "Home electronics.",
+   "Category": 1008,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2082,
+   "Description": "Security and surveillance.",
+   "Category": 1008,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2083,
+   "Description": "Telecommunication equipment and sales.",
+   "Category": 1008,
+   "Merchant category": 4812
+ },
+ {
+   "Subcategory": 2084,
+   "Description": "Telecommunication services.",
+   "Category": 1008,
+   "Merchant category": 4814
+ },
+ {
+   "Subcategory": 2085,
+   "Description": "Telephone cards.",
+   "Category": 1008,
+   "Merchant category": 4814
+ },
+ {
+   "Subcategory": 2086,
+   "Description": "Memorabilia",
+   "Category": 1009,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2087,
+   "Description": "Movie tickets.",
+   "Category": 1009,
+   "Merchant category": 7832
+ },
+ {
+   "Subcategory": 2088,
+   "Description": "Movies (DVDs, videotapes).",
+   "Category": 1009,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2089,
+   "Description": "Music (CDs, cassettes and albums).",
+   "Category": 1009,
+   "Merchant category": 5735
+ },
+ {
+   "Subcategory": 2090,
+   "Description": "Cable, satellite, and other pay TV and radio.",
+   "Category": 1009,
+   "Merchant category": 4899
+ },
+ {
+   "Subcategory": 2091,
+   "Description": "Adult digital content.",
+   "Category": 1009,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2092,
+   "Description": "Concert tickets.",
+   "Category": 1009,
+   "Merchant category": 7929
+ },
+ {
+   "Subcategory": 2093,
+   "Description": "Theater tickets.",
+   "Category": 1009,
+   "Merchant category": 7922
+ },
+ {
+   "Subcategory": 2094,
+   "Description": "Toys and games.",
+   "Category": 1009,
+   "Merchant category": 5945
+ },
+ {
+   "Subcategory": 2095,
+   "Description": "Slot machines.",
+   "Category": 1009,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2096,
+   "Description": "Digital content.",
+   "Category": 1009,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2097,
+   "Description": "Entertainers.",
+   "Category": 1009,
+   "Merchant category": 7929
+ },
+ {
+   "Subcategory": 2098,
+   "Description": "Gambling.",
+   "Category": 1009,
+   "Merchant category": 7995
+ },
+ {
+   "Subcategory": 2099,
+   "Description": "Online games.",
+   "Category": 1009,
+   "Merchant category": 7999
+ },
+ {
+   "Subcategory": 2100,
+   "Description": "Video games and systems.",
+   "Category": 1009,
+   "Merchant category": 5945
+ },
+ {
+   "Subcategory": 2101,
+   "Description": "Accounting.",
+   "Category": 1010,
+   "Merchant category": 8931
+ },
+ {
+   "Subcategory": 2102,
+   "Description": "Collection agency.",
+   "Category": 1010,
+   "Merchant category": 7321
+ },
+ {
+   "Subcategory": 2103,
+   "Description": "Commodities and futures exchange.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2104,
+   "Description": "Consumer credit reporting agencies.",
+   "Category": 1010,
+   "Merchant category": 7321
+ },
+ {
+   "Subcategory": 2105,
+   "Description": "Debt counseling service.",
+   "Category": 1010,
+   "Merchant category": 7277
+ },
+ {
+   "Subcategory": 2106,
+   "Description": "Credit union.",
+   "Category": 1010,
+   "Merchant category": 6012
+ },
+ {
+   "Subcategory": 2107,
+   "Description": "Currency dealer and currency exchange.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2108,
+   "Description": "Escrow.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2109,
+   "Description": "Finance company.",
+   "Category": 1010,
+   "Merchant category": 6012
+ },
+ {
+   "Subcategory": 2110,
+   "Description": "Financial and investment advice.",
+   "Category": 1010,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2111,
+   "Description": "Insurance (auto and home).",
+   "Category": 1010,
+   "Merchant category": 5960
+ },
+ {
+   "Subcategory": 2112,
+   "Description": "Insurance (life and annuity).",
+   "Category": 1010,
+   "Merchant category": 5960
+ },
+ {
+   "Subcategory": 2113,
+   "Description": "Investments (general).",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2114,
+   "Description": "Money service business.",
+   "Category": 1010,
+   "Merchant category": 6012
+ },
+ {
+   "Subcategory": 2115,
+   "Description": "Mortgage brokers or dealers.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2116,
+   "Description": "Online gaming currency.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2117,
+   "Description": "Paycheck lender or cash advance.",
+   "Category": 1010,
+   "Merchant category": 6051
+ },
+ {
+   "Subcategory": 2118,
+   "Description": "Prepaid and stored value cards.",
+   "Category": 1010,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2119,
+   "Description": "Real estate agent.",
+   "Category": 1010,
+   "Merchant category": 6513
+ },
+ {
+   "Subcategory": 2120,
+   "Description": "Remittance.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2121,
+   "Description": "Rental property management.",
+   "Category": 1010,
+   "Merchant category": 6513
+ },
+ {
+   "Subcategory": 2122,
+   "Description": "Security brokers and dealers.",
+   "Category": 1010,
+   "Merchant category": 6211
+ },
+ {
+   "Subcategory": 2123,
+   "Description": "Wire transfer and money order.",
+   "Category": 1010,
+   "Merchant category": 4829
+ },
+ {
+   "Subcategory": 2124,
+   "Description": "Alcoholic beverages.",
+   "Category": 1011,
+   "Merchant category": 5921
+ },
+ {
+   "Subcategory": 2125,
+   "Description": "Catering services.",
+   "Category": 1011,
+   "Merchant category": 5811
+ },
+ {
+   "Subcategory": 2126,
+   "Description": "Coffee and tea",
+   "Category": 1011,
+   "Merchant category": 5499
+ },
+ {
+   "Subcategory": 2127,
+   "Description": "Gourmet foods.",
+   "Category": 1011,
+   "Merchant category": 5499
+ },
+ {
+   "Subcategory": 2128,
+   "Description": "Specialty and miscellaneous food stores.",
+   "Category": 1011,
+   "Merchant category": 5499
+ },
+ {
+   "Subcategory": 2129,
+   "Description": "Restaurant.",
+   "Category": 1011,
+   "Merchant category": 5812
+ },
+ {
+   "Subcategory": 2130,
+   "Description": "Tobacco.",
+   "Category": 1011,
+   "Merchant category": 0
+ },
+ {
+   "Subcategory": 2131,
+   "Description": "Vitamins and supplements.",
+   "Category": 1011,
+   "Merchant category": 5122
+ },
+ {
+   "Subcategory": 2132,
+   "Description": "Florist.",
+   "Category": 1012,
+   "Merchant category": 5193
+ },
+ {
+   "Subcategory": 2133,
+   "Description": "Gift, card, novelty, and souvenir shops.",
+   "Category": 1012,
+   "Merchant category": 5947
+ },
+ {
+   "Subcategory": 2134,
+   "Description": "Gourmet foods.",
+   "Category": 1012,
+   "Merchant category": 5499
+ },
+ {
+   "Subcategory": 2135,
+   "Description": "Nursery plants and flowers.",
+   "Category": 1012,
+   "Merchant category": 5261
+ },
+ {
+   "Subcategory": 2136,
+   "Description": "Party supplies.",
+   "Category": 1012,
+   "Merchant category": 5947
+ },
+ {
+   "Subcategory": 2137,
+   "Description": "Government services (not elsewhere classified).",
+   "Category": 1013,
+   "Merchant category": 9399
+ },
+ {
+   "Subcategory": 2138,
+   "Description": "Drugstore (excluding prescription drugs).",
+   "Category": 1014,
+   "Merchant category": 5122
+ },
+ {
+   "Subcategory": 2139,
+   "Description": "Drugstore (including prescription drugs).",
+   "Category": 1014,
+   "Merchant category": 5912
+ },
+ {
+   "Subcategory": 2140,
+   "Description": "Dental care.",
+   "Category": 1014,
+   "Merchant category": 8021
+ },
+ {
+   "Subcategory": 2141,
+   "Description": "Medical care.",
+   "Category": 1014,
+   "Merchant category": 8011
+ },
+ {
+   "Subcategory": 2142,
+   "Description": "Medical equipment and supplies.",
+   "Category": 1014,
+   "Merchant category": 5047
+ },
+ {
+   "Subcategory": 2143,
+   "Description": "Vision care.",
+   "Category": 1014,
+   "Merchant category": 8043
+ },
+ {
+   "Subcategory": 2144,
+   "Description": "Vitamins and supplements.",
+   "Category": 1014,
+   "Merchant category": 5122
+ },
+ {
+   "Subcategory": 2145,
+   "Description": "Antiques.",
+   "Category": 1015,
+   "Merchant category": 5932
+ },
+ {
+   "Subcategory": 2146,
+   "Description": "Appliances.",
+   "Category": 1015,
+   "Merchant category": 5722
+ },
+ {
+   "Subcategory": 2147,
+   "Description": "Art dealers and galleries.",
+   "Category": 1015,
+   "Merchant category": 5971
+ },
+ {
+   "Subcategory": 2148,
+   "Description": "Bed and bath.",
+   "Category": 1015,
+   "Merchant category": 5712
+ },
+ {
+   "Subcategory": 2149,
+   "Description": "Construction material.",
+   "Category": 1015,
+   "Merchant category": 5039
+ },
+ {
+   "Subcategory": 2150,
+   "Description": "Drapery, window covering, and upholstery.",
+   "Category": 1015,
+   "Merchant category": 5714
+ },
+ {
+   "Subcategory": 2151,
+   "Description": "Exterminating and disinfecting services.",
+   "Category": 1015,
+   "Merchant category": 7342
+ },
+ {
+   "Subcategory": 2152,
+   "Description": "Fireplace, and fireplace screens.",
+   "Category": 1015,
+   "Merchant category": 5718
+ },
+ {
+   "Subcategory": 2153,
+   "Description": "Furniture.",
+   "Category": 1015,
+   "Merchant category": 5712
+ },
+ {
+   "Subcategory": 2154,
+   "Description": "Garden supplies.",
+   "Category": 1015,
+   "Merchant category": 5261
+ },
+ {
+   "Subcategory": 2155,
+   "Description": "Glass, paint, and wallpaper.",
+   "Category": 1015,
+   "Merchant category": 5231
+ },
+ {
+   "Subcategory": 2156,
+   "Description": "Hardware and tools.",
+   "Category": 1015,
+   "Merchant category": 5251
+ },
+ {
+   "Subcategory": 2157,
+   "Description": "Home decor.",
+   "Category": 1015,
+   "Merchant category": 5719
+ },
+ {
+   "Subcategory": 2158,
+   "Description": "Housewares.",
+   "Category": 1015,
+   "Merchant category": 5719
+ },
+ {
+   "Subcategory": 2159,
+   "Description": "Kitchenware.",
+   "Category": 1015,
+   "Merchant category": 5719
+ },
+ {
+   "Subcategory": 2160,
+   "Description": "Landscaping.",
+   "Category": 1015,
+   "Merchant category": 780
+ },
+ {
+   "Subcategory": 2161,
+   "Description": "Rugs and carpets.",
+   "Category": 1015,
+   "Merchant category": 5713
+ },
+ {
+   "Subcategory": 2162,
+   "Description": "Security and surveillance equipment.",
+   "Category": 1015,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2163,
+   "Description": "Swimming pools and spas.",
+   "Category": 1015,
+   "Merchant category": 5996
+ },
+ {
+   "Subcategory": 2164,
+   "Description": "Charity.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2165,
+   "Description": "Political.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2166,
+   "Description": "Religious.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2167,
+   "Description": "Other.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2168,
+   "Description": "Personal.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2169,
+   "Description": "Educational.",
+   "Category": 1016,
+   "Merchant category": 8398
+ },
+ {
+   "Subcategory": 2171,
+   "Description": "Medication and supplements.",
+   "Category": 1017,
+   "Merchant category": 5995
+ },
+ {
+   "Subcategory": 2172,
+   "Description": "Pet shops, pet food, and supplies.",
+   "Category": 1017,
+   "Merchant category": 5995
+ },
+ {
+   "Subcategory": 2173,
+   "Description": "Specialty or rare pets.",
+   "Category": 1017,
+   "Merchant category": 5995
+ },
+ {
+   "Subcategory": 2174,
+   "Description": "Veterinary services.",
+   "Category": 1017,
+   "Merchant category": 742
+ },
+ {
+   "Subcategory": 2175,
+   "Description": "Membership services.",
+   "Category": 1018,
+   "Merchant category": 8699
+ },
+ {
+   "Subcategory": 2176,
+   "Description": "Merchandise.",
+   "Category": 1018,
+   "Merchant category": 5973
+ },
+ {
+   "Subcategory": 2177,
+   "Description": "Services (not elsewhere classified).",
+   "Category": 1018,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2178,
+   "Description": "Chemicals and allied products.",
+   "Category": 1019,
+   "Merchant category": 5169
+ },
+ {
+   "Subcategory": 2179,
+   "Description": "Department store.",
+   "Category": 1019,
+   "Merchant category": 5311
+ },
+ {
+   "Subcategory": 2180,
+   "Description": "Discount store.",
+   "Category": 1019,
+   "Merchant category": 5310
+ },
+ {
+   "Subcategory": 2181,
+   "Description": "Durable goods.",
+   "Category": 1019,
+   "Merchant category": 5099
+ },
+ {
+   "Subcategory": 2182,
+   "Description": "Non-durable goods.",
+   "Category": 1019,
+   "Merchant category": 5199
+ },
+ {
+   "Subcategory": 2183,
+   "Description": "Used and secondhand store.",
+   "Category": 1019,
+   "Merchant category": 5931
+ },
+ {
+   "Subcategory": 2184,
+   "Description": "Variety store.",
+   "Category": 1019,
+   "Merchant category": 5331
+ },
+ {
+   "Subcategory": 2185,
+   "Description": "Advertising.",
+   "Category": 1020,
+   "Merchant category": 7311
+ },
+ {
+   "Subcategory": 2186,
+   "Description": "Shopping services and buying clubs.",
+   "Category": 1020,
+   "Merchant category": 7278
+ },
+ {
+   "Subcategory": 2187,
+   "Description": "Career services.",
+   "Category": 1020,
+   "Merchant category": 7361
+ },
+ {
+   "Subcategory": 2188,
+   "Description": "Carpentry.",
+   "Category": 1020,
+   "Merchant category": 1750
+ },
+ {
+   "Subcategory": 2189,
+   "Description": "Child care services.",
+   "Category": 1020,
+   "Merchant category": 8351
+ },
+ {
+   "Subcategory": 2190,
+   "Description": "Cleaning and maintenance.",
+   "Category": 1020,
+   "Merchant category": 2842
+ },
+ {
+   "Subcategory": 2191,
+   "Description": "Commercial photography.",
+   "Category": 1020,
+   "Merchant category": 7333
+ },
+ {
+   "Subcategory": 2192,
+   "Description": "Computer and data processing services.",
+   "Category": 1020,
+   "Merchant category": 7372
+ },
+ {
+   "Subcategory": 2193,
+   "Description": "Computer network services.",
+   "Category": 1020,
+   "Merchant category": 4816
+ },
+ {
+   "Subcategory": 2194,
+   "Description": "Consulting services.",
+   "Category": 1020,
+   "Merchant category": 7392
+ },
+ {
+   "Subcategory": 2195,
+   "Description": "Counseling services.",
+   "Category": 1020,
+   "Merchant category": 7277
+ },
+ {
+   "Subcategory": 2196,
+   "Description": "Courier services.",
+   "Category": 1020,
+   "Merchant category": 4215
+ },
+ {
+   "Subcategory": 2197,
+   "Description": "Dental care.",
+   "Category": 1020,
+   "Merchant category": 8021
+ },
+ {
+   "Subcategory": 2198,
+   "Description": "eCommerce services.",
+   "Category": 1020,
+   "Merchant category": 4816
+ },
+ {
+   "Subcategory": 2199,
+   "Description": "Electrical and small appliance repair.",
+   "Category": 1020,
+   "Merchant category": 7629
+ },
+ {
+   "Subcategory": 2200,
+   "Description": "Entertainment.",
+   "Category": 1020,
+   "Merchant category": 7929
+ },
+ {
+   "Subcategory": 2201,
+   "Description": "Equipment rental and leasing services.",
+   "Category": 1020,
+   "Merchant category": 7394
+ },
+ {
+   "Subcategory": 2202,
+   "Description": "Event and wedding planning.",
+   "Category": 1020,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2203,
+   "Description": "Gambling.",
+   "Category": 1020,
+   "Merchant category": 7995
+ },
+ {
+   "Subcategory": 2204,
+   "Description": "General contractors.",
+   "Category": 1020,
+   "Merchant category": 1520
+ },
+ {
+   "Subcategory": 2205,
+   "Description": "Graphic and commercial design.",
+   "Category": 1020,
+   "Merchant category": 7333
+ },
+ {
+   "Subcategory": 2206,
+   "Description": "Health and beauty spas.",
+   "Category": 1020,
+   "Merchant category": 7298
+ },
+ {
+   "Subcategory": 2207,
+   "Description": "IDs, licenses, and passports.",
+   "Category": 1020,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2208,
+   "Description": "Importing and exporting.",
+   "Category": 1020,
+   "Merchant category": 7399
+ },
+ {
+   "Subcategory": 2209,
+   "Description": "Information retrieval services.",
+   "Category": 1020,
+   "Merchant category": 7375
+ },
+ {
+   "Subcategory": 2210,
+   "Description": "Insurance - auto and home.",
+   "Category": 1020,
+   "Merchant category": 5960
+ },
+ {
+   "Subcategory": 2211,
+   "Description": "Insurance - life and annuity.",
+   "Category": 1020,
+   "Merchant category": 5960
+ },
+ {
+   "Subcategory": 2212,
+   "Description": "Landscaping and horticultural.",
+   "Category": 1020,
+   "Merchant category": 780
+ },
+ {
+   "Subcategory": 2213,
+   "Description": "Legal services and attorneys.",
+   "Category": 1020,
+   "Merchant category": 8111
+ },
+ {
+   "Subcategory": 2214,
+   "Description": "Local delivery service.",
+   "Category": 1020,
+   "Merchant category": 4215
+ },
+ {
+   "Subcategory": 2215,
+   "Description": "Lottery and contests.",
+   "Category": 1020,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2216,
+   "Description": "Medical care.",
+   "Category": 1020,
+   "Merchant category": 8011
+ },
+ {
+   "Subcategory": 2217,
+   "Description": "Membership clubs and organizations.",
+   "Category": 1020,
+   "Merchant category": 7991
+ },
+ {
+   "Subcategory": 2218,
+   "Description": "Misc. publishing and printing.",
+   "Category": 1020,
+   "Merchant category": 2741
+ },
+ {
+   "Subcategory": 2219,
+   "Description": "Moving and storage.",
+   "Category": 1020,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2220,
+   "Description": "Online dating.",
+   "Category": 1020,
+   "Merchant category": 7273
+ },
+ {
+   "Subcategory": 2221,
+   "Description": "Photofinishing.",
+   "Category": 1020,
+   "Merchant category": 7395
+ },
+ {
+   "Subcategory": 2222,
+   "Description": "Photographic studios - portraits.",
+   "Category": 1020,
+   "Merchant category": 7221
+ },
+ {
+   "Subcategory": 2223,
+   "Description": "Protective and security services.",
+   "Category": 1020,
+   "Merchant category": 7393
+ },
+ {
+   "Subcategory": 2224,
+   "Description": "Quick copy and reproduction services.",
+   "Category": 1020,
+   "Merchant category": 7338
+ },
+ {
+   "Subcategory": 2225,
+   "Description": "Radio, television, and stereo repair.",
+   "Category": 1020,
+   "Merchant category": 7622
+ },
+ {
+   "Subcategory": 2226,
+   "Description": "Real estate agent.",
+   "Category": 1020,
+   "Merchant category": 6513
+ },
+ {
+   "Subcategory": 2227,
+   "Description": "Rental property management.",
+   "Category": 1020,
+   "Merchant category": 6513
+ },
+ {
+   "Subcategory": 2228,
+   "Description": "Reupholstery and furniture repair.",
+   "Category": 1020,
+   "Merchant category": 7641
+ },
+ {
+   "Subcategory": 2229,
+   "Description": "Services (not elsewhere classified).",
+   "Category": 1020,
+   "Merchant category": 8999
+ },
+ {
+   "Subcategory": 2230,
+   "Description": "Shipping and packing.",
+   "Category": 1020,
+   "Merchant category": 7399
+ },
+ {
+   "Subcategory": 2231,
+   "Description": "Swimming pool services.",
+   "Category": 1020,
+   "Merchant category": 5996
+ },
+ {
+   "Subcategory": 2232,
+   "Description": "Tailors and alterations.",
+   "Category": 1020,
+   "Merchant category": 5697
+ },
+ {
+   "Subcategory": 2233,
+   "Description": "Telecommunication service.",
+   "Category": 1020,
+   "Merchant category": 4814
+ },
+ {
+   "Subcategory": 2234,
+   "Description": "Utilities.",
+   "Category": 1020,
+   "Merchant category": 4900
+ },
+ {
+   "Subcategory": 2235,
+   "Description": "Vision care.",
+   "Category": 1020,
+   "Merchant category": 8043
+ },
+ {
+   "Subcategory": 2236,
+   "Description": "Watch, clock, and jewelry repair.",
+   "Category": 1020,
+   "Merchant category": 7631
+ },
+ {
+   "Subcategory": 2237,
+   "Description": "Athletic shoes.",
+   "Category": 1021,
+   "Merchant category": 5661
+ },
+ {
+   "Subcategory": 2238,
+   "Description": "Bicycle shop, service, and repair.",
+   "Category": 1021,
+   "Merchant category": 5940
+ },
+ {
+   "Subcategory": 2239,
+   "Description": "Boating, sailing and accessories.",
+   "Category": 1021,
+   "Merchant category": 5551
+ },
+ {
+   "Subcategory": 2240,
+   "Description": "Camping and outdoors.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2241,
+   "Description": "Dance halls, studios, and schools.",
+   "Category": 1021,
+   "Merchant category": 7911
+ },
+ {
+   "Subcategory": 2242,
+   "Description": "Exercise and fitness.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2243,
+   "Description": "Fan gear and memorabilia",
+   "Category": 1021,
+   "Merchant category": 5947
+ },
+ {
+   "Subcategory": 2244,
+   "Description": "Firearm accessories.",
+   "Category": 1021,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2245,
+   "Description": "Firearms.",
+   "Category": 1021,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2246,
+   "Description": "Hunting.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2247,
+   "Description": "Knives.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2248,
+   "Description": "Martial arts weapons.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2249,
+   "Description": "Sport games and toys.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2250,
+   "Description": "Sporting equipment.",
+   "Category": 1021,
+   "Merchant category": 5941
+ },
+ {
+   "Subcategory": 2251,
+   "Description": "Swimming pools and spas.",
+   "Category": 1021,
+   "Merchant category": 5996
+ },
+ {
+   "Subcategory": 2252,
+   "Description": "Arts and crafts.",
+   "Category": 1022,
+   "Merchant category": 5970
+ },
+ {
+   "Subcategory": 2253,
+   "Description": "Camera and photographic supplies.",
+   "Category": 1022,
+   "Merchant category": 5946
+ },
+ {
+   "Subcategory": 2254,
+   "Description": "Hobby, toy, and game shops.",
+   "Category": 1022,
+   "Merchant category": 5945
+ },
+ {
+   "Subcategory": 2255,
+   "Description": "Memorabilia",
+   "Category": 1022,
+   "Merchant category": 5999
+ },
+ {
+   "Subcategory": 2256,
+   "Description": "Music store - instruments and sheet music.",
+   "Category": 1022,
+   "Merchant category": 5733
+ },
+ {
+   "Subcategory": 2257,
+   "Description": "Stamp and coin.",
+   "Category": 1022,
+   "Merchant category": 5972
+ },
+ {
+   "Subcategory": 2258,
+   "Description": "Stationary, printing, and writing paper.",
+   "Category": 1022,
+   "Merchant category": 5111
+ },
+ {
+   "Subcategory": 2259,
+   "Description": "Vintage and collectibles.",
+   "Category": 1022,
+   "Merchant category": 5931
+ },
+ {
+   "Subcategory": 2260,
+   "Description": "Video games and systems.",
+   "Category": 1022,
+   "Merchant category": 5945
+ },
+ {
+   "Subcategory": 2261,
+   "Description": "Airline.",
+   "Category": 1023,
+   "Merchant category": 4511
+ },
+ {
+   "Subcategory": 2262,
+   "Description": "Auto rental.",
+   "Category": 1023,
+   "Merchant category": 3351
+ },
+ {
+   "Subcategory": 2263,
+   "Description": "Bus line.",
+   "Category": 1023,
+   "Merchant category": 4131
+ },
+ {
+   "Subcategory": 2264,
+   "Description": "Cruises.",
+   "Category": 1023,
+   "Merchant category": 4411
+ },
+ {
+   "Subcategory": 2265,
+   "Description": "Lodging and accommodations.",
+   "Category": 1023,
+   "Merchant category": 7011
+ },
+ {
+   "Subcategory": 2266,
+   "Description": "Luggage and leather goods.",
+   "Category": 1023,
+   "Merchant category": 5948
+ },
+ {
+   "Subcategory": 2267,
+   "Description": "Recreational services.",
+   "Category": 1023,
+   "Merchant category": 7999
+ },
+ {
+   "Subcategory": 2268,
+   "Description": "Sporting and recreation camps.",
+   "Category": 1023,
+   "Merchant category": 7032
+ },
+ {
+   "Subcategory": 2269,
+   "Description": "Taxicabs and limousines.",
+   "Category": 1023,
+   "Merchant category": 4121
+ },
+ {
+   "Subcategory": 2270,
+   "Description": "Timeshares.",
+   "Category": 1023,
+   "Merchant category": 7012
+ },
+ {
+   "Subcategory": 2271,
+   "Description": "Tours.",
+   "Category": 1023,
+   "Merchant category": 4722
+ },
+ {
+   "Subcategory": 2272,
+   "Description": "Trailer parks or campgrounds.",
+   "Category": 1023,
+   "Merchant category": 7033
+ },
+ {
+   "Subcategory": 2273,
+   "Description": "Transportation services - other.",
+   "Category": 1023,
+   "Merchant category": 4789
+ },
+ {
+   "Subcategory": 2274,
+   "Description": "Travel agency.",
+   "Category": 1023,
+   "Merchant category": 4722
+ },
+ {
+   "Subcategory": 2275,
+   "Description": "Auto dealer - new and used.",
+   "Category": 1024,
+   "Merchant category": 5511
+ },
+ {
+   "Subcategory": 2276,
+   "Description": "Auto dealer - used only.",
+   "Category": 1024,
+   "Merchant category": 5521
+ },
+ {
+   "Subcategory": 2277,
+   "Description": "Aviation.",
+   "Category": 1024,
+   "Merchant category": 5599
+ },
+ {
+   "Subcategory": 2278,
+   "Description": "Boat dealer.",
+   "Category": 1024,
+   "Merchant category": 5551
+ },
+ {
+   "Subcategory": 2279,
+   "Description": "Mobile home dealer.",
+   "Category": 1024,
+   "Merchant category": 5271
+ },
+ {
+   "Subcategory": 2280,
+   "Description": "Motorcycle dealer.",
+   "Category": 1024,
+   "Merchant category": 5571
+ },
+ {
+   "Subcategory": 2281,
+   "Description": "Recreational and utility trailer dealer.",
+   "Category": 1024,
+   "Merchant category": 5561
+ },
+ {
+   "Subcategory": 2282,
+   "Description": "Recreational vehicle dealer.",
+   "Category": 1024,
+   "Merchant category": 5561
+ },
+ {
+   "Subcategory": 2283,
+   "Description": "Vintage and collectibles.",
+   "Category": 1024,
+   "Merchant category": 5521
+ },
+ {
+   "Subcategory": 2284,
+   "Description": "New parts and supplies - motor vehicle.",
+   "Category": 1025,
+   "Merchant category": 5533
+ },
+ {
+   "Subcategory": 2285,
+   "Description": "Used parts - motor vehicle.",
+   "Category": 1025,
+   "Merchant category": 5533
+ },
+ {
+   "Subcategory": 2286,
+   "Description": "Audio and video.",
+   "Category": 1025,
+   "Merchant category": 5732
+ },
+ {
+   "Subcategory": 2287,
+   "Description": "Auto body repair and paint.",
+   "Category": 1025,
+   "Merchant category": 7531
+ },
+ {
+   "Subcategory": 2288,
+   "Description": "Auto rental.",
+   "Category": 1025,
+   "Merchant category": 3351
+ },
+ {
+   "Subcategory": 2289,
+   "Description": "Auto service.",
+   "Category": 1025,
+   "Merchant category": 7538
+ },
+ {
+   "Subcategory": 2290,
+   "Description": "Automotive tire supply and service.",
+   "Category": 1025,
+   "Merchant category": 5532
+ },
+ {
+   "Subcategory": 2291,
+   "Description": "Boat rental and leases.",
+   "Category": 1025,
+   "Merchant category": 4457
+ },
+ {
+   "Subcategory": 2292,
+   "Description": "Car wash.",
+   "Category": 1025,
+   "Merchant category": 7542
+ },
+ {
+   "Subcategory": 2293,
+   "Description": "Motor home and recreational vehicle rental.",
+   "Category": 1025,
+   "Merchant category": 7519
+ },
+ {
+   "Subcategory": 2294,
+   "Description": "Tools and equipment.",
+   "Category": 1025,
+   "Merchant category": 5533
+ },
+ {
+   "Subcategory": 2295,
+   "Description": "Towing service.",
+   "Category": 1025,
+   "Merchant category": 7549
+ },
+ {
+   "Subcategory": 2296,
+   "Description": "Truck and utility trailer rental.",
+   "Category": 1025,
+   "Merchant category": 7513
+ },
+ {
+   "Subcategory": 2297,
+   "Description": "Accessories.",
+   "Category": 1025,
+   "Merchant category": 5533
+ }
+]

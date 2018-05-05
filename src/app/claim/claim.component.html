@@ -1,0 +1,201 @@
+<style>
+  .nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+</style>
+<div class="container col-sm-12 col-md-12 col-lg-8">
+  <form (ngSubmit)="onSubmit()" #claimForm="ngForm">
+    <div class="form-group">
+      <div>
+        <div>
+          <h4 class="nopadding" translate>General Info</h4>
+          <div>
+            <div>
+              <label for="name" translate>Name</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="name.valid || name.pristine">*</label>
+                </div>
+              </div>
+              <label for="businessName" translate>Business Name</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="businessName" required [(ngModel)]="model.businessName" name="businessName" #businessName="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="businessName.valid || businessName.pristine">*</label>
+                </div>
+              </div>
+              <label for="street" translate>Street</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="street" required [(ngModel)]="model.street" name="street" #street="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="street.valid || street.pristine">*</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <label for="city" translate>City</label>
+                  </div>
+                  <div>
+                    <input type="text" class="form-control" id="city" required [(ngModel)]="model.city" name="city" #city="ngModel">
+                  </div>
+                  <div class="row col-sm-1">
+                    <label [hidden]="city.valid || city.pristine">*</label>
+                  </div>
+                </div>
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-4">
+                  <div>
+                    <label for="state" translate>State/Province</label>
+                  </div>
+                  <div>
+                    <!-- <input type="text" class="form-control" id="state" required [(ngModel)]="model.state" name="state" #state="ngModel"> -->
+                    <select class="form-control" id="state" required [(ngModel)]="model.state" name="state" #state="ngModel">
+                      <option *ngFor="let s of state_province" [value]="s.abbreviation">{{s.abbreviation}}</option>
+                    </select>
+                  </div>
+                  <div class="row col-sm-1">
+                    <label [hidden]="state.valid || state.pristine">*</label>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+                  <div class="col-sm-6">
+                      <div>
+                        <label for="zip" translate>Zip Code</label>
+                      </div>
+                      <div>
+                        <input type="text" class="form-control" id="zip" required [(ngModel)]="model.zip" name="zip" #zip="ngModel">
+                      </div>
+                      <div class="row col-sm-1">
+                        <label [hidden]="zip.valid || zip.pristine">*</label>
+                      </div>
+                    </div>
+                  <div class="col-sm-4">
+                    <div>
+                      <label for="country" translate>Country</label>
+                    </div>
+                    <div>
+                        <select (change)="countryDropDownChanged($event.target.value)" (ngModelChange)="onChange($event)"
+                        class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel">
+                            <option *ngFor="let c of countries" [value]="c.Country">{{c.Country}}</option>
+                          </select>
+
+                      <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
+                    </div>
+                    <div class="row col-sm-1">
+                      <label [hidden]="country.valid || country.pristine">*</label>
+                    </div>
+                  </div>                  
+                </div>
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div>
+                      <label for="email" translate>Email</label>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                    </div>
+                    <div class="row col-sm-1">
+                      <label [hidden]="email.valid || email.pristine">*</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                      <div>
+                        <label for="phone" translate>Phone</label>
+                      </div>
+                      <div>
+                        <input type="text" class="form-control" id="phone" required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
+                      </div>
+                      <div class="row col-sm-1">
+                        <label [hidden]="phone.valid || phone.pristine">*</label>
+                      </div>
+                    </div>
+                </div>
+                  
+              <label for="webPage" translate>WebPage</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="webPage" [(ngModel)]="model.webPage" name="webPage" #webPage="ngModel">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <div>
+          <h4 translate>Business Info</h4>
+          <div>
+            <div>
+              <label for="service" translate>Service</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="service" required [(ngModel)]="model.service" name="service" #service="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="service.valid || service.pristine">*</label>
+                </div>
+              </div>
+              <label for="servicingArea" translate>Servicing Area</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="servicingArea" required [(ngModel)]="model.servicingArea" name="servicingArea"
+                    #servicingArea="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="servicingArea.valid || servicingArea.pristine">*</label>
+                </div>
+              </div>
+              <label for="businessHour" translate>Business Hour</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="businessHour" required [(ngModel)]="model.businessHour" name="businessHour" #businessHour="ngModel">
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="businessHour.valid || businessHour.pristine">*</label>
+                </div>
+              </div>
+              <label for="businessCategory" translate>Business Category</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                    <select class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory" #businessCategory="ngModel">
+                      <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                  <label [hidden]="businessCategory.valid || businessCategory.pristine">*</label>
+                </div>
+              </div>
+              <!-- <label for="formType">Form Type</label> -->
+              <div class="row" *ngIf="false">
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control" id="formType" [(ngModel)]="model.formType" name="formType" #formType="ngModel">
+                  <input type="text" readonly class="form-control" id="publishDate" [(ngModel)]="model.publishDate" name="publishDate" #publishDate="ngModel">
+                </div>
+                <!-- <div class="col-sm-2">
+                  <label [hidden]="formType.valid || formType.pristine">*</label>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success" [disabled]="!claimForm.form.valid" translate>Submit</button>
+      <button type="button" class="btn" (click)="test();">test</button>
+    </div>
+  </form>  
+</div>

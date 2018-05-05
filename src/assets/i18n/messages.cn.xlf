@@ -1,0 +1,6 @@
+[...]
+      <trans-unit id="[...]" datatype="html">
+        <source>Hello World!</source>
+        <target>你好 世界!</target>
+      </trans-unit>
+[...]
