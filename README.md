@@ -1,18 +1,17 @@
-# Angular-Chainpage
+# LinkGear DApps
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 
 ## How to use
 
-
-### Part 1
+run the following commands
 
 1. `git clone https://github.com/linkcryptocoin/ChainPage.git`
 2. `cd ChainPage`
 3. `npm install`
-4. 'npm install --save alasql'
-5. 'truffle compile'
+4. `npm install --save alasql`
+5. `truffle compile`
 6. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
@@ -33,5 +32,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Technologies & Languages Used
-1. Angular4 (Typescript/Javascript)
+1. Angular5 (Typescript/Javascript)
 2. Truffle (Solidity)
