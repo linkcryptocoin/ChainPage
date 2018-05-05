@@ -11,8 +11,10 @@ run the following commands
 2. `cd ChainPage`
 3. `npm install`
 4. `npm install --save alasql`
-5. `truffle compile`
-6. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+5. `npm i -g truffle`
+6. `truffle compile`
+7. `npm i -g @angular/cli`
+8. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
