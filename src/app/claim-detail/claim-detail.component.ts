@@ -39,7 +39,7 @@ export class ClaimDetailComponent implements OnInit {
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService) {
     this.page = 1;
-    this.maxSize = 10;
+    this.maxSize = 5;
     this.pageSize = 5;
     this.currentUser = sessionStorage.getItem("currentUser");
     this.oothService.getLoggedInName
@@ -70,7 +70,7 @@ export class ClaimDetailComponent implements OnInit {
   }
   loadData(pageNum: number) {
     this.commentsPage = this.comments.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
-
+    console.log(this.commentsPage);
   }
   getClaimDetails(id: string) {
     this.bigchainService.getTransactionsById(id)
@@ -188,12 +188,13 @@ export class ClaimDetailComponent implements OnInit {
           // console.log(alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.postedBy = b.postedBy AND a.postedTime < b.postedTime Where b.postedBy IS null", [this.comments,this.comments]));
           this.comments = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.postedBy = b.postedBy AND a.postedTime < b.postedTime Where b.postedBy IS null", [this.comments, this.comments]);
           this.totalItems = this.comments.length;
-          console.log(this.comments);
+          console.log( this.totalItems);
           // console.log(this.ownComments);
           let data = {
             ownComment: this.ownComment,
             comments: this.comments
           }
+          this.commentsPage = this.comments.slice(0, this.pageSize);
           return data;
         });
   }

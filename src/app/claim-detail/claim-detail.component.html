@@ -31,6 +31,16 @@
       </div>
     </div>
     <br>
+    <div *ngIf="!currentUser">
+        <div>
+            <i class="far fa-thumbs-up fa-lg col-3">
+              <i style="font-size: medium;">{{likes}} likes</i>
+            </i>
+            <i class="far fa-thumbs-down fa-lg col-3">
+              <i style="font-size: medium;">{{dislikes}} dislikes</i>
+            </i>
+          </div>
+    </div>
     <div *ngIf="currentUser != undefined">
       <div>
         <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top" ngbTooltip="you liked it">
@@ -75,7 +85,7 @@
       <br>
       <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
       <ul>
-        <li *ngFor="let c of (comments)">
+        <li *ngFor="let c of commentsPage">
           <span>
             {{c.comment}}
           </span>

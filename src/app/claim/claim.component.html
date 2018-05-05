@@ -12,13 +12,26 @@
           <h4 class="nopadding" translate>General Info</h4>
           <div>
             <div>
+              <label for="country" translate>Country</label>
+              <div class="row">
+                <div class="col-sm-4">
+                  <select (change)="countryDropDownChanged($event.target.value)" (ngModelChange)="onChange($event)" class="form-control" id="country"
+                    required [(ngModel)]="model.country" name="country" #country="ngModel">
+                    <option *ngFor="let c of countries" [value]="c.Country">{{c.Country}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  <label style="color: red;" [hidden]="country.valid || country.pristine">*</label>
+                </div>
+                <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
+              </div>
               <label for="name" translate>Name</label>
               <div class="row">
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="name.valid || name.pristine">*</label>
+                  <label style="color: red;" [hidden]="name.valid || name.pristine">*</label>
                 </div>
               </div>
               <label for="businessName" translate>Business Name</label>
@@ -27,7 +40,7 @@
                   <input type="text" class="form-control" id="businessName" required [(ngModel)]="model.businessName" name="businessName" #businessName="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="businessName.valid || businessName.pristine">*</label>
+                  <label style="color: red;" [hidden]="businessName.valid || businessName.pristine">*</label>
                 </div>
               </div>
               <label for="street" translate>Street</label>
@@ -36,7 +49,7 @@
                   <input type="text" class="form-control" id="street" required [(ngModel)]="model.street" name="street" #street="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="street.valid || street.pristine">*</label>
+                  <label style="color: red;" [hidden]="street.valid || street.pristine">*</label>
                 </div>
               </div>
               <div class="row">
@@ -48,7 +61,7 @@
                     <input type="text" class="form-control" id="city" required [(ngModel)]="model.city" name="city" #city="ngModel">
                   </div>
                   <div class="row col-sm-1">
-                    <label [hidden]="city.valid || city.pristine">*</label>
+                    <label style="color: red;" [hidden]="city.valid || city.pristine">*</label>
                   </div>
                 </div>
                 <!-- <div class="col-sm-1"></div> -->
@@ -63,65 +76,49 @@
                     </select>
                   </div>
                   <div class="row col-sm-1">
-                    <label [hidden]="state.valid || state.pristine">*</label>
+                    <label style="color: red;" [hidden]="state.valid || state.pristine">*</label>
                   </div>
                 </div>
-                
+
               </div>
               <div class="row">
-                  <div class="col-sm-6">
-                      <div>
-                        <label for="zip" translate>Zip Code</label>
-                      </div>
-                      <div>
-                        <input type="text" class="form-control" id="zip" required [(ngModel)]="model.zip" name="zip" #zip="ngModel">
-                      </div>
-                      <div class="row col-sm-1">
-                        <label [hidden]="zip.valid || zip.pristine">*</label>
-                      </div>
-                    </div>
-                  <div class="col-sm-4">
-                    <div>
-                      <label for="country" translate>Country</label>
-                    </div>
-                    <div>
-                        <select (change)="countryDropDownChanged($event.target.value)" (ngModelChange)="onChange($event)"
-                        class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel">
-                            <option *ngFor="let c of countries" [value]="c.Country">{{c.Country}}</option>
-                          </select>
-
-                      <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
-                    </div>
-                    <div class="row col-sm-1">
-                      <label [hidden]="country.valid || country.pristine">*</label>
-                    </div>
-                  </div>                  
-                </div>
-                <div class="row">
-                  <div class="col-sm-5">
-                    <div>
-                      <label for="email" translate>Email</label>
-                    </div>
-                    <div>
-                      <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
-                    </div>
-                    <div class="row col-sm-1">
-                      <label [hidden]="email.valid || email.pristine">*</label>
-                    </div>
+                <div class="col-sm-6">
+                  <div>
+                    <label for="zip" translate>Zip Code</label>
                   </div>
-                  <div class="col-sm-5">
-                      <div>
-                        <label for="phone" translate>Phone</label>
-                      </div>
-                      <div>
-                        <input type="text" class="form-control" id="phone" required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
-                      </div>
-                      <div class="row col-sm-1">
-                        <label [hidden]="phone.valid || phone.pristine">*</label>
-                      </div>
-                    </div>
+                  <div>
+                    <input type="text" class="form-control" id="zip" required [(ngModel)]="model.zip" name="zip" #zip="ngModel">
+                  </div>
+                  <div class="row col-sm-1">
+                    <label style="color: red;" [hidden]="zip.valid || zip.pristine">*</label>
+                  </div>
                 </div>
-                  
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <div>
+                    <label for="email" translate>Email</label>
+                  </div>
+                  <div>
+                    <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+                  </div>
+                  <div class="row col-sm-1">
+                    <label style="color: red;" [hidden]="email.valid || email.pristine">*</label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div>
+                    <label for="phone" translate>Phone</label>
+                  </div>
+                  <div>
+                    <input type="text" class="form-control" id="phone" required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
+                  </div>
+                  <div class="row col-sm-1">
+                    <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>
+                  </div>
+                </div>
+              </div>
+
               <label for="webPage" translate>WebPage</label>
               <div class="row">
                 <div class="col-sm-10">
@@ -144,7 +141,7 @@
                   <input type="text" class="form-control" id="service" required [(ngModel)]="model.service" name="service" #service="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="service.valid || service.pristine">*</label>
+                  <label style="color: red;" [hidden]="service.valid || service.pristine">*</label>
                 </div>
               </div>
               <label for="servicingArea" translate>Servicing Area</label>
@@ -154,7 +151,7 @@
                     #servicingArea="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="servicingArea.valid || servicingArea.pristine">*</label>
+                  <label style="color: red;" [hidden]="servicingArea.valid || servicingArea.pristine">*</label>
                 </div>
               </div>
               <label for="businessHour" translate>Business Hour</label>
@@ -163,7 +160,7 @@
                   <input type="text" class="form-control" id="businessHour" required [(ngModel)]="model.businessHour" name="businessHour" #businessHour="ngModel">
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="businessHour.valid || businessHour.pristine">*</label>
+                  <label style="color: red;" [hidden]="businessHour.valid || businessHour.pristine">*</label>
                 </div>
               </div>
               <label for="businessCategory" translate>Business Category</label>
@@ -171,12 +168,13 @@
                 <div class="col-sm-10">
                   <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
                     #businessCategory="ngModel"> -->
-                    <select class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory" #businessCategory="ngModel">
-                      <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
-                    </select>
+                  <select class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel">
+                    <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
+                  </select>
                 </div>
                 <div class="col-sm-2">
-                  <label [hidden]="businessCategory.valid || businessCategory.pristine">*</label>
+                  <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>
                 </div>
               </div>
               <!-- <label for="formType">Form Type</label> -->
@@ -197,5 +195,5 @@
       <button type="submit" class="btn btn-success" [disabled]="!claimForm.form.valid" translate>Submit</button>
       <button type="button" class="btn" (click)="test();">test</button>
     </div>
-  </form>  
+  </form>
 </div>
