@@ -16,6 +16,9 @@ run the following commands
 7. `npm i -g @angular/cli`
 8. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+run the app in the background
+`forever start node_modules/@angular/cli/bin/ng serve --host {ip_address or host} --prod`
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
