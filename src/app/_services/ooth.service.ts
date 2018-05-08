@@ -10,14 +10,15 @@ import { environment } from '../../environments/environment';
 export class OothService {
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
     @Output() getLoggedInAccount: EventEmitter<any> = new EventEmitter();
+    @Output() getAccountBalance: EventEmitter<any> = new EventEmitter();
     @Output() logginStatus: EventEmitter<any> = new EventEmitter();
     readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
     conn: any;
     //user: any;
-    authenticated: boolean;    
+    authenticated: boolean;
 
     constructor(private http: HttpClient, private globals: Globals, private router: Router) {
-        
+
     }
 
     async register(email: string, password: string) {
@@ -66,15 +67,16 @@ export class OothService {
             this.getLoggedInName.emit(body.user.local.email);
             this.logginStatus.emit(true);
             this.getLoggedInAccount.emit(body.user.local.account);
+            sessionStorage.setItem("currentUser", body.user.local.email);
+            sessionStorage.setItem("currentUserAccount", body.user.local.account);
         }
-        else{
+        else {
             return body;
         }
         // generate token and save to session
         await this.onGenerateVerificationToken();
         console.log(body.user.local.account)
-        sessionStorage.setItem("currentUser", body.user.local.email);
-        sessionStorage.setItem("currentUserAccount", body.user.local.account);
+
         return body
     }
     async Logout() {
@@ -84,15 +86,15 @@ export class OothService {
         })
         const body = await res.json()
         if (body.status !== 'error') {
-            sessionStorage.removeItem("currentUser");
-            sessionStorage.removeItem("expires_at");
-            sessionStorage.removeItem("oothtoken");
-            sessionStorage.removeItem("currentUserAccount");
             this.authenticated = false;
             this.getLoggedInName.emit(undefined);
             this.getLoggedInAccount.emit(undefined);
             this.logginStatus.emit(false);
         }
+        sessionStorage.removeItem("currentUser");
+        sessionStorage.removeItem("expires_at");
+        sessionStorage.removeItem("oothtoken");
+        sessionStorage.removeItem("currentUserAccount");
         return body;
     }
     // GenerateV Verification Token
@@ -101,7 +103,7 @@ export class OothService {
         // e.preventDefault()
         let user = await this.getUser()
         // alert("name: " + user.local.email);
-        let ouser = {_id: user._id, name: {email: user.local.email}}
+        let ouser = { _id: user._id, name: { email: user.local.email } }
         let res = await fetch(this.API_PATH + 'local/generate-verification-token', {
             method: 'POST',
             headers: {
@@ -111,7 +113,7 @@ export class OothService {
             credentials: 'include',
         });
         const body = await res.json();
-        
+
         // alert(`${body.message} - ${body.token}`);
         sessionStorage.setItem('oothtoken', body.token);
     }
@@ -148,15 +150,15 @@ export class OothService {
         }
         return body.user;
     }
-    async isLoggedIn(){
+    async isLoggedIn() {
         let status = await this.getUser();
         // console.log(status);
-        if(status === 'error' || status === null
-            || status === undefined || status === ''){
-                // console.log("return false");
+        if (status === 'error' || status === null
+            || status === undefined || status === '') {
+            // console.log("return false");
             return false;
         }
-        else{
+        else {
             // console.log("return true");
             return true;
         }
@@ -169,20 +171,44 @@ export class OothService {
         sessionStorage.setItem("expires_at", expiresAt.toString());
         //console.log("SESSION:" + sessionStorage.getItem('currentUser'));
     }
-    
+
     // Get the balance of the token
-    async getTokenBalance(addr) {
+    async getTokenBalance(addr: string) {
+        console.log("account: " + addr);
         const res = await fetch(this.API_PATH + 'local/t-getTokenBalance', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                  addr,
+                addr,
             }),
             credentials: 'include',
-        })
-        const body = await res.json()
-        return Math.round(parseFloat(body.result) * 100) / 100; 
+        });
+        const body = await res.json();
+        let balance = Math.round(parseFloat(body.result) * 100) / 100;
+        this.getAccountBalance.emit(balance);
+        console.log("balance: " + balance);
+        return balance;
+    }
+
+    // deduct token from current account
+    async deductToken(addr: string, amount: number) {
+        const res = await fetch(this.API_PATH + 'local/t-deductRewards', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                addr,
+                amount
+            }),
+            credentials: 'include',
+        });
+        const body = await res.json();
+        console.log("body: " + JSON.stringify(body))
+        let balance = Math.round(parseFloat(body.result) * 100) / 100;
+        this.getAccountBalance.emit(balance);
+        return body;
     }
 }

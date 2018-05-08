@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim, User } from '../_models/index'
-import { UserService, ClaimService, AlertService, BigchanDbService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 //import { driver} from '../../../node_modules/bigchaindb-driver';
@@ -26,17 +26,25 @@ export class ClaimComponent implements OnInit {
   states: any[] = [];
   provinces: any[] = [];
   state_province: any[] = [];
-  claimId: number;
-
+  claimId: string;
+  isUpdate: boolean = false;
   constructor(
     private router: Router, private route: ActivatedRoute, private translate: TranslateService,
     private userService: UserService, private bigchaindbService: BigchanDbService,
-    private claimService: ClaimService, private globals: Globals,
+    private globals: Globals,
     private alertService: AlertService, private toasterService: ToasterService,
     private http: Http
   ) {
     this.currentUser = sessionStorage.getItem('currentUser');
     this.model.submitBy = this.currentUser;
+    this.route.queryParams.subscribe(params => {
+      console.log(params['id']);
+      this.claimId = params['id'];
+      if (this.claimId) {
+        this.model = this.getClaim(this.claimId);
+        this.isUpdate = true;
+      }
+    });
     this.http.get('/assets/cat.json')
       .subscribe(data => {
         this.categories = data.json();
@@ -47,15 +55,6 @@ export class ClaimComponent implements OnInit {
         this.countries = data.json();
         //console.log(data);
       });
-
-
-    this.route.queryParams.subscribe(params => {
-      //console.log(params['id']);
-      this.claimId = params['id'];
-      if (this.claimId) {
-        this.model = this.getClaim(this.claimId);
-      }
-    });
   }
   onChange(newValue: string) {
     if (newValue.toLowerCase() == "usa") {
@@ -79,6 +78,12 @@ export class ClaimComponent implements OnInit {
   }
   async onSubmit() {
     this.submitted = true;
+    // set the upload time stamp
+    // console.log("id = " + this.model.id);
+    if (this.model.id === undefined) {
+      this.model.id = "NA";
+    }
+    this.model.postedTime = Date.now();
     // console.log(JSON.stringify(this.model));
     await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
       .then(
@@ -111,12 +116,21 @@ export class ClaimComponent implements OnInit {
     //     });
   }
 
-  getClaim(id: number) {
-    this.claimService.getById(id).subscribe(claim => { this.model = claim; console.log(this.model.country); });
+  getClaim(id: string) {
+    this.bigchaindbService.getTransactionsById(id)
+      .subscribe(data => {
+        let claimData = JSON.parse(JSON.stringify(data));
+        this.model = claimData.asset.data;
+        if (this.model.id === "NA") {
+          this.model.id = claimData.id;
+        }
+        console.log(this.model);
+        this.onChange(this.model.country);
+      });
   }
-  deleteClaim(id: number) {
-    this.claimService.delete(id);
-  }
+  // deleteClaim(id: number) {
+  //   this.claimService.delete(id);
+  // }
   // editClaim(id: number) {
   //   this.claimService.getById(id).subscribe(claim => { this.model = claim });;
   //   //console.log(this.model);
@@ -124,9 +138,9 @@ export class ClaimComponent implements OnInit {
   approveClaim(id: number) {
     alert("approved");
   }
-  private loadAllClaims() {
-    this.claimService.getAll().subscribe(claims => { this.claims = claims; });
-  }
+  // private loadAllClaims() {
+  //   this.claimService.getAll().subscribe(claims => { this.claims = claims; });
+  // }
   isAuthor(user: string): boolean {
     //console.log(this.currentUser.username == user);
     return this.currentUser == user;
@@ -145,7 +159,7 @@ export class ClaimComponent implements OnInit {
       "Baby", this.globals.chainFormName, this.currentUser, Date.now());
   }
   ngOnInit() {
-    this.loadAllClaims();
+    // this.loadAllClaims();
   }
 
 }

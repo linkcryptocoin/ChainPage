@@ -15,6 +15,7 @@ import { Comment } from '../_models/comment';
 })
 export class ClaimDetailComponent implements OnInit {
   private subscription: ISubscription;
+  private isAuthor: boolean = false;
   currentUser: string = undefined;
   claimId: string;
   country: string;
@@ -34,10 +35,11 @@ export class ClaimDetailComponent implements OnInit {
   dislikes: number = 0;
   alreadyLiked: boolean = false;
   alreadyDisliked: boolean = false;
-
+  private account: string;
   constructor(private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService) {
+    this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 5;
     this.pageSize = 5;
@@ -58,8 +60,7 @@ export class ClaimDetailComponent implements OnInit {
       // this.country = params['cid'];
       // this.category = params['catid'];
       this.getClaimDetails(this.claimId);
-      this.getComments(this.claimId);
-      this.getVotes(this.claimId);
+
     });
   }
   loadPage(pageNum: number) {
@@ -80,10 +81,20 @@ export class ClaimDetailComponent implements OnInit {
         //   this.toasterService.pop('error', 'Failed to load data');
         // },
         data => {
-          // console.log(data);
+          console.log(data);
           let claim = (JSON.parse(JSON.stringify(data))).asset.data;
-          claim.id = (JSON.parse(JSON.stringify(data))).id;
+          // use record's transaction id as the id
+          if (claim.id === "NA") {
+            claim.id = (JSON.parse(JSON.stringify(data))).id;
+          }
           this.model = claim;
+          if (this.currentUser == this.model.postedBy) {
+            this.isAuthor = true;
+            console.log(this.isAuthor);
+          }
+          // get comments and votes
+          this.getComments(this.model.id);
+          this.getVotes(this.model.id);
         });
   }
   // deleteClaim(id: number) {
@@ -117,6 +128,12 @@ export class ClaimDetailComponent implements OnInit {
           (data) => {
             this.toasterService.pop('success', 'Comment submitted successfully');
             this.submitted = true;
+            console.log("account: " + this.account);
+            //deduct token
+            if (!this.ownComment) {
+              console.log("deduct new comment token from " + this.account);
+              this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageComment);
+            }
             //reload comments
             this.getComments(this.model.id);
             return true;
@@ -188,7 +205,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log(alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.postedBy = b.postedBy AND a.postedTime < b.postedTime Where b.postedBy IS null", [this.comments,this.comments]));
           this.comments = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.postedBy = b.postedBy AND a.postedTime < b.postedTime Where b.postedBy IS null", [this.comments, this.comments]);
           this.totalItems = this.comments.length;
-          console.log( this.totalItems);
+          console.log(this.totalItems);
           // console.log(this.ownComments);
           let data = {
             ownComment: this.ownComment,
@@ -199,32 +216,33 @@ export class ClaimDetailComponent implements OnInit {
         });
   }
   thumbsUp() {
-    
     if (!this.alreadyDisliked) {
       if (this.alreadyLiked) {
         this.likes--;
         this.voteService.vote(this.model.id, "neutral", this.currentUser, this.globals.chainPageVote)
-          // .then(
-          //   data => {
-          //     this.getVotes(this.model.id);
-          //   },
-          //   err => {
-          //     this.toasterService.pop("error", "Fail to submit vote");
-          //   }
-          // )
+          .then(
+            data => {
+              console.log("deduct from account: " + this.account + " " + this.globals.tokenDeductAmmount_ChainpageVote + " token");
+              this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageVote);
+            },
+            err => {
+              this.toasterService.pop("error", "Fail to submit vote");
+            }
+          )
 
       }
       else {
         this.likes++;
         this.voteService.vote(this.model.id, "like", this.currentUser, this.globals.chainPageVote)
-          // .then(
-          //   data => {
-          //     this.getVotes(this.model.id);
-          //   },
-          //   err => {
-          //     this.toasterService.pop("error", "Fail to submit vote");
-          //   }
-          // )
+          .then(
+            data => {
+              console.log("deduct from account: " + this.account + " " + this.globals.tokenDeductAmmount_ChainpageVote + " token");
+              this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageVote);
+            },
+            err => {
+              this.toasterService.pop("error", "Fail to submit vote");
+            }
+          )
       }
 
       this.alreadyLiked = !this.alreadyLiked;
@@ -232,77 +250,79 @@ export class ClaimDetailComponent implements OnInit {
 
   }
   thumbsDown() {
-    console.log(this.alreadyDisliked);
+    // console.log(this.alreadyDisliked);
     if (!this.alreadyLiked) {
       if (this.alreadyDisliked) {
-        console.log(this.alreadyDisliked);
+        // console.log(this.alreadyDisliked);
         this.dislikes--;
         this.voteService.vote(this.model.id, "neutral", this.currentUser, this.globals.chainPageVote)
-          // .then(
-          //   data => {
-          //     this.getVotes(this.model.id);
-          //   },
-          //   err => {
-          //     this.toasterService.pop("error", "Fail to submit vote");
-          //   }
-          // )
+          .then(
+            data => {
+
+              this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageVote);
+            },
+            err => {
+              this.toasterService.pop("error", "Fail to submit vote");
+            }
+          )
       }
       else {
-        console.log(this.alreadyDisliked);
+        // console.log(this.alreadyDisliked);
         this.dislikes++;
         this.voteService.vote(this.model.id, "dislike", this.currentUser, this.globals.chainPageVote)
-          // .then(
-          //   data => {
-          //     this.getVotes(this.model.id);
-          //   },
-          //   err => {
-          //     this.toasterService.pop("error", "Fail to submit vote");
-          //   }
-          // )
+          .then(
+            data => {
+
+              this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageVote);
+            },
+            err => {
+              this.toasterService.pop("error", "Fail to submit vote");
+            }
+          )
       }
       this.alreadyDisliked = !this.alreadyDisliked;
-      console.log(this.alreadyDisliked);
+      // console.log(this.alreadyDisliked);
     }
   }
   getVotes(id: string) {
     this.likes = 0;
     this.dislikes = 0;
-    
+
     // let data: any;
     this.voteService.voteData.subscribe(data => {
       // data=data;
       // console.log(data);
       // this.zone.run(() => {
-        if (data != undefined) {
-            this.likes = data.likes;
-            this.dislikes = data.dislikes;
-            this.alreadyLiked = data.alreadyLiked;
-            this.alreadyDisliked = data.alreadyDisliked;
-          console.log(this.alreadyDisliked);
-        }
-    //     if (data != undefined) {
-    //   // console.log(data.votes)
-    //   if (data.votes && data.votes.length > 0) {
-    //     this.likes = (alasql("SELECT count(*) as cnt FROM ? Where vote = 'like'", [data.votes]))[0].cnt;
-    //     this.dislikes = (alasql("SELECT count(*) as cnt FROM ? Where vote = 'dislike'", [data.votes]))[0].cnt;
-    //     // console.log("like = " + this.likes + " dislike = " + this.dislikes);
-    //   }
-    //   // console.log((alasql("SELECT count(*) as cnt FROM ? Where vote = 'like'", [data.votes]))[0].cnt)
-    //   if (data.ownVote) {
-    //     if (data.ownVote.vote == "like") {
-    //       this.alreadyLiked = true;
-    //       this.alreadyDisliked = false;
-    //       this.likes++;
-    //       // console.log(this.alreadyLiked + " like = " + this.likes);
-    //     }
-    //     else if (data.ownVote.vote == "dislike") {
-    //       this.alreadyLiked = false;
-    //       this.alreadyDisliked = true;
-    //       this.dislikes++;
-    //     }
-    //   }
-    //   console.log(this.likes);
-    // }
+      if (data != undefined) {
+        this.likes = data.likes;
+        this.dislikes = data.dislikes;
+        this.alreadyLiked = data.alreadyLiked;
+        this.alreadyDisliked = data.alreadyDisliked;
+        // console.log(this.alreadyDisliked);
+      }
+      //     if (data != undefined) {
+      //   // console.log(data.votes)
+      //   if (data.votes && data.votes.length > 0) {
+      //     this.likes = (alasql("SELECT count(*) as cnt FROM ? Where vote = 'like'", [data.votes]))[0].cnt;
+      //     this.dislikes = (alasql("SELECT count(*) as cnt FROM ? Where vote = 'dislike'", [data.votes]))[0].cnt;
+      //     // console.log("like = " + this.likes + " dislike = " + this.dislikes);
+      //   }
+      //   // console.log((alasql("SELECT count(*) as cnt FROM ? Where vote = 'like'", [data.votes]))[0].cnt)
+      //   if (data.ownVote) {
+      //     if (data.ownVote.vote == "like") {
+      //       this.alreadyLiked = true;
+      //       this.alreadyDisliked = false;
+      //       this.likes++;
+      //       // console.log(this.alreadyLiked + " like = " + this.likes);
+      //     }
+      //     else if (data.ownVote.vote == "dislike") {
+      //       this.alreadyLiked = false;
+      //       this.alreadyDisliked = true;
+      //       this.dislikes++;
+      //     }
+      //   }
+      //   console.log(this.likes);
+      // }
       // })
     });
     this.voteService.getVotes(id);

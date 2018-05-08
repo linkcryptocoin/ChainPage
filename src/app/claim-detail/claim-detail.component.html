@@ -2,7 +2,12 @@
   <!-- <form #claimForm="ngForm"> -->
   <div class="form-group">
     <div>
-      <h5 translate>General Info</h5>
+      <h5 translate>General Info
+          <a [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</a>
+      </h5>
+      
+      <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
+
       <label for="name" translate>{{model.name}} -- {{model.businessName}} ({{model.phone}})</label>
       <br>
       <label for="street">{{model.street}}</label>
@@ -32,24 +37,26 @@
     </div>
     <br>
     <div *ngIf="!currentUser">
-        <div>
-            <i class="far fa-thumbs-up fa-lg col-3">
-              <i style="font-size: medium;">{{likes}} likes</i>
-            </i>
-            <i class="far fa-thumbs-down fa-lg col-3">
-              <i style="font-size: medium;">{{dislikes}} dislikes</i>
-            </i>
-          </div>
+      <div>
+        <i class="far fa-thumbs-up fa-lg col-3">
+          <i style="font-size: medium;">{{likes}} likes</i>
+        </i>
+        <i class="far fa-thumbs-down fa-lg col-3">
+          <i style="font-size: medium;">{{dislikes}} dislikes</i>
+        </i>
+      </div>
     </div>
     <div *ngIf="currentUser != undefined">
       <div>
-        <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top" ngbTooltip="you liked it">
+        <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top"
+          ngbTooltip="you liked it">
           <i style="font-size: medium;">{{likes}} likes</i>
         </i>
         <!-- <a  click="alert('thumbs up')">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUoSURBVFhH3VhtT5tlFG6iH/Vn+JKYqP/AH6DRT3xytKWAmS8LA/pOB2iYLFlhbm4kQF+eQhkMyqDdGODmYmARNVmEvTAYOnAzM5vOGdqyDzCP53q4S6HctPdDmR92kittn94v13M/51znnMf03Jqlw/62JeiqrdB8oxWad8kacqUtAdcagO98bRH/WQPOGnOn/U0x7dmaLeB42dLpdNo0z73KLl/yiwvHn3T8EKW+68N0bmGMxhYv6sB3XGvn/z7nMR/xWMxh8o6Skw0vieX2zt5paHiRT8JuDbmT3rg/3TMzSN8sfauM8aVL1DM9SHVxf6qM1+B1arCmWL44s7R7XreFPAv2WHMyNpuQEjCCgZsJqol9mSwPe+Y+DDheE9vsztiXPrCFPclTk9pT2WbFAGvyjafMAcf7YjtjVhpy2Mo1b7rv2pB0g71A78wQ8UmumIMus9hWzfSTY3Iqj/Ts3HnyDh2hCs2tfw7NjUjH7YQYP3J+Smnlk9R9jh/r6WtqgeAdaqb4VCs9eRih4e9bdZKycfmAvRA8BX0SkcVycPvUlYiyz5UFXbT6VxfR3936J37LxhXC15PhNZvmvpU3uiEliFbZAjLE5y/Q/ohXJwesMUF2D+lYFdTEDif5BqsFna0GAS0Le5aNSEnL5XZqGz+yQfDB3SAdOF0vHasCSBBr5LJUzK0BlwsiLJsoQ/TnGH0W9dE/f4Q3CE7PtlHdLnxwM7zD/hSTtAtaWePAuAe1l03KRfz2KH3SfYhmbrVtkAMil4/Sse86pXNUgRtnLr8JWuu2L+h6C/kSKUk2KRf1iaM0cKVlC7l/H3XTgeghXTZkc1QBDuBi7nC+IeixtHBVgqQum5CLnukYVffW0+qf65GbwdUbbWQOOAsCUV5IL5nLiiXoPCjomUyVEd8oqhLZ4Fw0jR6nkR+PbSFnBJCiQnoJLpVa3YigZzKVR+oWz1xXS2kHexvp96WAdHNVpB9oSHHS9QGk10rNe0fQQ2pzp89zDScbnAssvPJQk26sgqePuqh/wk+es83S9YEEByEyi6DHPtjpXBtbVAsQ+JFsYxU8vh+iqh4fOWJNNDy/sw+O3blI5qBzVdD7/wgC4z99VVArtxE08oiLJVjI/4Btj7hcUw+SYgiq+B+AIOFaNBskRmRmtwRV/Q9on4pyfenNyowRoS7mBFX8D4BQc21QJeiJVBfxpVRSXTEEVxT8DxwqNV9qS6qD8cS7SGOySZuxW4LI1YOcv1GBy9bNIMocmMuSoJU1lDjoW2WTNgO9x+P72RJLFS0jTVTV10jDBXoWlFucr2sFrazpBSuHNopG2cQM6hN+SkwZz8W//NpOn3K1I1szg/4bcbJy0bzj2wc+xRo01bLJGaCc+ri7jkm26pEpIyPD/EJ+gvC96oGmJLcM2eDINb1pCnvmuYHJ2zRBJhrO+ZHQdZ9UAchpV89I1wNOTIT0pqmkv+QFQUduaP3Q8au2nXuB9bbTkyrtcL8qaOQ3NNFopoutjlVguHHPWGnIaeFwX3mWJ4keiMnh1cc+sa0xK+1wvMeRnTo5kd8njQIBcWIytAbVsASc74rtdmfWkOMVOG8tN9X9N+PSDY1ggKWkeuBwkk9uFmuLbYozRDc6fpahZYg5WkOVtJgBxiJDiJ53GVKyZy8wNxsEFK9xkYrQGiKp66+AuTxafwV8SQfqOVzDf408BmPLQ95Fc8hp31GE99qQzNEaovtC7WZlmUBlDpQF3SlcQ8mEMdsS//NjJtN/cn+fanFEkFsAAAAASUVORK5CYII=">
         </a> -->
-        <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-3" placement="top" ngbTooltip="you didn't like it">
+        <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-3"
+          placement="top" ngbTooltip="you didn't like it">
           <i style="font-size: medium;">{{dislikes}} dislikes</i>
         </i>
         <!-- <button click="alert('thumbs down')">
@@ -58,11 +65,6 @@
       </div>
       <br>
       <div class="form-group">
-        <!-- <div>
-          <button translate class="btn btn-info" (click)="editClaim(model.id)" [routerLink]="['/claim']" [queryParams]="{id: model.id}">Edit</button>
-          <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button>
-        </div> -->
-
         <div>
           <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentText.value)">
             <label for="commentTextarea">Your comment (min 10 characters):</label>
@@ -74,7 +76,7 @@
               <button class="btn btn-primary" [disabled]="!commentForm.form.valid" translate>Submit</button>
             </div>
             <div *ngIf="ownComment">
-              <button class="btn btn-primary" [disabled]="!commentForm.form.valid" translate>Update</button>
+              <button class="btn btn-primary" [disabled]="!commentForm.form.valid || commentText.pristine" translate>Update</button>
             </div>
           </form>
         </div>

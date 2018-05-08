@@ -18,7 +18,7 @@ export class TopNavComponent implements OnInit {
   currentUserAccount: string = undefined;
   selectedLanguage = "2";
   language: any[] = [];
-  elementType : 'url' | 'canvas' | 'img' = 'url';
+  elementType: 'url' | 'canvas' | 'img' = 'url';
   tokenBalance: number = 0;
   constructor(private http: Http, private alertService: AlertService, private toasterService: ToasterService,
     private oothService: OothService, private router: Router,
@@ -27,13 +27,17 @@ export class TopNavComponent implements OnInit {
     this.currentUserAccount = sessionStorage.getItem("currentUserAccount");
     this.oothService.getLoggedInName
       .subscribe(name => {
-          this.currentUser = name;
+        this.currentUser = name;
       });
-      this.oothService.getLoggedInAccount
+    this.oothService.getLoggedInAccount
       .subscribe(account => {
         this.currentUserAccount = account;
         console.log("account: " + this.currentUserAccount);
+        // this.getTokenBalance();
       });
+    this.oothService.getAccountBalance
+      .subscribe(balance => this.tokenBalance = balance);
+    this.oothService.getTokenBalance(this.currentUserAccount);
     this.http.get('/assets/language.json')
       .subscribe(data => {
         this.language = data.json();
@@ -51,8 +55,8 @@ export class TopNavComponent implements OnInit {
   LogOut() {
     // reset login status
     this.oothService.Logout()
-    .then(() => this.toasterService.pop('success', 'Logout successful'));
-      // .then(() => this.alertService.success('Logout successful', true));
+      .then(() => this.toasterService.pop('success', 'Logout successful'));
+    // .then(() => this.alertService.success('Logout successful', true));
     //this.globals.isLoggedIn = false;
     this.currentUser = undefined;
     sessionStorage.setItem("oothtoken", "");
@@ -64,10 +68,10 @@ export class TopNavComponent implements OnInit {
     //console.log(this.language.find(n => n.Id==newValue).Short);
     this.translate.setDefaultLang(this.language.find(n => n.Id == newValue).Short);
   }
-  getTokenBalance()
-  {
-    this.oothService.getTokenBalance(this.currentUserAccount).then(balance => this.tokenBalance = balance);
-  }
+  // getTokenBalance() {
+  //   console.log("in getTokenBalance()")
+  //   this.oothService.getTokenBalance(this.currentUserAccount).then(balance => this.tokenBalance = balance);
+  // }
   ngOnInit() {
   }
 

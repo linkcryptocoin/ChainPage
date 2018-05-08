@@ -29,7 +29,7 @@
                 <br> T: {{claim.data.phone}} 
                 <br> {{claim.data.street}}
                 <br> {{claim.data.city}}, {{claim.data.state}} {{claim.data.zip}} {{getCountryName(claim.data.country)}}
-                <br> Date Created: {{claim.data.publishDate | date:'yyyy-MM-dd HH:mm a z':'-0500'}}
+                <br> Date Created: {{claim.data.postedTime | date:'yyyy-MM-dd HH:mm a z':'-0500'}}
             </li>
         </ul>
     </div>

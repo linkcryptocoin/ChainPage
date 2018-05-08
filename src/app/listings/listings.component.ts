@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService, ClaimService, AlertService, BigchanDbService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { User, Claim } from '../_models/index';
@@ -37,7 +37,6 @@ export class ListingsComponent implements OnInit {
     private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
     private router: Router, private globals: Globals,
     private userService: UserService,
-    //private claimService: ClaimService,
     private alertService: AlertService,
     private http: Http
   ) {
@@ -135,7 +134,11 @@ export class ListingsComponent implements OnInit {
           // console.log(data);
           (JSON.parse(JSON.stringify(data))).forEach(claim => {
             let matchFound = false;
-            // console.log(claim);
+            if(claim.data.id === "NA"){
+              claim.data.id = claim.id;
+            }
+            // console.log(claim.id);
+            // console.log(claim.data.id);
             // search by query param
             if (this.catParam != undefined) {
               if (claim.data.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
@@ -162,9 +165,9 @@ export class ListingsComponent implements OnInit {
               }
             }
           });
-          // console.log(this.claims);
+          console.log(alasql("SELECT a.data.postedTime FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]));
           // debugger;
-
+          this.claims = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]);
           this.totalItems = this.claims.length;
           // console.log(this.totalItems);
           // sort               
