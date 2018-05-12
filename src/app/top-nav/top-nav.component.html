@@ -17,15 +17,15 @@
                 <a class="nav-link" translate>Posts</a>
             </li>
         </ul>
-        <div *ngIf="currentUserAccount != undefined && currentUserAccount != ''">            
+        <!-- <div *ngIf="currentUserAccount != undefined && currentUserAccount != ''">            
             <ngx-qrcode [qrc-element-type]="img" qrc-class="qrSize" [qrc-element-type]="elementType" [qrc-value]="currentUserAccount">
             </ngx-qrcode>
             <h6>Token balance: {{tokenBalance}}</h6>
-        </div>
+        </div> -->
         <span>
             <h6 *ngIf="currentUser != undefined">
                 Hi
-                <b>{{currentUser}} </b>
+                <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}"><b>{{currentUser}} </b></a>
                 <!-- <i>{{currentUserAccount}}</i> -->
                 <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>
             </h6>

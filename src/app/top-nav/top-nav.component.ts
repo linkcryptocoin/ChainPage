@@ -19,10 +19,12 @@ export class TopNavComponent implements OnInit {
   selectedLanguage = "2";
   language: any[] = [];
   elementType: 'url' | 'canvas' | 'img' = 'url';
-  tokenBalance: number = 0;
+  tokenBalance: number;
+
   constructor(private http: Http, private alertService: AlertService, private toasterService: ToasterService,
     private oothService: OothService, private router: Router,
     private route: ActivatedRoute, private translate: TranslateService) {
+
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserAccount = sessionStorage.getItem("currentUserAccount");
     this.oothService.getLoggedInName
@@ -33,11 +35,25 @@ export class TopNavComponent implements OnInit {
       .subscribe(account => {
         this.currentUserAccount = account;
         console.log("account: " + this.currentUserAccount);
-        // this.getTokenBalance();
+        // let balanceSession = sessionStorage.getItem('tokenBalance');
+        // if (balanceSession) {
+        //   this.tokenBalance = Number.parseFloat(balanceSession);
+        //   console.log("session balance=" + balanceSession)
+        // }
+        // else {
+        //   this.oothService.getTokenBalance(this.currentUserAccount)
+        //     .then(balance => {
+        //       console.log("balance=" + balance)
+        //       this.tokenBalance = balance;
+        //     });
+        // }
       });
-    this.oothService.getAccountBalance
-      .subscribe(balance => this.tokenBalance = balance);
-    this.oothService.getTokenBalance(this.currentUserAccount);
+    // this.oothService.getAccountBalance
+    //   .subscribe(balance => {
+    //     console.log("new balance=" + balance)
+    //     this.tokenBalance = balance;
+    //   });
+
     this.http.get('/assets/language.json')
       .subscribe(data => {
         this.language = data.json();
@@ -73,6 +89,7 @@ export class TopNavComponent implements OnInit {
   //   this.oothService.getTokenBalance(this.currentUserAccount).then(balance => this.tokenBalance = balance);
   // }
   ngOnInit() {
+
   }
 
 }

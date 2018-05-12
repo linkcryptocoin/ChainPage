@@ -9,6 +9,7 @@ import { ContractComponent } from './contract/contract.component';
 import { ClaimComponent } from './claim/claim.component';
 import { ClaimDetailComponent } from './claim-detail/claim-detail.component';
 import { ListingsComponent } from './listings/listings.component';
+import { ProfileComponent } from './profile/profile.component';
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'landing', component: LandingComponent },
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
         { path: 'claim', component: ClaimComponent, canActivate: [AuthGuard] },
         { path: 'claim-detail', component: ClaimDetailComponent }
     ] },
-        
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, 
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     

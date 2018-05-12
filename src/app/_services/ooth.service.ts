@@ -95,6 +95,7 @@ export class OothService {
         sessionStorage.removeItem("expires_at");
         sessionStorage.removeItem("oothtoken");
         sessionStorage.removeItem("currentUserAccount");
+        sessionStorage.removeItem("tokenBalance");
         return body;
     }
     // GenerateV Verification Token
@@ -188,6 +189,7 @@ export class OothService {
         const body = await res.json();
         let balance = Math.round(parseFloat(body.result) * 100) / 100;
         this.getAccountBalance.emit(balance);
+        sessionStorage.setItem('tokenBalance', balance.toString());
         console.log("balance: " + balance);
         return balance;
     }

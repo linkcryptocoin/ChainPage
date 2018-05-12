@@ -34,7 +34,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { MomentModule } from 'angular2-moment';
 import { LandingComponent } from './landing/landing.component';
 import { ListingsComponent } from './listings/listings.component';
-import { ModalContent } from './modal/modal.component'; // optional, provides moment-style pipes for date formatting
+import { ModalContent } from './modal/modal.component';
+import { ProfileComponent } from './profile/profile.component'; // optional, provides moment-style pipes for date formatting
 const SERVICES = [
   MetaCoinService,
   Web3Service,
@@ -74,7 +75,8 @@ const SERVICES = [
     ClaimDetailComponent,
     LandingComponent,
     ListingsComponent,
-    ModalContent
+    ModalContent,
+    ProfileComponent
   ],
   providers: [
     SERVICES,
