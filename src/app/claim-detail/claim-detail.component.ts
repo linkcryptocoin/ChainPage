@@ -7,12 +7,15 @@ import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error } from 'util';
 import { Comment } from '../_models/comment';
+import { Http } from '@angular/http';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
   templateUrl: './claim-detail.component.html',
   styleUrls: ['./claim-detail.component.css']
 })
+
+
 export class ClaimDetailComponent implements OnInit {
   private subscription: ISubscription;
   private isAuthor: boolean = false;
@@ -36,7 +39,7 @@ export class ClaimDetailComponent implements OnInit {
   alreadyLiked: boolean = false;
   alreadyDisliked: boolean = false;
   private account: string;
-  constructor(private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
+  constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService) {
     this.account = sessionStorage.getItem("currentUserAccount");
@@ -88,6 +91,15 @@ export class ClaimDetailComponent implements OnInit {
             claim.id = (JSON.parse(JSON.stringify(data))).id;
           }
           this.model = claim;
+          this.http.get('/assets/cat.json')
+          .subscribe(data => { 
+           var MainCat = JSON.parse(JSON.stringify(data.json().filter((item)=> item.Category == this.model.businessMainCategory)));
+         console.log("----------------"+MainCat.length);
+         for(var i=0; i<1 ; i++){
+          this.model.businessMainCategory = MainCat[i].Description;
+         } 
+ 
+         });
           if (this.currentUser == this.model.postedBy) {
             this.isAuthor = true;
             console.log(this.isAuthor);

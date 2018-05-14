@@ -27,6 +27,7 @@ export class ListingsComponent implements OnInit {
   categories: any[] = [];
   countries: any[] = [];
   catParam = "";
+  IDparam = "";
   totalItems: number;
   page: number;
   previousPage: any;
@@ -61,7 +62,7 @@ export class ListingsComponent implements OnInit {
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
       this.catParam = params['cat'];
-      console.log(this.catParam);
+      console.log("----Cat Param Value---------"+this.catParam);
       this.getAllTransactionsByAsset(this.catParam);
     });
 
@@ -126,7 +127,9 @@ export class ListingsComponent implements OnInit {
     this.claims = [];
     let data:any = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
                     .take(1);
-    console.log(data);
+    console.log('---------Logged data-----'+data);
+    
+    
     this.subscription = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
       .subscribe(
         data => {
@@ -140,8 +143,22 @@ export class ListingsComponent implements OnInit {
             // console.log(claim.id);
             // console.log(claim.data.id);
             // search by query param
+            console.log("------businessMainCategory----------"+claim.data.businessMainCategory);
+           
+            this.http.get('/assets/cat.json')
+            .subscribe(data => { 
+             var MainCat = JSON.parse(JSON.stringify(data.json().filter((item)=> item.Category == claim.data.businessMainCategory)));
+           console.log("-------MainCat.length---------"+MainCat.length);
+           for(var i=0; i<1 ; i++){
+            claim.data.businessMainCategory = MainCat[i].Description;
+           } 
+   
+           });
+
             if (this.catParam != undefined) {
-              if (claim.data.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
+              console.log("------this.catParam under function----------"+this.catParam.toLowerCase());
+              console.log("------to lower case----------"+claim.data.businessMainCategory);
+              if (claim.data.businessMainCategory.toLowerCase() == this.catParam.toLowerCase()) {
                 this.claims.push(claim);
               }
             }
@@ -277,4 +294,18 @@ export class ListingsComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
+  Remove_Listing()
+  {
+    this.subscription = this.route.queryParams.subscribe(params => {
+      //console.log(params['cat']);
+      this.IDparam = params['id'];
+      console.log("----ID Param Value---------"+this.IDparam);
+
+      //await this.bigchaindbService.DeleteTransaction()
+    });
+
+  }
+
 }

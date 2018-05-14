@@ -14,7 +14,8 @@ export class Claim {
         public service: string,
         public servicingArea: string,
         public businessHour: string,
-        public businessCategory: string,
+        public businessMainCategory: string,
+        public businessSubCategory: string,
         public formType: string,
         public postedBy: string,
         public postedTime: number

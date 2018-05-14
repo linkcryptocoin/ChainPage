@@ -22,6 +22,7 @@ export class ClaimComponent implements OnInit {
   claims: Claim[] = [];
   submitted = false;
   categories: any[] = [];
+  subcategories: any[] = [];
   countries: any[] = [];
   states: any[] = [];
   provinces: any[] = [];
@@ -49,14 +50,28 @@ export class ClaimComponent implements OnInit {
       .subscribe(data => {
         this.categories = data.json();
         //console.log(data);
+        
       });
+      
     this.http.get('/assets/country.json')
       .subscribe(data => {
         this.countries = data.json();
         //console.log(data);
       });
   }
-  onChange(newValue: string) {
+  MainCategoryDropDownChanged(newValue: string) {
+    //console.log(newValue);
+    this.http.get('/assets/subCat.json')
+      .subscribe(data => {
+        this.subcategories = data.json().filter((item)=> item.Category == newValue);
+
+        
+        //console.log(newValue);
+      });
+
+    
+  }
+   onChange(newValue: string) {
     if (newValue.toLowerCase() == "usa") {
       console.log(newValue);
       this.http.get('/assets/us_states.json')
@@ -64,6 +79,7 @@ export class ClaimComponent implements OnInit {
           this.states = data.json();
           this.state_province = this.states;
           //console.log(data);
+         
         });
     }
     else if (newValue.toLowerCase() == "canada") {
@@ -85,6 +101,10 @@ export class ClaimComponent implements OnInit {
     }
     this.model.postedTime = Date.now();
     // console.log(JSON.stringify(this.model));
+
+
+ 
+
     await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
       .then(
         data => {
@@ -156,7 +176,7 @@ export class ClaimComponent implements OnInit {
   test() {
     this.model = new Claim("NA", "John", "John Business", "123 abc st.", "DC", "DC", "20001",
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
-      "Baby", this.globals.chainFormName, this.currentUser, Date.now());
+      "1000","Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
   }
   ngOnInit() {
     // this.loadAllClaims();
