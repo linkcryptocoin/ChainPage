@@ -17,8 +17,9 @@
             <div *ngIf="f.submitted && !email.valid" class="alert alert-danger">Email is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password (Length of Password must be > 8)</label>
+            <label for="password">Password</label>
             <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <label for="must">Enter a strong password, the length of Password must be > 8. Please keep this password in a safe place, as it is also your token private key. </label>
             <div *ngIf="f.submitted && !password.valid" class="alert alert-danger">Password is required</div>
         </div>
         <div class="form-group">
