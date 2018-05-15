@@ -5,11 +5,12 @@ import { AlertService, UserService, OothService } from '../_services/index';
 import { resolve } from 'q';
 import { Observable } from 'rxjs/Observable';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
-//import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 //import { Directive, Input } from '@angular/core';
 @Component({
     moduleId: module.id.toString(),
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls: ['./register.component.css']
 })
 
 /*@Directive({
@@ -74,7 +75,7 @@ export class RegisterComponent {
             }
             else{
                 this.toasterService.pop('success', 'Register successful')
-            }            
+            }
         });
     }
 }
