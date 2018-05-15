@@ -36,6 +36,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ListingsComponent } from './listings/listings.component';
 import { ModalContent } from './modal/modal.component';
 import { ProfileComponent } from './profile/profile.component'; // optional, provides moment-style pipes for date formatting
+import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
 const SERVICES = [
   MetaCoinService,
   Web3Service,
@@ -76,7 +77,8 @@ const SERVICES = [
     LandingComponent,
     ListingsComponent,
     ModalContent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmEqualValidatorDirective
   ],
   providers: [
     SERVICES,

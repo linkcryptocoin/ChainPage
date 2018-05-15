@@ -6,6 +6,15 @@
             <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
             <div *ngIf="f.submitted && !firstName.valid" class="alert alert-danger">First Name is required</div>
         </div> -->
+
+       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
+            <label for="region">Region</label>
+             <select class="form-control" name="region" [(ngModel)]="model.region" #region="ngModel" required>
+                <option value="LinkGear">LinkGear</option>
+                <option value="Baltimore">Baltimore</option>
+            </select>
+             <!--<div *ngIf="f.submitted && !userName.valid" class="alert alert-danger">User Name is required</div>-->
+        </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
             <label for="userName">User Name</label>
             <input type="text" class="form-control" name="userName" [(ngModel)]="model.userName" #userName="ngModel" required />
@@ -16,12 +25,29 @@
             <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
             <div *ngIf="f.submitted && !email.valid" class="alert alert-danger">Email is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+       <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
             <label for="must">Enter a strong password, the length of Password must be > 8. Please keep this password in a safe place, as it is also your token private key. </label>
             <div *ngIf="f.submitted && !password.valid" class="alert alert-danger">Password is required</div>
-        </div>
+        </div>-->
+    <div class="form-group" [class.has-error]="password.touched && password.invalid">
+          <label for="password" class="control-label">Password</label>
+          <input id="password" required type="text" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel">
+         <small for="must">Enter a strong password, the length of Password must be > 8. Please keep this password in a safe place, as it is also your token private key. </small>
+            
+          <div class="help-block" *ngIf="password.touched && password.errors?.required" class="alert alert-danger"> Password is required
+          </div>
+     </div>
+     <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+          <label for="confirmPassword" class="control-label">Confirm Password</label>
+          <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="text" class="form-control"
+         [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
+          <div class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required"class="alert alert-danger">Confirm Password is required
+          </div>
+          <div class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="alert alert-danger">
+            Password Mis match</div>
+      </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
