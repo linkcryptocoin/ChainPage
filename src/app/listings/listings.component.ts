@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService, AlertService, BigchanDbService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, VoteService  } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { User, Claim } from '../_models/index';
@@ -34,13 +34,18 @@ export class ListingsComponent implements OnInit {
   pageSize: number;
   maxSize: number;
   claimsPage: any[] = [];
+  likes : number = 0;
+  dislikes: number = 0;
   constructor(
     private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
     private router: Router, private globals: Globals,
     private userService: UserService,
     private alertService: AlertService,
-    private http: Http
+    private http: Http, private voteService: VoteService
   ) {
+
+
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;
@@ -127,9 +132,8 @@ export class ListingsComponent implements OnInit {
     this.claims = [];
     let data:any = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
                     .take(1);
-    console.log('---------Logged data-----'+data);
     
-    
+
     this.subscription = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
       .subscribe(
         data => {
@@ -139,20 +143,21 @@ export class ListingsComponent implements OnInit {
             let matchFound = false;
             if(claim.data.id === "NA"){
               claim.data.id = claim.id;
+              this.getVotes(claim.data.id);
             }
             // console.log(claim.id);
             // console.log(claim.data.id);
             // search by query param
             console.log("------businessMainCategory----------"+claim.data.businessMainCategory);
-           
+
             this.http.get('/assets/cat.json')
-            .subscribe(data => { 
+            .subscribe(data => {
              var MainCat = JSON.parse(JSON.stringify(data.json().filter((item)=> item.Category == claim.data.businessMainCategory)));
            console.log("-------MainCat.length---------"+MainCat.length);
            for(var i=0; i<1 ; i++){
             claim.data.businessMainCategory = MainCat[i].Description;
-           } 
-   
+           }
+
            });
 
             if (this.catParam != undefined) {
@@ -187,7 +192,7 @@ export class ListingsComponent implements OnInit {
           this.claims = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]);
           this.totalItems = this.claims.length;
           // console.log(this.totalItems);
-          // sort               
+          // sort
           this.claims.sort((claim1, claim2) => {
             // console.log(claim1);
             if (claim1.data.businessName.toLowerCase() > claim2.data.businessName.toLowerCase()) {
@@ -212,13 +217,13 @@ export class ListingsComponent implements OnInit {
     this.claims = [];
     this.subscription = this.bigchaindbService.getAllTransactionsByMeta(this.globals.chainFormName)
       .subscribe(data => {
-        //let returnData = JSON.stringify(data);                 
+        //let returnData = JSON.stringify(data);
         JSON.parse(JSON.stringify(data)).forEach(element => {
           //console.log(element.id)
           this.getTransactionsById(element.id, search);
           //let claim = element.data;
           // claim.id = element.id;
-          //this.claims.push(claim);                                   
+          //this.claims.push(claim);
         });
         //this.claims == returnData.data;
       });
@@ -231,7 +236,7 @@ export class ListingsComponent implements OnInit {
         //console.log(data);
         let claim = (JSON.parse(JSON.stringify(data))).asset.data;
         claim.id = (JSON.parse(JSON.stringify(data))).id;
-        // console.log(search);   
+        // console.log(search);
         // debugger;
         let matchFound = false;
         // search by query param
@@ -261,7 +266,7 @@ export class ListingsComponent implements OnInit {
         }
         this.totalItems = this.claims.length;
         console.log(this.totalItems);
-        // sort               
+        // sort
         this.claims.sort((claim1, claim2) => {
           if (claim1.businessName.toLowerCase() > claim2.businessName.toLowerCase()) {
             return 1;
@@ -307,5 +312,25 @@ export class ListingsComponent implements OnInit {
     });
 
   }
+
+  getVotes(id: string) {
+    this.likes = 0;
+    this.dislikes = 0;
+
+    // let data: any;
+    this.voteService.voteData.subscribe(data => {
+      // data=data;
+      console.log('---DATA-----' + data);
+      // this.zone.run(() => {
+      if (data !== undefined) {
+        this.likes = data.likes;
+        this.dislikes = data.dislikes;
+        // console.log(this.alreadyDisliked);
+      }
+    });
+    console.log('---DATA ID-----' + id);
+    this.voteService.getVotes(id);
+  }
+
 
 }
