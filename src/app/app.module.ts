@@ -41,7 +41,6 @@ const SERVICES = [
   MetaCoinService,
   Web3Service,
 ]
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -102,6 +101,7 @@ const SERVICES = [
   entryComponents: [ModalContent],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient) {
