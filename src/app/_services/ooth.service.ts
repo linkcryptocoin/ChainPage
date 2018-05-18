@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class OothService {
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+    @Output() getLoggedInUserName: EventEmitter<any> = new EventEmitter();
     @Output() getLoggedInAccount: EventEmitter<any> = new EventEmitter();
     @Output() getAccountBalance: EventEmitter<any> = new EventEmitter();
     @Output() logginStatus: EventEmitter<any> = new EventEmitter();
@@ -21,7 +22,7 @@ export class OothService {
 
     }
 
-    async register(email: string, password: string) {
+    async register(dname: string, email: string, password: string) {
         //e.preventDefault()
         //const email = document.getElementById('register-email').nodeValue
         //const password = document.getElementById('register-password').nodeValue
@@ -33,6 +34,7 @@ export class OothService {
             body: JSON.stringify({
                 email,
                 password,
+                dname
             }),
             credentials: 'include',
         })
@@ -67,15 +69,20 @@ export class OothService {
             this.getLoggedInName.emit(body.user.local.email);
             this.logginStatus.emit(true);
             this.getLoggedInAccount.emit(body.user.local.account);
-            sessionStorage.setItem("currentUser", body.user.local.email);
-            sessionStorage.setItem("currentUserAccount", body.user.local.account);
+            this.getLoggedInUserName.emit(body.user.local.dname);
+            sessionStorage.setItem('currentUser', body.user.local.dname);
+            sessionStorage.setItem('currentUserEmail', body.user.local.email);
+            sessionStorage.setItem('currentUserAccount', body.user.local.account);
         }
         else {
             return body;
         }
         // generate token and save to session
         await this.onGenerateVerificationToken();
-        console.log(body.user.local.account)
+        console.log('body console---' + body.user.local);
+        console.log('-----Account.local---' + body.user.local.account);
+        console.log('-----Username.local---' + body.user.local.dname);
+        console.log('-----Account.email---' + body.user.local.email);
 
         return body
     }
@@ -146,7 +153,7 @@ export class OothService {
         })
         const body = await res.json()
         if (body.status === 'error') {
-            // alert(body.message)
+             alert(body.message)
             return body.status;
         }
         return body.user;

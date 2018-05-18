@@ -89,20 +89,20 @@ export class ClaimDetailComponent implements OnInit {
             claim.id = (JSON.parse(JSON.stringify(data))).id;
           }
           this.model = claim;
-        
+
 
 this.http.get('/assets/cat.json')
-          .subscribe(data => { 
+          .subscribe(data => {
            var MainCat = JSON.parse(JSON.stringify(data.json().filter((item)=> item.Category == this.model.businessMainCategory)));
          console.log("----------------"+MainCat.length);
          for(var i=0; i<1 ; i++){
           this.model.businessMainCategory = MainCat[i].Description;
-         } 
- 
+         }
+
          });
 
 
-          
+
           if (this.currentUser == this.model.postedBy) {
             this.isAuthor = true;
             console.log(this.isAuthor);
@@ -186,8 +186,8 @@ this.http.get('/assets/cat.json')
           JSON.parse(JSON.stringify(dataset)).forEach(element => {
             // console.log(element.data);
             if (element.data.type == this.globals.chainPageComment) {
-              if (sessionStorage.getItem("currentUser") != undefined) {
-                if (element.data.postedBy == sessionStorage.getItem("currentUser").toString()) {
+              if (sessionStorage.getItem("currentUserEmail") != undefined) {
+                if (element.data.postedBy == sessionStorage.getItem("currentUserEmail").toString()) {
                   this.ownComments.push(element.data);
                   // console.log("push to ownComments");
                   // console.log(element.data);

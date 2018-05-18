@@ -16,6 +16,7 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 export class TopNavComponent implements OnInit {
   currentUser: string = undefined;
   currentUserAccount: string = undefined;
+  CurrentUserName: string = undefined;
   selectedLanguage = "2";
   language: any[] = [];
   elementType: 'url' | 'canvas' | 'img' = 'url';
@@ -27,14 +28,16 @@ export class TopNavComponent implements OnInit {
 
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserAccount = sessionStorage.getItem("currentUserAccount");
-    this.oothService.getLoggedInName
-      .subscribe(name => {
-        this.currentUser = name;
+    this.oothService.getLoggedInUserName
+      .subscribe(dname => {
+        this.currentUser = dname;
+        console.log("this.oothService.getLoggedInName: " + this.oothService.getLoggedInName);
+
       });
     this.oothService.getLoggedInAccount
       .subscribe(account => {
         this.currentUserAccount = account;
-        console.log("account: " + this.currentUserAccount);
+        console.log("account: " + this.currentUser);
         // let balanceSession = sessionStorage.getItem('tokenBalance');
         // if (balanceSession) {
         //   this.tokenBalance = Number.parseFloat(balanceSession);

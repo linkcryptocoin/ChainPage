@@ -14,20 +14,20 @@ import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 
 export class RegisterComponent {
-   
+
     model: any = {};
     loading = false;
 passcode: string;
- strong: boolean = false; 
-   
+ strong: boolean = false;
+
 
     constructor(
         private oothService: OothService, private toasterService: ToasterService,
         private userService: UserService,
-        private alertService: AlertService) 
-        
-        { 
-          
+        private alertService: AlertService)
+
+        {
+
         }
 
 CheckStrength(){
@@ -75,7 +75,7 @@ const hasNumber = /\d/.test(this.model.password);
         // return promise;
 
         console.log(this.model.email)
-        this.oothService.register(this.model.email, this.model.password)
+        this.oothService.register(this.model.userName,this.model.email, this.model.password)
         .then(res => {
             if(res && res  === 'error'){
                 // console.log("error: "+res.status)
