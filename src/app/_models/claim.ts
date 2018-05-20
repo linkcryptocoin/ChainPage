@@ -1,6 +1,5 @@
 export class Claim {
     constructor(
-        public id: string,
         public name: string,
         public businessName: string,
         public street: string,

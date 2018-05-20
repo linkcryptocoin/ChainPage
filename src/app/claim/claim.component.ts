@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim, User } from '../_models/index'
-import { UserService, AlertService, BigchanDbService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 //import { driver} from '../../../node_modules/bigchaindb-driver';
@@ -31,7 +31,7 @@ export class ClaimComponent implements OnInit {
   constructor(
     private router: Router, private route: ActivatedRoute, private translate: TranslateService,
     private userService: UserService, private bigchaindbService: BigchanDbService,
-    private globals: Globals,
+    private globals: Globals, private mongoService: MongoService,
     private alertService: AlertService, private toasterService: ToasterService,
     private http: Http
   ) {
@@ -80,24 +80,32 @@ export class ClaimComponent implements OnInit {
     this.submitted = true;
     // set the upload time stamp
     // console.log("id = " + this.model.id);
-    if (this.model.id === undefined) {
-      this.model.id = "NA";
-    }
+    // if (this.model.id === undefined) {
+    //   this.model.id = "NA";
+    // }
     this.model.postedTime = Date.now();
+    //upload to mongodb
+    this.mongoService.saveListing(this.model)
+    .subscribe(
+      response => console.log(response)
+    )
+
+    // upload to bigchain
     // console.log(JSON.stringify(this.model));
-    await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
-      .then(
-        data => {
-          console.log(data);
-          this.toasterService.pop('success', 'Submit successful');
-          this.router.navigate(['/home']);
-        },
-        error => {
-          this.toasterService.pop('error', 'Submit failed');
-          console.log(error);
-          return error;
-        }
-      );
+    // await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
+    //   .then(
+    //     data => {
+    //       console.log(data);
+    //       this.toasterService.pop('success', 'Submit successful');
+    //       this.router.navigate(['/home']);
+    //     },
+    //     error => {
+    //       this.toasterService.pop('error', 'Submit failed');
+    //       console.log(error);
+    //       return error;
+    //     }
+    //   );
+    //end of bighchain
     // console.log(result);
     // this.alertService.success('Submit successful', true);
     // this.toasterService.pop('success', 'Submit successful');
@@ -117,16 +125,16 @@ export class ClaimComponent implements OnInit {
   }
 
   getClaim(id: string) {
-    this.bigchaindbService.getTransactionsById(id)
-      .subscribe(data => {
-        let claimData = JSON.parse(JSON.stringify(data));
-        this.model = claimData.asset.data;
-        if (this.model.id === "NA") {
-          this.model.id = claimData.id;
-        }
-        console.log(this.model);
-        this.onChange(this.model.country);
-      });
+    // this.bigchaindbService.getTransactionsById(id)
+    //   .subscribe(data => {
+    //     let claimData = JSON.parse(JSON.stringify(data));
+    //     this.model = claimData.asset.data;
+    //     if (this.model.id === "NA") {
+    //       this.model.id = claimData.id;
+    //     }
+    //     console.log(this.model);
+    //     this.onChange(this.model.country);
+    //   });
   }
   // deleteClaim(id: number) {
   //   this.claimService.delete(id);
@@ -154,7 +162,7 @@ export class ClaimComponent implements OnInit {
     }
   }
   test() {
-    this.model = new Claim("NA", "John", "John Business", "123 abc st.", "DC", "DC", "20001",
+    this.model = new Claim("John", "John Business", "123 abc st.", "DC", "DC", "20001",
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
       "Baby", this.globals.chainFormName, this.currentUser, Date.now());
   }

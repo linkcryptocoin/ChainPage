@@ -14,13 +14,21 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log("oothtoken = "+sessionStorage.getItem("oothtoken"));
+        console.log("oothtoken = " + sessionStorage.getItem("oothtoken"));
         if (sessionStorage.getItem("oothtoken") != "" && sessionStorage.getItem("oothtoken") != null
             && sessionStorage.getItem("oothtoken") != undefined) {
             // console.log(this.oothService.getUser());
             console.log("calling VerifyToken()");
-            this.VerifyToken();
-            return true;
+            this.VerifyToken()
+                .then(res => {
+                    console.log(res);
+                    if (res) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
         }
         // if (this.isValidSession()) {
         //     this.resetSessionTimeout();
@@ -49,8 +57,6 @@ export class AuthGuard implements CanActivate {
         sessionStorage.setItem("expires_at", expiresAt.toString());
     }
     VerifyToken() {
-        return this.oothService.onVerify().then(res => {
-            console.log(res);
-        });
+        return this.oothService.onVerify();
     }
 }

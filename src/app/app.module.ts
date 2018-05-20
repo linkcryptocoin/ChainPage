@@ -12,7 +12,7 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
-import { AlertService, AuthenticationService, UserService, ClaimService, BigchanDbService, OothService, VoteService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, ClaimService, BigchanDbService, OothService, VoteService, MongoService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -94,6 +94,7 @@ const SERVICES = [
     OothService,
     Globals,
     VoteService,
+    MongoService,
     // provider used to create fake backend
     fakeBackendProvider
   ],

@@ -48,7 +48,7 @@ export class OothService {
     }
 
     async Login(username: string, password: string) {
-        //console.log(username + " " + password);
+        // console.log(username + " " + password);
         const res = await fetch(this.API_PATH + 'local/login', {
             method: 'POST',
             headers: {
@@ -60,6 +60,7 @@ export class OothService {
             }),
             credentials: 'include',
         })
+        // alert(res)
         const body = await res.json()
         if (body.status !== 'error') {
             this.setSession(body.user.local.email);
@@ -68,10 +69,11 @@ export class OothService {
             this.logginStatus.emit(true);
             this.getLoggedInAccount.emit(body.user.local.account);
             sessionStorage.setItem("currentUser", body.user.local.email);
+            sessionStorage.setItem("currentUserId", body.user._id);
             sessionStorage.setItem("currentUserAccount", body.user.local.account);
         }
         else {
-            return body;
+            return {status: "error", message: body};
         }
         // generate token and save to session
         await this.onGenerateVerificationToken();
@@ -92,6 +94,7 @@ export class OothService {
             this.logginStatus.emit(false);
         }
         sessionStorage.removeItem("currentUser");
+        sessionStorage.removeItem("currentUserId");
         sessionStorage.removeItem("expires_at");
         sessionStorage.removeItem("oothtoken");
         sessionStorage.removeItem("currentUserAccount");
@@ -114,7 +117,7 @@ export class OothService {
             credentials: 'include',
         });
         const body = await res.json();
-
+        console.log(body);
         // alert(`${body.message} - ${body.token}`);
         sessionStorage.setItem('oothtoken', body.token);
     }
@@ -122,23 +125,29 @@ export class OothService {
         console.log("onVerify");
         // e.preventDefault();
         const user = await this.getUser();
-        const userId = user._id;
-        console.log(`user Id: ${userId}`);
-        const token = sessionStorage.getItem("oothtoken");
-        console.log("token: " + token);
-        const res = await fetch(this.API_PATH + 'local/verify', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userId,
-                token,
-            }),
-            credentials: 'include',
-        });
-        const body = await res.json();
-        return body.message;
+        console.log(user);
+        if (user != null) {
+            const userId = user._id;
+            // console.log(`user Id: ${userId}`);
+            const token = sessionStorage.getItem("oothtoken");
+            console.log("token: " + token);
+            const res = await fetch(this.API_PATH + 'local/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId,
+                    token,
+                }),
+                credentials: 'include',
+            });
+            const body = await res.json();
+            return body.message;
+        }
+        else{
+            return false;
+        }
     }
     async getUser() {
         const res = await fetch(this.API_PATH + 'status', {
@@ -176,34 +185,47 @@ export class OothService {
     // Get the balance of the token
     async getTokenBalance(addr: string) {
         console.log("account: " + addr);
-        const res = await fetch(this.API_PATH + 'local/t-getTokenBalance', {
+        // const res = await fetch(this.API_PATH + 'local/t-balanceOf', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         addr,
+        //     }),
+        //     credentials: 'include',
+        // });
+        // const body = await res.json();
+        // let balance = Math.round(parseFloat(body.result) * 100) / 100;
+        // this.getAccountBalance.emit(balance);
+        // sessionStorage.setItem('tokenBalance', balance.toString());
+        // console.log("balance: " + balance);
+        // return balance;
+        const res = await fetch(this.API_PATH + 'local/t-balanceOf', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                addr,
+                account: addr,
             }),
             credentials: 'include',
-        });
-        const body = await res.json();
-        let balance = Math.round(parseFloat(body.result) * 100) / 100;
-        this.getAccountBalance.emit(balance);
-        sessionStorage.setItem('tokenBalance', balance.toString());
-        console.log("balance: " + balance);
-        return balance;
+        })
+        const body = await res.json()
+        // alert(`${body.message} ${body.result}`) 
+        return body.result;
     }
 
     // deduct token from current account
-    async deductToken(addr: string, amount: number) {
+    async deductToken(account: string, amount: number) {
         const res = await fetch(this.API_PATH + 'local/t-deductRewards', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                addr,
-                amount
+                userId: account,
+                token: amount
             }),
             credentials: 'include',
         });
