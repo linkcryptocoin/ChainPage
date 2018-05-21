@@ -69,14 +69,20 @@ export class OothService {
             this.authenticated = true;
             this.getLoggedInName.emit(body.user.local.email);
             this.logginStatus.emit(true);
-            this.getLoggedInUserName.emit(body.user.local.dname);
-            sessionStorage.setItem('currentUser', body.user.local.dname);
+            if (body.user.local.dname) {
+                this.getLoggedInUserName.emit(body.user.local.dname);
+                sessionStorage.setItem('currentUser', body.user.local.dname);
+            }
+            else {
+                this.getLoggedInUserName.emit(body.user.local.email);
+                sessionStorage.setItem('currentUser', body.user.local.email);
+            }
             sessionStorage.setItem("currentUserId", body.user._id);
             sessionStorage.setItem('currentUserEmail', body.user.local.email);
             sessionStorage.setItem('currentUserAccount', body.user.local.account);
         }
         else {
-            return {status: "error", message: body};
+            return { status: "error", message: body };
         }
         // generate token and save to session
         await this.onGenerateVerificationToken();
@@ -151,7 +157,7 @@ export class OothService {
             const body = await res.json();
             return body.message;
         }
-        else{
+        else {
             return false;
         }
     }
@@ -161,7 +167,7 @@ export class OothService {
         })
         const body = await res.json()
         if (body.status === 'error') {
-             alert(body.message)
+            alert(body.message)
             return body.status;
         }
         return body.user;
