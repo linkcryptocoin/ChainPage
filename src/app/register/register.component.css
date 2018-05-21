@@ -1,0 +1,14 @@
+.show-error
+{
+  color: darkred;
+}
+
+.show-error-border
+{
+  border-color: darkred;
+}
+.show-success-border
+{
+  border-color: darkgreen;
+}
+

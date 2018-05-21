@@ -28,19 +28,25 @@ export class ListingsComponent implements OnInit {
   categories: any[] = [];
   countries: any[] = [];
   catParam = "";
+  IDparam = "";
   totalItems: number;
   page: number;
   previousPage: any;
   pageSize: number;
   maxSize: number;
   claimsPage: any[] = [];
+  likes : number = 0;
+  dislikes: number = 0;
   constructor(
     private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
     private userService: UserService, private toasterService: ToasterService,
     private alertService: AlertService,
-    private http: Http
+    private http: Http//, private voteService: VoteService
   ) {
+
+
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;
@@ -293,4 +299,38 @@ export class ListingsComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
+  Remove_Listing()
+  {
+    this.subscription = this.route.queryParams.subscribe(params => {
+      //console.log(params['cat']);
+      this.IDparam = params['id'];
+      console.log("----ID Param Value---------"+this.IDparam);
+
+      //await this.bigchaindbService.DeleteTransaction()
+    });
+
+  }
+
+  // getVotes(id: string) {
+  //   this.likes = 0;
+  //   this.dislikes = 0;
+
+  //   // let data: any;
+  //   this.voteService.voteData.subscribe(data => {
+  //     // data=data;
+  //     console.log('---DATA-----' + data);
+  //     // this.zone.run(() => {
+  //     if (data !== undefined) {
+  //       this.likes = data.likes;
+  //       this.dislikes = data.dislikes;
+  //       // console.log(this.alreadyDisliked);
+  //     }
+  //   });
+  //   console.log('---DATA ID-----' + id);
+  //   this.voteService.getVotes(id);
+  // }
+
+
 }

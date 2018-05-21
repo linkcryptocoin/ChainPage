@@ -170,14 +170,29 @@
                   <label style="color: red;" [hidden]="businessHour.valid || businessHour.pristine">*</label>
                 </div>
               </div>
-              <label for="businessCategory" translate>Business Category</label>
+              <label for="businessMainCategory" translate>Main Category</label>
               <div class="row">
                 <div class="col-sm-10">
                   <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
                     #businessCategory="ngModel"> -->
-                  <select class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                  <select class="form-control"  id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)"  [(ngModel)]="model.businessMainCategory" name="businessMainCategory"
                     #businessCategory="ngModel">
-                    <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
+                    <option *ngFor="let cat of categories" [value]="cat.Category" translate>{{cat.Description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>
+                </div>
+              </div>
+              <label for="businessSubCategory" translate>Sub Category</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                  <select class="form-control" id="businessSubCategory" required [(ngModel)]="model.businessSubCategory" name="businessSubCategory"
+                    #businessSubCategory="ngModel">
+                    <option  value="" translate></option>
+                    <option *ngFor="let subcat of subcategories" [value]="subcat.Description" translate>{{subcat.Description}}</option>
                   </select>
                 </div>
                 <div class="col-sm-2">

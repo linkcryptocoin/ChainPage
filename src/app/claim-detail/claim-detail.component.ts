@@ -7,6 +7,7 @@ import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error } from 'util';
 import { Comment } from '../_models/comment';
+import { Http } from '@angular/http';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
@@ -39,7 +40,7 @@ export class ClaimDetailComponent implements OnInit {
   ownVote: any;
   private account: string;
   private userId: string;
-  constructor(private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
+  constructor(private http: Http,private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService
     , private mongoService: MongoService) {

@@ -3,15 +3,39 @@
     height: 100%;
     /* width: 250px; */
     position: relative;
-    z-index: 1;
+        z-index: 1;
     top: 0;
     left: 0;
     overflow-x: auto;
     border-right-style: ridge;
-    /* padding-top: 20px; */
+   
+      
     background-color: #f1f1f1;
 }
 
+.style2{
+
+    float: left;
+    transition: 2s;
+    margin-left: -100px;
+    background-color: lightgray;
+    
+}
+
+.style1
+{
+    float: left;
+    transition: 2s;
+    margin-left: 0px;
+ background-color: #f1f1f1;
+}
+/*
+.list-group-item{
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+}
+*/
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;

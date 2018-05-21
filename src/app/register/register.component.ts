@@ -5,19 +5,50 @@ import { AlertService, UserService, OothService } from '../_services/index';
 import { resolve } from 'q';
 import { Observable } from 'rxjs/Observable';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
+import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 @Component({
     moduleId: module.id.toString(),
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls: ['./register.component.css']
 })
 
+
 export class RegisterComponent {
+
     model: any = {};
     loading = false;
+passcode: string;
+ strong: boolean = false;
+
 
     constructor(
         private oothService: OothService, private toasterService: ToasterService,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService)
+
+        {
+
+        }
+
+CheckStrength(){
+   this.strong=false;
+this.passcode = this.model.password;
+    console.log('--------------entered value---------- '+this.model.password);
+
+const hasNumber = /\d/.test(this.model.password);
+        const hasUpper = /[A-Z]/.test(this.model.password);
+        const hasLower = /[a-z]/.test(this.model.password);
+    console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+        const valid = hasNumber && hasUpper && hasLower;
+        if (!valid) {
+            this.strong = false;
+        }else
+        {
+            this.strong = true;
+        }
+
+ console.log('--------------entered value---------- '+this.strong);
+}
 
     register() {
         // this.loading = true;
@@ -44,7 +75,7 @@ export class RegisterComponent {
         // return promise;
 
         console.log(this.model.email)
-        this.oothService.register(this.model.email, this.model.password)
+        this.oothService.register(this.model.userName,this.model.email, this.model.password)
         .then(res => {
             if(res && res  === 'error'){
                 // console.log("error: "+res.status)
@@ -53,7 +84,7 @@ export class RegisterComponent {
             }
             else{
                 this.toasterService.pop('success', 'Register successful')
-            }            
+            }
         });
     }
 }
