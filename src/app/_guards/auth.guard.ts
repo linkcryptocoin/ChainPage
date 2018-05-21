@@ -18,17 +18,18 @@ export class AuthGuard implements CanActivate {
         if (sessionStorage.getItem("oothtoken") != "" && sessionStorage.getItem("oothtoken") != null
             && sessionStorage.getItem("oothtoken") != undefined) {
             // console.log(this.oothService.getUser());
-            console.log("calling VerifyToken()");
-            this.VerifyToken()
-                .then(res => {
-                    console.log(res);
-                    if (res) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                });
+            // console.log("calling VerifyToken()");
+            // this.VerifyToken()
+            //     .then(res => {
+            //         console.log(res);
+            //         if (res) {
+            //             return true;
+            //         }
+            //         else {
+            //             return false;
+            //         }
+            //     });
+            return true;
         }
         // if (this.isValidSession()) {
         //     this.resetSessionTimeout();
