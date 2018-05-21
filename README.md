@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
-MongoDB is used to stored data. You can download it from https://www.mongodb.com/download-center?filter=enterprise?jmp=nav#enterprise
+MongoDB is used to store data. You can download it from https://www.mongodb.com/download-center?filter=enterprise?jmp=nav#enterprise
 
 ## How to use
 
