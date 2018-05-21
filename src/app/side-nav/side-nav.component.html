@@ -13,7 +13,37 @@
 </script> -->
 
 <div class="sidenav">
-  <h1>
-    <a *ngFor="let cat of categories" data="cat.Category" [routerLink]="['/home']" [queryParams]="{cat: cat.Description}" translate>{{cat.Description}}</a>
-  </h1>
+ <!--
+  <div class="row">
+   
+    <div class="mainmenu col-sm-12  pull-left h6">
+      <div class="list-group Section1">
+        <button type="button" class="list-group-item list-group-item-action" *ngFor="let cat of categories" data="cat.Category" [routerLink]="['/home']"
+          [queryParams]="{cat: cat.Description}" translate>
+          <div class="row">
+            <div class="col-xs-10" style="display: inline-block">
+              {{cat.Description}}</div>
+           
+                  <i class="fas fa-angle-right" style="">
+                    </i>    
+          </div>
+          
+
+        </button>
+      </div>
+    </div>
+  </div>
+-->
+<div class="Section1"  style="float:left;">
+   <a *ngFor="let cat of categories" data="cat.Category"   (click)="OpenSection2(cat.Category)"  [routerLink]="['/home']" [queryParams]="{cat: cat.Description}" translate [(ngModel)]="cat.Category" ngDefaultControl  >{{cat.Description}}
+        <i class="fas fa-angle-right pull-right" style="float:right;padding-top: 5px"></i>  
+    </a>
+  </div>
+  <div class="Section2" [ngClass]="{'style2': isClass2Visible,'style1': isClass1Visible}" style="float:left;">
+    <a  *ngFor="let cat of subcategories" data="cat.Category" (click)="isClass2Visible = true;" [routerLink]="['/home']" [queryParams]="{cat: cat.Description}" translate>{{cat.Description}}
+      <i class="fas fa-angle-right pull-right" style="float:right;padding-top: 5px"></i>  
+  </a>
+</div>
+
+
 </div>

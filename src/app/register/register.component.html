@@ -13,52 +13,57 @@
                 <option selected="selected" value="LinkGear">LinkGear</option>
                 <option value="Baltimore">Baltimore</option>
             </select>
-             <span *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" >region is required</span>
+             <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" >Region is required</small>
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
             <label for="userName">User Name</label>
             <input type="text" class="form-control" name="userName" [ngClass]="{ 'show-error-border': f.submitted && !userName.valid }" [(ngModel)]="model.userName" #userName="ngModel" required />
-            <span *ngIf="f.submitted && !userName.valid" class="" [ngClass]="{ 'show-error': f.submitted && !userName.valid }">User Name is required</span>
+            <small *ngIf="f.submitted && !userName.valid" class="" [ngClass]="{ 'show-error': f.submitted && !userName.valid }">User Name is required</small>
         </div>
-
-
-
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" [ngClass]="{ 'show-error-border': f.submitted && !email.valid }" [(ngModel)]="model.email" #email="ngModel" required />
-            <span *ngIf="f.submitted && !email.valid" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is required</span>
-        </div>
-
+            <input type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="email" [ngClass]="{ 'show-error-border': f.submitted && !email.valid }" [(ngModel)]="model.email" #email="ngModel" required />
+            <small *ngIf="f.submitted &&  email.errors?.required" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is required</small>
+            <!--<span *ngIf="f.submitted && !email.valid" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is invalid</span>
+-->         <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" >Email is invalid</small>
+ </div>
+<div ngModelGroup="passwordGroup"
+     [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
     <div class="form-group" [class.has-error]="password.touched && password.invalid">
           <label for="password" class="control-label">Password</label>
-          <input id="password" required type="password" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }" [(ngModel)]="model.password" #password="ngModel">
-         <small for="must">Enter a strong password, the length of Password must be > 8. Please keep this password in a safe place, as it is also your token private key. </small>
+          <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }"   (change)="confirmPassword.control.updateValueAndValidity()" [(ngModel)]="model.password" #password="ngModel">
+         <small for="must"><i>Please keep this password in a safe place, as it is also your token private key. </i></small>
 
-          <span class="help-block" *ngIf="password.touched && password.errors?.required" class="" [ngClass]="{ 'show-error': password.touched && password.errors?.required }"> Password is required
-          </span>
-          <br>
-          <span class="help-block" *ngIf="f.submitted && !password.valid" class="" [ngClass]="{ 'show-error': f.submitted && !password.valid }" >
-            Password Required</span>
+         <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> Password is required
+          </small>
+        </p>  
+        <p> <small  *ngIf="strong == false && password.touched" [ngClass]="{ 'show-error': (strong == false ? password.valid  : !password.valid) || !password.valid}" >
+          Password Must Include atleast One Uppercase, Lowercase and Number.</small>
+</p>
+            <small  *ngIf="password.errors?.minlength" [ngClass]="{ 'show-error': password.errors?.minlength && !password.valid }" >
+          Password Minimum length is 8 Characters</small>
      </div>
-     <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+
+
+ <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
           <label for="confirmPassword" class="control-label">Confirm Password</label>
           <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="password" class="form-control"  [ngClass]="{ 'show-error-border': f.submitted && !confirmPassword.valid }"
          [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
-          <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required"class="alert alert-danger">Confirm Password is required
-          </span>
-          <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
-            Password Mis match</span>
-            <br>
-            <span class="help-block" *ngIf="f.submitted && !confirmPassword.valid" class="" [ngClass]="{ 'show-error': f.submitted && !confirmPassword.valid }" >
-              Confirm Password Required
-             </span>
+          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" >Confirm Password is required
+          </small>
+          <small  *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
+            Password Mis match</small>
+</div>
       </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
         </div>
+
+
+    
     </form>
 </div>

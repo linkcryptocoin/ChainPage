@@ -6,5 +6,6 @@ export class Globals {
   readonly chainPageComment = "mrofTestComment2";
   readonly chainPageVote = "mrofTestVote2";
   readonly tokenDeductAmmount_ChainpageComment = 1;
-  readonly tokenDeductAmmount_ChainpageVote = 1;
+  readonly tokenDeductAmmount_ChainpageUpVote = 1;
+  readonly tokenDeductAmmount_ChainpageDownVote = 2;
 }
