@@ -10,7 +10,7 @@
        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
             <label for="region">Region</label>
              <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
-                <option selected="selected" value="LinkGear">LinkGear</option>
+                <option selected="selected" value="LinkGear">Others</option>
                 <option value="Baltimore">Baltimore</option>
             </select>
              <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" >Region is required</small>

@@ -1,106 +1,58 @@
 [
  {
    "Category": 1000,
-   "Description": "Arts, crafts, and collectibles"
+   "Description": "Food & Drink"
  },
  {
    "Category": 1001,
-   "Description": "Baby"
+   "Description": "Real Estate"
  },
  {
    "Category": 1002,
-   "Description": "Beauty and fragrances"
+   "Description": "Car & Services"
  },
  {
    "Category": 1003,
-   "Description": "Books and magazines"
+   "Description": "Law"
  },
  {
    "Category": 1004,
-   "Description": "Business to business"
+   "Description": "Insurance"
  },
  {
    "Category": 1005,
-   "Description": "Clothing, accessories, and shoes"
+   "Description": "Finance"
  },
  {
    "Category": 1006,
-   "Description": "Computers, accessories, and services"
+   "Description": "Doctors"
  },
  {
    "Category": 1007,
-   "Description": "Education"
+   "Description": "Healthcare"
  },
  {
    "Category": 1008,
-   "Description": "Electronics and telecom"
+   "Description": "Study & Tour"
  },
  {
    "Category": 1009,
-   "Description": "Entertainment and media"
+   "Description": "Education & Training"
  },
  {
    "Category": 1010,
-   "Description": "Financial services and products"
+   "Description": "Life Services"
  },
  {
    "Category": 1011,
-   "Description": "Food retail and service"
+   "Description": "Lifestyle Leisure"
  },
  {
    "Category": 1012,
-   "Description": "Gifts and flowers"
+   "Description": "Business Services"
  },
  {
    "Category": 1013,
-   "Description": "Government"
- },
- {
-   "Category": 1014,
-   "Description": "Health and personal care"
- },
- {
-   "Category": 1015,
-   "Description": "Home and garden"
- },
- {
-   "Category": 1016,
-   "Description": "Nonprofit"
- },
- {
-   "Category": 1017,
-   "Description": "Pets and animals"
- },
- {
-   "Category": 1018,
-   "Description": "Religion and spirituality (for profit)"
- },
- {
-   "Category": 1019,
-   "Description": "Retail (not elsewhere classified)"
- },
- {
-   "Category": 1020,
-   "Description": "Services - other"
- },
- {
-   "Category": 1021,
-   "Description": "Sports and outdoors"
- },
- {
-   "Category": 1022,
-   "Description": "Toys and hobbies"
- },
- {
-   "Category": 1023,
-   "Description": "Travel"
- },
- {
-   "Category": 1024,
-   "Description": "Vehicle sales"
- },
- {
-   "Category": 1025,
-   "Description": "Vehicle service and accessories"
+   "Description": "Chinese Community"
  }
 ]

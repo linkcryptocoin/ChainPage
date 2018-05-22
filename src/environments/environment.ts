@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   HttpProvider: "http://localhost:8545",
-  inactivitySec: 30,
+  inactivitySec: 120,
   pingIntervalSec: 15
 };
