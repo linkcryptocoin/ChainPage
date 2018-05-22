@@ -1,6 +1,43 @@
-.no-gutters {
+.no-gutterright {
     margin-right: 0;
-    margin-left: 0;
     padding-right: 0;
+}
+
+.no-gutterleft {
+    margin-left: 0;
     padding-left: 0;
+}
+
+.no-gutters {
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.secHead {
+    background-color: #D6EAF8;
+    /* background: linear-gradient(to bottom right, #D6EAF8, #85C1E9, #5DADE2); */
+    height: 80px;
+    font-family: Impact;
+}
+
+.secHead .text-center {
+    padding-top: 10px;
+    color: black;
+    /* color: white */
+}
+
+.secHead:hover {
+    background-color: #5DADE2;
+}
+
+.description p {
+    margin-left: 20px;
+}
+
+a:hover,
+a:active {
+    text-decoration: none;
+    color: black;
 }

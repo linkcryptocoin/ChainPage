@@ -1,22 +1,59 @@
 <div>
-  <div>
-    <img class="col-12" style="margin: 0 !important; padding: 0 !important;" src="..\assets\HelloImage.jpg">
-    <!-- <p>First, Fast, Blockchain, Oversea Chinese Community Focused</p> -->
+    <div>
+        <img class="col-lg-12 col-xs-12" style="margin: 0 !important; padding: 0 !important;" src="..\assets\HelloImage.jpg">
+        <!-- <p>First, Fast, Blockchain, Oversea Chinese Community Focused</p> -->
 
-  </div>
-  <div class="row">
-    <a class="col-4 no-gutters" [routerLink]="['/home']">
-      <img class="col-12" src="..\assets\Chainpage.jpg">
-      <p style="margin-left: 20px">Chaingpage: A list of businesses who provide products and services to Chinese oversea communities.</p>
-    </a>
-    <div class="col-4 no-gutters">
-      <img class="col-12" src="..\assets\Goods.jpg">
-      <p style="margin-left: 20px">Market: A list of items that are on sales by each vendors. The buyer has to use ligear tokens to reserve the orders.
-        Coming in May, 2018</p>
     </div>
-    <div class="col-4 no-gutters">
-      <img class="col-12" src="..\assets\Posts.jpg">
-      <p style="margin-left: 20px">Our community members can post things seeking help of services or goods. Coming in May, 2018.</p>
+    <div class="row">
+        <!-- <a class="col-4 no-gutters" [routerLink]="['/home']">
+            <img class="col-12" src="..\assets\Chainpage.jpg">
+            <p style="margin-left: 20px">Chaingpage: A list of businesses who provide products and services to Chinese oversea communities.</p>
+        </a>
+        <div class="col-4 no-gutters">
+            <img class="col-12" src="..\assets\Goods.jpg">
+            <p style="margin-left: 20px">Market: A list of items that are on sales by each vendors. The buyer has to use ligear tokens to reserve the orders. Coming in May, 2018</p>
+        </div>
+        <div class="col-4 no-gutters">
+            <img class="col-12" src="..\assets\Posts.jpg">
+            <p style="margin-left: 20px">Our community members can post things seeking help of services or goods. Coming in May, 2018.</p>
+        </div> -->
+        <div class="col-lg-4 col-xs-4 no-gutterright">
+            <a class="quickLink" [routerLink]="['/home']">
+                <div class="secHead">
+                    <h1 class="text-center">Chaingpage</h1>
+                </div>
+            </a>
+            <div class="description">
+                <p>Chaingpage: A list of businesses who provide products and services to Chinese oversea communities.</p>
+            </div>
+        </div>
+
+        <div class="clearfix visible-xs-block"></div>
+
+        <div class="col-lg-4 col-xs-4 no-gutters">
+            <a class="quickLink" [routerLink]="['/home']">
+                <div class="secHead">
+                    <h1 class="text-center">Market</h1>
+                </div>
+            </a>
+            <div class="description">
+                <p>Market: A list of items that are on sales by each vendors. The buyer has to use ligear tokens to reserve the orders. Coming in May, 2018</p>
+            </div>
+        </div>
+
+        <div class="clearfix visible-xs-block "></div>
+
+        <div class="col-lg-4 col-xs-4 no-gutterleft">
+            <a class="quickLink" [routerLink]="['/home']">
+                <div class="secHead">
+                    <h1 class="text-center">Posts</h1>
+                </div>
+            </a>
+            <div class="description">
+                <p>Our community members can post things seeking help of services or goods. Coming in May, 2018.</p>
+            </div>
+        </div>
     </div>
-  </div>
+
+
 </div>
