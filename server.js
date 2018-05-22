@@ -3,7 +3,7 @@ var path = require("path");
 var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
-var db = mongo.connect("mongodb://localhost:27017/ChainPage", function (err, response) {
+var db = mongo.connect("mongodb://34.238.58.243:27017/ChainPage", function (err, response) {
     if (err) { console.log(err); }
     else { console.log('Connected to ' + db, ' + ', response); }
 });
@@ -48,7 +48,8 @@ var ListingSchema = new Schema({
     service: { type: String },
     servicingArea: { type: String },
     businessHour: { type: String },
-    businessCategory: { type: String },
+    businessMainCategory: { type: String },
+    businessSubCategory: { type: String },
     formType: { type: String },
     postedBy: { type: String },
     postedTime: { type: Number },

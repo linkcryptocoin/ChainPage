@@ -50,9 +50,9 @@ export class ClaimComponent implements OnInit {
       .subscribe(data => {
         this.categories = data.json();
         //console.log(data);
-        
+
       });
-      
+
     this.http.get('/assets/country.json')
       .subscribe(data => {
         this.countries = data.json();
@@ -63,15 +63,15 @@ export class ClaimComponent implements OnInit {
     //console.log(newValue);
     this.http.get('/assets/subCat.json')
       .subscribe(data => {
-        this.subcategories = data.json().filter((item)=> item.Category == newValue);
+        this.subcategories = data.json().filter((item) => item.Category == newValue);
 
-        
+
         //console.log(newValue);
       });
 
-    
+
   }
-   onChange(newValue: string) {
+  onChange(newValue: string) {
     if (newValue.toLowerCase() == "usa") {
       console.log(newValue);
       this.http.get('/assets/us_states.json')
@@ -79,7 +79,7 @@ export class ClaimComponent implements OnInit {
           this.states = data.json();
           this.state_province = this.states;
           //console.log(data);
-         
+
         });
     }
     else if (newValue.toLowerCase() == "canada") {
@@ -102,9 +102,12 @@ export class ClaimComponent implements OnInit {
     this.model.postedTime = Date.now();
     //upload to mongodb
     this.mongoService.saveListing(this.model)
-    .subscribe(
-      response => console.log(response)
-    )
+      .subscribe(
+        response => {
+          console.log(response);
+          this.toasterService.pop('success', 'Submit successful');
+          this.router.navigate(['/home']);
+        })
 
     // upload to bigchain
     // console.log(JSON.stringify(this.model));
@@ -180,7 +183,7 @@ export class ClaimComponent implements OnInit {
   test() {
     this.model = new Claim("John", "John Business", "123 abc st.", "DC", "DC", "20001",
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
-      "1000","Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
+      "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
   }
   ngOnInit() {
     // this.loadAllClaims();

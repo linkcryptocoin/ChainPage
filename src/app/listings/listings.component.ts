@@ -35,7 +35,7 @@ export class ListingsComponent implements OnInit {
   pageSize: number;
   maxSize: number;
   claimsPage: any[] = [];
-  likes : number = 0;
+  likes: number = 0;
   dislikes: number = 0;
   constructor(
     private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
@@ -72,35 +72,36 @@ export class ListingsComponent implements OnInit {
       // load listings from BigChainDB
       // this.getAllTransactionsByAsset(this.catParam);
       // load listings from MongoDB
-      if(this.catParam){
-        this.mongoService.GetListingsByCat(this.catParam)
-        .subscribe(response => {
-          console.log(response);
-          this.claims = response.json();
-          this.claimsPage = this.claims.slice(0, this.pageSize);
-        })
+      if (this.catParam) {
+        // console.log("here")
+        this.subscription = this.mongoService.GetListingsByCat(this.catParam)
+          .subscribe(response => {
+            // console.log(response);
+            this.claims = response.json();
+            this.claimsPage = this.claims.slice(0, this.pageSize);
+          })
       }
-      else{
-        // console.log("here");
+      else {
+        // console.log("else");
         this.subscription = this.mongoService.GetListings()
-        .subscribe(response => {
-          if(response.status == 200){
-          // console.log(response.json());
-          this.claims = response.json();
-          this.claimsPage = this.claims.slice(0, this.pageSize);
-          console.log(this.claimsPage);
-          }
-          else{
-            this.toasterService.pop("error", response.statusText);
-          }
-        });
+          .subscribe(response => {
+            if (response.status == 200) {
+              // console.log(response.json());
+              this.claims = response.json();
+              this.claimsPage = this.claims.slice(0, this.pageSize);
+              console.log(this.claimsPage);
+            }
+            else {
+              this.toasterService.pop("error", response.statusText);
+            }
+          });
       }
     });
   }
   Search(searchTxt: string) {
     // console.log("Search text: " + searchTxt);
     this.catParam = undefined;
-    
+
   }
   loadPage(pageNum: number) {
     if (pageNum !== this.previousPage) {
@@ -301,12 +302,11 @@ export class ListingsComponent implements OnInit {
   }
 
 
-  Remove_Listing()
-  {
+  Remove_Listing() {
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
       this.IDparam = params['id'];
-      console.log("----ID Param Value---------"+this.IDparam);
+      console.log("----ID Param Value---------" + this.IDparam);
 
       //await this.bigchaindbService.DeleteTransaction()
     });

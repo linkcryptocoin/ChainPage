@@ -165,8 +165,8 @@ export class ClaimDetailComponent implements OnInit {
               console.log("account: " + this.account);
               //deduct token
               if (!this.ownComment) {
-                console.log("deduct new comment token from " + this.account);
-                this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageComment);
+                console.log("deduct new comment token from " + sessionStorage.getItem("currentUserId"));
+                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
               }
               //reload comments
               this.getDetails();
