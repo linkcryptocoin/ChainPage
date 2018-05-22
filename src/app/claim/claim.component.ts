@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim, User } from '../_models/index'
-import { UserService, AlertService, BigchanDbService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 //import { driver} from '../../../node_modules/bigchaindb-driver';
@@ -32,7 +32,7 @@ export class ClaimComponent implements OnInit {
   constructor(
     private router: Router, private route: ActivatedRoute, private translate: TranslateService,
     private userService: UserService, private bigchaindbService: BigchanDbService,
-    private globals: Globals,
+    private globals: Globals, private mongoService: MongoService,
     private alertService: AlertService, private toasterService: ToasterService,
     private http: Http
   ) {
@@ -50,9 +50,9 @@ export class ClaimComponent implements OnInit {
       .subscribe(data => {
         this.categories = data.json();
         //console.log(data);
-        
+
       });
-      
+
     this.http.get('/assets/country.json')
       .subscribe(data => {
         this.countries = data.json();
@@ -63,15 +63,15 @@ export class ClaimComponent implements OnInit {
     //console.log(newValue);
     this.http.get('/assets/subCat.json')
       .subscribe(data => {
-        this.subcategories = data.json().filter((item)=> item.Category == newValue);
+        this.subcategories = data.json().filter((item) => item.Category == newValue);
 
-        
+
         //console.log(newValue);
       });
 
-    
+
   }
-   onChange(newValue: string) {
+  onChange(newValue: string) {
     if (newValue.toLowerCase() == "usa") {
       console.log(newValue);
       this.http.get('/assets/us_states.json')
@@ -79,7 +79,7 @@ export class ClaimComponent implements OnInit {
           this.states = data.json();
           this.state_province = this.states;
           //console.log(data);
-         
+
         });
     }
     else if (newValue.toLowerCase() == "canada") {
@@ -96,28 +96,35 @@ export class ClaimComponent implements OnInit {
     this.submitted = true;
     // set the upload time stamp
     // console.log("id = " + this.model.id);
-    if (this.model.id === undefined) {
-      this.model.id = "NA";
-    }
+    // if (this.model.id === undefined) {
+    //   this.model.id = "NA";
+    // }
     this.model.postedTime = Date.now();
-    // console.log(JSON.stringify(this.model));
-
-
- 
-
-    await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
-      .then(
-        data => {
-          console.log(data);
+    //upload to mongodb
+    this.mongoService.saveListing(this.model)
+      .subscribe(
+        response => {
+          console.log(response);
           this.toasterService.pop('success', 'Submit successful');
           this.router.navigate(['/home']);
-        },
-        error => {
-          this.toasterService.pop('error', 'Submit failed');
-          console.log(error);
-          return error;
-        }
-      );
+        })
+
+    // upload to bigchain
+    // console.log(JSON.stringify(this.model));
+    // await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
+    //   .then(
+    //     data => {
+    //       console.log(data);
+    //       this.toasterService.pop('success', 'Submit successful');
+    //       this.router.navigate(['/home']);
+    //     },
+    //     error => {
+    //       this.toasterService.pop('error', 'Submit failed');
+    //       console.log(error);
+    //       return error;
+    //     }
+    //   );
+    //end of bighchain
     // console.log(result);
     // this.alertService.success('Submit successful', true);
     // this.toasterService.pop('success', 'Submit successful');
@@ -137,16 +144,16 @@ export class ClaimComponent implements OnInit {
   }
 
   getClaim(id: string) {
-    this.bigchaindbService.getTransactionsById(id)
-      .subscribe(data => {
-        let claimData = JSON.parse(JSON.stringify(data));
-        this.model = claimData.asset.data;
-        if (this.model.id === "NA") {
-          this.model.id = claimData.id;
-        }
-        console.log(this.model);
-        this.onChange(this.model.country);
-      });
+    // this.bigchaindbService.getTransactionsById(id)
+    //   .subscribe(data => {
+    //     let claimData = JSON.parse(JSON.stringify(data));
+    //     this.model = claimData.asset.data;
+    //     if (this.model.id === "NA") {
+    //       this.model.id = claimData.id;
+    //     }
+    //     console.log(this.model);
+    //     this.onChange(this.model.country);
+    //   });
   }
   // deleteClaim(id: number) {
   //   this.claimService.delete(id);
@@ -174,9 +181,9 @@ export class ClaimComponent implements OnInit {
     }
   }
   test() {
-    this.model = new Claim("NA", "John", "John Business", "123 abc st.", "DC", "DC", "20001",
+    this.model = new Claim("John", "John Business", "123 abc st.", "DC", "DC", "20001",
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
-      "1000","Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
+      "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
   }
   ngOnInit() {
     // this.loadAllClaims();

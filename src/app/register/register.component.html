@@ -10,12 +10,19 @@
        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
             <label for="region">Region</label>
              <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
-                <option selected="selected" value="LinkGear">LinkGear</option>
+                <option selected="selected" value="LinkGear">Others</option>
                 <option value="Baltimore">Baltimore</option>
             </select>
              <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" >Region is required</small>
         </div>
-
+         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
+            <label for="type">Type</label>
+             <select class="form-control" name="type" [ngClass]="{ 'show-error-border': f.submitted && !type.valid }" [(ngModel)]="model.type" #type="ngModel" required>
+                <option selected="selected" value="Business">Business</option>
+                <option value="Person">Person</option>
+            </select>
+             <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" >Type is required</small>
+        </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
             <label for="userName">User Name</label>
             <input type="text" class="form-control" name="userName" [ngClass]="{ 'show-error-border': f.submitted && !userName.valid }" [(ngModel)]="model.userName" #userName="ngModel" required />

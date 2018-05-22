@@ -48,9 +48,10 @@ export class LoginComponent implements OnInit {
         this.oothService.Logout();        
         this.oothService.Login(this.model.email, this.model.password)
         .then(res => {//console.log(this.model.email + " " + this.model.password)
-            if(res.status  === 'error'){
+        console.log(res)    
+        if(res.status  === 'error'){
                 // console.log("error: "+res.status)
-                this.toasterService.pop("error", res.message)
+                this.toasterService.pop("error", res.message.message)
                 this.loading = false;
             }
             else{

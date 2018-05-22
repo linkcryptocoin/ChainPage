@@ -38,7 +38,7 @@ export class VoteService {
       //   postedBy: user,
       //   postedTime: Date.now()
       // }
-      let payload = new Vote(id, formName, vote, user, Date.now())
+      let payload = new Vote(formName, vote, user, Date.now())
       return this.bigchaindbService.createTransaction(payload, formName)
         .then(
           data => {
