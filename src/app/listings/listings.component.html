@@ -22,13 +22,13 @@
                 <h5>
                     <a [routerLink]="['/home/claim-detail']" [queryParams]="{id: claim._id}">
                         <b>
-                            {{claim.businessName}} - {{claim.businessCategory | translate}}
+                            {{claim.businessName}} - {{claim.businessMainCategory | translate}}
                         </b>
                     </a>
 
-                    <a  (click)="Remove_Listing()" [routerLink]="" [queryParams]="{id: claim.id}"  > <i class="fa fa-minus-circle pull-right" style="float: right; color: red" aria-hidden="true"></i></a>
+                    <a  (click)="Remove_Listing()" [routerLink]="" [queryParams]="{id: claim.id}"  > <i class="fa fa-trash pull-right" style="float: right; color: red" aria-hidden="true"></i></a>
                 </h5>
-                <br><strong>Service</strong> : {{claim.service}} 
+                <br><strong>Service</strong> : {{claim.service}}
                 <br><!-- T:--><i class="fa fa-phone-square" aria-hidden="true"></i> :  {{claim.phone}}
                 <br>
                 <div style="margin-top: 1px;margin-left: 1px;">
@@ -38,7 +38,7 @@
                         <i class="far fa-thumbs-down fa-lg col-2">
                           <i style="font-size: medium;">{{dislikes}} dislikes</i>
                         </i>
-                      </div> 
+                      </div>
                <!-- <br> {{claim.data.street}}
                 <br> {{claim.data.city}}, {{claim.data.state}} {{claim.data.zip}} {{getCountryName(claim.data.country)}}
                  <br> Date Created: {{claim.data.postedTime | date:'yyyy-MM-dd HH:mm a z':'-0500'}} -->
