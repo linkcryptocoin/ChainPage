@@ -40,7 +40,8 @@ export class ClaimDetailComponent implements OnInit {
   ownVote: any;
   private account: string;
   private userId: string;
-  constructor(private http: Http,private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
+  private tokenBalance: number;
+  constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService
     , private mongoService: MongoService) {
@@ -49,6 +50,11 @@ export class ClaimDetailComponent implements OnInit {
     this.maxSize = 5;
     this.pageSize = 5;
     this.currentUser = sessionStorage.getItem("currentUser");
+    this.oothService.getTokenBalance(this.account)
+      .then(balance => {
+        console.log("balance=" + balance)
+        this.tokenBalance = balance;
+      });
     this.oothService.getLoggedInName
       .subscribe(name => {
         if (name === "") {
@@ -148,34 +154,39 @@ export class ClaimDetailComponent implements OnInit {
       // console.log(user.local.email);
       // add new comment
       if (!this.ownComment) {
-        let data = {
-          _id: this.claimId,
-          comment: {
-            comment: commentText,
-            postedBy: user.local.email,
-            postedTime: Date.now()
-          }
-        };
-        // console.log((JSON.stringify(data)));
-        this.mongoService.addComment(data)
-          .subscribe(response => {
-            if (response.status == 200) {
-              this.toasterService.pop('success', 'Comment submitted successfully');
-              this.submitted = true;
-              console.log("account: " + this.account);
-              //deduct token
-              if (!this.ownComment) {
-                console.log("deduct new comment token from " + sessionStorage.getItem("currentUserId"));
-                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
+        if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
+          let data = {
+            _id: this.claimId,
+            comment: {
+              comment: commentText,
+              postedBy: user.local.email,
+              postedTime: Date.now()
+            }
+          };
+          // console.log((JSON.stringify(data)));
+          this.mongoService.addComment(data)
+            .subscribe(response => {
+              if (response.status == 200) {
+                this.toasterService.pop('success', 'Comment submitted successfully');
+                this.submitted = true;
+                console.log("account: " + this.account);
+                //deduct token
+                if (!this.ownComment) {
+                  console.log("deduct new comment token from " + sessionStorage.getItem("currentUserId"));
+                  this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
+                }
+                //reload comments
+                this.getDetails();
+                return true;
               }
-              //reload comments
-              this.getDetails();
-              return true;
-            }
-            else {
-              this.toasterService.pop("error", response.statusText);
-            }
-          })
+              else {
+                this.toasterService.pop("error", response.statusText);
+              }
+            })
+        }
+        else {
+          this.toasterService.pop("error", "You don't have enough tokens");
+        }
       }
       // update comment
       else {
@@ -225,52 +236,60 @@ export class ClaimDetailComponent implements OnInit {
           }
         };
         this.mongoService.deleteVote(data)
-        .subscribe(response => {
-          if (response.status == 200) {
-            this.toasterService.pop('success', 'Vote deleted successfully');
-            this.submitted = true;
-            // this.likes--;
-            // console.log("user id: " + sessionStorage.getItem("currentUserId"));
-            //deduct token
-            // this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageUpVote);
-            //reload votes
-            this.getDetails();
-            return true;
-          }
-          else {
-            this.toasterService.pop("error", response.statusText);
-          }
-        })
+          .subscribe(response => {
+            if (response.status == 200) {
+              this.toasterService.pop('success', 'Vote deleted successfully');
+              this.submitted = true;
+              // this.likes--;
+              // console.log("user id: " + sessionStorage.getItem("currentUserId"));
+              //deduct token
+              // this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageUpVote);
+              //reload votes
+              this.getDetails();
+              this.alreadyLiked = !this.alreadyLiked;
+              return true;
+            }
+            else {
+              this.toasterService.pop("error", response.statusText);
+            }
+          })
       }
       else {
-        // console.log("not yet liked: " + this.alreadyLiked)
-        let data = {
-          _id: this.claimId,
-          vote: {
-            vote: this.reactions[0],  //like
-            postedBy: this.currentUser,
-            postedTime: Date.now()
-          }
-        };
-        this.mongoService.addVote(data)
-        .subscribe(response => {
-          if (response.status == 200) {
-            this.toasterService.pop('success', 'Vote submitted successfully');
-            this.submitted = true;
-            // this.likes++;
-            console.log("user id: " + sessionStorage.getItem("currentUserId"));
-            //deduct token
-            this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageUpVote);
-            //reload votes
-            this.getDetails();
-            return true;
-          }
-          else {
-            this.toasterService.pop("error", response.statusText);
-          }
-        })
+        console.log("token balance: " + this.tokenBalance)
+        if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageUpVote) {
+          // console.log("not yet liked: " + this.alreadyLiked)
+          let data = {
+            _id: this.claimId,
+            vote: {
+              vote: this.reactions[0],  //like
+              postedBy: this.currentUser,
+              postedTime: Date.now()
+            }
+          };
+          this.mongoService.addVote(data)
+            .subscribe(response => {
+              if (response.status == 200) {
+                this.toasterService.pop('success', 'Vote submitted successfully');
+                this.submitted = true;
+                // this.likes++;
+                console.log("user id: " + sessionStorage.getItem("currentUserId"));
+                //deduct token
+                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageUpVote);
+                //reload votes
+                this.getDetails();
+                this.alreadyLiked = !this.alreadyLiked;
+                return true;
+              }
+              else {
+                this.toasterService.pop("error", response.statusText);
+              }
+            })
+        }
+        else {
+          this.toasterService.pop("error", "You don't have enough tokens");
+        }
       }
-      this.alreadyLiked = !this.alreadyLiked;
+      
     }
   }
   thumbsDown() {
@@ -285,52 +304,59 @@ export class ClaimDetailComponent implements OnInit {
           }
         };
         this.mongoService.deleteVote(data)
-        .subscribe(response => {
-          if (response.status == 200) {
-            this.toasterService.pop('success', 'Vote deleted successfully');
-            this.submitted = true;
-            // this.likes--;
-            // console.log("account: " + this.account);
-            //deduct token
-            // this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageDownVote);
-            //reload votes
-            this.getDetails();
-            return true;
-          }
-          else {
-            this.toasterService.pop("error", response.statusText);
-          }
-        })
+          .subscribe(response => {
+            if (response.status == 200) {
+              this.toasterService.pop('success', 'Vote deleted successfully');
+              this.submitted = true;
+              // this.likes--;
+              // console.log("account: " + this.account);
+              //deduct token
+              // this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageDownVote);
+              //reload votes
+              this.getDetails();
+              this.alreadyDisliked = !this.alreadyDisliked;
+              return true;
+            }
+            else {
+              this.toasterService.pop("error", response.statusText);
+            }
+          })
       }
       else {
-        // console.log(this.alreadyDisliked);
-        let data = {
-          _id: this.claimId,
-          vote: {
-            vote: this.reactions[1],  //dislike
-            postedBy: this.currentUser,
-            postedTime: Date.now()
-          }
-        };
-        this.mongoService.addVote(data)
-        .subscribe(response => {
-          if (response.status == 200) {
-            this.toasterService.pop('success', 'Vote submitted successfully');
-            this.submitted = true;
-            // this.likes++;
-            // console.log("account: " + this.account);
-            //deduct token
-            this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageDownVote);
-            //reload votes
-            this.getDetails();
-            return true;
-          }
-          else {
-            this.toasterService.pop("error", response.statusText);
-          }
-        })
+        if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageDownVote) {
+          // console.log(this.alreadyDisliked);
+          let data = {
+            _id: this.claimId,
+            vote: {
+              vote: this.reactions[1],  //dislike
+              postedBy: this.currentUser,
+              postedTime: Date.now()
+            }
+          };
+          this.mongoService.addVote(data)
+            .subscribe(response => {
+              if (response.status == 200) {
+                this.toasterService.pop('success', 'Vote submitted successfully');
+                this.submitted = true;
+                // this.likes++;
+                // console.log("account: " + this.account);
+                //deduct token
+                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageDownVote);
+                //reload votes
+                this.getDetails();
+                this.alreadyDisliked = !this.alreadyDisliked;
+                return true;
+              }
+              else {
+                this.toasterService.pop("error", response.statusText);
+              }
+            })
+        }
+        else {
+          this.toasterService.pop("error", "You don't have enough tokens");
+        }
       }
-      this.alreadyDisliked = !this.alreadyDisliked;
+      
       // console.log(this.alreadyDisliked);
     }
   }

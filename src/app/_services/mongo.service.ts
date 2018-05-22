@@ -60,4 +60,8 @@ export class MongoService {
         console.log(vote);
         return this.http.post(this.API + 'deleteVote/', vote)
     }
+    searchListings(searchText:string){
+        console.log(searchText);
+        return this.http.get(this.API + 'searchListings/' + searchText)
+    }
 }

@@ -56,7 +56,13 @@ var ListingSchema = new Schema({
     comments: [CommentSchema],
     votes: [VoteSchema]
 });
-
+// ListingSchema.index({name: 'text', businessName: 'text',
+// street: 'text', city: 'text', state: 'text', zip: 'text',
+// country: 'text', email: 'text', service: 'text', servicingArea: 'text',
+// businessMainCategory: 'text', businessSubCategory: 'text', 
+// service: 'text', servicingArea: 'text'
+// });
+ListingSchema.index({'$**': 'text'});
 
 var model = mongo.model('Listing', ListingSchema);
 
@@ -227,6 +233,19 @@ app.post("/api/deleteVote", function (req, res) {
         }
     });
 })
+
+app.get("/api/searchListings/:searchtext", function (req, res) {
+    model.find({$text: {$search: req.params.searchtext}},         
+        function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(data);
+        }
+    });
+})
+
 app.listen(8080, function () {
 
     console.log('Example app listening on port 8080!')

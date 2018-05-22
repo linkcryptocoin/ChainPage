@@ -45,8 +45,6 @@ export class ListingsComponent implements OnInit {
     private http: Http//, private voteService: VoteService
   ) {
 
-
-
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;
@@ -78,6 +76,7 @@ export class ListingsComponent implements OnInit {
           .subscribe(response => {
             // console.log(response);
             this.claims = response.json();
+            this.totalItems = this.claims.length;
             this.claimsPage = this.claims.slice(0, this.pageSize);
           })
       }
@@ -88,8 +87,9 @@ export class ListingsComponent implements OnInit {
             if (response.status == 200) {
               // console.log(response.json());
               this.claims = response.json();
+              this.totalItems = this.claims.length;
               this.claimsPage = this.claims.slice(0, this.pageSize);
-              console.log(this.claimsPage);
+              console.log(this.claims);
             }
             else {
               this.toasterService.pop("error", response.statusText);
@@ -100,8 +100,25 @@ export class ListingsComponent implements OnInit {
   }
   Search(searchTxt: string) {
     // console.log("Search text: " + searchTxt);
-    this.catParam = undefined;
-
+    // this.catParam = undefined;
+    if (searchTxt) {
+      this.mongoService.searchListings(searchTxt)
+        .subscribe(response => {
+          // console.log(response);
+          this.claims = response.json();
+          this.totalItems = this.claims.length;
+          this.claimsPage = this.claims.slice(0, this.pageSize);
+        })
+    }
+    else {
+      this.mongoService.GetListings()
+        .subscribe(response => {
+          // console.log(response);
+          this.claims = response.json();
+          this.totalItems = this.claims.length;
+          this.claimsPage = this.claims.slice(0, this.pageSize);
+        })
+    }
   }
   loadPage(pageNum: number) {
     if (pageNum !== this.previousPage) {
