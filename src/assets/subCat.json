@@ -1,7 +1,7 @@
 [
  {
    "Subcategory": 2000,
-   "Description": "Restaurants",
+   "Description": "Restaurant",
    "Category": 1000,
    "Merchant category": 5932
  },
@@ -13,19 +13,19 @@
  },
  {
    "Subcategory": 2002,
-   "Description": "Realtors",
+   "Description": "Realtor",
    "Category": 1001,
    "Merchant category": 5712
  },
  {
    "Subcategory": 2003,
-   "Description": "Loan Officers",
+   "Description": "Loan Officer",
    "Category": 1001,
    "Merchant category": 5991
  },
  {
    "Subcategory": 2004,
-   "Description": "Business Brokers",
+   "Description": "Business Broker",
    "Category": 1001,
    "Merchant category": 5992
  },
@@ -200,7 +200,7 @@
  },
  {
    "Subcategory": 2060,
-   "Description": "Denitist",
+   "Description": "Dentist",
    "Category": 1006,
    "Merchant category": 4816
  },
@@ -248,7 +248,7 @@
  },
  {
    "Subcategory": 2075,
-   "Description": "Summer Camps",
+   "Description": "Summer Camp",
    "Category": 1008,
    "Merchant category": 8249
  },
@@ -373,12 +373,6 @@
    "Merchant category": 7995
  },
  {
-   "Subcategory": 2099,
-   "Description": "Internal TV",
-   "Category": 1010,
-   "Merchant category": 7999
- },
- {
    "Subcategory": 2100,
    "Description": "Pet Service",
    "Category": 1010,
@@ -386,7 +380,7 @@
  },
  {
    "Subcategory": 2101,
-   "Description": "Marriage Agencies",
+   "Description": "Marriage Agency",
    "Category": 1010,
    "Merchant category": 8931
  },
