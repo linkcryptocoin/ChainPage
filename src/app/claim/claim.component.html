@@ -177,7 +177,7 @@
                     #businessCategory="ngModel"> -->
                   <select class="form-control"  id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)"  [(ngModel)]="model.businessMainCategory" name="businessMainCategory"
                     #businessCategory="ngModel">
-                    <option *ngFor="let cat of categories" [value]="cat.Category" translate>{{cat.Description}}</option>
+                    <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
                   </select>
                 </div>
                 <div class="col-sm-2">

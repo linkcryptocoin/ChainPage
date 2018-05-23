@@ -26,9 +26,11 @@ export class ClaimComponent implements OnInit {
   countries: any[] = [];
   states: any[] = [];
   provinces: any[] = [];
+  catarr: any[]= [];
   state_province: any[] = [];
   claimId: string;
   isUpdate: boolean = false;
+  maincategoryid: this;
   constructor(
     private router: Router, private route: ActivatedRoute, private translate: TranslateService,
     private userService: UserService, private bigchaindbService: BigchanDbService,
@@ -60,15 +62,23 @@ export class ClaimComponent implements OnInit {
       });
   }
   MainCategoryDropDownChanged(newValue: string) {
-    //console.log(newValue);
-    this.http.get('/assets/subCat.json')
+    console.log(newValue);
+
+    this.http.get('/assets/cat.json')
       .subscribe(data => {
-        this.subcategories = data.json().filter((item) => item.Category == newValue);
+        this.catarr = data.json().filter((item) => item.Description == newValue);
 
-
-        //console.log(newValue);
+             this.maincategoryid = this.catarr[0].Category;
+              console.log(this.maincategoryid);
       });
+ this.http.get('/assets/subCat.json')
+      .subscribe(data => {
+        this.subcategories = data.json().filter((item) => item.Category == this.maincategoryid);
 
+
+
+        console.log(this.subcategories);
+      });
 
   }
   onChange(newValue: string) {
