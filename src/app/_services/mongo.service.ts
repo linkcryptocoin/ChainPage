@@ -13,32 +13,33 @@ export class MongoService {
 
     saveListing(listing) {
         return this.http.post(this.API + 'saveListing/', listing)
-        // .map((response: Response) =>response.json())              
+        // .map((response: Response) =>response.json())
     }
     updateListing(listing) {
         return this.http.post(this.API + 'updateListing/', listing)
-        // .map((response: Response) =>response.json())   
+        // .map((response: Response) =>response.json())
     }
     GetListings() {
         return this.http.get(this.API + 'getListings/')
-        // .map((response: Response) => response.json())              
+        // .map((response: Response) => response.json())
     }
 
     GetListingsByCat(cat) {
         // let params = new HttpParams().set('cat', cat);
         return this.http.get(this.API + 'getListingsByCat/' + cat)
-        // .map((response: Response) => response.json())              
+        // .map((response: Response) => response.json())
     }
 
     GetListing(id) {
         // console.log(id);
-        // let params = new HttpParams().set('id', id);  
+        // let params = new HttpParams().set('id', id);
         return this.http.get(this.API + 'getListing/' + id)
-        // .map((response: Response) => response.json())              
+        // .map((response: Response) => response.json())
     }
     deleteListing(id) {
+      console.log('--listing id passed  for delete request:' + id);
         return this.http.post(this.API + 'deleteListing/', { 'id': id })
-        // .map((response: Response) =>response.json())               
+        // .map((response: Response) =>response.json())
     }
     addComment(comment){
         console.log(comment);
