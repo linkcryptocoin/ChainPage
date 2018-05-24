@@ -26,17 +26,17 @@
                         </b>
                     </a>
 
-                    <a  (click)="Remove_Listing()" [routerLink]="" [queryParams]="{id: claim._id}"  > <i class="fa fa-trash pull-right" style="float: right; color: red" aria-hidden="true"></i></a>
+                    <a  (click)="Remove_Listing()" [routerLink]="" [queryParams]="{id2Delete: claim._id}"  > <i class="fa fa-trash pull-right" style="float: right; color: red" aria-hidden="true"></i></a>
                 </h5>
                 <strong>Service</strong> : {{claim.service}}
                 <br><!-- T:--><i class="fa fa-phone-square" aria-hidden="true"></i> :  {{claim.phone}}
                 <br>
                 <div style="margin-top: 1px;margin-left: 1px;">
                         <i class="far fa-thumbs-up fa-lg col-2">
-                          <i style="font-size: medium;">{{likes}} likes</i>
+                          <i style="font-size: medium;">{{claim.likes}} likes</i>
                         </i>
                         <i class="far fa-thumbs-down fa-lg col-2">
-                          <i style="font-size: medium;">{{dislikes}} dislikes</i>
+                          <i style="font-size: medium;">{{claim.dislikes}} dislikes</i>
                         </i>
                       </div>
                <!-- <br> {{claim.data.street}}

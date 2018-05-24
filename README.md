@@ -18,8 +18,11 @@ run the following commands
 8. `npm i -g @angular/cli`
 9. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-run the app in the background
-`forever start node_modules/@angular/cli/bin/ng serve --host {ip_address or host} --prod`
+## Server mode
+1. `ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true`
+2. `ng serve --port 8092 --host 0.0.0.0 --disableHostCCheck:true --public http://linkcryptocoin.com:8092`
+3. `forever start node_modules/@angular/cli/bin/ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true`
+4. `forever start node_modules/@angular/cli/bin/ng serve --port 8092 --host 0.0.0.0 --disableHostCCheck:true --public http://linkcryptocoin.com:8092`
 
 ## Code scaffolding
 
