@@ -23,7 +23,8 @@ export class ListingsComponent implements OnInit {
   private subscription: ISubscription;
   currentUser: User;
   model: any = {};
-  votes:any = {};
+  
+  votes: any[] = [];
   claims: any[] = [];
   submitted = false;
   categories: any[] = [];
@@ -36,8 +37,11 @@ export class ListingsComponent implements OnInit {
   pageSize: number;
   maxSize: number;
   claimsPage: any[] = [];
+  listings: any[] = [];
   likes: number = 0;
   dislikes: number = 0;
+  numoflikes: number = 0;
+  numofdislikes: number = 0;
   constructor(
     private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
@@ -78,7 +82,55 @@ export class ListingsComponent implements OnInit {
             // console.log(response);
             this.claims = response.json();
             this.totalItems = this.claims.length;
-            this.claimsPage = this.claims.slice(0, this.pageSize);
+             this.model = this.claims;
+            // console.log( JSON.stringify(this.model));
+            
+             for (var i = 0; i < this.model.length; i++)
+             {
+               this.numoflikes = 0;
+               this.numofdislikes = 0;
+     
+               this.model[i].votes.forEach(element => {
+                 console.log(element.vote);
+                 // get vote counts
+                 if (element.vote === "like") {
+                   this.numoflikes++;
+                 } else if (element.vote === "dislike") {
+                   this.numofdislikes++;
+                 }
+               });
+     
+               this.votes[i] = {
+                 _id: this.model[i]._id,
+                 likes: this.numoflikes,
+                 dislikes: this.numofdislikes
+               };
+             }
+   
+            
+             for(var j=0; j<this.claims.length;j++)
+             {
+   
+                  //console.log(thi);
+                 this.listings[j]={
+                   _id:this.claims[j]._id,
+                   businessMainCategory:this.claims[j].businessMainCategory,
+                   businessName:this.claims[j].businessName,
+                   service:this.claims[j].service,
+                   phone:this.claims[j].phone,
+                  likes: this.votes[j].likes,
+                   dislikes: this.votes[j].dislikes
+                 };
+   
+             }
+             this.claimsPage = this.listings.slice(0, this.pageSize);
+           
+             //console.log("votes:"+JSON.stringify(this.votes));
+             //console.log("listings:"+JSON.stringify(this.listings));
+   
+   
+
+
           })
       }
       else {
@@ -89,7 +141,54 @@ export class ListingsComponent implements OnInit {
               // console.log(response.json());
               this.claims = response.json();
               this.totalItems = this.claims.length;
-              this.claimsPage = this.claims.slice(0, this.pageSize);
+              this.model = this.claims;
+              // console.log( JSON.stringify(this.model));
+              
+               for (var i = 0; i < this.model.length; i++)
+               {
+                 this.numoflikes = 0;
+                 this.numofdislikes = 0;
+       
+                 this.model[i].votes.forEach(element => {
+                   console.log(element.vote);
+                   // get vote counts
+                   if (element.vote === "like") {
+                     this.numoflikes++;
+                   } else if (element.vote === "dislike") {
+                     this.numofdislikes++;
+                   }
+                 });
+       
+                 this.votes[i] = {
+                   _id: this.model[i]._id,
+                   likes: this.numoflikes,
+                   dislikes: this.numofdislikes
+                 };
+               }
+     
+              
+               for(var j=0; j<this.claims.length;j++)
+               {
+     
+                    //console.log(thi);
+                   this.listings[j]={
+                     _id:this.claims[j]._id,
+                     businessMainCategory:this.claims[j].businessMainCategory,
+                     businessName:this.claims[j].businessName,
+                     service:this.claims[j].service,
+                     phone:this.claims[j].phone,
+                    likes: this.votes[j].likes,
+                     dislikes: this.votes[j].dislikes
+                   };
+     
+               }
+     
+               this.claimsPage = this.listings.slice(0, this.pageSize);
+             
+               //console.log("votes:"+JSON.stringify(this.votes));
+               //console.log("listings:"+JSON.stringify(this.listings));
+     
+     
 
             }
             else {
@@ -99,6 +198,8 @@ export class ListingsComponent implements OnInit {
       }
     });
   }
+
+
   Search(searchTxt: string) {
     // console.log("Search text: " + searchTxt);
     // this.catParam = undefined;
@@ -108,52 +209,119 @@ export class ListingsComponent implements OnInit {
           // console.log(response);
           this.claims = response.json();
           this.totalItems = this.claims.length;
-          this.claimsPage = this.claims.slice(0, this.pageSize);
+          this.model = this.claims;
+         // console.log( JSON.stringify(this.model));
+         
+          for (var i = 0; i < this.model.length; i++)
+          {
+            this.numoflikes = 0;
+            this.numofdislikes = 0;
+  
+            this.model[i].votes.forEach(element => {
+              console.log(element.vote);
+              // get vote counts
+              if (element.vote === "like") {
+                this.numoflikes++;
+              } else if (element.vote === "dislike") {
+                this.numofdislikes++;
+              }
+            });
+  
+            this.votes[i] = {
+              _id: this.model[i]._id,
+              likes: this.numoflikes,
+              dislikes: this.numofdislikes
+            };
+          }
+
+         
+          for(var j=0; j<this.claims.length;j++)
+          {
+
+               //console.log(thi);
+              this.listings[j]={
+                _id:this.claims[j]._id,
+                businessMainCategory:this.claims[j].businessMainCategory,
+                businessName:this.claims[j].businessName,
+                service:this.claims[j].service,
+                phone:this.claims[j].phone,
+               likes: this.votes[j].likes,
+                dislikes: this.votes[j].dislikes
+              };
+
+          }
+          this.claimsPage = this.listings.slice(0, this.pageSize);
+         
+          //console.log("votes:"+JSON.stringify(this.votes));
+          //console.log("listings:"+JSON.stringify(this.listings));
+
+
         })
     }
     else {
+       // console.log("else");
+       this.subscription = this.mongoService.GetListings()
+       .subscribe(response => {
+         if (response.status == 200) {
+           // console.log(response.json());
+           this.claims = response.json();
+           this.totalItems = this.claims.length;
+           this.model = this.claims;
+           // console.log( JSON.stringify(this.model));
+           
+            for (var i = 0; i < this.model.length; i++)
+            {
+              this.numoflikes = 0;
+              this.numofdislikes = 0;
+    
+              this.model[i].votes.forEach(element => {
+                console.log(element.vote);
+                // get vote counts
+                if (element.vote === "like") {
+                  this.numoflikes++;
+                } else if (element.vote === "dislike") {
+                  this.numofdislikes++;
+                }
+              });
+    
+              this.votes[i] = {
+                _id: this.model[i]._id,
+                likes: this.numoflikes,
+                dislikes: this.numofdislikes
+              };
+            }
+  
+           
+            for(var j=0; j<this.claims.length;j++)
+            {
+  
+                 //console.log(thi);
+                this.listings[j]={
+                  _id:this.claims[j]._id,
+                  businessMainCategory:this.claims[j].businessMainCategory,
+                  businessName:this.claims[j].businessName,
+                  service:this.claims[j].service,
+                  phone:this.claims[j].phone,
+                 likes: this.votes[j].likes,
+                  dislikes: this.votes[j].dislikes
+                };
+  
+            }
+  
+            this.claimsPage = this.listings.slice(0, this.pageSize);
+          
+            //console.log("votes:"+JSON.stringify(this.votes));
+            //console.log("listings:"+JSON.stringify(this.listings));
+  
+  
 
-      this.mongoService.GetListings()
-        .subscribe(response => {
-          // console.log(response);
-          this.claims = response.json();
-          this.model = response.json();
-          this.totalItems = this.claims.length;
-          this.claimsPage = this.claims.slice(0, this.pageSize);
-          this.model = this.claims;
-         // console.log( JSON.stringify(this.model));
-          console.log(this.model.length);
-          console.log(this.claims.length);
+         }
+         else {
+           this.toasterService.pop("error", response.statusText);
+         }
+       });
 
-
-  for( var i=0; i<this.model.length;i++)
-  {
-
-    console.log(this.model[i]._id);
-    //console.log("claimsid"+this.model[i]._id);
-
-      this.model[i].votes.forEach(element => {
-
-        console.log(element.vote);
-
-            // get vote counts
-          if (element.vote === 'like') {
-            this.likes++;
-          }else if (element.vote === 'dislike') {
-            this.dislikes++;
-          }
-
-
-      });
-      i++;
-      break;
-
-}
-
-
-
-
-        })
+     //
     }
   }
 
@@ -166,9 +334,13 @@ export class ListingsComponent implements OnInit {
     }
   }
   loadData(pageNum: number) {
-    // console.log(this.pageSize * (pageNum - 1))
-    // console.log(this.pageSize * (pageNum - 1) + this.pageSize)
-    this.claimsPage = this.claims.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
+     console.log("this.pageSize * (pageNum - 1)"+this.pageSize * (pageNum - 1))
+     console.log("this.pageSize * "+this.pageSize * (pageNum - 1) + this.pageSize)
+
+
+    this.claimsPage = this.listings.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
+  
+  
   }
   public getCountryName(id: number): string {
     var value = "";
