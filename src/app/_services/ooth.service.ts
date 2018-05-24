@@ -102,11 +102,13 @@ export class OothService {
         if (body.status !== 'error') {
             this.authenticated = false;
             this.getLoggedInName.emit(undefined);
-            this.getLoggedInAccount.emit(undefined);
+            this.getLoggedInUserName.emit(undefined);
+            // this.getLoggedInAccount.emit(undefined);
             this.logginStatus.emit(false);
         }
         sessionStorage.removeItem("currentUser");
         sessionStorage.removeItem("currentUserId");
+        sessionStorage.removeItem("currentUserEmail");
         sessionStorage.removeItem("expires_at");
         sessionStorage.removeItem("oothtoken");
         sessionStorage.removeItem("currentUserAccount");

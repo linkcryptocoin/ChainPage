@@ -29,7 +29,11 @@ export class MongoService {
         return this.http.get(this.API + 'getListingsByCat/' + cat)
         // .map((response: Response) => response.json())              
     }
-
+    GetListingsBySubcat(subcat) {
+        // let params = new HttpParams().set('cat', cat);
+        return this.http.get(this.API + 'getListingsBySubcat/' + subcat)
+        // .map((response: Response) => response.json())              
+    }
     GetListing(id) {
         // console.log(id);
         // let params = new HttpParams().set('id', id);  

@@ -34,23 +34,23 @@ export class TopNavComponent implements OnInit {
         console.log("this.oothService.getLoggedInName: " + this.oothService.getLoggedInName);
 
       });
-    this.oothService.getLoggedInAccount
-      .subscribe(account => {
-        this.currentUserAccount = account;
-        console.log("account: " + this.currentUser);
-        // let balanceSession = sessionStorage.getItem('tokenBalance');
-        // if (balanceSession) {
-        //   this.tokenBalance = Number.parseFloat(balanceSession);
-        //   console.log("session balance=" + balanceSession)
-        // }
-        // else {
-        //   this.oothService.getTokenBalance(this.currentUserAccount)
-        //     .then(balance => {
-        //       console.log("balance=" + balance)
-        //       this.tokenBalance = balance;
-        //     });
-        // }
-      });
+    // this.oothService.getLoggedInAccount
+    //   .subscribe(account => {
+    //     this.currentUserAccount = account;
+    //     console.log("account: " + this.currentUser);
+    //     // let balanceSession = sessionStorage.getItem('tokenBalance');
+    //     // if (balanceSession) {
+    //     //   this.tokenBalance = Number.parseFloat(balanceSession);
+    //     //   console.log("session balance=" + balanceSession)
+    //     // }
+    //     // else {
+    //     //   this.oothService.getTokenBalance(this.currentUserAccount)
+    //     //     .then(balance => {
+    //     //       console.log("balance=" + balance)
+    //     //       this.tokenBalance = balance;
+    //     //     });
+    //     // }
+    //   });
     // this.oothService.getAccountBalance
     //   .subscribe(balance => {
     //     console.log("new balance=" + balance)

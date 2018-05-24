@@ -19,6 +19,7 @@ export class ClaimDetailComponent implements OnInit {
   private isAuthor: boolean = false;
   private reactions: string[] = ['like', 'dislike']
   currentUser: string = undefined;
+  currentUserEmail: string = undefined;
   claimId: string;
   country: string;
   category: string;
@@ -50,6 +51,7 @@ export class ClaimDetailComponent implements OnInit {
     this.maxSize = 5;
     this.pageSize = 5;
     this.currentUser = sessionStorage.getItem("currentUser");
+    this.currentUserEmail = sessionStorage.getItem("currentUserEmail");
     this.oothService.getTokenBalance(this.account)
       .then(balance => {
         console.log("balance=" + balance)
@@ -86,10 +88,15 @@ export class ClaimDetailComponent implements OnInit {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
+          //check if current user is the author of the listing
+          console.log("current user: " + this.currentUserEmail + " author: " + this.model.postedBy)
+          if(this.currentUserEmail == this.model.postedBy){            
+            this.isAuthor = true;
+          }
           //retrieve comments
           // console.log(this.model.comments)
           this.model.comments.forEach(element => {
-            if (element.postedBy == this.currentUser) {
+            if (element.postedBy == this.currentUserEmail) {
               this.ownComment = element;
               // console.log("ownComment: " + this.ownComment)
             }
@@ -103,7 +110,7 @@ export class ClaimDetailComponent implements OnInit {
           //retrieve votes
           this.model.votes.forEach(element => {
             // get the current user's vote
-            if (element.postedBy == this.currentUser) {
+            if (element.postedBy == this.currentUserEmail) {
               this.ownVote = element;
               if (element.vote == "like") {
                 this.alreadyLiked = true;
@@ -262,7 +269,7 @@ export class ClaimDetailComponent implements OnInit {
             _id: this.claimId,
             vote: {
               vote: this.reactions[0],  //like
-              postedBy: this.currentUser,
+              postedBy: this.currentUserEmail,
               postedTime: Date.now()
             }
           };
@@ -329,7 +336,7 @@ export class ClaimDetailComponent implements OnInit {
             _id: this.claimId,
             vote: {
               vote: this.reactions[1],  //dislike
-              postedBy: this.currentUser,
+              postedBy: this.currentUserEmail,
               postedTime: Date.now()
             }
           };

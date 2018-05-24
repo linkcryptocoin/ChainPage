@@ -42,8 +42,7 @@ export class ClaimComponent implements OnInit {
       console.log(params['id']);
       this.claimId = params['id'];
       if (this.claimId) {
-        this.model = this.getClaim(this.claimId);
-        this.isUpdate = true;
+        this.getClaim(this.claimId);        
       }
     });
     this.http.get('/assets/cat.json')
@@ -92,15 +91,42 @@ export class ClaimComponent implements OnInit {
         });
     }
   }
+  getClaim(id: string) {
+    this.mongoService.GetListing(id)
+      .subscribe(response => {
+        console.log(response)
+        this.model = response.json();
+        this.isUpdate = true;
+        // let claimData = JSON.parse(JSON.stringify(data));
+        // this.model = claimData.asset.data;
+        // if (this.model.id === "NA") {
+        //   this.model.id = claimData.id;
+        // }
+        console.log(this.model);
+        this.onChange(this.model.country);
+      });
+  }
   async onSubmit() {
     this.submitted = true;
     // set the upload time stamp
-    // console.log("id = " + this.model.id);
+    delete this.model["__v"]
+    console.log("model = " + JSON.stringify(this.model));
     // if (this.model.id === undefined) {
     //   this.model.id = "NA";
     // }
     this.model.postedTime = Date.now();
+    if(this.isUpdate == true){
+      // console.log("this is an update");
+      this.mongoService.updateListing(this.model)
+      .subscribe(response => {
+        console.log(response);
+        this.toasterService.pop('success', 'Update successful');
+        this.router.navigate(['/home']);
+      });
+    }
+    else{
     //upload to mongodb
+    // console.log("this is an add");
     this.mongoService.saveListing(this.model)
       .subscribe(
         response => {
@@ -108,7 +134,7 @@ export class ClaimComponent implements OnInit {
           this.toasterService.pop('success', 'Submit successful');
           this.router.navigate(['/home']);
         })
-
+      }
     // upload to bigchain
     // console.log(JSON.stringify(this.model));
     // await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
@@ -143,18 +169,18 @@ export class ClaimComponent implements OnInit {
     //     });
   }
 
-  getClaim(id: string) {
-    // this.bigchaindbService.getTransactionsById(id)
-    //   .subscribe(data => {
-    //     let claimData = JSON.parse(JSON.stringify(data));
-    //     this.model = claimData.asset.data;
-    //     if (this.model.id === "NA") {
-    //       this.model.id = claimData.id;
-    //     }
-    //     console.log(this.model);
-    //     this.onChange(this.model.country);
-    //   });
-  }
+  // getClaim(id: string) {
+  //   this.bigchaindbService.getTransactionsById(id)
+  //     .subscribe(data => {
+  //       let claimData = JSON.parse(JSON.stringify(data));
+  //       this.model = claimData.asset.data;
+  //       if (this.model.id === "NA") {
+  //         this.model.id = claimData.id;
+  //       }
+  //       console.log(this.model);
+  //       this.onChange(this.model.country);
+  //     });
+  // }
   // deleteClaim(id: number) {
   //   this.claimService.delete(id);
   // }

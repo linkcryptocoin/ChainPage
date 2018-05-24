@@ -28,6 +28,7 @@ export class ListingsComponent implements OnInit {
   categories: any[] = [];
   countries: any[] = [];
   catParam = "";
+  subcatPram = "";
   IDparam = "";
   totalItems: number;
   page: number;
@@ -66,6 +67,7 @@ export class ListingsComponent implements OnInit {
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
       this.catParam = params['cat'];
+      this.subcatPram = params['subcat'];
       console.log(this.catParam);
       // load listings from BigChainDB
       // this.getAllTransactionsByAsset(this.catParam);
@@ -73,6 +75,15 @@ export class ListingsComponent implements OnInit {
       if (this.catParam) {
         // console.log("here")
         this.subscription = this.mongoService.GetListingsByCat(this.catParam)
+          .subscribe(response => {
+            // console.log(response);
+            this.claims = response.json();
+            this.totalItems = this.claims.length;
+            this.claimsPage = this.claims.slice(0, this.pageSize);
+          })
+      }
+      else if(this.subcatPram){
+        this.subscription = this.mongoService.GetListingsBySubcat(this.subcatPram)
           .subscribe(response => {
             // console.log(response);
             this.claims = response.json();
