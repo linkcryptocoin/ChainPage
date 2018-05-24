@@ -531,14 +531,21 @@ export class ListingsComponent implements OnInit {
 
 
   Remove_Listing() {
+    
+    setTimeout(() => 
+    {
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
-      this.IDparam = params['id'];
+      this.IDparam = params['id2Delete'];
+
       console.log("----ID Param Value---------" + this.IDparam);
 
       this.mongoService.deleteListing(this.IDparam);
       //await this.bigchaindbService.DeleteTransaction()
     });
+    },
+    1000);
+    
 
   }
 
