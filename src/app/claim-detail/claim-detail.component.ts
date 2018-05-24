@@ -296,7 +296,7 @@ export class ClaimDetailComponent implements OnInit {
           this.toasterService.pop("error", "You don't have enough tokens");
         }
       }
-      
+
     }
   }
   thumbsDown() {
@@ -363,7 +363,7 @@ export class ClaimDetailComponent implements OnInit {
           this.toasterService.pop("error", "You don't have enough tokens");
         }
       }
-      
+
       // console.log(this.alreadyDisliked);
     }
   }
@@ -578,6 +578,7 @@ export class ClaimDetailComponent implements OnInit {
   //     // console.log(this.alreadyDisliked);
   //   }
   // }
+  /*
   getVotes(id: string) {
     this.likes = 0;
     this.dislikes = 0;
@@ -620,7 +621,7 @@ export class ClaimDetailComponent implements OnInit {
       // })
     });
     this.voteService.getVotes(id);
-  }
+  }*/
   ngOnDestroy(): void {
     // this.subscription.unsubscribe();
   }

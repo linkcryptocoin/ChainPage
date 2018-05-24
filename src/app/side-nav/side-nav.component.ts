@@ -38,7 +38,6 @@ isClass2Visible: false;
     //   console.log(this.currentUser.username);
     // }
     // else{console.log("side-nav: no user")}
-
     this.http.get('/assets/cat.json')
       .subscribe(data => {
         this.categories = data.json();
@@ -49,20 +48,18 @@ isClass2Visible: false;
   
   OpenSection2(item)
   {
-   
-    this.isClass2Visible = false;
-    //this.isClass2Visible != false;
-    
-    this.catParam = item;
-    console.log("----CatID Param Value---------"+this.catParam);
-    
-    this.http.get('/assets/subCat.json')
-      .subscribe(data => {
-        this.subcategories = data.json().filter((item)=> item.Category == this.catParam);
-      });
 
-   
-   
+      this.isClass2Visible = false;
+      //this.isClass2Visible = !false;
+      
+      this.catParam = item;
+      console.log("----CatID Param Value---------"+this.catParam);
+      
+      this.http.get('/assets/subCat.json')
+        .subscribe(data => {
+          this.subcategories = data.json().filter((item)=> item.Category == this.catParam);
+        });
+
   }
 
 

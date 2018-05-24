@@ -23,6 +23,7 @@ export class ListingsComponent implements OnInit {
   private subscription: ISubscription;
   currentUser: User;
   model: any = {};
+  votes:any = {};
   claims: any[] = [];
   submitted = false;
   categories: any[] = [];
@@ -100,7 +101,7 @@ export class ListingsComponent implements OnInit {
               this.claims = response.json();
               this.totalItems = this.claims.length;
               this.claimsPage = this.claims.slice(0, this.pageSize);
-              console.log(this.claims);
+
             }
             else {
               this.toasterService.pop("error", response.statusText);
@@ -122,15 +123,53 @@ export class ListingsComponent implements OnInit {
         })
     }
     else {
+
       this.mongoService.GetListings()
         .subscribe(response => {
           // console.log(response);
           this.claims = response.json();
+          this.model = response.json();
           this.totalItems = this.claims.length;
           this.claimsPage = this.claims.slice(0, this.pageSize);
+          this.model = this.claims;
+         // console.log( JSON.stringify(this.model));
+          console.log(this.model.length);
+          console.log(this.claims.length);
+
+
+  for( var i=0; i<this.model.length;i++)
+  {
+
+    console.log(this.model[i]._id);
+    //console.log("claimsid"+this.model[i]._id);
+
+      this.model[i].votes.forEach(element => {
+
+        console.log(element.vote);
+
+            // get vote counts
+          if (element.vote === 'like') {
+            this.likes++;
+          }else if (element.vote === 'dislike') {
+            this.dislikes++;
+          }
+
+
+      });
+      i++;
+      break;
+
+}
+
+
+
+
         })
     }
   }
+
+
+
   loadPage(pageNum: number) {
     if (pageNum !== this.previousPage) {
       this.previousPage = pageNum;
@@ -176,7 +215,7 @@ export class ListingsComponent implements OnInit {
   }
 
   approveClaim(id: number) {
-    alert("approved");
+    //alert("approved");
   }
   // private getAllTransactionsByAsset(search: string) {
   //   //clear claims first
@@ -227,7 +266,7 @@ export class ListingsComponent implements OnInit {
   //         this.claims = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]);
   //         this.totalItems = this.claims.length;
   //         // console.log(this.totalItems);
-  //         // sort               
+  //         // sort
   //         this.claims.sort((claim1, claim2) => {
   //           // console.log(claim1);
   //           if (claim1.data.businessName.toLowerCase() > claim2.data.businessName.toLowerCase()) {
@@ -252,13 +291,13 @@ export class ListingsComponent implements OnInit {
   //   this.claims = [];
   //   this.subscription = this.bigchaindbService.getAllTransactionsByMeta(this.globals.chainFormName)
   //     .subscribe(data => {
-  //       //let returnData = JSON.stringify(data);                 
+  //       //let returnData = JSON.stringify(data);
   //       JSON.parse(JSON.stringify(data)).forEach(element => {
   //         //console.log(element.id)
   //         this.getTransactionsById(element.id, search);
   //         //let claim = element.data;
   //         // claim.id = element.id;
-  //         //this.claims.push(claim);                                   
+  //         //this.claims.push(claim);
   //       });
   //       //this.claims == returnData.data;
   //     });
@@ -271,7 +310,7 @@ export class ListingsComponent implements OnInit {
   //       //console.log(data);
   //       let claim = (JSON.parse(JSON.stringify(data))).asset.data;
   //       claim.id = (JSON.parse(JSON.stringify(data))).id;
-  //       // console.log(search);   
+  //       // console.log(search);
   //       // debugger;
   //       let matchFound = false;
   //       // search by query param
@@ -301,7 +340,7 @@ export class ListingsComponent implements OnInit {
   //       }
   //       this.totalItems = this.claims.length;
   //       console.log(this.totalItems);
-  //       // sort               
+  //       // sort
   //       this.claims.sort((claim1, claim2) => {
   //         if (claim1.businessName.toLowerCase() > claim2.businessName.toLowerCase()) {
   //           return 1;
@@ -336,6 +375,7 @@ export class ListingsComponent implements OnInit {
       this.IDparam = params['id'];
       console.log("----ID Param Value---------" + this.IDparam);
 
+      this.mongoService.deleteListing(this.IDparam);
       //await this.bigchaindbService.DeleteTransaction()
     });
 
