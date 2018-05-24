@@ -15,6 +15,16 @@
     padding-right: 0;
 }
 
+@media screen and (max-width: 768px) {
+    .no-gutterright,
+    .no-gutterleft {
+        margin-left: 0;
+        padding-left: 0;
+        margin-right: 0;
+        padding-right: 0;
+    }
+}
+
 .secHead {
     background-color: #D6EAF8;
     /* background: linear-gradient(to bottom right, #D6EAF8, #85C1E9, #5DADE2); */
