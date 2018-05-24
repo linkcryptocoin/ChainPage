@@ -20,7 +20,9 @@ run the following commands
 
 ## Server mode
 1. `ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true`
-2. `forever start node_modules/@angular/cli/bin/ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true --prod`
+2. `ng serve --port 8092 --host 0.0.0.0 --disableHostCCheck:true --public http://linkcryptocoin.com:8092`
+3. `forever start node_modules/@angular/cli/bin/ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true`
+4. `forever start node_modules/@angular/cli/bin/ng serve --port 8092 --host 0.0.0.0 --disableHostCCheck:true --public http://linkcryptocoin.com:8092`
 
 ## Code scaffolding
 
