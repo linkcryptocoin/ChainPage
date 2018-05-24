@@ -42,7 +42,7 @@ export class MongoService {
     }
     deleteListing(id) {
       console.log('--listing id passed  for delete request:' + id);
-        return this.http.post(this.API + 'deleteListing/', { 'id': id })
+        return this.http.post(this.API + 'deleteListing/', id)
         // .map((response: Response) =>response.json())
     }
     addComment(comment){

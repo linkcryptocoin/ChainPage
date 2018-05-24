@@ -23,7 +23,7 @@ export class ListingsComponent implements OnInit {
   private subscription: ISubscription;
   currentUser: User;
   model: any = {};
-  votes:any = {};
+  votes: any = {};
   claims: any[] = [];
   submitted = false;
   categories: any[] = [];
@@ -83,7 +83,7 @@ export class ListingsComponent implements OnInit {
             this.claimsPage = this.claims.slice(0, this.pageSize);
           })
       }
-      else if(this.subcatPram){
+      else if (this.subcatPram) {
         this.subscription = this.mongoService.GetListingsBySubcat(this.subcatPram)
           .subscribe(response => {
             // console.log(response);
@@ -132,34 +132,33 @@ export class ListingsComponent implements OnInit {
           this.totalItems = this.claims.length;
           this.claimsPage = this.claims.slice(0, this.pageSize);
           this.model = this.claims;
-         // console.log( JSON.stringify(this.model));
+          // console.log( JSON.stringify(this.model));
           console.log(this.model.length);
           console.log(this.claims.length);
 
 
-  for( var i=0; i<this.model.length;i++)
-  {
+          for (var i = 0; i < this.model.length; i++) {
 
-    console.log(this.model[i]._id);
-    //console.log("claimsid"+this.model[i]._id);
+            console.log(this.model[i]._id);
+            //console.log("claimsid"+this.model[i]._id);
 
-      this.model[i].votes.forEach(element => {
+            this.model[i].votes.forEach(element => {
 
-        console.log(element.vote);
+              console.log(element.vote);
 
-            // get vote counts
-          if (element.vote === 'like') {
-            this.likes++;
-          }else if (element.vote === 'dislike') {
-            this.dislikes++;
+              // get vote counts
+              if (element.vote === 'like') {
+                this.likes++;
+              } else if (element.vote === 'dislike') {
+                this.dislikes++;
+              }
+
+
+            });
+            i++;
+            break;
+
           }
-
-
-      });
-      i++;
-      break;
-
-}
 
 
 
@@ -377,6 +376,7 @@ export class ListingsComponent implements OnInit {
 
       this.mongoService.deleteListing(this.IDparam);
       //await this.bigchaindbService.DeleteTransaction()
+      this.router.navigate(['/home']);
     });
 
   }
