@@ -143,12 +143,18 @@
     "Update": "更新",
     "Username": "用户名",
     "Password": "密码",
-    "Register": "登记",
+    "Confirm Password": "确认密码",
+    "Register": "注册",
+    "Region": "区域",
+    "Type": "类型",
+    "User Name": "用户名",
     "Edit": "修改",
     "Delete": "删除",
     "Date": "日期",
+    "Cancel": "取消",
     "Contact Information": "联系方式",
     "Chainpage: A list of businesses who prvide products and services to Chinese overseas communities.": "链页：为中国海外社区提供产品和服务的企业名单。",
     "ChainMart: A list of items that are on sales by vendors. A buyer has to use ligear tokens to reserve the orders. Coming in June, 2018.": "链商：供应商销售的商品列表。买方必须使用礼品令牌来保留订单。将于2018年6月到来。",
-    "ChainPost: Our community members can post things seeking help of services or goods. Coming in June, 2018.": "链圈：我们的社区成员可以发布寻求服务或商品帮助的东西。将于2018年6月到来。"
+    "ChainPost: Our community members can post things seeking help of services or goods. Coming in June, 2018.": "链圈：我们的社区成员可以发布寻求服务或商品帮助的东西。将于2018年6月到来。",
+    "Please keep this password in a safe place, as it is also your token private key.": "请千万保存好这密码，这是您的钱包私钥。"
 }
