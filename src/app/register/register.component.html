@@ -43,14 +43,14 @@
           <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }"   (change)="confirmPassword.control.updateValueAndValidity()" [(ngModel)]="model.password" #password="ngModel">
          <small for="must"><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></small>
 
-         <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> Password is required
+         <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> {{'Password is required.' | translate}}
           </small>
         </p>  
         <p> <small  *ngIf="strong == false && password.touched" [ngClass]="{ 'show-error': (strong == false ? password.valid  : !password.valid) || !password.valid}" >
-          Password Must Include atleast One Uppercase, Lowercase and Number.</small>
+          {{'Password must include at least one Uppercase, Lowercase and Number.' | translate}}</small>
 </p>
             <small  *ngIf="password.errors?.minlength" [ngClass]="{ 'show-error': password.errors?.minlength && !password.valid }" >
-          Password Minimum length is 8 Characters</small>
+          {{'Password minimum length is 8 characters.' | translate}}</small>
      </div>
 
 
@@ -58,10 +58,10 @@
           <label for="confirmPassword" class="control-label" translate>Confirm Password</label>
           <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="password" class="form-control"  [ngClass]="{ 'show-error-border': f.submitted && !confirmPassword.valid }"
          [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
-          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" >Confirm Password is required
+          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" >{{'Confirm Password is required.' | translate}}
           </small>
           <small  *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
-            Password Mis match</small>
+            Password mis-match</small>
 </div>
       </div>
         <div class="form-group">
