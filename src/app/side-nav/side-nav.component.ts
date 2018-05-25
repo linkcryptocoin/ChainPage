@@ -49,7 +49,7 @@ isClass2Visible: false;
   OpenSection2(item)
   {
 
-      this.isClass2Visible = false;
+    // this.isClass2Visible = false;
       //this.isClass2Visible = !false;
       
       this.catParam = item;
