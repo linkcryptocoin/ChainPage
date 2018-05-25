@@ -83,7 +83,7 @@ var ListingSchema = new Schema({
 // businessMainCategory: 'text', businessSubCategory: 'text', 
 // service: 'text', servicingArea: 'text'
 // });
-ListingSchema.index({ '$**': 'text' });
+ListingSchema.index({'$**': 'text'});
 
 var model = mongo.model('Listing', ListingSchema);
 
@@ -101,34 +101,27 @@ app.post("/api/saveListing", function (req, res) {
 
 app.post("/api/updateListing", function (req, res) {
     var mod = new model(req.body);
-    // console.log(req.body._id)
-    model.update(
-        { _id: req.body._id },
-        {
-            "$set": {
-                name: req.body.name, businessName: req.body.businessName
-                , street: req.body.street, city: req.body.city, state: req.body.state
-                , zip: req.body.zip, country: req.body.country, email: req.body.email
-                , phone: req.body.phone, webPage: req.body.webPage, service: req.body.service
-                , servicingArea: req.body.servicingArea, businessHour: req.body.businessHour
-                , businessMainCategory: req.body.businessMainCategory
-                , businessSubCategory: req.body.businessSubCategory
-                , formType: req.body.formType, postedBy: req.body.postedBy
-                , postedTime: req.body.postedTime
-            }
-        }, function (err) {
+    model.findByIdAndUpdate(req.body.id, 
+        { 
+            name: req.body.name, businessName: req.body.businessName
+            , street: req.body.street, city: req.body.city, state: req.body.state
+            , zip: req.body.zip, country: req.body.country, email: req.body.email
+            , phone: req.body.phone, webPage: req.body.webPage, service: req.body.service
+            , servicingArea: req.body.servicingArea, businessHour: req.body.businessHour, businessCategory: req.body.businessCategory
+            , formType: req.body.formType, postedBy: req.body.postedBy, postedTime: req.body.postedTime
+        },
+        function (err, data) {
             if (err) {
                 res.send(err);
             }
             else {
-                res.send({ data: "Record has been updated..!!" });
+                res.send({ data: "Record has been Updated..!!" });
             }
         });
 })
 
-app.post("/api/deleteListing/:id", function (req, res) {
-    console.log("ID to be deleted: " + req.params.id)
-    model.remove({ _id: req.params.id }, function (err) {
+app.post("/api/deleteListing", function (req, res) {
+    model.remove({ _id: req.body.id }, function (err) {
         if (err) {
             res.send(err);
         }
@@ -150,18 +143,7 @@ app.get("/api/getListings", function (req, res) {
 })
 
 app.get("/api/getListingsByCat/:cat", function (req, res) {
-    model.find({ businessMainCategory: req.params.cat }, function (err, data) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(data);
-        }
-    });
-})
-
-app.get("/api/getListingsBySubcat/:subcat", function (req, res) {
-    model.find({ businessSubCategory: req.params.subcat }, function (err, data) {
+    model.find({ businessCategory: req.params.cat }, function (err, data) {
         if (err) {
             res.send(err);
         }
@@ -185,104 +167,104 @@ app.post("/api/addComment", function (req, res) {
     console.log(req.body)
     model.update(
         { _id: req.body._id },
-        {
+        { 
             "$push": {
                 "comments": req.body.comment
             }
         }, function (err) {
-            if (err) {
-                console.log(err);
-                res.send(err);
-            }
-            else {
-                // console.log(data);
-                res.send({ data: "Comment has been inserted..!!" });
-            }
-        });
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        else {
+            // console.log(data);
+            res.send({ data: "Comment has been inserted..!!" });
+        }
+    });
 })
 app.post("/api/updateComment", function (req, res) {
     model.update(
         { _id: req.body._id, "comments._id": req.body.comment._id },
-        {
+        { 
             "$set": {
                 "comments.$.comment": req.body.comment.comment,
                 "comments.$.postedTime": req.body.comment.postedTime
             }
         }, function (err) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.send({ data: "Comment has been updated..!!" });
-            }
-        });
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send({ data: "Comment has been updated..!!" });
+        }
+    });
 })
 app.post("/api/deleteComment", function (req, res) {
     model.findOneAndUpdate(
         { "comments._id": req.body.comment._id },
-        {
+        { 
             "$pull": {
-                "comments": { _id: req.body.comment._id }
+                "comments": {_id: req.body.comment._id}
             }
         },
-        { new: true },
+        {new: true},
         function (err) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.send({ data: "Comment has been deleted..!!" });
-            }
-        });
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send({ data: "Comment has been deleted..!!" });
+        }
+    });
 })
 app.post("/api/addVote", function (req, res) {
     console.log(req.body)
     model.update(
         { _id: req.body._id },
-        {
+        { 
             "$push": {
                 "votes": req.body.vote
             }
         }, function (err) {
-            if (err) {
-                console.log(err);
-                res.send(err);
-            }
-            else {
-                // console.log(data);
-                res.send({ data: "Vote has been inserted..!!" });
-            }
-        });
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        else {
+            // console.log(data);
+            res.send({ data: "Vote has been inserted..!!" });
+        }
+    });
 })
 app.post("/api/deleteVote", function (req, res) {
     model.findOneAndUpdate(
         { "votes._id": req.body.vote._id },
-        {
+        { 
             "$pull": {
-                "votes": { _id: req.body.vote._id }
+                "votes": {_id: req.body.vote._id}
             }
         },
-        { new: true },
+        {new: true},
         function (err) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.send({ data: "Vote has been deleted..!!" });
-            }
-        });
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send({ data: "Vote has been deleted..!!" });
+        }
+    });
 })
 
 app.get("/api/searchListings/:searchtext", function (req, res) {
-    model.find({ $text: { $search: req.params.searchtext } },
+    model.find({$text: {$search: req.params.searchtext}},         
         function (err, data) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.send(data);
-            }
-        });
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(data);
+        }
+    });
 })
 
 app.listen(gPort, function () {
