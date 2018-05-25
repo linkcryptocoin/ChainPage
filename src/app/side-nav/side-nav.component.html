@@ -40,7 +40,7 @@
     </a>
     </div>
     <div class="Section2" [ngClass]="{'style2': isClass2Visible,'style1': isClass1Visible}" style="float:left;">
-        <a *ngFor="let cat of subcategories" data="cat.Category" (click)="isClass2Visible = true;" [routerLink]="['/home']" [queryParams]="{subcat: cat.Description}" translate>{{cat.Description}}
+        <a *ngFor="let cat of subcategories" data="cat.Category"  [routerLink]="['/home']" [queryParams]="{subcat: cat.Description}" translate>{{cat.Description}}
       <i class="fas fa-angle-right pull-right" style="float:right;padding-top: 5px"></i>  
   </a>
     </div>
