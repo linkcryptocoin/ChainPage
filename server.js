@@ -3,7 +3,8 @@ var path = require("path");
 var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
-var db = mongo.connect("mongodb://34.238.58.243:27017/ChainPage", function (err, response) {
+// var db = mongo.connect("mongodb://34.238.58.243:27017/ChainPage", function (err, response) {
+    var db = mongo.connect("mongodb://localhost:27017/ChainPage", function (err, response) {
     if (err) { console.log(err); }
     else { console.log('Connected to ' + db, ' + ', response); }
 });
@@ -105,9 +106,9 @@ app.post("/api/updateListing", function (req, res) {
         });
 })
 
-app.post("/api/deleteListing/:id", function (req, res) {
-    console.log("ID to be deleted: " + req.params.id)
-    model.remove({ _id: req.params.id }, function (err) {
+app.post("/api/deleteListing", function (req, res) {
+    console.log("ID to be deleted: " + req.body.id)
+    model.remove({ _id: req.body.id }, function (err) {
         if (err) {
             res.send(err);
         }

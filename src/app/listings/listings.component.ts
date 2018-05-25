@@ -551,9 +551,18 @@ export class ListingsComponent implements OnInit {
 
       console.log("----ID Param Value---------" + id);
 
-      this.mongoService.deleteListing(id);
+      this.subscription = this.mongoService.deleteListing(id)
+      .subscribe(response => {
+        if (response.status == 200) {
+          this.toasterService.pop("success", "Listing deleted")
+          this.router.navigate(['/home']);
+        }
+        else{
+          this.toasterService.pop("error", response.statusText)
+        }
+      });
       //await this.bigchaindbService.DeleteTransaction()
-      this.router.navigate(['/home']);
+      
     // });
     // },
     // 1000);

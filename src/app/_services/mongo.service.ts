@@ -35,14 +35,14 @@ export class MongoService {
         // .map((response: Response) => response.json())              
     }
     GetListing(id) {
-        // console.log(id);
+        console.log(id);
         // let params = new HttpParams().set('id', id);
         return this.http.get(this.API + 'getListing/' + id)
         // .map((response: Response) => response.json())
     }
     deleteListing(id) {
       console.log('--listing id passed  for delete request:' + id);
-        return this.http.post(this.API + 'deleteListing/', id)
+        return this.http.post(this.API + 'deleteListing/', {'id': id})
         // .map((response: Response) =>response.json())
     }
     addComment(comment){
