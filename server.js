@@ -3,7 +3,28 @@ var path = require("path");
 var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
-var db = mongo.connect("mongodb://34.238.58.243:27017/ChainPage", function (err, response) {
+//var dbServer = "34.238.58.243"
+var gDbServer = "localhost";
+var gChainPageUrl = "http://linkcryptocoin.com:8092";
+var gPort = 8080;
+ 
+var prearg = "";
+process.argv.forEach(function (val, index, array) {
+   //console.log(`prearg = ${prearg}, val = ${val}`);
+   if (/^(-{1,2}port)$/.test(prearg) && !isNaN(val)) 
+      gPort = parseInt(val);
+   else if (/^(-{1,2}dbserver)$/.test(prearg) && val)
+      gDbServer = val;
+   else if (/^(-{1,2}chainpageurl)$/.test(prearg) && val)
+      gChainPageUrl = val;
+
+   prearg = val.toLowerCase();
+})
+//console.log(`dbServer = ${gDbServer}`)
+//console.log(`chainPageSite = ${gChainPageSite}`)
+//console.log(`port = ${gPort}`)
+
+var db = mongo.connect(`mongodb://${gDbServer}:27017/ChainPage`, function (err, response) {
     if (err) { console.log(err); }
     else { console.log('Connected to ' + db, ' + ', response); }
 });
@@ -14,9 +35,9 @@ app.use(bodyParser());
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', `${gChainPageUrl}`);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -264,7 +285,7 @@ app.get("/api/searchListings/:searchtext", function (req, res) {
         });
 })
 
-app.listen(8080, function () {
+app.listen(gPort, function () {
 
-    console.log('Example app listening on port 8080!')
+    console.log(`dbServer app listening on port ${gPort}.`)
 })  
