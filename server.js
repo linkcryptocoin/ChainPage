@@ -105,9 +105,9 @@ app.post("/api/updateListing", function (req, res) {
         });
 })
 
-app.post("/api/deleteListing", function (req, res) {
-    console.log("ID to be deleted: " + req.body.id)
-    model.remove({ _id: req.body.id }, function (err) {
+app.post("/api/deleteListing/:id", function (req, res) {
+    console.log("ID to be deleted: " + req.params.id)
+    model.remove({ _id: req.params.id }, function (err) {
         if (err) {
             res.send(err);
         }

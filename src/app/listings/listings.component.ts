@@ -541,22 +541,22 @@ export class ListingsComponent implements OnInit {
   }
 
 
-  Remove_Listing() {
+  Remove_Listing(id) {
     
-    setTimeout(() => 
-    {
-    this.subscription = this.route.queryParams.subscribe(params => {
+    // setTimeout(() => 
+    // {
+    // this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
-      this.IDparam = params['id2Delete'];
+      // this.IDparam = params['id2Delete'];
 
-      console.log("----ID Param Value---------" + this.IDparam);
+      console.log("----ID Param Value---------" + id);
 
-      this.mongoService.deleteListing(this.IDparam);
+      this.mongoService.deleteListing(id);
       //await this.bigchaindbService.DeleteTransaction()
       this.router.navigate(['/home']);
-    });
-    },
-    1000);
+    // });
+    // },
+    // 1000);
     
 
   }
