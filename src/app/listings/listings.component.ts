@@ -220,6 +220,7 @@ export class ListingsComponent implements OnInit {
           // console.log(response);
           this.claims = response.json();
           this.totalItems = this.claims.length;
+          // console.log(this.claims)
           this.model = this.claims;
          // console.log( JSON.stringify(this.model));
          
@@ -245,7 +246,10 @@ export class ListingsComponent implements OnInit {
             };
           }
 
+        //  console.log("claims length: " + this.claims.length)
          
+         this.listings = [];
+        //  console.log(this.listings);
           for(var j=0; j<this.claims.length;j++)
           {
 
@@ -261,6 +265,7 @@ export class ListingsComponent implements OnInit {
               };
 
           }
+          console.log(this.listings);
           this.claimsPage = this.listings.slice(0, this.pageSize);
          
           //console.log("votes:"+JSON.stringify(this.votes));
@@ -302,7 +307,7 @@ export class ListingsComponent implements OnInit {
               };
             }
   
-           
+            this.listings = [];
             for(var j=0; j<this.claims.length;j++)
             {
   
