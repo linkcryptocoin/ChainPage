@@ -85,8 +85,9 @@
         </div>
       </div>
     </div>
+    <br>
     <div>
-      <label for="commentTextarea">Comments:</label>
+      <label for="commentTextarea" translate>Comments:</label>
       <br>
       <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
       <ul>
