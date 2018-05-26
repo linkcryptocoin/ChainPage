@@ -8,7 +8,7 @@ import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class MongoService {
-    private readonly API = 'http://localhost:8080/api/';
+    private readonly API = 'http://linkcryptocoin.com:8080/api/';
     constructor(private http: Http) { }
 
     saveListing(listing) {
