@@ -4,11 +4,13 @@ var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
 // The chain page url
-var gChainPageUrl = "http://linkcryptocoin.com:8092";
+//var gChainPageUrl = "http://linkcryptocoin.com:8092";
+var gChainPageUrl = "http://linkgear.net:8092";
 // Change the port in "mongo.service.ts" under src/app/_services
 // rebuild $ng serve
 var gPort = 8080;
- 
+var gDbServer = 'localhost';
+
 var prearg = "";
 process.argv.forEach(function (val, index, array) {
    //console.log(`prearg = ${prearg}, val = ${val}`);
@@ -16,13 +18,16 @@ process.argv.forEach(function (val, index, array) {
       gPort = parseInt(val);
    else if (/^(-{1,2}chainpageurl)$/.test(prearg) && val)
       gChainPageUrl = val;
+   else if (/^(-{1,2}dbserver)$/.test(prearg) && val)
+      gDbServer = val;
 
    prearg = val.toLowerCase();
 })
 //console.log(`chainPageSite = ${gChainPageSite}`)
 //console.log(`port = ${gPort}`)
+//console.log(`dbServer = ${gDbServer}`)
 
-var db = mongo.connect("mongodb://localhost:27017/ChainPage", function (err, response) {
+var db = mongo.connect(`mongodb://${gDbServer}:27017/ChainPage`, function (err, response) {
     if (err) { console.log(err); }
     else { console.log('Connected to ' + db, ' + ', response); }
 });
