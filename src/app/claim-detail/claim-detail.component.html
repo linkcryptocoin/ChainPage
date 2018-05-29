@@ -53,7 +53,7 @@
       <div>
         <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top"
           ngbTooltip="you liked it">
-          <i style="font-size: medium;">{{likes}} likes</i>
+          <i style="font-size: medium;">{{likes}} likes</i><br>
           <label style="font-size: small" translate>(to like costs 5 tokens)</label>
         </i>
         <!-- <a  click="alert('thumbs up')">
@@ -61,7 +61,7 @@
         </a> -->
         <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-3"
           placement="top" ngbTooltip="you didn't like it">
-          <i style="font-size: medium;">{{dislikes}} dislikes</i>
+          <i style="font-size: medium;">{{dislikes}} dislikes</i><br>
           <label style="font-size: small" translate>(to dislike costs 10 tokens)</label>
         </i>
         <!-- <button click="alert('thumbs down')">
