@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
 // The chain page url
-//var gChainPageUrl = "http://linkcryptocoin.com:8092";
-var gChainPageUrl = "http://linkgear.net:8092";
+var gChainPageUrl = "http://localhost:4200";
+//var gChainPageUrl = "http://linkgear.net:8092";
 // Change the port in "mongo.service.ts" under src/app/_services
 // rebuild $ng serve
 var gPort = 8080;

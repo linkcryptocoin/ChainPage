@@ -70,7 +70,7 @@
       <div class="form-group">
         <div>
           <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentText.value)">
-            <label for="commentTextarea">Your comment (min 10 characters):</label>
+            <label for="commentTextarea" translate>Your comment (min 10 characters):</label>
             <br>
             <textarea class="form-control" [ngModel]="ownComment?.comment" name="comment" required minlength="10" id="commentTextarea"
               #commentText="ngModel"></textarea>
