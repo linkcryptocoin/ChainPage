@@ -157,6 +157,8 @@
     "Sub Category": "次分类",
     "Comments:": "评论:",
     "Your comment (min 10 characters):": "您的评论（至少要10个字以上）：",
+    "Your token balance:": "您的阁阁链阁阁通证总额：",
+    "Your account number:": "您的阁阁链账号",
     "Password is required.": "需要密码。",
     "Password must include at least one Uppercase, Lowercase and Number.": "密码必须含有至少一个大写、一个小写和一个数字。",
     "Password minimum length is 8 characters.": "密码长度必须是8位以上",
