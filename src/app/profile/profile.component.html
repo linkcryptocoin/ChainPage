@@ -22,12 +22,12 @@
         <div class="profile-usermenu">
           <ul class="nav">
             <li class="col-12" [ngClass]="{'active': selectedPage == profilePages[0]}">
-              <a (click)="onPageClick($event.target.innerText)" translate>
+              <a (click)="onPageClick(profilePages[0])" translate>
                 <i class="fa fa-user"></i>
                 {{profilePages[0]}} </a>
             </li>
             <li  class="col-12" [ngClass]="{'active': selectedPage == profilePages[1]}">
-              <a (click)="onPageClick($event.target.innerText)" translate>
+              <a (click)="onPageClick(profilePages[1])" translate>
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 {{profilePages[1]}}</a>
             </li>
