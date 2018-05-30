@@ -159,6 +159,8 @@
     "Your comment (min 10 characters):": "您的评论（至少要10个字以上）：",
     "Your token balance:": "您的阁阁链阁阁通证总额：",
     "Your account number:": "您的阁阁链账号",
+    "Account Information":"帐户信息",
+    "Account Settings":"帐户设置",
     "(to like costs 5 tokens)": "(按like会减去5个通证）",
     "(to dislike costs 10 tokens)": "(按dislike会减去10个通证）",
     "Password is required.": "需要密码。",

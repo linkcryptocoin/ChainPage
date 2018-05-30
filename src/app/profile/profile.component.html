@@ -21,13 +21,13 @@
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
-            <li [ngClass]="{'active': selectedPage == profilePages[0]}">
-              <a (click)="onPageClick($event.target.innerText)">
+            <li class="col-12" [ngClass]="{'active': selectedPage == profilePages[0]}">
+              <a (click)="onPageClick($event.target.innerText)" translate>
                 <i class="fa fa-user"></i>
                 {{profilePages[0]}} </a>
             </li>
-            <li [ngClass]="{'active': selectedPage == profilePages[1]}">
-              <a (click)="onPageClick($event.target.innerText)">
+            <li  class="col-12" [ngClass]="{'active': selectedPage == profilePages[1]}">
+              <a (click)="onPageClick($event.target.innerText)" translate>
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 {{profilePages[1]}}</a>
             </li>
