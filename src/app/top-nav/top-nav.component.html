@@ -22,19 +22,35 @@
             </ngx-qrcode>
             <h6>Token balance: {{tokenBalance}}</h6>
         </div> -->
-        <span>
+        <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;">
+        <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
+            <option *ngFor="let lang of language" value="{{lang.Id}}">
+                {{lang.Description}}
+            </option>
+        </select>
+        <span style="margin-left: 10px;">
             <h6 *ngIf="currentUser != undefined">
                 Hi
-                <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}"><b>{{currentUser}} </b></a>
+                <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
+                    <b>{{currentUser}} </b>
+                </a>
                 <!-- <i>{{currentUserAccount}}</i> -->
                 <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>
             </h6>
             <h6 *ngIf="currentUser == undefined">
                 <a [routerLink]="['/login']" translate>Login</a>
             </h6>
-            <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
-                <option *ngFor="let lang of language" value="{{lang.Id}}">{{lang.Description}}</option>
-            </select>
+            <!-- <select name="theme" [class]="'form-control' + (size ? ' form-control-' + size : '')" [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)">
+                    <option [ngValue]="null">{{defaultLabel}}</option>
+                    <option *ngFor="let country of myCountries" [ngValue]="country.value">{{country.display}}</option>
+                </select> -->
+            <!-- <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+                <div *ngFor="let lang of language" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item"><img style="width:30px; height: 30px;" src="../../{{lang.src}}">{{lang.Description}}</button>
+                </div>
+            </div> -->
+            <!-- <select2 [data]="languages"></select2> -->
         </span>
     </div>
 </nav>

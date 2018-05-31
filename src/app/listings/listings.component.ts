@@ -23,7 +23,7 @@ export class ListingsComponent implements OnInit {
   private subscription: ISubscription;
   currentUser: User;
   model: any = {};
-  
+
   votes: any[] = [];
   claims: any[] = [];
   submitted = false;
@@ -81,67 +81,25 @@ export class ListingsComponent implements OnInit {
         // console.log("here")
         this.subscription = this.mongoService.GetListingsByCat(this.catParam)
           .subscribe(response => {
-            // console.log(response);
-            this.claims = response.json();
-            this.totalItems = this.claims.length;
-             this.model = this.claims;
-            // console.log( JSON.stringify(this.model));
-            
-             for (var i = 0; i < this.model.length; i++)
-             {
-               this.numoflikes = 0;
-               this.numofdislikes = 0;
-     
-               this.model[i].votes.forEach(element => {
-                 console.log(element.vote);
-                 // get vote counts
-                 if (element.vote === "like") {
-                   this.numoflikes++;
-                 } else if (element.vote === "dislike") {
-                   this.numofdislikes++;
-                 }
-               });
-     
-               this.votes[i] = {
-                 _id: this.model[i]._id,
-                 likes: this.numoflikes,
-                 dislikes: this.numofdislikes
-               };
-             }
-   
-            
-             for(var j=0; j<this.claims.length;j++)
-             {
-   
-                  //console.log(thi);
-                 this.listings[j]={
-                   _id:this.claims[j]._id,
-                   businessMainCategory:this.claims[j].businessMainCategory,
-                   businessName:this.claims[j].businessName,
-                   service:this.claims[j].service,
-                   phone:this.claims[j].phone,
-                  likes: this.votes[j].likes,
-                   dislikes: this.votes[j].dislikes
-                 };
-   
-             }
-             this.claimsPage = this.listings.slice(0, this.pageSize);
-           
-             //console.log("votes:"+JSON.stringify(this.votes));
-             //console.log("listings:"+JSON.stringify(this.listings));
-   
-   
-
-
+            if (response.status == 200) {
+              // console.log(response.json());
+              this.showListings(response);
+            }
+            else {
+              this.toasterService.pop("error", response.statusText);
+            }
           })
       }
       else if (this.subcatPram) {
         this.subscription = this.mongoService.GetListingsBySubcat(this.subcatPram)
           .subscribe(response => {
-            // console.log(response);
-            this.claims = response.json();
-            this.totalItems = this.claims.length;
-            this.claimsPage = this.claims.slice(0, this.pageSize);
+            if (response.status == 200) {
+              // console.log(response.json());
+              this.showListings(response);
+            }
+            else {
+              this.toasterService.pop("error", response.statusText);
+            }
           })
       }
       else {
@@ -150,57 +108,7 @@ export class ListingsComponent implements OnInit {
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
-              this.claims = response.json();
-              this.totalItems = this.claims.length;
-              this.model = this.claims;
-              // console.log( JSON.stringify(this.model));
-              
-               for (var i = 0; i < this.model.length; i++)
-               {
-                 this.numoflikes = 0;
-                 this.numofdislikes = 0;
-       
-                 this.model[i].votes.forEach(element => {
-                   console.log(element.vote);
-                   // get vote counts
-                   if (element.vote === "like") {
-                     this.numoflikes++;
-                   } else if (element.vote === "dislike") {
-                     this.numofdislikes++;
-                   }
-                 });
-       
-                 this.votes[i] = {
-                   _id: this.model[i]._id,
-                   likes: this.numoflikes,
-                   dislikes: this.numofdislikes
-                 };
-               }
-     
-              
-               for(var j=0; j<this.claims.length;j++)
-               {
-     
-                    //console.log(thi);
-                   this.listings[j]={
-                     _id:this.claims[j]._id,
-                     businessMainCategory:this.claims[j].businessMainCategory,
-                     businessName:this.claims[j].businessName,
-                     service:this.claims[j].service,
-                     phone:this.claims[j].phone,
-                    likes: this.votes[j].likes,
-                     dislikes: this.votes[j].dislikes
-                   };
-     
-               }
-     
-               this.claimsPage = this.listings.slice(0, this.pageSize);
-             
-               //console.log("votes:"+JSON.stringify(this.votes));
-               //console.log("listings:"+JSON.stringify(this.listings));
-     
-     
-
+              this.showListings(response);
             }
             else {
               this.toasterService.pop("error", response.statusText);
@@ -210,6 +118,45 @@ export class ListingsComponent implements OnInit {
     });
   }
 
+  private showListings(response: Response) {
+    this.claims = response.json();
+    this.totalItems = this.claims.length;
+    this.model = this.claims;
+    // console.log( JSON.stringify(this.model));
+    for (var i = 0; i < this.model.length; i++) {
+      this.numoflikes = 0;
+      this.numofdislikes = 0;
+      this.model[i].votes.forEach(element => {
+        console.log(element.vote);
+        // get vote counts
+        if (element.vote === "like") {
+          this.numoflikes++;
+        }
+        else if (element.vote === "dislike") {
+          this.numofdislikes++;
+        }
+      });
+      this.votes[i] = {
+        _id: this.model[i]._id,
+        likes: this.numoflikes,
+        dislikes: this.numofdislikes
+      };
+    }
+    this.listings = [];
+    for (var j = 0; j < this.claims.length; j++) {
+      //console.log(thi);
+      this.listings[j] = {
+        _id: this.claims[j]._id,
+        businessMainCategory: this.claims[j].businessMainCategory,
+        businessName: this.claims[j].businessName,
+        service: this.claims[j].service,
+        phone: this.claims[j].phone,
+        likes: this.votes[j].likes,
+        dislikes: this.votes[j].dislikes
+      };
+    }
+    this.claimsPage = this.listings.slice(0, this.pageSize);
+  }
 
   Search(searchTxt: string) {
     // console.log("Search text: " + searchTxt);
@@ -222,13 +169,12 @@ export class ListingsComponent implements OnInit {
           this.totalItems = this.claims.length;
           // console.log(this.claims)
           this.model = this.claims;
-         // console.log( JSON.stringify(this.model));
-         
-          for (var i = 0; i < this.model.length; i++)
-          {
+          // console.log( JSON.stringify(this.model));
+
+          for (var i = 0; i < this.model.length; i++) {
             this.numoflikes = 0;
             this.numofdislikes = 0;
-  
+
             this.model[i].votes.forEach(element => {
               console.log(element.vote);
               // get vote counts
@@ -238,7 +184,7 @@ export class ListingsComponent implements OnInit {
                 this.numofdislikes++;
               }
             });
-  
+
             this.votes[i] = {
               _id: this.model[i]._id,
               likes: this.numoflikes,
@@ -246,50 +192,42 @@ export class ListingsComponent implements OnInit {
             };
           }
 
-        //  console.log("claims length: " + this.claims.length)
-         
-         this.listings = [];
-        //  console.log(this.listings);
-          for(var j=0; j<this.claims.length;j++)
-          {
-
-               //console.log(thi);
-              this.listings[j]={
-                _id:this.claims[j]._id,
-                businessMainCategory:this.claims[j].businessMainCategory,
-                businessName:this.claims[j].businessName,
-                service:this.claims[j].service,
-                phone:this.claims[j].phone,
-               likes: this.votes[j].likes,
-                dislikes: this.votes[j].dislikes
-              };
-
+          //  console.log("claims length: " + this.claims.length)
+          this.listings = [];
+          //  console.log(this.listings);
+          for (var j = 0; j < this.claims.length; j++) {
+            //console.log(thi);
+            this.listings[j] = {
+              _id: this.claims[j]._id,
+              businessMainCategory: this.claims[j].businessMainCategory,
+              businessName: this.claims[j].businessName,
+              service: this.claims[j].service,
+              phone: this.claims[j].phone,
+              likes: this.votes[j].likes,
+              dislikes: this.votes[j].dislikes
+            };
           }
           console.log(this.listings);
           this.claimsPage = this.listings.slice(0, this.pageSize);
-         
           //console.log("votes:"+JSON.stringify(this.votes));
           //console.log("listings:"+JSON.stringify(this.listings));
-
-
         })
     }
     else {
-       // console.log("else");
-       this.subscription = this.mongoService.GetListings()
-       .subscribe(response => {
-         if (response.status == 200) {
-           // console.log(response.json());
-           this.claims = response.json();
-           this.totalItems = this.claims.length;
-           this.model = this.claims;
-           // console.log( JSON.stringify(this.model));
-           
-            for (var i = 0; i < this.model.length; i++)
-            {
+      // console.log("else");
+      this.subscription = this.mongoService.GetListings()
+        .subscribe(response => {
+          if (response.status == 200) {
+            // console.log(response.json());
+            this.claims = response.json();
+            this.totalItems = this.claims.length;
+            this.model = this.claims;
+            // console.log( JSON.stringify(this.model));
+
+            for (var i = 0; i < this.model.length; i++) {
               this.numoflikes = 0;
               this.numofdislikes = 0;
-    
+
               this.model[i].votes.forEach(element => {
                 console.log(element.vote);
                 // get vote counts
@@ -299,45 +237,36 @@ export class ListingsComponent implements OnInit {
                   this.numofdislikes++;
                 }
               });
-    
+
               this.votes[i] = {
                 _id: this.model[i]._id,
                 likes: this.numoflikes,
                 dislikes: this.numofdislikes
               };
             }
-  
+
             this.listings = [];
-            for(var j=0; j<this.claims.length;j++)
-            {
-  
-                 //console.log(thi);
-                this.listings[j]={
-                  _id:this.claims[j]._id,
-                  businessMainCategory:this.claims[j].businessMainCategory,
-                  businessName:this.claims[j].businessName,
-                  service:this.claims[j].service,
-                  phone:this.claims[j].phone,
-                 likes: this.votes[j].likes,
-                  dislikes: this.votes[j].dislikes
-                };
-  
+            for (var j = 0; j < this.claims.length; j++) {
+              //console.log(thi);
+              this.listings[j] = {
+                _id: this.claims[j]._id,
+                businessMainCategory: this.claims[j].businessMainCategory,
+                businessName: this.claims[j].businessName,
+                service: this.claims[j].service,
+                phone: this.claims[j].phone,
+                likes: this.votes[j].likes,
+                dislikes: this.votes[j].dislikes
+              };
             }
-  
             this.claimsPage = this.listings.slice(0, this.pageSize);
-          
             //console.log("votes:"+JSON.stringify(this.votes));
             //console.log("listings:"+JSON.stringify(this.listings));
-  
-  
-
-         }
-         else {
-           this.toasterService.pop("error", response.statusText);
-         }
-       });
-
-     //
+          }
+          else {
+            this.toasterService.pop("error", response.statusText);
+          }
+        });
+      //
     }
   }
 
@@ -350,13 +279,13 @@ export class ListingsComponent implements OnInit {
     }
   }
   loadData(pageNum: number) {
-     console.log("this.pageSize * (pageNum - 1)"+this.pageSize * (pageNum - 1))
-     console.log("this.pageSize * "+this.pageSize * (pageNum - 1) + this.pageSize)
+    console.log("this.pageSize * (pageNum - 1)" + this.pageSize * (pageNum - 1))
+    console.log("this.pageSize * " + this.pageSize * (pageNum - 1) + this.pageSize)
 
 
     this.claimsPage = this.listings.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
-  
-  
+
+
   }
   public getCountryName(id: number): string {
     var value = "";
@@ -547,31 +476,31 @@ export class ListingsComponent implements OnInit {
 
 
   Remove_Listing(id) {
-    
+
     // setTimeout(() => 
     // {
     // this.subscription = this.route.queryParams.subscribe(params => {
-      //console.log(params['cat']);
-      // this.IDparam = params['id2Delete'];
+    //console.log(params['cat']);
+    // this.IDparam = params['id2Delete'];
 
-      console.log("----ID Param Value---------" + id);
+    console.log("----ID Param Value---------" + id);
 
-      this.subscription = this.mongoService.deleteListing(id)
+    this.subscription = this.mongoService.deleteListing(id)
       .subscribe(response => {
         if (response.status == 200) {
           this.toasterService.pop("success", "Listing deleted")
           this.router.navigate(['/home']);
         }
-        else{
+        else {
           this.toasterService.pop("error", response.statusText)
         }
       });
-      //await this.bigchaindbService.DeleteTransaction()
-      
+    //await this.bigchaindbService.DeleteTransaction()
+
     // });
     // },
     // 1000);
-    
+
 
   }
 

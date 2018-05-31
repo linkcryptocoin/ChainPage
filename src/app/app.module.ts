@@ -5,7 +5,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { HttpModule } from '@angular/http';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
-
+import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
@@ -37,6 +37,7 @@ import { ListingsComponent } from './listings/listings.component';
 import { ModalContent } from './modal/modal.component';
 import { ProfileComponent } from './profile/profile.component'; // optional, provides moment-style pipes for date formatting
 import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
+import { Select2Module } from 'ng2-select2';
 const SERVICES = [
   MetaCoinService,
   Web3Service,
@@ -60,7 +61,9 @@ const SERVICES = [
     ToasterModule.forRoot(),
     MomentModule,
     NgxQRCodeModule,
-    NgIdleKeepaliveModule.forRoot()
+    NgIdleKeepaliveModule.forRoot(),
+    I18nCountrySelectModule.forRoot(),
+    Select2Module
   ],
   declarations: [
     AppComponent,
