@@ -6,6 +6,18 @@ import { Observer } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+
+// Get the Idp endpoint
+function getApiPath() {
+    var host = "";
+    // for a local run, use qa Idp
+    if (location.hostname === 'localhost')
+        host = '34.238.58.243';
+    else 
+        host = location.hostname;
+    //readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
+    return 'http://' + host + ':8091/auth/'; 
+}
 @Injectable()
 export class OothService {
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
@@ -13,7 +25,8 @@ export class OothService {
     @Output() getLoggedInAccount: EventEmitter<any> = new EventEmitter();
     @Output() getAccountBalance: EventEmitter<any> = new EventEmitter();
     @Output() logginStatus: EventEmitter<any> = new EventEmitter();
-    readonly API_PATH = environment.OothAPI;
+    //readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
+    readonly API_PATH = getApiPath();
     conn: any;
     //user: any;
     authenticated: boolean;
