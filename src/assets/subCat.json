@@ -479,5 +479,17 @@
    "Description": "Community Activity",
    "Category": 1013,
    "Merchant category": 9399
- }
+ },
+ {
+  "Subcategory": 2138,
+  "Description": "Goods",
+  "Category": 1014,
+  "Merchant category": 5948
+},
+{
+  "Subcategory": 2139,
+  "Description": "Services",
+  "Category": 1014,
+  "Merchant category": 9400
+}
 ]
