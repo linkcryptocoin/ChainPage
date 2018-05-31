@@ -54,5 +54,10 @@
  {
    "Category": 1013,
    "Description": "Chinese Community"
- }
+ },
+ {
+  "Category": 1014,
+  "Description": "Others"
+}
+
 ]
