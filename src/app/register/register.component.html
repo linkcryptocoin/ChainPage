@@ -13,7 +13,7 @@
                 <option selected="selected" value="LinkGear">Greater Washington DC</option>
                 <option value="Baltimore">Others</option>
             </select>
-             <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" >Region is required</small>
+             <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" translate >Region is required</small>
         </div>
          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
             <label for="type" translate>Type</label>
@@ -21,20 +21,20 @@
                 <option selected="selected" value="Business">Business</option>
                 <option value="Person">Person</option>
             </select>
-             <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" >Type is required</small>
+             <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" translate >Type is required</small>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
             <label for="userName" translate>User Name</label>
             <input type="text" class="form-control" name="userName" [ngClass]="{ 'show-error-border': f.submitted && !userName.valid }" [(ngModel)]="model.userName" #userName="ngModel" required />
-            <small *ngIf="f.submitted && !userName.valid" class="" [ngClass]="{ 'show-error': f.submitted && !userName.valid }">User Name is required</small>
+            <small *ngIf="f.submitted && !userName.valid" class="" [ngClass]="{ 'show-error': f.submitted && !userName.valid }" translate>User Name is required</small>
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email" translate>Email</label>
             <input type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="email" [ngClass]="{ 'show-error-border': f.submitted && !email.valid }" [(ngModel)]="model.email" #email="ngModel" required />
-            <small *ngIf="f.submitted &&  email.errors?.required" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is required</small>
+            <small *ngIf="f.submitted &&  email.errors?.required" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }" translate>Email is required</small>
             <!--<span *ngIf="f.submitted && !email.valid" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is invalid</span>
--->         <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" >Email is invalid</small>
+-->         <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" translate >Email is invalid</small>
  </div>
 <div ngModelGroup="passwordGroup"
      [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
@@ -58,9 +58,9 @@
           <label for="confirmPassword" class="control-label" translate>Confirm Password</label>
           <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="password" class="form-control"  [ngClass]="{ 'show-error-border': f.submitted && !confirmPassword.valid }"
          [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
-          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" >{{'Confirm Password is required.' | translate}}
+          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" translate >{{'Confirm Password is required' | translate}}
           </small>
-          <small  *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
+          <small translate *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
             Password mis-match</small>
 </div>
       </div>

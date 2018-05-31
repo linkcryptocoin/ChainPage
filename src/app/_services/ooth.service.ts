@@ -16,7 +16,7 @@ function getApiPath() {
     else 
         host = location.hostname;
     //readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
-    return 'http://' + host + ':8091/auth/'; 
+    return location.protocol + '//' + host + ':8091/auth/'; 
 }
 @Injectable()
 export class OothService {

@@ -2,6 +2,8 @@ var express = require('express');
 var path = require("path");
 var bodyParser = require('body-parser');
 var mongo = require("mongoose");
+const https = require('https')
+const fs = require('fs')
 
 // The chain page url
 //var gChainPageUrl = "http://localhost:4200";
@@ -10,6 +12,7 @@ var gChainPageUrl = "http://linkgear.net:8092";
 // rebuild $ng serve
 var gPort = 8080;
 var gDbServer = 'localhost';
+var httpsRun = false;
 
 var prearg = "";
 process.argv.forEach(function (val, index, array) {
@@ -20,6 +23,8 @@ process.argv.forEach(function (val, index, array) {
       gChainPageUrl = val;
    else if (/^(-{1,2}dbserver)$/.test(prearg) && val)
       gDbServer = val;
+   else if (/^(-{1,2}https)$/.test(val))
+      httpsRun = true;
 
    prearg = val.toLowerCase();
 })
@@ -288,7 +293,18 @@ app.get("/api/searchListings/:searchtext", function (req, res) {
         });
 })
 
-app.listen(gPort, function () {
-
-    console.log(`dbServer app listening on port ${gPort}.`)
-})  
+console.log(`https: ${httpsRun}`)
+if (httpsRun) {
+    const server = https.createServer({
+               key: fs.readFileSync('keys/key.pem'),
+               cert: fs.readFileSync('keys/cert.pem'),
+               }, app)
+    server.listen(gPort,  function() {
+        console.log(`dbServer app listening on HTTPS port ${gPort}.`)
+    })
+}
+else {
+    app.listen(gPort, function () {
+        console.log(`dbServer app listening on port ${gPort}.`)
+    })
+}  

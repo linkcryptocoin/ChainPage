@@ -1,11 +1,11 @@
 <div>
-    <div>
-        <img class="col-lg-12 col-xs-12" style="margin: 0 !important; padding: 0 !important;" src="..\assets\HelloImage.jpg">
-        <!-- <p>First, Fast, Blockchain, Oversea Chinese Community Focused</p> -->
+  <div>
+    <img class="col-lg-12 col-xs-12" style="margin: 0 !important; padding: 0 !important;" src="..\assets\HelloImage.jpg">
+    <!-- <p>First, Fast, Blockchain, Oversea Chinese Community Focused</p> -->
 
-    </div>
-    <div class="row">
-        <!-- <a class="col-4 no-gutters" [routerLink]="['/home']">
+  </div>
+  <div class="row">
+    <!-- <a class="col-4 no-gutters" [routerLink]="['/home']">
             <img class="col-12" src="..\assets\Chainpage.jpg">
             <p style="margin-left: 20px">Chaingpage: A list of businesses who provide products and services to Chinese oversea communities.</p>
         </a>
@@ -17,19 +17,33 @@
             <img class="col-12" src="..\assets\Posts.jpg">
             <p style="margin-left: 20px">Our community members can post things seeking help of services or goods. Coming in June, 2018.</p>
         </div> -->
-        <div class="col-lg-4 col-xs-4 no-gutterright">
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1>
             <a class="quickLink" [routerLink]="['/home']">
-                <div class="secHead">
-                    <h1 class="text-center">{{'ChainPage' | translate}}</h1>
-                </div>
+              <div class="secHead">
+                <h1 class="text-center">{{'ChainPage' | translate}}</h1>
+              </div>
             </a>
-            <div class="description">
-                <p>{{'Chainpage: A list of businesses who prvide products and services to Chinese overseas communities.' | translate }}</p>
-            </div>
+          </h1>
         </div>
+        <div class="panel-body">
+          <p style="padding: 0.4em">
+            <strong>{{ 'ChainPage:' | translate}}</strong> {{'A list of businesses who prvide products and services to Chinese overseas
+            communities.' | translate }}</p>
+            <p></p>
+            <br>
+        </div>
+        <div class="panel-footer text-center">
+            <h1>  <!--  <i class="fa fa-th-list"></i> --> </h1>
 
-        <div class="clearfix visible-xs-block"></div>
+          </div>
+      </div>
+    </div>
 
+
+<<<<<<< HEAD
         <div class="col-lg-4 col-xs-4 no-gutters">
             <!-- a class="quickLink" [routerLink]="['/home']" -->
                 <div class="secHead">
@@ -39,24 +53,110 @@
             <div class="description">
                 <p>{{'ChainMart: A list of items that are on sales by vendors. A buyer has to use ligear tokens to reserve the orders. Coming in August, 2018.' | translate}}</p>
             </div>
+=======
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default ">
+        <div class="panel-heading">
+          <h1>
+            <a class="quickLink" [routerLink]="['']">
+              <div class="secHead">
+                <h1 class="text-center">{{'ChainMart' | translate}}</h1>
+              </div>
+            </a>
+          </h1>
         </div>
-
-        <div class="clearfix visible-xs-block "></div>
-
-        <div class="col-lg-4 col-xs-4 no-gutterleft">
-            <!-- a class="quickLink" [routerLink]="['/home']" -->
-                <div class="secHead">
-                    <h1 class="text-center">{{'ChainPost' | translate}}</h1>
-                </div>
-            <!-- </a> -->
-            <div class="description">
-                <p>{{'ChainPost: Our community members can post things seeking help of services or goods. Coming in June, 2018.' | translate}}</p>
-            </div>
+        <div class="panel-body">
+          <p style="padding: 0.4em">
+            <strong>{{ 'ChainMart:' | translate}}</strong> {{' A list of items that are on sales by vendors. A buyer has to use ligear tokens to reserve the orders.
+            Coming in June, 2018.' | translate }}</p>
+            <p></p>
+            <p></p>
+>>>>>>> 07147d28d69384b6cad853fdfb5d1ac0097f1b6d
         </div>
+        <div class="panel-footer text-center">
+            <h1>
+            <!--  <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+            </h1>
+
+          </div>
+      </div>
 
     </div>
+
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default ">
+        <div class="panel-heading">
+          <h1>
+            <a class="quickLink" [routerLink]="['']">
+              <div class="secHead">
+                <h1 class="text-center">{{'ChainPost' | translate}}</h1>
+              </div>
+            </a>
+          </h1>
+        </div>
+        <div class="panel-body">
+          <p style="padding: 0.4em">
+            <strong>{{ 'ChainPost:' | translate}}</strong> {{'Our community members can post things seeking help of services or goods. Coming in June, 2018.' | translate }}</p>
+       <p></p>
+       <br>
+          </div>
+        <div class="panel-footer text-center">
+            <h1>  <!--  i style="color:gray" class="fa fa-clipboard"></i> --> </h1>
+
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="clearfix visible-xs-block"></div>
+<!--
+
+    <div class="col-lg-4 col-xs-4 no-gutters">
+
+       <div class="col-lg-4 col-xs-4 no-gutterright">
+      <a class="quickLink" [routerLink]="['/home']">
+        <div class="secHead">
+          <h1 class="text-center">{{'ChainPage' | translate}}</h1>
+        </div>
+      </a>
+      <div class="description">
+        <p>{{'Chainpage: A list of businesses who prvide products and services to Chinese overseas communities.' | translate
+          }}</p>
+      </div>
+    </div>
+
+      <!-- a class="quickLink" [routerLink]="['/home']" -->
+  <!--    <div class="secHead">
+        <h1 class="text-center">{{'ChainMart' | translate}}</h1>
+      </div>
+      <!-- </a> -->
+   <!--   <div class="description">
+        <p>{{'ChainMart: A list of items that are on sales by vendors. A buyer has to use ligear tokens to reserve the orders.
+          Coming in June, 2018.' | translate}}</p>
+      </div>
+    </div>
+
+    <div class="clearfix visible-xs-block "></div>
+
+    <div class="col-lg-4 col-xs-4 no-gutterleft"> -->
+      <!-- a class="quickLink" [routerLink]="['/home']"
+      <div class="secHead">
+        <h1 class="text-center">{{'ChainPost' | translate}}</h1>
+      </div>
+      <!-- </a> -->
+  <!--    <div class="description">
+        <p>{{'ChainPost: Our community members can post things seeking help of services or goods. Coming in June, 2018.' | translate}}</p>
+      </div>
+    </div>
+  -->
+  </div>
   <br>
   <br>
+<<<<<<< HEAD
 <div class="jumbotron">
   <div class="col-sm-12">
     <footer class="footer-bs">
@@ -78,33 +178,88 @@
                       <li><a href="#" translate>Privacy Policy</a></li>
                   </ul>
               </div>
+=======
+  <div class="jumbotron">
+    <div class="col-sm-12">
+      <footer class="footer-bs">
+        <div class=" row">
+          <div class="col-md-3 footer-brand animated fadeInLeft">
+            <h1>
+              <img _ngcontent-c0="" src="../../assets/LinkGear.png" style="width: 60px;">
+            </h1>
+            <h3>
+              <p>First, Fast, Blockchain.</p>
+            </h3>
+            <h3>
+              <p>overseas Chinese Community Focused</p>
+            </h3>
+            <p>&copy; 2018 - {{'LinkGear' | translate}}, All rights reserved</p>
           </div>
-        <div class="col-md-3 footer-social animated fadeInDown">
+          <div class="col-md-3 footer-nav animated fadeInUp">
+            <h4>Menu</h4>
+
+
+              <ul class="list">
+                <li>
+                  <a href="#">About Us</a>
+                </li>
+                <li>
+                  <a href="#">Contacts</a>
+                </li>
+                <li>
+                  <a href="#">Terms & Condition</a>
+                </li>
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+              </ul>
+
+>>>>>>> 07147d28d69384b6cad853fdfb5d1ac0097f1b6d
+          </div>
+          <div class="col-md-3 footer-social animated fadeInDown">
             <h4>{{'Contact Information'|translate}}</h4>
             <ul>
 
-                <li><i class="fa fa-envelope" aria-hidden="true"></i> :  <a href="mailto:linkgearmkt@gmail.com">linkgearmkt@gmail.com</a></li>
-                <li><i class="fa fa-globe" aria-hidden="true"></i> :  <a href="http://linkgear.org/" target="blank">linkgear.org</a></li>
-                <li><i class="fab fa-telegram" aria-hidden="true"></i> : <a href=" https://t.me/linkgear/" target="blank">Telegram</a></li>
-                <li><i class="fab fa-weibo" aria-hidden="true" translate>wechat</i> : ligear</li>
+              <li>
+                <i class="fa fa-envelope" aria-hidden="true"></i> :
+                <a href="mailto:linkgearmkt@gmail.com">linkgearmkt@gmail.com</a>
+              </li>
+              <li>
+                <i class="fa fa-globe" aria-hidden="true"></i> :
+                <a href="http://linkgear.org/" target="blank">linkgear.org</a>
+              </li>
+              <li>
+                <i class="fab fa-telegram" aria-hidden="true"></i> :
+                <a href=" https://t.me/linkgear/" target="blank">Telegram</a>
+              </li>
+              <li>
+                <i class="fab fa-weibo" aria-hidden="true" translate>wechat</i> : ligear</li>
 
-              </ul>
+            </ul>
           </div>
+<<<<<<< HEAD
         <div class="col-md-3 footer-ns animated fadeInRight">
             <h4 translate>Newsletter</h4>
               <p translate>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+=======
+          <div class="col-md-3 footer-ns animated fadeInRight">
+            <h4>Newsletter</h4>
+            <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+>>>>>>> 07147d28d69384b6cad853fdfb5d1ac0097f1b6d
 
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><i class="fas fa-envelope"></i></button>
-                    </span>
-                  </div>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <i class="fas fa-envelope"></i>
+                </button>
+              </span>
+            </div>
 
           </div>
-      </div>
-  </footer>
+        </div>
+      </footer>
+    </div>
   </div>
-</div>
 
 </div>
