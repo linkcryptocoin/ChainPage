@@ -175,7 +175,7 @@
     "Overseas Chinese Community Focused":"服务海外华人",
     "(to like costs 5 tokens)": "(按like会减去5个通证）",
     "(to dislike costs 10 tokens)": "(按dislike会减去10个通证）",
-    "Password is required.": "需要密码。",    
+    "Password is required": "需要密码",    
     "Confirm Password is required": "需要确认密码",
     "Password must include at least one Uppercase, Lowercase and Number.": "密码必须含有至少一个大写、一个小写和一个数字。",
     "Password minimum length is 8 characters.": "密码长度必须是8位以上",
