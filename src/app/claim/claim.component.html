@@ -23,7 +23,7 @@
 
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="country.valid || country.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !country.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !country.valid }" >* Country is required</small>
+                    <small *ngIf="claimForm.submitted && !country.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !country.valid }" >* This is required</small>
                   </div>
                   <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
                 </div>
@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-sm-4">
                     <!--<label style="color: red;" [hidden]="name.valid || name.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !name.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !name.valid }" >* Name is required</small>
+                    <small *ngIf="claimForm.submitted && !name.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !name.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="businessName" [ngClass]="{ 'has-error': claimForm.submitted && !businessName.valid }" translate>Business Name</label>
@@ -51,7 +51,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="businessName.valid || businessName.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }" >* Business Name is required</small>
+                    <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="street" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
@@ -61,7 +61,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="street.valid || street.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !street.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !street.valid }" >* Street is required</small>
+                    <small *ngIf="claimForm.submitted && !street.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !street.valid }" >* This is required</small>
                   </div>
                 </div>
                 <div class="row">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="row col-sm-6">
                       <!--<label style="color: red;" [hidden]="city.valid || city.pristine">*</label>-->
-                      <small *ngIf="claimForm.submitted && !city.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !city.valid }" >* City is required</small>
+                      <small *ngIf="claimForm.submitted && !city.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !city.valid }" >* This is required</small>
                     </div>
                   </div>
                   <!-- <div class="col-sm-1"></div> -->
@@ -90,7 +90,7 @@
                     </div>
                     <div class="row col-sm-6">
                      <!-- <label style="color: red;" [hidden]="state.valid || state.pristine">*</label>-->
-                      <small *ngIf="claimForm.submitted && !state.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !state.valid }" >* State is required</small>
+                      <small *ngIf="claimForm.submitted && !state.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !state.valid }" >* This is required</small>
                     </div>
                   </div>
 
@@ -105,7 +105,7 @@
                     </div>
                     <div >
                      <!-- <label style="color: red;" [hidden]="zip.valid || zip.pristine">*</label>-->
-                      <small *ngIf="claimForm.submitted && !zip.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !zip.valid }" >* Zip Code is required</small>
+                      <small *ngIf="claimForm.submitted && !zip.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !zip.valid }" >* This is required</small>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="row col-sm-6">
                      <!-- <label style="color: red;" [hidden]="email.valid || email.pristine">*</label>-->
-                      <small *ngIf="claimForm.submitted && !email.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !email.valid }" >* Email is required</small>
+                      <small *ngIf="claimForm.submitted && !email.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !email.valid }" >* This is required</small>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="">
                      <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
-                      <small *ngIf="claimForm.submitted && !phone.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !phone.valid }" >* Phone is required</small>
+                      <small *ngIf="claimForm.submitted && !phone.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !phone.valid }" >* This is required</small>
                     </div>
                   </div>
                 </div>
@@ -143,13 +143,9 @@
                   </div>
                   <div class="row col-sm-4">
                       <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
-                       <small *ngIf="claimForm.submitted && !webPage.dirty" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !webPage.dirty }" >* Web Page is required</small>
+                       <small *ngIf="claimForm.submitted && !webPage.dirty" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !webPage.dirty }" >* This is required</small>
                      </div>
                 </div>
-
-
-
-
               </div>
             </div>
           </div>
@@ -167,7 +163,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="service.valid || service.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !service.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !service.valid }" >* Service is required</small>
+                    <small *ngIf="claimForm.submitted && !service.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !service.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="servicingArea" [ngClass]="{ 'has-error': claimForm.submitted && !servicingArea.valid }" translate>Servicing Area</label>
@@ -178,7 +174,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="servicingArea.valid || servicingArea.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !servicingArea.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !servicingArea.valid }" >* Servicing Area is required</small>
+                    <small *ngIf="claimForm.submitted && !servicingArea.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !servicingArea.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="businessHour" [ngClass]="{ 'has-error': claimForm.submitted && !businessHour.valid }" translate>Business Hour</label>
@@ -188,7 +184,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="businessHour.valid || businessHour.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessHour.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessHour.valid }" >* Business Hour is required</small>
+                    <small *ngIf="claimForm.submitted && !businessHour.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessHour.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="businessMainCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
@@ -203,7 +199,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessCategory.valid }" >* Main Category  is required</small>
+                    <small *ngIf="claimForm.submitted && !businessCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessCategory.valid }" >* This is required</small>
                   </div>
                 </div>
                 <label for="businessSubCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
@@ -219,7 +215,7 @@
                   </div>
                   <div class="col-sm-4">
                    <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessSubCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessSubCategory.valid }" >* Sub Category is required</small>
+                    <small *ngIf="claimForm.submitted && !businessSubCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessSubCategory.valid }" >* This is required</small>
                   </div>
                 </div>
                 <!-- <label for="formType">Form Type</label> -->
