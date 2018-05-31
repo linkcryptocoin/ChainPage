@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Globals } from '../globals'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
+import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Component({
   moduleId: module.id.toString(),
@@ -44,7 +45,7 @@ export class ClaimComponent implements OnInit {
       console.log(params['id']);
       this.claimId = params['id'];
       if (this.claimId) {
-        this.getClaim(this.claimId);        
+        this.getClaim(this.claimId);
       }
     });
     this.http.get('/assets/cat.json')
@@ -137,7 +138,7 @@ export class ClaimComponent implements OnInit {
     else{
     //upload to mongodb
     // console.log("this is an add");
-    this.mongoService.saveListing(this.model)
+   this.mongoService.saveListing(this.model)
       .subscribe(
         response => {
           console.log(response);
@@ -145,6 +146,7 @@ export class ClaimComponent implements OnInit {
           this.router.navigate(['/home']);
         })
       }
+
     // upload to bigchain
     // console.log(JSON.stringify(this.model));
     // await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
