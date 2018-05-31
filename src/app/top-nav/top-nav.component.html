@@ -22,7 +22,13 @@
             </ngx-qrcode>
             <h6>Token balance: {{tokenBalance}}</h6>
         </div> -->
-        <span>
+        <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;">
+        <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
+            <option *ngFor="let lang of language" value="{{lang.Id}}">
+                {{lang.Description}}
+            </option>
+        </select>
+        <span style="margin-left: 10px;">
             <h6 *ngIf="currentUser != undefined">
                 Hi
                 <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
@@ -45,12 +51,6 @@
                 </div>
             </div> -->
             <!-- <select2 [data]="languages"></select2> -->
-            <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;">
-            <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
-                <option *ngFor="let lang of language" value="{{lang.Id}}">
-                    {{lang.Description}}
-                </option>
-            </select>
         </span>
     </div>
 </nav>
