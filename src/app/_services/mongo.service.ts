@@ -5,10 +5,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { HttpParams } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class MongoService {
-    private readonly API = 'http://linkcryptocoin.com:8080/api/';
+    private readonly API = environment.MongoAPI;
     constructor(private http: Http) { }
 
     saveListing(listing) {

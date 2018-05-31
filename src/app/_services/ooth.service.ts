@@ -13,7 +13,7 @@ export class OothService {
     @Output() getLoggedInAccount: EventEmitter<any> = new EventEmitter();
     @Output() getAccountBalance: EventEmitter<any> = new EventEmitter();
     @Output() logginStatus: EventEmitter<any> = new EventEmitter();
-    readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
+    readonly API_PATH = environment.OothAPI;
     conn: any;
     //user: any;
     authenticated: boolean;
