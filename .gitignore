@@ -44,4 +44,5 @@ Thumbs.db
 team-extension.log
 
 #protocol
-keys/
+/keys
+/wallet
