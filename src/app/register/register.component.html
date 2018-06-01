@@ -18,8 +18,8 @@
          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
             <label for="type" translate>Type</label>
              <select class="form-control" name="type" [ngClass]="{ 'show-error-border': f.submitted && !type.valid }" [(ngModel)]="model.type" #type="ngModel" required>
-                <option selected="selected" value="Business">Business</option>
-                <option value="Person">Person</option>
+                <option selected="selected" value="Business" translate>Business</option>
+                <option value="Person" translate>Person</option>
             </select>
              <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" translate >Type is required</small>
         </div>
