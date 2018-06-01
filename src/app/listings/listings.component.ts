@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 import { filter } from 'rxjs/operators';
 import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
-import { error } from 'protractor';
+import { error, element } from 'protractor';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './listings.component.html',
@@ -118,8 +118,52 @@ export class ListingsComponent implements OnInit {
     });
   }
 
+  public getLikeCount(claim: any): number {
+    let likeCount = 0;
+    claim.votes.forEach(element => {
+      // get like counts
+      if (element.vote === "like") {
+        likeCount++;
+      }
+    });
+    return likeCount;
+  }
+  private getBusinessName(name?: string): any {
+    return (name != null && name != undefined) ? name : "ZZZZZ";
+  }
   private showListings(response: Response) {
     this.claims = response.json();
+    //sort by business name first
+    // this.claims.sort((obj1, obj2) => {
+    //   if (this.getBusinessName(obj1.businessName) < this.getBusinessName(obj2.businessName)) {
+    //     return -1;
+    //   }
+    //   if (this.getBusinessName(obj1.businessName) > this.getBusinessName(obj2.businessName)) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    //then sort by number of likes
+    this.claims.sort((obj1, obj2) => {
+      if (this.getLikeCount(obj2) < this.getLikeCount(obj1)) {
+        return -1;
+      }
+      else if (this.getLikeCount(obj2) > this.getLikeCount(obj1)) {
+        return 1;
+      }
+      else {
+        if (this.getBusinessName(obj1.businessName) < this.getBusinessName(obj2.businessName)) {
+          return -1;
+        }
+        else if (this.getBusinessName(obj1.businessName) > this.getBusinessName(obj2.businessName)) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+    });
+    // console.log(this.claims[1].businessName + " = " + this.getLikeCount(this.claims[1]))
     this.totalItems = this.claims.length;
     this.model = this.claims;
     // console.log( JSON.stringify(this.model));
@@ -127,7 +171,7 @@ export class ListingsComponent implements OnInit {
       this.numoflikes = 0;
       this.numofdislikes = 0;
       this.model[i].votes.forEach(element => {
-        console.log(element.vote);
+        // console.log(element.vote);
         // get vote counts
         if (element.vote === "like") {
           this.numoflikes++;

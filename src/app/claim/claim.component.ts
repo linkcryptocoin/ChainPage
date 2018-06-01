@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Claim, User } from '../_models/index'
+import { Claim, User, Vote } from '../_models/index'
 import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
@@ -221,7 +221,8 @@ export class ClaimComponent implements OnInit {
   test() {
     this.model = new Claim("John", "John Business", "123 abc st.", "DC", "DC", "20001",
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
-      "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now());
+      "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now()
+      , new Array<Comment>(), new Array<Vote>());
   }
   ngOnInit() {
     // this.loadAllClaims();

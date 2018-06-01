@@ -110,11 +110,11 @@ export class TopNavComponent implements OnInit {
       .subscribe(data => {
         this.language = data.json();
         this.language.forEach(element => {
-          console.log(element)
+          // console.log(element)
           if(element.Short == "cn"){
             this.selectedLanguage = element.Id;
             this.selectedFlag = element.src;
-            console.log(this.selectedFlag)
+            // console.log(this.selectedFlag)
           }
         });
       });
