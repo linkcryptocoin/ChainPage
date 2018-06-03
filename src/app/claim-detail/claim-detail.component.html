@@ -3,9 +3,9 @@
   <div class="form-group">
     <div>
       <h5 translate>General Info
-          <a [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</a>
+        <a [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</a>
       </h5>
-      
+
       <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
 
       <label for="name" translate>{{model.name}} -- {{model.businessName}} ({{model.phone}})</label>
@@ -32,10 +32,10 @@
         <label for="businessHour" translate>{{model.businessHour}}</label>
         <br>
         <label for="businessCategory" translate>Main Category</label>:
-        <label for="businessCategory" translate>{{model.businessMainCategory}}</label> 
+        <label for="businessCategory" translate>{{model.businessMainCategory}}</label>
         <br>
         <label for="businessCategory" translate>Sub Category</label>:
-        <label for="businessCategory" class="inline" translate>{{model.businessSubCategory}}</label> 
+        <label for="businessCategory" class="inline" translate>{{model.businessSubCategory}}</label>
       </div>
     </div>
     <br>
@@ -53,7 +53,8 @@
       <div>
         <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top"
           ngbTooltip="you liked it">
-          <i style="font-size: medium;">{{likes}} likes</i><br>
+          <i style="font-size: medium;">{{likes}} likes</i>
+          <br>
           <label style="font-size: small" translate>(to like costs 5 tokens)</label>
         </i>
         <!-- <a  click="alert('thumbs up')">
@@ -61,7 +62,8 @@
         </a> -->
         <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-3"
           placement="top" ngbTooltip="you didn't like it">
-          <i style="font-size: medium;">{{dislikes}} dislikes</i><br>
+          <i style="font-size: medium;">{{dislikes}} dislikes</i>
+          <br>
           <label style="font-size: small" translate>(to dislike costs 10 tokens)</label>
         </i>
         <!-- <button click="alert('thumbs down')">
@@ -94,9 +96,34 @@
       <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
       <ul>
         <li *ngFor="let c of commentsPage">
-          <span>
+          <div class="row col-12">
+            <div class="col-sm-1">
+                <i class="fas fa-user-circle fa-2x"></i>
+              <!-- <div class="thumbnail">
+                <img class="img-responsive user-photo" style="width: 10px; height: 10px;" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+              </div> -->
+              <!-- /thumbnail -->
+            </div>
+            <!-- /col-sm-1 -->
+
+            <div class="col-sm-11">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <strong>{{c.postedBy}}</strong>
+                  <span class="text-muted">posted on {{c.postedTime | date :'medium'}}</span>
+                </div>
+                <div class="panel-body">
+                  {{c.comment}}
+                </div>
+                <!-- /panel-body -->
+              </div>
+              <!-- /panel panel-default -->
+            </div>
+            <!-- /col-sm-5 -->
+          </div>
+          <!-- <span>
             {{c.comment}}
-          </span>
+          </span> -->
         </li>
       </ul>
       <!-- <label>{{commentText.value}}</label> -->
