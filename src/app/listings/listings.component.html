@@ -28,17 +28,16 @@
 
                    <!-- <a  (click)="Remove_Listing(claim._id)"> <i class="fa fa-trash pull-right" style="float: right; color: red" aria-hidden="true"></i></a> -->
                    </h5>
-                <strong>Service</strong> : {{claim.service}}
-                <br><!-- T:--><i class="fa fa-phone-square" aria-hidden="true"></i> :  {{claim.phone}}
-                <br>
+                <i class="fa fa-phone-square" aria-hidden="true"></i> :  {{claim.phone}}&nbsp;
+                <strong>Service</strong> : {{claim.service}} &nbsp;&nbsp;&nbsp;&nbsp;
                 <div style="margin-top: 1px;margin-left: 1px;">
                         <i class="far fa-thumbs-up fa-lg col-2">
-                          <i style="font-size: medium;">{{claim.likes}} likes</i>
+                          <i style="font-size: small;">{{claim.likes}}</i>
                         </i>
                         <i class="far fa-thumbs-down fa-lg col-2">
-                          <i style="font-size: medium;">{{claim.dislikes}} dislikes</i>
+                          <i style="font-size: small;">{{claim.dislikes}}</i>
                         </i>
-                      </div>
+                </div>
                <!-- <br> {{claim.data.street}}
                 <br> {{claim.data.city}}, {{claim.data.state}} {{claim.data.zip}} {{getCountryName(claim.data.country)}}
                  <br> Date Created: {{claim.data.postedTime | date:'yyyy-MM-dd HH:mm a z':'-0500'}} -->
