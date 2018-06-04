@@ -1,0 +1,11 @@
+.show-error
+{
+  color: darkred;
+}
+
+.show-error-border
+{
+  border-color: darkred;
+}
+
+[ng-quill-editor] { display: block; }

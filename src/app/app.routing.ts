@@ -1,6 +1,10 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/index';
+import { ChainPostComponent } from './ChainPost/index';
+import { PostComponent } from './Post/post.component';
+import { PostListingsComponent } from './Post-listings/Post-listings.component';
+import { PostDetailsComponent } from './Post-Detail/Post-detail.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -20,10 +24,18 @@ const appRoutes: Routes = [
         { path: 'claim', component: ClaimComponent, canActivate: [AuthGuard] },
         { path: 'claim-detail', component: ClaimDetailComponent }
     ] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, 
+    {path: 'chainpost', component: ChainPostComponent, children:[
+      { path: '', component: PostListingsComponent },
+      { path: 'Postlistings', component: PostListingsComponent },
+      { path: 'Postlistings:/cat', component: PostListingsComponent },
+      { path: 'Post', component: PostComponent, canActivate: [AuthGuard] },
+      { path: 'post-detail', component: PostDetailsComponent }
+
+    ]},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    
+
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

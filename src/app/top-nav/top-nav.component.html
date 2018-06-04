@@ -13,8 +13,8 @@
             <li class="nav-item">
                 <a class="nav-link" translate>ChainMart</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" translate>ChainPost</a>
+            <li class="nav-item active">
+                <a class="nav-link"  [routerLink]="['/chainpost']"  translate>ChainPost</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="http://linkgear.net:81" translate>LinkGearExplorer</a>
@@ -23,7 +23,7 @@
                 <a class="nav-link" href="http://linkgear.net/wallet" translate>LinkGearWallet</a>
             </li>
         </ul>
-        <!-- <div *ngIf="currentUserAccount != undefined && currentUserAccount != ''">            
+        <!-- <div *ngIf="currentUserAccount != undefined && currentUserAccount != ''">
             <ngx-qrcode [qrc-element-type]="img" qrc-class="qrSize" [qrc-element-type]="elementType" [qrc-value]="currentUserAccount">
             </ngx-qrcode>
             <h6>Token balance: {{tokenBalance}}</h6>

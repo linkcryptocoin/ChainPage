@@ -22,11 +22,22 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/mdbootstrap/css/bootstrap.min.css",
+        "../node_modules/mdbootstrap/css/mdb.min.css"
+
+
+
       ],
       "scripts": [
         "../node_modules/alasql/dist/alasql.min.js",
-        "../node_modules/xlsx/dist/xlsx.core.min.js"
+        "../node_modules/xlsx/dist/xlsx.core.min.js",
+        "../node_modules/mdbootstrap/js/jquery-3.3.1.min.js",
+        "../node_modules/mdbootstrap/js/popper.min.js",
+        "../node_modules/mdbootstrap/js/mdb.min.js",
+        "../node_modules/mdbootstrap/js/bootstrap.min.js",
+        "../node_modules/quill/dist/quill.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

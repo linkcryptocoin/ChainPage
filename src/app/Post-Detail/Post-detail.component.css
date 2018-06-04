@@ -1,12 +1,8 @@
-* {margin: 0; padding: 0;}
-
-div {
-  margin: 20px;
-}
-
 ul {
   list-style-type: none;
-  width: 300px;
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 h3 {
@@ -31,7 +27,20 @@ li:hover {
   background: #eee;
   /* cursor: pointer; */
 }
-.nopadding {
-    padding: 0 !important;
-    margin: 0 !important;
+.far {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* .fa-thumbs-up:hover {
+  color: lightgreen;
+} */
+.fa-thumbs-up-clicked {
+  color: lightgreen;  
+}
+/* .fa-thumbs-down:hover {
+  color: red;
+} */
+.fa-thumbs-down-clicked {
+  color: red;
 }

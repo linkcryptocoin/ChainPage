@@ -1,0 +1,1 @@
+﻿export * from './chainpost.component';

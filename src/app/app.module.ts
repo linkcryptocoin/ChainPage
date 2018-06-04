@@ -14,6 +14,11 @@ import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService, ClaimService, BigchanDbService, OothService, VoteService, MongoService } from './_services/index';
 import { HomeComponent } from './home/index';
+import { ChainPostComponent } from './ChainPost/chainpost.component';
+import { PostComponent } from './Post/post.component';
+import { PostListingsComponent } from './Post-listings/Post-listings.component';
+import { PostDetailsComponent } from './Post-Detail/Post-detail.component';
+import { PostSideNavComponent } from './Post-Side-nav-bar/Post-side-nav.component';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 
@@ -38,6 +43,8 @@ import { ModalContent } from './modal/modal.component';
 import { ProfileComponent } from './profile/profile.component'; // optional, provides moment-style pipes for date formatting
 import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
 import { Select2Module } from 'ng2-select2';
+
+
 const SERVICES = [
   MetaCoinService,
   Web3Service,
@@ -69,6 +76,11 @@ const SERVICES = [
     AppComponent,
     AlertComponent,
     HomeComponent,
+    ChainPostComponent,
+    PostComponent,
+    PostListingsComponent,
+    PostDetailsComponent,
+    PostSideNavComponent,
     LoginComponent,
     RegisterComponent,
     ClaimComponent,
@@ -106,7 +118,10 @@ const SERVICES = [
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+
+  
+ }
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
