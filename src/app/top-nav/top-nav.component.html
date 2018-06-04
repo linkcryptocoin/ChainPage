@@ -28,7 +28,7 @@
             </ngx-qrcode>
             <h6>Token balance: {{tokenBalance}}</h6>
         </div> -->
-        <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;margin: 5px">
+        <!-- <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;margin: 5px"> -->
         <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
             <option *ngFor="let lang of language" value="{{lang.Id}}">
                 {{lang.Description}}
