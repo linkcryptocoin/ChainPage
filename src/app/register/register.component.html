@@ -8,7 +8,7 @@
         </div> -->
 
        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
-            <label for="region" translate>Region</label>
+            <label for="region" translate>Region</label><label for="region2" translate>(We are seeking 21 Super Nodes and contact to us if you are interested)</label>
              <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
                 <option selected="selected" value="LinkGear">Greater Washington DC</option>
                 <option value="Baltimore">Others</option>
