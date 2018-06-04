@@ -2,7 +2,7 @@
 
 import { HomeComponent } from './home/index';
 import { ChainPostComponent } from './ChainPost/index';
-import { PostComponent } from './Post/post.component';
+import { PostComponent } from './Post/Post.component';
 import { PostListingsComponent } from './Post-listings/Post-listings.component';
 import { PostDetailsComponent } from './Post-Detail/Post-detail.component';
 import { LandingComponent } from './landing/landing.component';

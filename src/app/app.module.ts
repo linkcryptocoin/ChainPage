@@ -15,7 +15,7 @@ import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService, ClaimService, BigchanDbService, OothService, VoteService, MongoService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ChainPostComponent } from './ChainPost/chainpost.component';
-import { PostComponent } from './Post/post.component';
+import { PostComponent } from './Post/Post.component';
 import { PostListingsComponent } from './Post-listings/Post-listings.component';
 import { PostDetailsComponent } from './Post-Detail/Post-detail.component';
 import { PostSideNavComponent } from './Post-Side-nav-bar/Post-side-nav.component';
