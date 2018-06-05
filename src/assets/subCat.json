@@ -12,482 +12,494 @@
    "Merchant category": 5970
  },
  {
-   "Subcategory": 2002,
+   "Subcategory": 2102,
    "Description": "Realtor",
    "Category": 1001,
    "Merchant category": 5712
  },
  {
-   "Subcategory": 2003,
+   "Subcategory": 2103,
    "Description": "Loan Officer",
    "Category": 1001,
    "Merchant category": 5991
  },
  {
-   "Subcategory": 2004,
+   "Subcategory": 2104,
    "Description": "Business Broker",
    "Category": 1001,
    "Merchant category": 5992
  },
  {
-   "Subcategory": 2005,
+   "Subcategory": 2105,
    "Description": "Home Inspection",
    "Category": 1001,
    "Merchant category": 5122
  },
  {
-   "Subcategory": 2006,
+   "Subcategory": 2106,
    "Description": "Home Appraisor",
    "Category": 1001,
    "Merchant category": 5977
  },
  {
-   "Subcategory": 2007,
+   "Subcategory": 2107,
    "Description": "Property Management",
    "Category": 1001,
    "Merchant category": 5977
  },
  {
-   "Subcategory": 2008,
+   "Subcategory": 2108,
    "Description": "Home Repairs",
    "Category": 1001,
    "Merchant category": 5977
  },
  {
-   "Subcategory": 2009,
+   "Subcategory": 2209,
    "Description": "Buy and Sell",
    "Category": 1002,
    "Merchant category": 5942
  },
  {
-   "Subcategory": 2010,
+   "Subcategory": 2210,
    "Description": "Car Rent",
    "Category": 1002,
    "Merchant category": 5943
  },
  {
-   "Subcategory": 2011,
+   "Subcategory": 2211,
    "Description": "Car Repairs",
    "Category": 1002,
    "Merchant category": 5944
  },
  {
-   "Subcategory": 2012,
+   "Subcategory": 2212,
    "Description": "Driving School",
    "Category": 1002,
    "Merchant category": 5945
  },
  {
-   "Subcategory": 2013,
+   "Subcategory": 2313,
    "Description": "Immigration",
    "Category": 1003,
    "Merchant category": 5946
  },
  {
-   "Subcategory": 2014,
+   "Subcategory": 2314,
    "Description": "Family",
    "Category": 1003,
    "Merchant category": 5942
  },
  {
-   "Subcategory": 2015,
+   "Subcategory": 2315,
    "Description": "Accident",
    "Category": 1003,
    "Merchant category": 5942
  },
  {
-   "Subcategory": 2016,
+   "Subcategory": 2316,
    "Description": "Crime & Civil",
    "Category": 1003,
    "Merchant category": 5192
  },
  {
-   "Subcategory": 2017,
+   "Subcategory": 2317,
    "Description": "Student Visa",
    "Category": 1003,
    "Merchant category": 2741
  },
  {
-   "Subcategory": 2018,
+   "Subcategory": 2318,
    "Description": "Corporate",
    "Category": 1003,
    "Merchant category": 5942
  },
  {
-   "Subcategory": 2019,
+   "Subcategory": 2319,
    "Description": "Business Abroad",
    "Category": 1003,
    "Merchant category": 5941
  },
  {
-   "Subcategory": 2020,
+   "Subcategory": 2420,
    "Description": "Car",
    "Category": 1004,
    "Merchant category": 8931
  },
  {
-   "Subcategory": 2021,
+   "Subcategory": 2421,
    "Description": "House",
    "Category": 1004,
    "Merchant category": 7311
  },
  {
-   "Subcategory": 2027,
+   "Subcategory": 2427,
    "Description": "Life",
    "Category": 1004,
    "Merchant category": 780
  },
  {
-   "Subcategory": 2028,
+   "Subcategory": 2428,
    "Description": "Government",
    "Category": 1004,
    "Merchant category": 8911
  },
  {
-   "Subcategory": 2029,
+   "Subcategory": 2529,
    "Description": "Family",
    "Category": 1005,
    "Merchant category": 5641
  },
  {
-   "Subcategory": 2030,
+   "Subcategory": 2530,
    "Description": "Stocks",
    "Category": 1005,
    "Merchant category": 5611
  },
  {
-   "Subcategory": 2031,
+   "Subcategory": 2531,
    "Description": "Mutual Funds",
    "Category": 1005,
    "Merchant category": 5621
  },
  {
-   "Subcategory": 2032,
+   "Subcategory": 2532,
    "Description": "Personal Tax",
    "Category": 1005,
    "Merchant category": 5661
  },
  {
-   "Subcategory": 2033,
+   "Subcategory": 2533,
    "Description": "Business Tax",
    "Category": 1005,
    "Merchant category": 5699
  },
  {
-   "Subcategory": 2034,
+   "Subcategory": 2534,
    "Description": "Banks",
    "Category": 1005,
    "Merchant category": 5699
  },
  
  {
-   "Subcategory": 2057,
+   "Subcategory": 2657,
    "Description": "Family",
    "Category": 1006,
    "Merchant category": 7372
  },
  {
-   "Subcategory": 2058,
+   "Subcategory": 2658,
    "Description": "Gynecologist",
    "Category": 1006,
    "Merchant category": 5045
  },
  {
-   "Subcategory": 2059,
+   "Subcategory": 2659,
    "Description": "Pediatrician",
    "Category": 1006,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2060,
+   "Subcategory": 2660,
    "Description": "Dentist",
    "Category": 1006,
    "Merchant category": 4816
  },
  {
-   "Subcategory": 2061,
+   "Subcategory": 2661,
    "Description": "Specialist",
    "Category": 1006,
    "Merchant category": 7379
  },
  {
-   "Subcategory": 2062,
+   "Subcategory": 2662,
    "Description": "Acupuncture",
    "Category": 1006,
    "Merchant category": 7379
  },
  {
-   "Subcategory": 2070,
+   "Subcategory": 2770,
    "Description": "Rehabilitation",
    "Category": 1007,
    "Merchant category": 8244
  },
  {
-   "Subcategory": 2071,
+   "Subcategory": 2771,
    "Description": "Senior Cares",
    "Category": 1007,
    "Merchant category": 8351
  },
  {
-   "Subcategory": 2072,
+   "Subcategory": 2772,
    "Description": "Medical Equipment",
    "Category": 1007,
    "Merchant category": 8220
  },
  {
-   "Subcategory": 2073,
+   "Subcategory": 2773,
    "Description": "Nutrition",
    "Category": 1007,
    "Merchant category": 7911
  },
  {
-   "Subcategory": 2074,
+   "Subcategory": 2880,
    "Description": "Study Abroad",
    "Category": 1008,
    "Merchant category": 8211
  },
  {
-   "Subcategory": 2075,
+   "Subcategory": 2881,
    "Description": "Summer Camp",
    "Category": 1008,
    "Merchant category": 8249
  },
  {
-   "Subcategory": 2076,
+   "Subcategory": 2882,
    "Description": "Root Seeking",
    "Category": 1008,
    "Merchant category": 5732
  },
  {
-   "Subcategory": 2078,
+   "Subcategory": 2883,
    "Description": "Travel Agency",
    "Category": 1008,
    "Merchant category": 4812
  },
  {
-   "Subcategory": 2079,
+   "Subcategory": 2084,
    "Description": "Hotel",
    "Category": 1008,
    "Merchant category": 5732
  },
  {
-   "Subcategory": 2080,
+   "Subcategory": 2885,
    "Description": "Airport Transfer",
    "Category": 1008,
    "Merchant category": 5732
  }, 
  {
-   "Subcategory": 2081,
+   "Subcategory": 2990,
    "Description": "Kindergarten",
    "Category": 1009,
    "Merchant category": 4812
  },
  {
-   "Subcategory": 2082,
+   "Subcategory": 2991,
    "Description": "Tutoring",
    "Category": 1009,
    "Merchant category": 5732
  },
  {
-   "Subcategory": 2080,
+   "Subcategory": 2992,
    "Description": "Chinese School",
    "Category": 1009,
    "Merchant category": 5732
  },
  {
-   "Subcategory": 2086,
+   "Subcategory": 2993,
    "Description": "Talent Training",
    "Category": 1009,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2087,
+   "Subcategory": 2994,
    "Description": "Language School",
    "Category": 1009,
    "Merchant category": 7832
  },
  {
-   "Subcategory": 2088,
+   "Subcategory": 2995,
    "Description": "Vocational Training",
    "Category": 1009,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2089,
+   "Subcategory": 3010,
    "Description": "Moving",
    "Category": 1010,
    "Merchant category": 5735
  },
  {
-   "Subcategory": 2090,
+   "Subcategory": 3011,
    "Description": "Express",
    "Category": 1010,
    "Merchant category": 4899
  },
  {
-   "Subcategory": 2091,
+   "Subcategory": 3012,
    "Description": "Cleaning",
    "Category": 1010,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2092,
+   "Subcategory": 3013,
    "Description": "Furniture",
    "Category": 1010,
    "Merchant category": 7929
  },
  {
-   "Subcategory": 2093,
+   "Subcategory": 3014,
    "Description": "Appliance Repairs",
    "Category": 1010,
    "Merchant category": 7922
  },
  {
-   "Subcategory": 2094,
+   "Subcategory": 3015,
    "Description": "Security System",
    "Category": 1010,
    "Merchant category": 5945
  },
  {
-   "Subcategory": 2095,
+   "Subcategory": 3016,
    "Description": "Nanny",
    "Category": 1010,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2096,
+   "Subcategory": 3017,
    "Description": "Dry Cleaning",
    "Category": 1010,
    "Merchant category": 5999
  },
  {
-   "Subcategory": 2097,
+   "Subcategory": 3018,
    "Description": "Wedding Photography",
    "Category": 1010,
    "Merchant category": 7929
  },
  {
-   "Subcategory": 2098,
+   "Subcategory": 3019,
    "Description": "Funeral",
    "Category": 1010,
    "Merchant category": 7995
  },
  {
-   "Subcategory": 2100,
+   "Subcategory": 3020,
    "Description": "Pet Service",
    "Category": 1010,
    "Merchant category": 5945
  },
  {
-   "Subcategory": 2101,
+   "Subcategory": 3021,
    "Description": "Marriage Agency",
    "Category": 1010,
    "Merchant category": 8931
  },
  {
-   "Subcategory": 2102,
+   "Subcategory": 3022,
    "Description": "Translation Notary",
    "Category": 1010,
    "Merchant category": 7321
  },
  {
-   "Subcategory": 2103,
+   "Subcategory": 3023,
    "Description": "Passport Visa",
    "Category": 1010,
    "Merchant category": 4829
  },
  {
-   "Subcategory": 2124,
+   "Subcategory": 3100,
    "Description": "Salon Spa Nails",
    "Category": 1011,
    "Merchant category": 5921
  },
  {
-   "Subcategory": 2125,
+   "Subcategory": 3111,
    "Description": "Massage",
    "Category": 1011,
    "Merchant category": 5811
  },
  {
-   "Subcategory": 2126,
+   "Subcategory": 3112,
    "Description": "Fitness Equipment",
    "Category": 1011,
    "Merchant category": 5499
  },
  {
-   "Subcategory": 2127,
+   "Subcategory": 3113,
    "Description": "Fitness Coach",
    "Category": 1011,
    "Merchant category": 5499
  },
  {
-   "Subcategory": 2128,
+   "Subcategory": 3114,
    "Description": "Exercise",
    "Category": 1011,
    "Merchant category": 5499
  },
  {
-   "Subcategory": 2129,
+   "Subcategory": 3115,
    "Description": "KTV",
    "Category": 1011,
    "Merchant category": 5812
  },
  {
-   "Subcategory": 2130,
+   "Subcategory": 3116,
    "Description": "Casino",
    "Category": 1011,
    "Merchant category": 0
  },
  {
-   "Subcategory": 2131,
+   "Subcategory": 3117,
    "Description": "Featured Winery",
    "Category": 1011,
    "Merchant category": 5122
  },
  {
-   "Subcategory": 2132,
+   "Subcategory": 3200,
    "Description": "Design Printing",
    "Category": 1012,
    "Merchant category": 5193
  },
  {
-   "Subcategory": 2133,
+   "Subcategory": 3221,
    "Description": "Advertising Media",
    "Category": 1012,
    "Merchant category": 5947
  },
  {
-   "Subcategory": 2134,
+   "Subcategory": 3222,
    "Description": "Newspaper Media",
    "Category": 1012,
-   "Merchant category": 5499
+   "Merchant category": 5448
  },
  {
-   "Subcategory": 2135,
+  "Subcategory": 3223,
+  "Description": "Others",
+  "Category": 1012,
+  "Merchant category": 5449
+},
+ {
+   "Subcategory": 2330,
    "Description": "Student Union",
    "Category": 1013,
    "Merchant category": 5261
  },
  {
-   "Subcategory": 2136,
+   "Subcategory": 3331,
    "Description": "Alumni Association",
    "Category": 1013,
    "Merchant category": 5947
  },
  {
-   "Subcategory": 2137,
+   "Subcategory": 3332,
    "Description": "Community Activity",
    "Category": 1013,
    "Merchant category": 9399
  },
  {
-  "Subcategory": 2138,
+  "Subcategory": 3333,
+  "Description": "Others",
+  "Category": 1013,
+  "Merchant category": 9395
+},
+ {
+  "Subcategory": 3440,
   "Description": "Goods",
   "Category": 1014,
   "Merchant category": 5948
 },
 {
-  "Subcategory": 2139,
+  "Subcategory": 3441,
   "Description": "Services",
   "Category": 1014,
   "Merchant category": 9400
