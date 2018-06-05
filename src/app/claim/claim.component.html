@@ -156,7 +156,7 @@
             <h4 translate>Business Info</h4>
             <div>
               <div [ngClass]="{ 'has-error': claimForm.submitted && !service.valid }">
-                <label for="service" translate>Service</label>
+                <label for="service" translate>Business Description</label>
                 <div class="row">
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="service" required [(ngModel)]="model.service" [ngClass]="{ 'show-error-border': claimForm.submitted && !service.valid }" name="service" #service="ngModel">
