@@ -89,7 +89,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log(response);
           this.model = response.json();
           //check if current user is the author of the listing
-          console.log("current user: " + this.currentUserEmail + " author: " + this.model.postedBy)
+          console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
           // if author is not available, hide Edit button
           if (this.model.postedBy == null || this.model.postedBy == undefined) {
             this.isAuthor = false;
@@ -100,7 +100,7 @@ export class ClaimDetailComponent implements OnInit {
               this.isAuthor = false;
             }
             else {
-              if (this.currentUserEmail == this.model.postedBy) {
+              if (this.currentUser == this.model.postedBy) {
                 this.isAuthor = true;
               }
               else {

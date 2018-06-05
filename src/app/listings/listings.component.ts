@@ -68,7 +68,7 @@ export class ListingsComponent implements OnInit {
     //get query param
     this.page = 1;
     this.maxSize = 10;
-    this.pageSize = 5;
+    this.pageSize = 20;
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
       this.catParam = params['cat'];

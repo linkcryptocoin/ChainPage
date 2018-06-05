@@ -125,6 +125,7 @@ export class ClaimComponent implements OnInit {
     // if (this.model.id === undefined) {
     //   this.model.id = "NA";
     // }
+    this.model.postedBy = this.currentUser;
     this.model.postedTime = Date.now();
     if(this.isUpdate == true){
       // console.log("this is an update");
@@ -137,7 +138,7 @@ export class ClaimComponent implements OnInit {
     }
     else{
     //upload to mongodb
-    // console.log("this is an add");
+    console.log(this.model);
    this.mongoService.saveListing(this.model)
       .subscribe(
         response => {
