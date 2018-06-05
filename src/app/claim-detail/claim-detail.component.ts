@@ -111,7 +111,7 @@ export class ClaimDetailComponent implements OnInit {
           //retrieve comments
           // console.log(this.model.comments)
           this.model.comments.forEach(element => {
-            if (element.postedBy == this.currentUserEmail) {
+            if (element.postedBy == this.currentUser) {
               this.ownComment = element;
               // console.log("ownComment: " + this.ownComment)
             }
@@ -125,7 +125,7 @@ export class ClaimDetailComponent implements OnInit {
           //retrieve votes
           this.model.votes.forEach(element => {
             // get the current user's vote
-            if (element.postedBy == this.currentUserEmail) {
+            if (element.postedBy == this.currentUser) {
               this.ownVote = element;
               if (element.vote == "like") {
                 this.alreadyLiked = true;
@@ -181,7 +181,7 @@ export class ClaimDetailComponent implements OnInit {
             _id: this.claimId,
             comment: {
               comment: commentText,
-              postedBy: user.local.email,
+              postedBy: this.currentUser,
               postedTime: Date.now()
             }
           };
@@ -284,7 +284,7 @@ export class ClaimDetailComponent implements OnInit {
             _id: this.claimId,
             vote: {
               vote: this.reactions[0],  //like
-              postedBy: this.currentUserEmail,
+              postedBy: this.currentUser,
               postedTime: Date.now()
             }
           };
@@ -351,7 +351,7 @@ export class ClaimDetailComponent implements OnInit {
             _id: this.claimId,
             vote: {
               vote: this.reactions[1],  //dislike
-              postedBy: this.currentUserEmail,
+              postedBy: this.currentUser,
               postedTime: Date.now()
             }
           };
