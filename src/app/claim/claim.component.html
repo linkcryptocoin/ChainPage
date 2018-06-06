@@ -155,6 +155,37 @@
           <div>
             <h4 translate>Business Info</h4>
             <div>
+              <label for="businessMainCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
+              <div class="row">
+                <div class="col-sm-8">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                  <select class="form-control"  id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)"  [(ngModel)]="model.businessMainCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessCategory.valid }"  name="businessMainCategory"
+                    #businessCategory="ngModel">
+                    <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
+                  <small *ngIf="claimForm.submitted && !businessCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessCategory.valid }" >* This is required</small>
+                </div>
+              </div>
+              <label for="businessSubCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
+              <div class="row">
+                <div class="col-sm-8">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                  <select class="form-control" id="businessSubCategory" required [(ngModel)]="model.businessSubCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessSubCategory.valid }" name="businessSubCategory"
+                    #businessSubCategory="ngModel">
+                    <option  value="" translate></option>
+                    <option *ngFor="let subcat of subcategories" [value]="subcat.Description" translate>{{subcat.Description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
+                  <small *ngIf="claimForm.submitted && !businessSubCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessSubCategory.valid }" >* This is required</small>
+                </div>
+              </div>
               <div [ngClass]="{ 'has-error': claimForm.submitted && !service.valid }">
                 <label for="service" translate>Business Description</label>
                 <div class="row">
@@ -187,37 +218,7 @@
                     <small *ngIf="claimForm.submitted && !businessHour.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessHour.valid }" >* This is required</small>
                   </div>
                 </div>
-                <label for="businessMainCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
-                <div class="row">
-                  <div class="col-sm-8">
-                    <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
-                      #businessCategory="ngModel"> -->
-                    <select class="form-control"  id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)"  [(ngModel)]="model.businessMainCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessCategory.valid }"  name="businessMainCategory"
-                      #businessCategory="ngModel">
-                      <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-4">
-                   <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessCategory.valid }" >* This is required</small>
-                  </div>
-                </div>
-                <label for="businessSubCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
-                <div class="row">
-                  <div class="col-sm-8">
-                    <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
-                      #businessCategory="ngModel"> -->
-                    <select class="form-control" id="businessSubCategory" required [(ngModel)]="model.businessSubCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessSubCategory.valid }" name="businessSubCategory"
-                      #businessSubCategory="ngModel">
-                      <option  value="" translate></option>
-                      <option *ngFor="let subcat of subcategories" [value]="subcat.Description" translate>{{subcat.Description}}</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-4">
-                   <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
-                    <small *ngIf="claimForm.submitted && !businessSubCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessSubCategory.valid }" >* This is required</small>
-                  </div>
-                </div>
+
                 <!-- <label for="formType">Form Type</label> -->
                 <div class="row" *ngIf="false">
                   <div class="col-sm-10">
