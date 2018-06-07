@@ -115,11 +115,13 @@
                       <label for="email" translate>Email</label>
                     </div>
                     <div>
-                      <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" [ngClass]="{ 'show-error-border': claimForm.submitted && !email.valid }"  name="email" #email="ngModel">
+                      <input type="text" class="form-control" id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required [(ngModel)]="model.email" [ngClass]="{ 'show-error-border': claimForm.submitted && !email.valid }"  name="email" #email="ngModel">
                     </div>
                     <div class="row col-sm-6">
                      <!-- <label style="color: red;" [hidden]="email.valid || email.pristine">*</label>-->
                       <small *ngIf="claimForm.submitted && !email.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !email.valid }" >* This is required</small>
+                      <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" translate >* Email is invalid</small>
+
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -127,11 +129,12 @@
                       <label for="phone" translate>Phone</label>
                     </div>
                     <div>
-                      <input type="text" class="form-control" id="phone" required [(ngModel)]="model.phone" [ngClass]="{ 'show-error-border': claimForm.submitted && !phone.valid }"  name="phone" #phone="ngModel">
+                      <input type="text" mask="(000)000-0000" class="form-control" id="phone" required [(ngModel)]="model.phone" [ngClass]="{ 'show-error-border': claimForm.submitted && !phone.valid }"  name="phone" #phone="ngModel">
                     </div>
                     <div class="">
                      <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
                       <small *ngIf="claimForm.submitted && !phone.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !phone.valid }" >* This is required</small>
+                     <!-- <small *ngIf="phone.errors?.pattern && phone.touched" [ngClass]="{'show-error': phone.errors?.pattern && phone.touched}" translate >* Please enter a 10 digit number</small>-->
                     </div>
                   </div>
                 </div>
@@ -139,11 +142,12 @@
                 <label for="webPage" [ngClass]="{ 'has-error': claimForm.submitted && !webPage.valid }" translate>WebPage</label>
                 <div class="row">
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="webPage" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
+                    <input type="text" class="form-control" id="webPage" pattern="^((www|http|https):\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
                   </div>
                   <div class="row col-sm-4">
                       <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
                        <small *ngIf="claimForm.submitted && !webPage.dirty" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !webPage.dirty }" >* This is required</small>
+                      <small *ngIf="webPage.errors?.pattern && webPage.touched" [ngClass]="{'show-error': webPage.errors?.pattern && webPage.touched}" translate >* Please enter valid URL</small>
                      </div>
                 </div>
               </div>
@@ -240,3 +244,5 @@
 
     </form>
   </div>
+
+

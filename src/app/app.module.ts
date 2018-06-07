@@ -44,7 +44,7 @@ import { ProfileComponent } from './profile/profile.component'; // optional, pro
 import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
 import { Select2Module } from 'ng2-select2';
 import { QuillModule } from 'ngx-quill';
-
+import { InputMaskModule } from 'ng2-inputmask';
 
 const SERVICES = [
   MetaCoinService,
@@ -52,7 +52,7 @@ const SERVICES = [
 ]
 @NgModule({
   imports: [
-    BrowserModule, QuillModule,
+    BrowserModule, QuillModule,InputMaskModule,
     FormsModule,
     HttpClientModule,
     routing,
