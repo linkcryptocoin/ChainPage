@@ -47,6 +47,16 @@ export class MongoService {
         return this.http.post(this.API + 'deleteListing/', {'id': id})
         // .map((response: Response) =>response.json())
     }
+    getViewCount(id) {
+        console.log(id);
+        // let params = new HttpParams().set('id', id);
+        return this.http.get(this.API + 'getViewCount/' + id)
+        // .map((response: Response) => response.json())
+    }
+    incrementViewCount(id){
+        console.log(id);
+        return this.http.post(this.API + 'incrementViewCount/', {'id': id})
+    }
     addComment(comment){
         console.log(comment);
         return this.http.post(this.API + 'addComment/', comment)

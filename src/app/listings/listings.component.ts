@@ -196,10 +196,12 @@ export class ListingsComponent implements OnInit {
         service: this.claims[j].service,
         phone: this.claims[j].phone,
         likes: this.votes[j].likes,
-        dislikes: this.votes[j].dislikes
+        dislikes: this.votes[j].dislikes,
+        viewCount: this.claims[j].viewCount == null || this.claims[j].viewCount == undefined? 0:  this.claims[j].viewCount
       };
     }
     this.claimsPage = this.listings.slice(0, this.pageSize);
+    console.log(this.claimsPage)
   }
 
   Search(searchTxt: string) {
@@ -567,5 +569,15 @@ export class ListingsComponent implements OnInit {
   //   this.voteService.getVotes(id);
   // }
 
-
+  incrementViewCount(id) {
+    this.mongoService.incrementViewCount(id)
+      .subscribe(response => {
+        if (response.status == 200) {
+          console.log(response.json());
+        }
+        else {
+          this.toasterService.pop("error", response.statusText);
+        }
+      });
+  }
 }

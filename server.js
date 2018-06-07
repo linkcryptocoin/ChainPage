@@ -83,7 +83,8 @@ var ListingSchema = new Schema({
     postedBy: { type: String },
     postedTime: { type: Number },
     comments: [CommentSchema],
-    votes: [VoteSchema]
+    votes: [VoteSchema],
+    viewCount: {type : Number}
 });
 // ListingSchema.index({name: 'text', businessName: 'text',
 // street: 'text', city: 'text', state: 'text', zip: 'text',
@@ -189,6 +190,35 @@ app.get("/api/getListing/:id", function (req, res) {
         }
     });
 })
+app.get("/api/getViewCount/:id", function (req, res) {
+    model.findOne({ _id: req.params.id }, function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(data);
+        }
+    });
+})
+app.post("/api/incrementViewCount", function (req, res) {
+    console.log("record id: " + req.body.id)
+    model.update(
+        { _id: req.body.id},
+        {
+            "$inc": {
+                "viewCount": 1
+            }
+        },
+        { upsert : true },
+        function (err) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send({ data: "View count has been incremented..!!" });
+            }
+        });
+})
 app.post("/api/addComment", function (req, res) {
     console.log(req.body)
     model.update(
@@ -208,6 +238,7 @@ app.post("/api/addComment", function (req, res) {
             }
         });
 })
+
 app.post("/api/updateComment", function (req, res) {
     model.update(
         { _id: req.body._id, "comments._id": req.body.comment._id },
