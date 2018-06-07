@@ -43,6 +43,7 @@ import { ModalContent } from './modal/modal.component';
 import { ProfileComponent } from './profile/profile.component'; // optional, provides moment-style pipes for date formatting
 import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
 import { Select2Module } from 'ng2-select2';
+import { QuillModule } from 'ngx-quill';
 
 
 const SERVICES = [
@@ -51,7 +52,7 @@ const SERVICES = [
 ]
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule, QuillModule,
     FormsModule,
     HttpClientModule,
     routing,
@@ -120,7 +121,7 @@ const SERVICES = [
 
 export class AppModule {
 
-  
+
  }
 
 export function HttpLoaderFactory(http: HttpClient) {
