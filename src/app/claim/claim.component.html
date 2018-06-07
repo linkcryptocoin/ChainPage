@@ -34,7 +34,7 @@
                 <i ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                 <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
                 <button type="button" (click)="upload()">Upload</button> -->
-                <label for="name" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Name</label>
+                <label for="name" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Contact Person</label>
                 <div class="row">
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" [ngClass]="{ 'show-error-border': claimForm.submitted && !name.valid }" name="name" #name="ngModel">
