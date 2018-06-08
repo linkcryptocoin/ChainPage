@@ -145,7 +145,7 @@
                 <label for="webPage" [ngClass]="{ 'has-error': claimForm.submitted && !webPage.valid }" translate>WebPage</label>
                 <div class="row">
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="webPage" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
+                    <input type="text" class="form-control" id="webPage" pattern="^((http|https):\/\/[w|W]+(\.[a-zA-Z0-9]+)+.*)$" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
                   </div>
                   <div class="row col-sm-4">
                       <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
