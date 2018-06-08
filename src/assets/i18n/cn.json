@@ -165,6 +165,8 @@
     "Privacy Policy & Disclaims":"隐私政策和免责声明",
     "Contact Information": "联系方式",
     "* This is required":"* 这个请填写",
+    "* Please enter valid URL (eg.http://www.google.com)":"* 这个请填写(样板：http://www.google.com)",
+    "* Email is invalid":"Email格式不正确",
     "Main Category": "主分类",
     "Sub Category": "次分类",
     "Comments:": "评论:",

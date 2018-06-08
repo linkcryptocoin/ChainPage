@@ -16,7 +16,7 @@
       <br>
       <label for="email">{{model.email}}</label>
       <br>
-      <a href="{{model.webPage}}" target="_blank">{{model.webPage}}</a>
+      <a [href]="formatURL(model.webPage)" target="_blank"> {{model.webPage}}</a>
     </div>
     <br>
     <div>
