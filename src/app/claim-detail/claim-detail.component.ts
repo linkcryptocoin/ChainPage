@@ -386,7 +386,7 @@ export class ClaimDetailComponent implements OnInit {
     if(url != undefined && (!url.startsWith("http:///") || !url.startsWith("https:///"))){
       return "http://" + url;
     }
-    else{
+    else {
       return url;
     }
   }
