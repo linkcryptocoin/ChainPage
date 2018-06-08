@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim, User, Vote } from '../_models/index'
-import { UserService, AlertService, BigchanDbService, MongoService, SwarmService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 //import { driver} from '../../../node_modules/bigchaindb-driver';
@@ -18,7 +18,6 @@ import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 })
 export class ClaimComponent implements OnInit {
 
-  urls = new Array<string>();
   currentUser: string;
   model: any = {};
   claims: Claim[] = [];
@@ -38,7 +37,7 @@ export class ClaimComponent implements OnInit {
     private userService: UserService, private bigchaindbService: BigchanDbService,
     private globals: Globals, private mongoService: MongoService,
     private alertService: AlertService, private toasterService: ToasterService,
-    private http: Http, private swarmService: SwarmService
+    private http: Http
   ) {
     this.currentUser = sessionStorage.getItem('currentUser');
     this.model.submitBy = this.currentUser;
@@ -106,7 +105,7 @@ export class ClaimComponent implements OnInit {
   getClaim(id: string) {
     this.mongoService.GetListing(id)
       .subscribe(response => {
-        //console.log(response)
+        console.log(response)
         this.model = response.json();
         this.isUpdate = true;
         // let claimData = JSON.parse(JSON.stringify(data));
@@ -114,19 +113,15 @@ export class ClaimComponent implements OnInit {
         // if (this.model.id === "NA") {
         //   this.model.id = claimData.id;
         // }
-        //console.log(this.model);
+        console.log(this.model);
         this.onChange(this.model.country);
       });
   }
   async onSubmit() {
-    //upload logo first
-    this.swarmService.uploadFile(this.urls[0]);
-
-
     this.submitted = true;
     // set the upload time stamp
     delete this.model["__v"]
-    //console.log("model = " + JSON.stringify(this.model));
+    console.log("model = " + JSON.stringify(this.model));
     // if (this.model.id === undefined) {
     //   this.model.id = "NA";
     // }
@@ -136,18 +131,18 @@ export class ClaimComponent implements OnInit {
       // console.log("this is an update");
       this.mongoService.updateListing(this.model)
       .subscribe(response => {
-        //console.log(response);
+        console.log(response);
         this.toasterService.pop('success', 'Update successful');
         this.router.navigate(['/home']);
       });
     }
     else{
     //upload to mongodb
-    //console.log(this.model);
+    console.log(this.model);
    this.mongoService.saveListing(this.model)
       .subscribe(
         response => {
-          //console.log(response);
+          console.log(response);
           this.toasterService.pop('success', 'Submit successful');
           this.router.navigate(['/home']);
         })
@@ -229,21 +224,6 @@ export class ClaimComponent implements OnInit {
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
       "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now()
       , new Array<Comment>(), new Array<Vote>());
-  }
-  detectFiles(event) {
-    this.urls = [];
-    let files = event.target.files;   
-    console.log(files); 
-    if (files) {
-      for (let file of files) {        
-        let reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.urls.push(e.target.result);
-        }
-        reader.readAsDataURL(file);
-      }
-    }
-    console.log(this.urls);
   }
   ngOnInit() {
     // this.loadAllClaims();
