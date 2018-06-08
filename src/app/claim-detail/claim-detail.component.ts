@@ -382,6 +382,14 @@ export class ClaimDetailComponent implements OnInit {
       // console.log(this.alreadyDisliked);
     }
   }
+  formatURL(url: string): string{
+    if(url != undefined && (!url.startsWith("http:///") || !url.startsWith("https:///"))){
+      return "http://" + url;
+    }
+    else {
+      return url;
+    }
+  }
   // getClaimDetails(id: string) {
   //   this.bigchainService.getTransactionsById(id)
   //     .subscribe(

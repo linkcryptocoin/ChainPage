@@ -6,8 +6,10 @@
 export const environment = {
   production: false,
   HttpProvider: "http://localhost:8545",
+  web3HttpProvider: "http://172.31.39.175:8506",
   OothAPI: 'http://23.238.58.243:8091/auth/',
   MongoAPI: 'http://23.238.58.243:8080/api/',
+  SwarmProvider: 'http://23.238.58.243:5001',
   inactivitySec: 300,
   pingIntervalSec: 15
 };
