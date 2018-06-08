@@ -26,7 +26,7 @@
                     <small *ngIf="claimForm.submitted && !country.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !country.valid }" >* This is required</small>
                   </div>
                   <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
-                </div>
+                </div>                
                 <!-- <label>Photos: </label>
                 <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
                 <i ng-show="myForm.file.$error.required">*required</i>
@@ -54,6 +54,13 @@
                     <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }" >* This is required</small>
                   </div>
                 </div>
+                <!-- <div>
+                  <div>
+                    <label translate>Your Logo</label>
+                      <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                  </div>
+                  <input type="file" (change)="detectFiles($event)">
+                </div> -->
                 <label for="street" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
                 <div class="row">
                   <div class="col-sm-8">

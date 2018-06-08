@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim, User, Vote } from '../_models/index'
-import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, MongoService, SwarmService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 //import { driver} from '../../../node_modules/bigchaindb-driver';
@@ -18,6 +18,7 @@ import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 })
 export class ClaimComponent implements OnInit {
 
+  urls = new Array<string>();
   currentUser: string;
   model: any = {};
   claims: Claim[] = [];
@@ -37,7 +38,7 @@ export class ClaimComponent implements OnInit {
     private userService: UserService, private bigchaindbService: BigchanDbService,
     private globals: Globals, private mongoService: MongoService,
     private alertService: AlertService, private toasterService: ToasterService,
-    private http: Http
+    private http: Http, private swarmService: SwarmService
   ) {
     this.currentUser = sessionStorage.getItem('currentUser');
     this.model.submitBy = this.currentUser;
@@ -118,6 +119,10 @@ export class ClaimComponent implements OnInit {
       });
   }
   async onSubmit() {
+    //upload logo first
+    this.swarmService.uploadFile(this.urls[0]);
+
+
     this.submitted = true;
     // set the upload time stamp
     delete this.model["__v"]
@@ -224,6 +229,22 @@ export class ClaimComponent implements OnInit {
       "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
       "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now()
       , new Array<Comment>(), new Array<Vote>());
+  }
+  detectFiles(event) {
+    console.log(event); 
+    this.urls = [];
+    let files = event.target.files;   
+    console.log(files); 
+    if (files) {
+      for (let file of files) {        
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+    console.log(this.urls);
   }
   ngOnInit() {
     // this.loadAllClaims();
