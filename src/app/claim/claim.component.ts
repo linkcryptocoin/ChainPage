@@ -43,7 +43,7 @@ export class ClaimComponent implements OnInit {
     this.currentUser = sessionStorage.getItem('currentUser');
     this.model.submitBy = this.currentUser;
     this.route.queryParams.subscribe(params => {
-      console.log(params['id']);
+      // console.log(params['id']);
       this.claimId = params['id'];
       if (this.claimId) {
         this.getClaim(this.claimId);
@@ -63,14 +63,14 @@ export class ClaimComponent implements OnInit {
       });
   }
   MainCategoryDropDownChanged(newValue: string) {
-    console.log(newValue);
+    // console.log(newValue);
 
     this.http.get('/assets/cat.json')
       .subscribe(data => {
         this.catarr = data.json().filter((item) => item.Description == newValue);
 
              this.maincategoryid = this.catarr[0].Category;
-              console.log(this.maincategoryid);
+              // console.log(this.maincategoryid);
       });
  this.http.get('/assets/subCat.json')
       .subscribe(data => {
@@ -78,13 +78,13 @@ export class ClaimComponent implements OnInit {
 
 
 
-        console.log(this.subcategories);
+        // console.log(this.subcategories);
       });
 
   }
   onChange(newValue: string) {
     if (newValue.toLowerCase() == "usa") {
-      console.log(newValue);
+      // console.log(newValue);
       this.http.get('/assets/us_states.json')
         .subscribe(data => {
           this.states = data.json();
@@ -94,7 +94,7 @@ export class ClaimComponent implements OnInit {
         });
     }
     else if (newValue.toLowerCase() == "canada") {
-      console.log(newValue);
+      // console.log(newValue);
       this.http.get('/assets/canada_provinces.json')
         .subscribe(data => {
           this.provinces = data.json();
@@ -106,7 +106,7 @@ export class ClaimComponent implements OnInit {
   getClaim(id: string) {
     this.mongoService.GetListing(id)
       .subscribe(response => {
-        console.log(response)
+        // console.log(response)
         this.model = response.json();
         this.isUpdate = true;
         // let claimData = JSON.parse(JSON.stringify(data));
@@ -114,7 +114,7 @@ export class ClaimComponent implements OnInit {
         // if (this.model.id === "NA") {
         //   this.model.id = claimData.id;
         // }
-        console.log(this.model);
+        // console.log(this.model);
         this.onChange(this.model.country);
       });
   }
@@ -126,7 +126,7 @@ export class ClaimComponent implements OnInit {
     this.submitted = true;
     // set the upload time stamp
     delete this.model["__v"]
-    console.log("model = " + JSON.stringify(this.model));
+    // console.log("model = " + JSON.stringify(this.model));
     // if (this.model.id === undefined) {
     //   this.model.id = "NA";
     // }
@@ -136,18 +136,18 @@ export class ClaimComponent implements OnInit {
       // console.log("this is an update");
       this.mongoService.updateListing(this.model)
       .subscribe(response => {
-        console.log(response);
+        // console.log(response);
         this.toasterService.pop('success', 'Update successful');
         this.router.navigate(['/home']);
       });
     }
     else{
     //upload to mongodb
-    console.log(this.model);
+    // console.log(this.model);
    this.mongoService.saveListing(this.model)
       .subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
           this.toasterService.pop('success', 'Submit successful');
           this.router.navigate(['/home']);
         })

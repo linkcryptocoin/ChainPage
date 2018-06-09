@@ -73,7 +73,7 @@ export class ListingsComponent implements OnInit {
       //console.log(params['cat']);
       this.catParam = params['cat'];
       this.subcatPram = params['subcat'];
-      console.log(this.catParam);
+      // console.log(this.catParam);
       // load listings from BigChainDB
       // this.getAllTransactionsByAsset(this.catParam);
       // load listings from MongoDB
@@ -201,7 +201,7 @@ export class ListingsComponent implements OnInit {
       };
     }
     this.claimsPage = this.listings.slice(0, this.pageSize);
-    console.log(this.claimsPage)
+    // console.log(this.claimsPage)
   }
 
   Search(searchTxt: string) {
@@ -222,7 +222,7 @@ export class ListingsComponent implements OnInit {
             this.numofdislikes = 0;
 
             this.model[i].votes.forEach(element => {
-              console.log(element.vote);
+              // console.log(element.vote);
               // get vote counts
               if (element.vote === "like") {
                 this.numoflikes++;
@@ -253,7 +253,7 @@ export class ListingsComponent implements OnInit {
               dislikes: this.votes[j].dislikes
             };
           }
-          console.log(this.listings);
+          // console.log(this.listings);
           this.claimsPage = this.listings.slice(0, this.pageSize);
           //console.log("votes:"+JSON.stringify(this.votes));
           //console.log("listings:"+JSON.stringify(this.listings));
@@ -275,7 +275,7 @@ export class ListingsComponent implements OnInit {
               this.numofdislikes = 0;
 
               this.model[i].votes.forEach(element => {
-                console.log(element.vote);
+                // console.log(element.vote);
                 // get vote counts
                 if (element.vote === "like") {
                   this.numoflikes++;
@@ -325,8 +325,8 @@ export class ListingsComponent implements OnInit {
     }
   }
   loadData(pageNum: number) {
-    console.log("this.pageSize * (pageNum - 1)" + this.pageSize * (pageNum - 1))
-    console.log("this.pageSize * " + this.pageSize * (pageNum - 1) + this.pageSize)
+    // console.log("this.pageSize * (pageNum - 1)" + this.pageSize * (pageNum - 1))
+    // console.log("this.pageSize * " + this.pageSize * (pageNum - 1) + this.pageSize)
 
 
     this.claimsPage = this.listings.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
@@ -573,7 +573,7 @@ export class ListingsComponent implements OnInit {
     this.mongoService.incrementViewCount(id)
       .subscribe(response => {
         if (response.status == 200) {
-          console.log(response.json());
+          // console.log(response.json());
         }
         else {
           this.toasterService.pop("error", response.statusText);
