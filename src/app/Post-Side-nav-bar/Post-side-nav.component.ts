@@ -21,7 +21,7 @@ import { isNgTemplate } from '@angular/compiler';
 export class PostSideNavComponent implements OnInit {
   private subscription: ISubscription;
   categories: any[] = [];
-  subcategories: any[] = [];
+ // subcategories: any[] = [];
   returnUrl: string;
   catParam = "";
 //variable to hold boolean value to style1
@@ -38,7 +38,7 @@ isClass2Visible: false;
     //   console.log(this.currentUser.username);
     // }
     // else{console.log("side-nav: no user")}
-    this.http.get('/assets/cat.json')
+    this.http.get('/assets/postcat.json')
       .subscribe(data => {
         this.categories = data.json();
         //console.log(data);
@@ -46,7 +46,7 @@ isClass2Visible: false;
 
   }
 
-  OpenSection2(item)
+  /*OpenSection2(item)
   {
 
     // this.isClass2Visible = false;
@@ -60,15 +60,15 @@ isClass2Visible: false;
           this.subcategories = data.json().filter((item)=> item.Category == this.catParam);
         });
 
-  }
+  }*/
 
 
-OnSection2Click()
-{
+//OnSection2Click()
+//{
 
 
 
-}
+//}
   ngOnInit() {
   }
 

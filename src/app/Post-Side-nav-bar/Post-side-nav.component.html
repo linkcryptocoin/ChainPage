@@ -1,6 +1,11 @@
 
 
-<div class="sidenav">
-POst Side Nav Here
+<div class="postsidenav">
+      <div class="Section1" style="margin-left: 20px;float: left;">
+        <a *ngFor="let postcat of categories" data="postcat.Category"  [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
+       <!-- <i class="fas fa-angle-right pull-right" style="float:right;padding-top: 5px;margin-left: 10px"></i>  -->
+    </a>
+    </div>
+   
 
 </div>
