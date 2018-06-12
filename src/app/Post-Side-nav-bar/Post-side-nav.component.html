@@ -2,10 +2,32 @@
 
 <div class="postsidenav">
       <div class="Section1" style="margin-left: 20px;float: left;">
-        <a *ngFor="let postcat of categories" data="postcat.Category"  [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
-       <!-- <i class="fas fa-angle-right pull-right" style="float:right;padding-top: 5px;margin-left: 10px"></i>  -->
-    </a>
+      <!--  <a *ngFor="let postcat of categories" data="postcat.Category"  [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
+         </a>-->
+      <li>
+      <form class="search-form" onkeypress="return event.keyCode != 13;" role="search" method="GET" autocomplete="off">
+        <div class="form-group md-form mt-0 waves-light waves-effect waves-light">
+          <input type="text" class="form-control pb-1 mb-0" name="mdw_serach" placeholder="Search" id="mdw_main_search" style="height: 1.8rem;">
+        </div>
+        <div class="dropdown-wrapper"></div>
+      </form>
+    </li> 
+    <div id="slide-out" class="side-nav sn-bg-4 mdb-sidenav pull-left fixed " style="transform: translateX(0px); ">
+  <ul class="custom-scrollbar list-unstyled ps ps--theme_default ps--active-y" style="max-height:100vh;" data-ps-id="4330faa9-b9fb-a80e-7e25-24f4f6cd2349">
+    <!-- Logo -->
+
+    <li *ngFor="let postcat of categories" data="postcat.Category"    class="logo-sn waves-light  waves-effect waves-light">
+      <div class="text-center">
+        <a  data="postcat.Category" style="text-align:left;"  [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
+         </a></div>
+    </li>
+    <!--/. Logo -->
+    <!--Search Form-->
+    
+  
+  <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; height: 455px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 247px;"></div></div></ul>
+  <div class="sidenav-bg mask-strong"></div>
+</div>
     </div>
    
 
-</div>
