@@ -15,7 +15,7 @@ import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
   templateUrl: './claim.component.html',
   styleUrls: ['./claim.component.css']
 })
-export class ClaimComponent implements OnInit {
+export class PostComponent implements OnInit {
 
   urls = new Array<string>();
   currentUser: string;
