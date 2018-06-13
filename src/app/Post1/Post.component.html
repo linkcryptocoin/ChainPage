@@ -1,0 +1,164 @@
+
+<style>
+    .nopadding {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  </style>
+  <div class="container col-sm-12 col-md-12 col-lg-8">
+    <form (ngSubmit)="PostForm.form.valid && onSubmit()" #PostForm="ngForm">
+      <div class="form-group">
+
+
+          <div class="row">
+              <br>
+              <br>
+              <div class="col-xs-12">
+                  <blockquote class="blockquote bq-primary">
+                      <p class="bq-title">Submit a Post</p>
+                      <!-- <p> Description </p> -->
+                  </blockquote>
+
+              </div>
+
+          </div>
+
+
+
+              <!--  title text -->
+              <div class="md-form">
+                  <i class="fa fa-check prefix grey-text"></i>
+                  <input type="text" name="Title" #Title="ngModel"  [(ngModel)]="model.Title" class="form-control">
+                  <label for="PostTitle">Title</label>
+              </div>
+
+              <br>
+              <!-- category -->
+
+
+              <div class="md-form row">
+
+                  <i class="col-sm-2 fa fa-tag prefix grey-text"></i>
+
+
+                  <select class="col-sm-offset-2 col-xs-12" #Channel="ngModel"  [(ngModel)]="model.Category"  name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">Food</option>
+                      <option value="2">Culture</option>
+                      <option value="3">Travel</option>
+                      <option value="4">Fashion</option>
+                      <option value="5">Emotion</option>
+                      <option value="6">Parenting</option>
+                      <option value="7">Sports</option>
+                      <option value="8">Entertainment</option>
+                      <option value="9">Finance</option>
+                      <option value="10">Technologies</option>
+                      <option value="11">News</option>
+                      <option value="12">Events</option>
+                      <option value="13">Health</option>
+                      <option value="14">Real Estate</option>
+                      <option value="15">Writing</option>
+                      <option value="16">Pets</option>
+                      <option value="17">Education</option>
+                      <option value="18">History</option>
+                      <option value="19">Cryptocurrency</option>
+                      <option value="20">Politics</option>
+                      <option value="21">Military</option>
+                      <option value="22">Games</option>
+                  </select>
+                  <label style="padding-left: 15px;" for="Channel" class="active">Channel</label>
+                  <!-- color: #007bff -->
+              </div>
+
+              <br>
+
+              <!-- post  -->
+              <div class="md-form row">
+                  <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
+                  <div class=" col-sm-12" style="margin-left:40px; ">
+                      <quill-editor></quill-editor>
+                      <!-- <textarea name="body" id="Content_Editor" style="overflow: hidden;" #Body="ngModel"   [(ngModel)]="model.Body"   class=" form-control">
+</textarea> -->
+
+
+
+                  </div>
+                  <label style="padding-left: 15px;" for="editor" class="active">Your Post</label>
+
+              </div>
+              <br>
+
+              <br><br><br><br><br>
+
+
+
+              <!-- submit  cancel&-->
+              <div class="row">
+                  <div class="text-center col-md-8 col-xs-12">
+                      <button class="btn btn-outline-secondary  waves-effect" type="submit">Post
+                          <i class="fa fa-paper-plane-o ml-2"></i>
+                      </button>
+                 &nbsp; &nbsp; &nbsp;
+                      <button class="btn btn-outline-danger  waves-effect" type="submit">Cancel
+                          <i class="fa fa-ban ml-2"></i>
+                      </button>
+                  </div>
+
+                  </div>
+
+
+
+
+      </div>
+
+    </form>
+  </div>
+<!-- Initialize Quill editor -->
+<!--
+<script>
+    var Font = Quill.import('formats/font');
+    // We do not add Aref Ruqaa since it is the default
+    Font.whitelist = ['mirza', 'roboto'];
+    Quill.register(Font, true);
+    var BackgroundClass = Quill.import('attributors/class/background');
+    var ColorClass = Quill.import('attributors/class/color');
+    var SizeStyle = Quill.import('attributors/style/size');
+    Quill.register(BackgroundClass, true);
+    Quill.register(ColorClass, true);
+    Quill.register(SizeStyle, true);
+
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: [
+
+                [{
+                    'font': []
+                }, {
+                    header: [1, 2, false]
+                }],
+
+                ['bold', 'italic', 'underline'],
+                [{
+                    'color': []
+                }, {
+                    'background': []
+                }],
+                [{
+                    'direction': 'rtl'
+                }, {
+                    'align': []
+                }, {
+                    list: 'ordered'
+                }, {
+                    list: 'bullet'
+                }],
+
+                ['link', 'video', 'image', 'blockquote', 'code-block']
+            ]
+        },
+        scrollingContainer: '#editor',
+        placeholder: 'Enter Your Post Here...',
+        theme: 'snow' // or 'bubble'
+    });
+</script>
+-->

@@ -3,7 +3,7 @@ import { Vote } from './vote';
 export class Post {
     constructor(
         public Title: String,
-        public Category: String,
+        public Channel: String,
         public Body: String,
         public formType: String ,
         public postedBy: String ,

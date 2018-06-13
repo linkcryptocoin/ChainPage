@@ -3,7 +3,6 @@ import { Claim, User, Vote } from '../_models/index'
 import { UserService, AlertService, BigchanDbService, MongoService, SwarmService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
-//import { driver} from '../../../node_modules/bigchaindb-driver';
 import { TranslateService } from '@ngx-translate/core';
 import { Globals } from '../globals'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -153,59 +152,8 @@ export class ClaimComponent implements OnInit {
         })
       }
 
-    // upload to bigchain
-    // console.log(JSON.stringify(this.model));
-    // await this.bigchaindbService.createTransaction(this.model, this.globals.chainFormName)
-    //   .then(
-    //     data => {
-    //       console.log(data);
-    //       this.toasterService.pop('success', 'Submit successful');
-    //       this.router.navigate(['/home']);
-    //     },
-    //     error => {
-    //       this.toasterService.pop('error', 'Submit failed');
-    //       console.log(error);
-    //       return error;
-    //     }
-    //   );
-    //end of bighchain
-    // console.log(result);
-    // this.alertService.success('Submit successful', true);
-    // this.toasterService.pop('success', 'Submit successful');
-    // this.router.navigate(['/home']);
-
-    // this.claimService.create(this.model)
-    //   .subscribe(
-    //     data => {
-    //       this.alertService.success('Submit successful', true);
-    //       this.router.navigate(['/home']);
-    //       //this.loadAllClaims();
-    //     },
-    //     error => {
-    //       this.alertService.error(error);
-    //       //this.loading = false;
-    //     });
   }
 
-  // getClaim(id: string) {
-  //   this.bigchaindbService.getTransactionsById(id)
-  //     .subscribe(data => {
-  //       let claimData = JSON.parse(JSON.stringify(data));
-  //       this.model = claimData.asset.data;
-  //       if (this.model.id === "NA") {
-  //         this.model.id = claimData.id;
-  //       }
-  //       console.log(this.model);
-  //       this.onChange(this.model.country);
-  //     });
-  // }
-  // deleteClaim(id: number) {
-  //   this.claimService.delete(id);
-  // }
-  // editClaim(id: number) {
-  //   this.claimService.getById(id).subscribe(claim => { this.model = claim });;
-  //   //console.log(this.model);
-  // }
   approveClaim(id: number) {
     alert("approved");
   }
@@ -231,12 +179,12 @@ export class ClaimComponent implements OnInit {
       , new Array<Comment>(), new Array<Vote>());
   }
   detectFiles(event) {
-    console.log(event); 
+    console.log(event);
     this.urls = [];
-    let files = event.target.files;   
-    console.log(files); 
+    let files = event.target.files;
+    console.log(files);
     if (files) {
-      for (let file of files) {        
+      for (let file of files) {
         let reader = new FileReader();
         reader.onload = (e: any) => {
           this.urls.push(e.target.result);

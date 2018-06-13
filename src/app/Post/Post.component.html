@@ -1,4 +1,3 @@
-
 <style>
     .nopadding {
       padding: 0 !important;
@@ -6,159 +5,257 @@
     }
   </style>
   <div class="container col-sm-12 col-md-12 col-lg-8">
-    <form (ngSubmit)="PostForm.form.valid && onSubmit()" #PostForm="ngForm">
+    <form (ngSubmit)="claimForm.form.valid && onSubmit()" #claimForm="ngForm">
       <div class="form-group">
+        <div>
+          <div>
+            <h4 class="nopadding" translate>General Info</h4>
+            <div>
+              <div [ngClass]="{ 'has-error': claimForm.submitted && !country.valid }">
+                <label for="country" translate>Country</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <select (change)="countryDropDownChanged($event.target.value)" (ngModelChange)="onChange($event)" [ngClass]="{ 'show-error-border': claimForm.submitted && !country.valid }" class="form-control" id="country"
+                      required [(ngModel)]="model.country" [ngClass]="{ 'show-error-border': claimForm.submitted && !country.valid }" name="country" #country="ngModel">
+                      <option *ngFor="let c of countries" [value]="c.Country">{{c.Country}}</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="country.valid || country.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !country.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !country.valid }" >* This is required</small>
+                  </div>
+                  <!-- <input type="text" class="form-control" id="country" required [(ngModel)]="model.country" name="country" #country="ngModel"> -->
+                </div>                
+                <!-- <label>Photos: </label>
+                <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                <i ng-show="myForm.file.$error.required">*required</i>
+                <br>
+                <i ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+                <button type="button" (click)="upload()">Upload</button> -->
+                <label for="name" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Contact Person</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" [ngClass]="{ 'show-error-border': claimForm.submitted && !name.valid }" name="name" #name="ngModel">
+                  </div>
+                  <div class="col-sm-4">
+                    <!--<label style="color: red;" [hidden]="name.valid || name.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !name.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !name.valid }" >* This is required</small>
+                  </div>
+                </div>
+                <label for="businessName" [ngClass]="{ 'has-error': claimForm.submitted && !businessName.valid }" translate>Business Name</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="businessName" required [(ngModel)]="model.businessName" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessName.valid }"  name="businessName" #businessName="ngModel">
+                  </div>
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="businessName.valid || businessName.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }" >* This is required</small>
+                  </div>
+                </div>
+                <!-- <div>
+                  <div>
+                    <label translate>Your Logo</label>
+                      <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                  </div>
+                  <input type="file" (change)="detectFiles($event)">
+                </div> -->
+                <label for="street" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="street" required [(ngModel)]="model.street" [ngClass]="{ 'show-error-border': claimForm.submitted && !street.valid }" name="street" #street="ngModel">
+                  </div>
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="street.valid || street.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !street.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !street.valid }" >* This is required</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div [ngClass]="{ 'has-error': claimForm.submitted && !city.valid }">
+                      <label for="city" translate>City</label>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control" id="city" required [(ngModel)]="model.city" [ngClass]="{ 'show-error-border': claimForm.submitted && !city.valid }" name="city" #city="ngModel">
+                    </div>
+                    <div class="row col-sm-6">
+                      <!--<label style="color: red;" [hidden]="city.valid || city.pristine">*</label>-->
+                      <small *ngIf="claimForm.submitted && !city.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !city.valid }" >* This is required</small>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-1"></div> -->
+                  <div class="col-sm-6">
+                    <div [ngClass]="{ 'has-error': claimForm.submitted && !state.valid }">
+                      <label for="state" translate>State/Province</label>
+                    </div>
+                    <div>
+                      <!-- <input type="text" class="form-control" id="state" required [(ngModel)]="model.state" name="state" #state="ngModel"> -->
+                      <select class="form-control" id="state" required [(ngModel)]="model.state" [ngClass]="{ 'show-error-border': claimForm.submitted && !state.valid }" name="state" #state="ngModel">
+                        <option *ngFor="let s of state_province" [value]="s.abbreviation">{{s.abbreviation}}</option>
+                      </select>
+                    </div>
+                    <div class="row col-sm-6">
+                     <!-- <label style="color: red;" [hidden]="state.valid || state.pristine">*</label>-->
+                      <small *ngIf="claimForm.submitted && !state.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !state.valid }" >* This is required</small>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div [ngClass]="{ 'has-error': claimForm.submitted && !zip.valid }">
+                      <label for="zip" translate>Zip Code</label>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control" id="zip" required [(ngModel)]="model.zip" [ngClass]="{ 'show-error-border': claimForm.submitted && !zip.valid }" name="zip" #zip="ngModel">
+                    </div>
+                    <div >
+                     <!-- <label style="color: red;" [hidden]="zip.valid || zip.pristine">*</label>-->
+                      <small *ngIf="claimForm.submitted && !zip.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !zip.valid }" >* This is required</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div [ngClass]="{ 'has-error': claimForm.submitted && !email.valid }">
+                      <label for="email" translate>Email</label>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control" id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required [(ngModel)]="model.email" [ngClass]="{ 'show-error-border': claimForm.submitted && !email.valid }"  name="email" #email="ngModel">
+                    </div>
+                    <div class="row col-sm-6">
+                     <!-- <label style="color: red;" [hidden]="email.valid || email.pristine">*</label>-->
+                      <small *ngIf="claimForm.submitted && !email.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !email.valid }" >* This is required</small>
+                      <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" translate >* Email is invalid</small>
+
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div [ngClass]="{ 'has-error': claimForm.submitted && !phone.valid }">
+                      <label for="phone" translate>Phone</label>
+                    </div>
+                    <div>
+                      <input type="text" mask="(000)000-0000" class="form-control" id="phone" required [(ngModel)]="model.phone" [ngClass]="{ 'show-error-border': claimForm.submitted && !phone.valid }"  name="phone" #phone="ngModel">
+                    </div>
+                    <div class="">
+                     <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
+                      <small *ngIf="claimForm.submitted && !phone.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !phone.valid }" >* This is required</small>
+                     <!-- <small *ngIf="phone.errors?.pattern && phone.touched" [ngClass]="{'show-error': phone.errors?.pattern && phone.touched}" translate >* Please enter a 10 digit number</small>-->
+                    </div>
+                  </div>
+                </div>
+
+                <label for="webPage" [ngClass]="{ 'has-error': claimForm.submitted && !webPage.valid }" translate>WebPage</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="webPage" pattern="^((http|https):\/\/[w|W]+(\.[a-zA-Z0-9]+)+.*)$" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
+                  </div>
+                  <div class="row col-sm-4">
+                      <!-- <label style="color: red;" [hidden]="phone.valid || phone.pristine">*</label>-->
+                       <small *ngIf="claimForm.submitted && !webPage.dirty" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !webPage.dirty }" >* This is required</small>
 
 
-          <div class="row">
-              <br>
-              <br>
-              <div class="col-xs-12">
-                  <blockquote class="blockquote bq-primary">
-                      <p class="bq-title">Submit a Post</p>
-                      <!-- <p> Description </p> -->
-                  </blockquote>
+                      <small *ngIf="webPage.errors?.pattern && webPage.touched" [ngClass]="{'show-error': webPage.errors?.pattern && webPage.touched}" translate >* Please enter valid URL (eg.http://www.google.com)</small>
 
+
+                     
+
+                     </div>
+                </div>
               </div>
-
+            </div>
           </div>
-
-
-
-              <!--  title text -->
-              <div class="md-form">
-                  <i class="fa fa-check prefix grey-text"></i>
-                  <input type="text" name="Title" #Title="ngModel"  [(ngModel)]="model.Title" class="form-control">
-                  <label for="PostTitle">Title</label>
-              </div>
-
-              <br>
-              <!-- category -->
-
-
-              <div class="md-form row">
-
-                  <i class="col-sm-2 fa fa-tag prefix grey-text"></i>
-
-
-                  <select class="col-sm-offset-2 col-xs-12" #Category="ngModel"  [(ngModel)]="model.Category"  name="Category" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">Food</option>
-                      <option value="2">Culture</option>
-                      <option value="3">Travel</option>
-                      <option value="4">Fashion</option>
-                      <option value="5">Emotion</option>
-                      <option value="6">Parenting</option>
-                      <option value="7">Sports</option>
-                      <option value="8">Entertainment</option>
-                      <option value="9">Finance</option>
-                      <option value="10">Technologies</option>
-                      <option value="11">News</option>
-                      <option value="12">Events</option>
-                      <option value="13">Health</option>
-                      <option value="14">Real Estate</option>
-                      <option value="15">Writing</option>
-                      <option value="16">Pets</option>
-                      <option value="17">Education</option>
-                      <option value="18">History</option>
-                      <option value="19">Cryptocurrency</option>
-                      <option value="20">Politics</option>
-                      <option value="21">Military</option>
-                      <option value="22">Games</option>
-                  </select>
-                  <label style="padding-left: 15px;" for="selectcategory" class="active">Category</label>
-                  <!-- color: #007bff -->
-              </div>
-
-              <br>
-
-              <!-- post  -->
-              <div class="md-form row">
-                  <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
-                  <div class=" col-sm-12" style="margin-left:40px; ">
-                      <quill-editor></quill-editor>
-                      <!-- <textarea name="body" id="Content_Editor" style="overflow: hidden;" #Body="ngModel"   [(ngModel)]="model.Body"   class=" form-control">
-</textarea> -->
-
-
-
-                  </div>
-                  <label style="padding-left: 15px;" for="editor" class="active">Your Post</label>
-
-              </div>
-              <br>
-
-              <br><br><br><br><br>
-
-
-
-              <!-- submit  cancel&-->
+        </div>
+        <br>
+        <div>
+          <div>
+            <h4 translate>Business Info</h4>
+            <div>
+              <label for="businessMainCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
               <div class="row">
-                  <div class="text-center col-md-8 col-xs-12">
-                      <button class="btn btn-outline-secondary  waves-effect" type="submit">Post
-                          <i class="fa fa-paper-plane-o ml-2"></i>
-                      </button>
-                 &nbsp; &nbsp; &nbsp;
-                      <button class="btn btn-outline-danger  waves-effect" type="submit">Cancel
-                          <i class="fa fa-ban ml-2"></i>
-                      </button>
+                <div class="col-sm-8">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                  <select class="form-control"  id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)"  [(ngModel)]="model.businessMainCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessCategory.valid }"  name="businessMainCategory"
+                    #businessCategory="ngModel">
+                    <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
+                  <small *ngIf="claimForm.submitted && !businessCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessCategory.valid }" >* This is required</small>
+                </div>
+              </div>
+              <label for="businessSubCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
+              <div class="row">
+                <div class="col-sm-8">
+                  <!-- <input type="text" class="form-control" id="businessCategory" required [(ngModel)]="model.businessCategory" name="businessCategory"
+                    #businessCategory="ngModel"> -->
+                  <select class="form-control" id="businessSubCategory" required [(ngModel)]="model.businessSubCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessSubCategory.valid }" name="businessSubCategory"
+                    #businessSubCategory="ngModel">
+                    <option  value="" translate></option>
+                    <option *ngFor="let subcat of subcategories" [value]="subcat.Description" translate>{{subcat.Description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <!-- <label style="color: red;" [hidden]="businessCategory.valid || businessCategory.pristine">*</label>-->
+                  <small *ngIf="claimForm.submitted && !businessSubCategory.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessSubCategory.valid }" >* This is required</small>
+                </div>
+              </div>
+              <div [ngClass]="{ 'has-error': claimForm.submitted && !service.valid }">
+                <label for="service" translate>Business Description</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="service" required [(ngModel)]="model.service" [ngClass]="{ 'show-error-border': claimForm.submitted && !service.valid }" name="service" #service="ngModel">
                   </div>
-
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="service.valid || service.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !service.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !service.valid }" >* This is required</small>
                   </div>
+                </div>
+                <label for="servicingArea" [ngClass]="{ 'has-error': claimForm.submitted && !servicingArea.valid }" translate>Servicing Area</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="servicingArea" required [(ngModel)]="model.servicingArea"[ngClass]="{ 'show-error-border': claimForm.submitted && !servicingArea.valid }"  name="servicingArea"
+                      #servicingArea="ngModel">
+                  </div>
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="servicingArea.valid || servicingArea.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !servicingArea.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !servicingArea.valid }" >* This is required</small>
+                  </div>
+                </div>
+                <label for="businessHour" [ngClass]="{ 'has-error': claimForm.submitted && !businessHour.valid }" translate>Business Hour</label>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="businessHour" required [(ngModel)]="model.businessHour" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessHour.valid }" name="businessHour" #businessHour="ngModel">
+                  </div>
+                  <div class="col-sm-4">
+                   <!-- <label style="color: red;" [hidden]="businessHour.valid || businessHour.pristine">*</label>-->
+                    <small *ngIf="claimForm.submitted && !businessHour.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessHour.valid }" >* This is required</small>
+                  </div>
+                </div>
 
-
-
-
+                <!-- <label for="formType">Form Type</label> -->
+                <div class="row" *ngIf="false">
+                  <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="formType" [(ngModel)]="model.formType" name="formType" #formType="ngModel">
+                    <input type="text" readonly class="form-control" id="publishDate" [(ngModel)]="model.publishDate" name="publishDate" #publishDate="ngModel">
+                  </div>
+                  <!-- <div class="col-sm-2">
+                    <label [hidden]="formType.valid || formType.pristine">*</label>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success"  translate>{{isUpdate? 'Update': 'Submit'}}</button>
+        <!-- [disabled]="!claimForm.form.valid"  <button type="button" class="btn" (click)="test();">test</button> -->
       </div>
 
     </form>
   </div>
-<!-- Initialize Quill editor -->
-<!--
-<script>
-    var Font = Quill.import('formats/font');
-    // We do not add Aref Ruqaa since it is the default
-    Font.whitelist = ['mirza', 'roboto'];
-    Quill.register(Font, true);
-    var BackgroundClass = Quill.import('attributors/class/background');
-    var ColorClass = Quill.import('attributors/class/color');
-    var SizeStyle = Quill.import('attributors/style/size');
-    Quill.register(BackgroundClass, true);
-    Quill.register(ColorClass, true);
-    Quill.register(SizeStyle, true);
 
-    var quill = new Quill('#editor', {
-        modules: {
-            toolbar: [
 
-                [{
-                    'font': []
-                }, {
-                    header: [1, 2, false]
-                }],
-
-                ['bold', 'italic', 'underline'],
-                [{
-                    'color': []
-                }, {
-                    'background': []
-                }],
-                [{
-                    'direction': 'rtl'
-                }, {
-                    'align': []
-                }, {
-                    list: 'ordered'
-                }, {
-                    list: 'bullet'
-                }],
-
-                ['link', 'video', 'image', 'blockquote', 'code-block']
-            ]
-        },
-        scrollingContainer: '#editor',
-        placeholder: 'Enter Your Post Here...',
-        theme: 'snow' // or 'bubble'
-    });
-</script>
--->
