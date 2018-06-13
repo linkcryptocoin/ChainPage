@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Claim, User, Vote } from '../_models/index'
+import { Post, User, Vote } from '../_models/index'
 import { UserService, AlertService, BigchanDbService, MongoService, SwarmService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
@@ -11,16 +11,16 @@ import { Validators , AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Component({
   moduleId: module.id.toString(),
-  selector: 'app-claim',
-  templateUrl: './claim.component.html',
-  styleUrls: ['./claim.component.css']
+  selector: 'app-Post',
+  templateUrl: './Post.component.html',
+  styleUrls: ['./Post.component.css']
 })
 export class PostComponent implements OnInit {
 
   urls = new Array<string>();
   currentUser: string;
   model: any = {};
-  claims: Claim[] = [];
+  Posts: Post[] = [];
   submitted = false;
   categories: any[] = [];
   subcategories: any[] = [];
@@ -29,7 +29,7 @@ export class PostComponent implements OnInit {
   provinces: any[] = [];
   catarr: any[]= [];
   state_province: any[] = [];
-  claimId: string;
+  PostId: string;
   isUpdate: boolean = false;
   maincategoryid: this;
   constructor(
@@ -43,9 +43,9 @@ export class PostComponent implements OnInit {
     this.model.submitBy = this.currentUser;
     this.route.queryParams.subscribe(params => {
       // console.log(params['id']);
-      this.claimId = params['id'];
-      if (this.claimId) {
-        this.getClaim(this.claimId);
+      this.PostId = params['id'];
+      if (this.PostId) {
+        this.getPost(this.PostId);
       }
     });
     this.http.get('/assets/cat.json')
@@ -102,16 +102,16 @@ export class PostComponent implements OnInit {
         });
     }
   }
-  getClaim(id: string) {
+  getPost(id: string) {
     this.mongoService.GetListing(id)
       .subscribe(response => {
         // console.log(response)
         this.model = response.json();
         this.isUpdate = true;
-        // let claimData = JSON.parse(JSON.stringify(data));
-        // this.model = claimData.asset.data;
+        // let PostData = JSON.parse(JSON.stringify(data));
+        // this.model = PostData.asset.data;
         // if (this.model.id === "NA") {
-        //   this.model.id = claimData.id;
+        //   this.model.id = PostData.id;
         // }
         // console.log(this.model);
         this.onChange(this.model.country);
@@ -154,11 +154,11 @@ export class PostComponent implements OnInit {
 
   }
 
-  approveClaim(id: number) {
+  approvePost(id: number) {
     alert("approved");
   }
-  // private loadAllClaims() {
-  //   this.claimService.getAll().subscribe(claims => { this.claims = claims; });
+  // private loadAllPosts() {
+  //   this.PostService.getAll().subscribe(Posts => { this.Posts = Posts; });
   // }
   isAuthor(user: string): boolean {
     //console.log(this.currentUser.username == user);
@@ -172,12 +172,7 @@ export class PostComponent implements OnInit {
       this.state_province = this.states;
     }
   }
-  test() {
-    this.model = new Claim("John", "John Business", "123 abc st.", "DC", "DC", "20001",
-      "USA", "test@test.com", "123-123-1234", "http://test.com", "Baby", "DC", "9-5",
-      "1000", "Furniture.", this.globals.chainFormName, this.currentUser, Date.now()
-      , new Array<Comment>(), new Array<Vote>());
-  }
+ 
   detectFiles(event) {
     console.log(event);
     this.urls = [];
@@ -195,7 +190,7 @@ export class PostComponent implements OnInit {
     console.log(this.urls);
   }
   ngOnInit() {
-    // this.loadAllClaims();
+    // this.loadAllPosts();
   }
 
 }
