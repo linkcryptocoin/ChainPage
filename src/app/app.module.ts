@@ -34,7 +34,8 @@ import { ClaimDetailComponent } from './claim-detail/claim-detail.component';
 import { NgbModule, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+// this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { MomentModule } from 'angular2-moment';
 import { LandingComponent } from './landing/landing.component';
@@ -45,6 +46,9 @@ import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-vali
 import { Select2Module } from 'ng2-select2';
 import { QuillModule } from 'ngx-quill';
 import { InputMaskModule } from 'ng2-inputmask';
+import { TagInputModule } from 'ngx-chips';
+import {  ReactiveFormsModule } from '@angular/forms';
+
 
 const SERVICES = [
   MetaCoinService,
@@ -52,7 +56,13 @@ const SERVICES = [
 ]
 @NgModule({
   imports: [
-    BrowserModule, QuillModule,InputMaskModule,
+    BrowserModule,
+    TagInputModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+     QuillModule,
+      InputMaskModule,
     FormsModule,
     HttpClientModule,
     routing,

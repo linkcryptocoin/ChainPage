@@ -38,10 +38,10 @@
 
               <div class="md-form row">
 
-                  <i class="col-sm-2 fa fa-tag prefix grey-text"></i>
+                  <i class="col-sm-2 fa fa-certificate prefix grey-text"></i>
 
 
-                  <select class="col-sm-offset-2 col-xs-12" #Channel="ngModel"  [(ngModel)]="model.Category"  name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
+                  <select class="col-sm-offset-2 col-xs-12" #Channel="ngModel"  [(ngModel)]="model.Channel"  name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
                       <option value="" disabled selected>Choose your option</option>
                       <option value="1">Food</option>
                       <option value="2">Culture</option>
@@ -69,14 +69,14 @@
                   <label style="padding-left: 15px;" for="Channel" class="active">Channel</label>
                   <!-- color: #007bff -->
               </div>
-
               <br>
+
 
               <!-- post  -->
               <div class="md-form row">
                   <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
                   <div class=" col-sm-12" style="margin-left:40px; ">
-                      <quill-editor></quill-editor>
+                      <quill-editor [(ngModel)]="model.Narrative"   #Narrative="ngModel"  ></quill-editor>
                       <!-- <textarea name="body" id="Content_Editor" style="overflow: hidden;" #Body="ngModel"   [(ngModel)]="model.Body"   class=" form-control">
 </textarea> -->
 
@@ -88,9 +88,19 @@
               </div>
               <br>
 
-              <br><br><br><br><br>
+              <br><br>
 
-
+              <br>
+             <div class="md-form row">
+                  <i class="col-sm-2 fa fa-tags prefix grey-text"></i>
+              <tag-input [(ngModel)]="model.Tags" name="Tags" #Tags="ngModel"  [editable]="true" [separatorKeyCodes]="[32, 188]" style="margin-left:60px;"  placeholder="Enter tag(s) Here..."
+                  [modelAsStrings]="true"  >  </tag-input>
+                   <label style="padding-left: 15px;" for="Tags" class="active">Tags</label>
+                  </div>
+             <br><br><br>
+             <!-- <pre> Tags-Outcome:
+             {{model.Tags | json}}
+            </pre> -->
 
               <!-- submit  cancel&-->
               <div class="row">

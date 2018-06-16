@@ -46,29 +46,9 @@ isClass2Visible: false;
 
   }
 
-  /*OpenSection2(item)
-  {
-
-    // this.isClass2Visible = false;
-      //this.isClass2Visible = !false;
-
-      this.catParam = item;
-      console.log("----CatID Param Value---------"+this.catParam);
-
-      this.http.get('/assets/subCat.json')
-        .subscribe(data => {
-          this.subcategories = data.json().filter((item)=> item.Category == this.catParam);
-        });
-
-  }*/
+  
 
 
-//OnSection2Click()
-//{
-
-
-
-//}
   ngOnInit() {
   }
 
