@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light sticky-top navFont">
     <a class="navbar-brand" [routerLink]="['/landing']" translate>
         <img src="../../assets/LinkGear.png" style="width: 60px;">LinkGear-GegeChain(Demo)</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
-        aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -39,6 +38,7 @@
                 Hi
                 <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
                     <b>{{currentUser}} </b>
+                    <!-- <b>{{currentUserEmail}} </b> -->
                 </a>
                 <!-- <i>{{currentUserAccount}}</i> -->
                 <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>

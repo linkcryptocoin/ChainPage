@@ -46,6 +46,7 @@ export class TopNavComponent implements OnInit {
   currentUser: string = undefined;
   currentUserAccount: string = undefined;
   CurrentUserName: string = undefined;
+  currentUserEmail: string = undefined;
   selectedLanguage = "2";
   selectedFlag: string;
   language: any[] = [];
@@ -77,11 +78,11 @@ export class TopNavComponent implements OnInit {
 
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserAccount = sessionStorage.getItem("currentUserAccount");
+    this.currentUserEmail = sessionStorage.getItem("currentUserEmail");
     this.oothService.getLoggedInUserName
       .subscribe(dname => {
         this.currentUser = dname;
         console.log("this.oothService.getLoggedInName: " + this.oothService.getLoggedInName);
-
       });
     // this.oothService.getLoggedInAccount
     //   .subscribe(account => {

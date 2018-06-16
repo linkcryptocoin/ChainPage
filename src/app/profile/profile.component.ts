@@ -12,8 +12,10 @@ export class ProfileComponent implements OnInit {
   accountNumber: string;
   profilePages: string[];
   selectedPage: string;
+  accountEmail:string;
   constructor(private oothService: OothService, private route: ActivatedRoute) { 
     this.accountNumber = sessionStorage.getItem("currentUserAccount");
+    this.accountEmail = sessionStorage.getItem("currentUserEmail");
     this.route.queryParams.subscribe(params => {      
       this.userName = params["user"];
     });
