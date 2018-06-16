@@ -7,6 +7,8 @@ export class Post {
         public Body: String,
         public formType: String ,
         public postedBy: String ,
+        public Narrative: String,
+        public Tags: String ,
         public postedTime: Number ,
         public comments: Comment[],
         public votes: Vote[]
