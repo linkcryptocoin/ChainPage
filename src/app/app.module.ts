@@ -8,7 +8,7 @@ import { fakeBackendProvider } from './_helpers/index';
 import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-
+import { SidebarModule } from 'ng-sidebar';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
@@ -66,6 +66,7 @@ const SERVICES = [
     FormsModule,
     HttpClientModule,
     routing,
+    SidebarModule.forRoot(),
     HttpModule,
     TranslateModule.forRoot({
       loader: {
@@ -93,6 +94,7 @@ const SERVICES = [
     PostDetailsComponent,
     PostSideNavComponent,
     LoginComponent,
+
     RegisterComponent,
     ClaimComponent,
     ContractComponent,
