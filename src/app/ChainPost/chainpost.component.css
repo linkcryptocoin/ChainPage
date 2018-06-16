@@ -2,3 +2,29 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.SideNav_Content_Section{
+
+
+ background-color: lightgray;
+ width:200px;
+ box-shadow: 0 0 2.5em red;/* rgba(85,85,85,.5);*/
+}
+
+
+
+
+.sidenavchainpost label{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: medium;
+    color: #818181;
+    display: block;
+}
+
+.sidenavchainpost label:hover {
+    color: white;
+    background-color: #555;
+}
+
+
