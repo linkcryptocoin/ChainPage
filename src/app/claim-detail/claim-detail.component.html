@@ -3,7 +3,8 @@
   <div class="form-group">
     <div>
       <h5 translate>General Info
-        <a [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</a>
+         <button class="btn btn-primary btn-md"  [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</button>
+    
       </h5>
 
       <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
