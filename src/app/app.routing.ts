@@ -26,10 +26,10 @@ const appRoutes: Routes = [
     ] },
     {path: 'chainpost', component: ChainPostComponent, children:[
       { path: '', component: PostListingsComponent },
-      { path: 'Postlistings', component: PostListingsComponent },
-      { path: 'Postlistings:/cat', component: PostListingsComponent },
+      { path: 'Post-listings', component: PostListingsComponent },
+      { path: 'Post-listings:/cat', component: PostListingsComponent },
       { path: 'Post', component: PostComponent, canActivate: [AuthGuard] },
-      { path: 'post-detail', component: PostDetailsComponent }
+      { path: 'Post-Detail', component: PostDetailsComponent }
 
     ]},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

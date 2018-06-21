@@ -1,0 +1,90 @@
+[
+ {
+   "Category": 1000,
+   "Description": "Food"
+ },
+ {
+   "Category": 1001,
+   "Description": "Culture"
+ },
+ {
+   "Category": 1002,
+   "Description": "Travel"
+ },
+ {
+   "Category": 1003,
+   "Description": "Fashion"
+ },
+ {
+   "Category": 1004,
+   "Description": "Emotion"
+ },
+ {
+   "Category": 1005,
+   "Description": "Parenting"
+ },
+ {
+   "Category": 1006,
+   "Description": "Sports"
+ },
+ {
+   "Category": 1007,
+   "Description": "Entertainment"
+ },
+ {
+   "Category": 1008,
+   "Description": "Finance"
+ },
+ {
+   "Category": 1009,
+   "Description": "Technologies"
+ },
+ {
+   "Category": 1010,
+   "Description": "News"
+ },
+ {
+   "Category": 1011,
+   "Description": "Events"
+ },
+ {
+   "Category": 1012,
+   "Description": "Health"
+ },
+ {
+   "Category": 1013,
+   "Description": "Real Estate"
+ },
+ {
+  "Category": 1014,
+  "Description": "Writing"
+},
+ {
+  "Category": 1015,
+  "Description": "Pets"
+},
+ {
+  "Category": 1016,
+  "Description": "Education"
+},
+ {
+  "Category": 1017,
+  "Description": "History"
+},
+ {
+  "Category": 1018,
+  "Description": "Cryptocurrency"
+},
+ {
+  "Category": 1019,
+  "Description": "Politics"
+},
+ {
+  "Category": 1020,
+  "Description": "Military"
+},
+ {
+  "Category": 1021,
+  "Description": "Games"
+}
+]

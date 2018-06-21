@@ -319,7 +319,6 @@ export class ClaimComponent implements OnInit {
       "Restaurant", "Restaurant", this.globals.chainFormName, this.currentUser, Date.now()
       , new Array<Comment>(), new Array<Vote>());
   }
-
   ngOnInit() {
     // this.loadAllClaims();
   }
