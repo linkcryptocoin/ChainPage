@@ -9,7 +9,7 @@
       <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
 
       <label for="name" translate>{{model.name}} -- {{model.businessName}} ({{model.phone}})</label>
-      <br>
+      
       <label for="street">{{model.street}}</label>
       <br>
       <label for="city">{{model.city}}, {{model.state}} {{model.zip}} {{model.country}}</label>
@@ -37,6 +37,9 @@
         <label for="businessHour" translate>Business Hour</label>:
         <label for="businessHour" translate>{{model.businessHour}}</label>
       </div>
+    </div>
+    <div>
+        <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="150">
     </div>
     <br>
     <div *ngIf="!currentUser">

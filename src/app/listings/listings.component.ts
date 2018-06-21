@@ -13,6 +13,7 @@ import { filter } from 'rxjs/operators';
 import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
+import { environment } from 'environments/environment';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './listings.component.html',
@@ -104,7 +105,7 @@ export class ListingsComponent implements OnInit {
       }
       else {
         // console.log("else");
-        this.subscription = this.mongoService.GetListings()
+        this.subscription = this.mongoService.GetListings(environment.ChainpageAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
@@ -208,7 +209,7 @@ export class ListingsComponent implements OnInit {
     // console.log("Search text: " + searchTxt);
     // this.catParam = undefined;
     if (searchTxt) {
-      this.mongoService.searchListings(searchTxt)
+      this.mongoService.searchListings(searchTxt, environment.ChainpageAppId)
         .subscribe(response => {
           // console.log(response);
           this.claims = response.json();
@@ -261,7 +262,7 @@ export class ListingsComponent implements OnInit {
     }
     else {
       // console.log("else");
-      this.subscription = this.mongoService.GetListings()
+      this.subscription = this.mongoService.GetListings(environment.ChainpageAppId)
         .subscribe(response => {
           if (response.status == 200) {
             // console.log(response.json());
@@ -369,150 +370,7 @@ export class ListingsComponent implements OnInit {
   approveClaim(id: number) {
     //alert("approved");
   }
-  // private getAllTransactionsByAsset(search: string) {
-  //   //clear claims first
-  //   this.claims = [];
-  //   let data:any = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
-  //                   .take(1);
-  //   console.log(data);
-  //   this.subscription = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
-  //     .subscribe(
-  //       data => {
-  //         //let returnData = JSON.stringify(data);
-  //         // console.log(data);
-  //         (JSON.parse(JSON.stringify(data))).forEach(claim => {
-  //           let matchFound = false;
-  //           if(claim.data.id === "NA"){
-  //             claim.data.id = claim.id;
-  //           }
-  //           // console.log(claim.id);
-  //           // console.log(claim.data.id);
-  //           // search by query param
-  //           if (this.catParam != undefined) {
-  //             if (claim.data.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //               this.claims.push(claim);
-  //             }
-  //           }
-  //           else {
-  //             if (search != undefined && search != "") {
-  //               // console.log("search here");
-  //               Object.keys(claim.data).forEach(key => {
-  //                 // console.log(claim.data[key].toString().toLowerCase().includes(search));
-  //                 if (claim.data[key].toString().toLowerCase().includes(search)) {
-  //                   matchFound = true;
-  //                   return;
-  //                 }
-  //               });
-  //               if (matchFound) {
-  //                 this.claims.push(claim);
-  //               }
-  //             }
-  //             else {
-  //               // console.log("get all");
-  //               this.claims.push(claim);
-  //             }
-  //           }
-  //         });
-  //         console.log(alasql("SELECT a.data.postedTime FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]));
-  //         // debugger;
-  //         this.claims = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]);
-  //         this.totalItems = this.claims.length;
-  //         // console.log(this.totalItems);
-  //         // sort
-  //         this.claims.sort((claim1, claim2) => {
-  //           // console.log(claim1);
-  //           if (claim1.data.businessName.toLowerCase() > claim2.data.businessName.toLowerCase()) {
-  //             return 1;
-  //           }
-  //           if (claim1.data.businessName.toLowerCase() < claim2.data.businessName.toLowerCase()) {
-  //             return -1;
-  //           }
-  //           return 0;
-  //         });
-  //         this.claimsPage = this.claims.slice(0, this.pageSize);
-  //         console.log(this.claimsPage);
-  //       },
-  //       error => {
-  //         console.log(error.status);
-  //       }
-
-  //     );
-  // }
-  // private getAllTransactionsByMeta(search: string) {
-  //   //clear claims first
-  //   this.claims = [];
-  //   this.subscription = this.bigchaindbService.getAllTransactionsByMeta(this.globals.chainFormName)
-  //     .subscribe(data => {
-  //       //let returnData = JSON.stringify(data);
-  //       JSON.parse(JSON.stringify(data)).forEach(element => {
-  //         //console.log(element.id)
-  //         this.getTransactionsById(element.id, search);
-  //         //let claim = element.data;
-  //         // claim.id = element.id;
-  //         //this.claims.push(claim);
-  //       });
-  //       //this.claims == returnData.data;
-  //     });
-  //   //console.log(result)
-  // }
-  // private getTransactionsById(id: string, search: string) {
-  //   this.subscription = this.bigchaindbService.getTransactionsById(id)
-  //     .subscribe(data => {
-  //       //let returnData = JSON.stringify(data);
-  //       //console.log(data);
-  //       let claim = (JSON.parse(JSON.stringify(data))).asset.data;
-  //       claim.id = (JSON.parse(JSON.stringify(data))).id;
-  //       // console.log(search);
-  //       // debugger;
-  //       let matchFound = false;
-  //       // search by query param
-  //       if (this.catParam != undefined) {
-  //         if (claim.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //           this.claims.push(claim);
-  //         }
-  //       }
-  //       else {
-  //         if (search != undefined && search != "") {
-  //           console.log("search here");
-  //           Object.keys(claim).forEach(key => {
-  //             // console.log(claim[key].toString().toLowerCase().includes(search));
-  //             if (claim[key].toString().toLowerCase().includes(search)) {
-  //               matchFound = true;
-  //               return;
-  //             }
-  //           });
-  //           if (matchFound) {
-  //             this.claims.push(claim);
-  //           }
-  //         }
-  //         else {
-  //           // console.log("get all");
-  //           this.claims.push(claim);
-  //         }
-  //       }
-  //       this.totalItems = this.claims.length;
-  //       console.log(this.totalItems);
-  //       // sort
-  //       this.claims.sort((claim1, claim2) => {
-  //         if (claim1.businessName.toLowerCase() > claim2.businessName.toLowerCase()) {
-  //           return 1;
-  //         }
-  //         if (claim1.businessName.toLowerCase() < claim2.businessName.toLowerCase()) {
-  //           return -1;
-  //         }
-  //         return 0;
-  //       });
-  //       this.claimsPage = this.claims.slice(0, this.pageSize);
-  //       //console.log(this.claimsPage)
-  //     });
-  //   //console.log(result)
-  // }
-  // Search(searchTxt: string) {
-  //   // console.log("Search text: " + searchTxt);
-  //   this.catParam = undefined;
-  //   this.getAllTransactionsByAsset(searchTxt.toLowerCase().trim());
-  // }
-
+  
   ngOnInit() {
 
   }
@@ -531,7 +389,7 @@ export class ListingsComponent implements OnInit {
 
     console.log("----ID Param Value---------" + id);
 
-    this.subscription = this.mongoService.deleteListing(id)
+    this.subscription = this.mongoService.deleteListing(id, environment.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           this.toasterService.pop("success", "Listing deleted")
@@ -570,7 +428,7 @@ export class ListingsComponent implements OnInit {
   // }
 
   incrementViewCount(id) {
-    this.mongoService.incrementViewCount(id)
+    this.mongoService.incrementViewCount(id, environment.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response.json());

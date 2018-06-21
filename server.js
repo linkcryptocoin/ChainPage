@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 const https = require('https')
 const fs = require('fs')
-
+const ChainpageAppId = 1
+const ChainpostAppId = 2
 // The chain page url
 //var gChainPageUrl = "http://localhost:4200";
 var gChainPageUrl = "http://linkgear.net:8092";
@@ -84,6 +85,7 @@ var ListingSchema = new Schema({
     postedTime: { type: Number },
     comments: [CommentSchema],
     votes: [VoteSchema],
+    pictures: [String],
     viewCount: {type : Number}
 });
 // ListingSchema.index({name: 'text', businessName: 'text',
@@ -94,49 +96,114 @@ var ListingSchema = new Schema({
 // });
 ListingSchema.index({'$**': 'text'});
 
-var model = mongo.model('Listing', ListingSchema);
+var ChainPostSchema = new Schema({
+    Title:{ type: String },     
+    Channel: { type: String },     
+    Narrative: { type: String },     
+    formType: { type: String },    
+    Tags:[String],
+    //data example for tags: ["goods","services"]
+    postedBy: { type: String },    
+    postedTime: { type: Number },    
+    pictures: [String],     
+    viewCount: {type : Number},     
+    comments: [CommentSchema],     
+    votes: [VoteSchema],    
+    });
+ChainPostSchema.index({Tags: 'text'});
+
+var modelChainPage = mongo.model('Listing', ListingSchema);
+var modelChainPost = mongo.model('Post', ChainPostSchema);
 
 app.post("/api/saveListing", function (req, res) {
-    var mod = new model(req.body);
-    mod.save(function (err, data) {
+    //var mod = new modelChainPage(req.body);
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
+    model.save(function (err, data) {
         if (err) {
             res.send(err);
         }
         else {
-            res.send({ data: "Record has been Inserted..!!" });
+            console.log(data._id)
+            res.send(data._id);
         }
     });
 })
 
 app.post("/api/updateListing", function (req, res) {
-    var mod = new model(req.body);
+    //var mod = new model(req.body);
     // console.log(req.body._id)
-    model.update(
-        { _id: req.body._id },
-        {
-            "$set": {
-                name: req.body.name, businessName: req.body.businessName
-                , street: req.body.street, city: req.body.city, state: req.body.state
-                , zip: req.body.zip, country: req.body.country, email: req.body.email
-                , phone: req.body.phone, webPage: req.body.webPage, service: req.body.service
-                , servicingArea: req.body.servicingArea, businessHour: req.body.businessHour
-                , businessMainCategory: req.body.businessMainCategory
-                , businessSubCategory: req.body.businessSubCategory
-                , formType: req.body.formType, postedBy: req.body.postedBy
-                , postedTime: req.body.postedTime
-            }
-        }, function (err) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.send({ data: "Record has been updated..!!" });
-            }
-        });
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+        model.update(
+            { _id: req.body._id },
+            {
+                "$set": {
+                    name: req.body.name, businessName: req.body.businessName
+                    , street: req.body.street, city: req.body.city, state: req.body.state
+                    , zip: req.body.zip, country: req.body.country, email: req.body.email
+                    , phone: req.body.phone, webPage: req.body.webPage, service: req.body.service
+                    , servicingArea: req.body.servicingArea, businessHour: req.body.businessHour
+                    , businessMainCategory: req.body.businessMainCategory
+                    , businessSubCategory: req.body.businessSubCategory
+                    , formType: req.body.formType, postedBy: req.body.postedBy
+                    , postedTime: req.body.postedTime, pictures: req.body.pictures
+                }
+            }, 
+            { upsert : true },
+            function (err) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send({ data: "Record has been updated..!!" });
+                }
+            });
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+        model.update(
+            { _id: req.body._id },
+            {
+                "$set": {
+                    Title: req.body.Title
+                    , Channel: req.body.Channel
+                    , Narrative: req.body.Narrative
+                    , formType: req.body.formType                    
+                    , Tags: req.body.Tags
+                    , postedBy: req.body.postedBy
+                    , postedTime: req.body.postedTime
+                    , pictures: req.body.pictures                    
+                }
+            }, 
+            { upsert : true },
+            function (err) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send({ data: "Record has been updated..!!" });
+                }
+            });
+    }
+    
 })
 
 app.post("/api/deleteListing", function (req, res) {
     console.log("ID to be deleted: " + req.body.id)
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.remove({ _id: req.body.id }, function (err) {
         if (err) {
             res.send(err);
@@ -147,7 +214,15 @@ app.post("/api/deleteListing", function (req, res) {
     });
 })
 
-app.get("/api/getListings", function (req, res) {
+app.get("/api/getListings/:appId", function (req, res) {
+    // console.log(req.params.appId)
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.find({}, function (err, data) {
         if (err) {
             res.send(err);
@@ -180,7 +255,14 @@ app.get("/api/getListingsBySubcat/:subcat", function (req, res) {
     });
 })
 
-app.get("/api/getListing/:id", function (req, res) {
+app.get("/api/getListing/:id/:appId", function (req, res) {
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.findOne({ _id: req.params.id }, function (err, data) {
         if (err) {
             res.send(err);
@@ -190,7 +272,14 @@ app.get("/api/getListing/:id", function (req, res) {
         }
     });
 })
-app.get("/api/getViewCount/:id", function (req, res) {
+app.get("/api/getViewCount/:id/:appId", function (req, res) {
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.findOne({ _id: req.params.id }, function (err, data) {
         if (err) {
             res.send(err);
@@ -202,6 +291,13 @@ app.get("/api/getViewCount/:id", function (req, res) {
 })
 app.post("/api/incrementViewCount", function (req, res) {
     console.log("record id: " + req.body.id)
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.update(
         { _id: req.body.id},
         {
@@ -221,6 +317,13 @@ app.post("/api/incrementViewCount", function (req, res) {
 })
 app.post("/api/addComment", function (req, res) {
     console.log(req.body)
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.update(
         { _id: req.body._id },
         {
@@ -240,6 +343,13 @@ app.post("/api/addComment", function (req, res) {
 })
 
 app.post("/api/updateComment", function (req, res) {
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.update(
         { _id: req.body._id, "comments._id": req.body.comment._id },
         {
@@ -257,6 +367,13 @@ app.post("/api/updateComment", function (req, res) {
         });
 })
 app.post("/api/deleteComment", function (req, res) {
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.findOneAndUpdate(
         { "comments._id": req.body.comment._id },
         {
@@ -276,6 +393,13 @@ app.post("/api/deleteComment", function (req, res) {
 })
 app.post("/api/addVote", function (req, res) {
     console.log(req.body)
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.update(
         { _id: req.body._id },
         {
@@ -294,6 +418,13 @@ app.post("/api/addVote", function (req, res) {
         });
 })
 app.post("/api/deleteVote", function (req, res) {
+    var model;
+    if(req.body.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.body.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.findOneAndUpdate(
         { "votes._id": req.body.vote._id },
         {
@@ -312,7 +443,14 @@ app.post("/api/deleteVote", function (req, res) {
         });
 })
 
-app.get("/api/searchListings/:searchtext", function (req, res) {
+app.get("/api/searchListings/:searchtext/:appId", function (req, res) {
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.find({ $text: { $search: req.params.searchtext } },
         function (err, data) {
             if (err) {

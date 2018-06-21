@@ -13,6 +13,7 @@ import { filter } from 'rxjs/operators';
 import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
+import { environment } from 'environments/environment.prod';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './Post-listings.component.html',
@@ -95,7 +96,7 @@ export class PostListingsComponent implements OnInit {
       }
       else {
         // console.log("else");
-        this.subscription = this.mongoService.GetListings()
+        this.subscription = this.mongoService.GetListings(environment.ChainpostAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
@@ -187,7 +188,7 @@ export class PostListingsComponent implements OnInit {
     // console.log("Search text: " + searchTxt);
     // this.catParam = undefined;
     if (searchTxt) {
-      this.mongoService.searchListings(searchTxt)
+      this.mongoService.searchListings(searchTxt, environment.ChainpostAppId)
         .subscribe(response => {
           // console.log(response);
           this.claims = response.json();
@@ -240,7 +241,7 @@ export class PostListingsComponent implements OnInit {
     }
     else {
       // console.log("else");
-      this.subscription = this.mongoService.GetListings()
+      this.subscription = this.mongoService.GetListings(environment.ChainpostAppId)
         .subscribe(response => {
           if (response.status == 200) {
             // console.log(response.json());
@@ -510,7 +511,7 @@ export class PostListingsComponent implements OnInit {
 
     console.log("----ID Param Value---------" + id);
 
-    this.subscription = this.mongoService.deleteListing(id)
+    this.subscription = this.mongoService.deleteListing(id, environment.ChainpostAppId)
       .subscribe(response => {
         if (response.status == 200) {
           this.toasterService.pop("success", "Listing deleted")

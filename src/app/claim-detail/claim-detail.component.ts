@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
-import { UserService, BigchanDbService, AlertService, OothService, VoteService, MongoService } from '../_services/index';
+import { UserService, BigchanDbService, AlertService, OothService, VoteService, MongoService, SwarmService } from '../_services/index';
 import { Globals } from "../globals";
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ISubscription } from "rxjs/Subscription";
@@ -8,6 +8,7 @@ import * as alaSQLSpace from 'alasql';
 import { error } from 'util';
 import { Comment } from '../_models/comment';
 import { Http } from '@angular/http';
+import { environment } from 'environments/environment';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
@@ -39,13 +40,14 @@ export class ClaimDetailComponent implements OnInit {
   alreadyLiked: boolean = false;
   alreadyDisliked: boolean = false;
   ownVote: any;
+  urls: String[];
   private account: string;
   private userId: string;
   private tokenBalance: number;
   constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService
-    , private mongoService: MongoService) {
+    , private mongoService: MongoService, private swarmService: SwarmService) {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 5;
@@ -83,13 +85,15 @@ export class ClaimDetailComponent implements OnInit {
     this.dislikes = 0;
     this.comments = [];
     this.ownComment = "";
-    this.mongoService.GetListing(this.claimId)
+    this.mongoService.GetListing(this.claimId, environment.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
+          this.urls = this.swarmService.getFileUrls(this.model.pictures);
+          // console.log(this.urls)
           //check if current user is the author of the listing
-          console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
+          // console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
           // if author is not available, hide Edit button
           if (this.model.postedBy == null || this.model.postedBy == undefined) {
             this.isAuthor = false;
@@ -179,6 +183,7 @@ export class ClaimDetailComponent implements OnInit {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpageAppId,
             comment: {
               comment: commentText,
               postedBy: this.currentUser,
@@ -214,6 +219,7 @@ export class ClaimDetailComponent implements OnInit {
       else {
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpageAppId,
           comment: {
             _id: this.ownComment._id,
             comment: commentText,
@@ -253,6 +259,7 @@ export class ClaimDetailComponent implements OnInit {
         // console.log("already liked: " + this.alreadyLiked);
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpageAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -282,6 +289,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log("not yet liked: " + this.alreadyLiked)
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpageAppId,
             vote: {
               vote: this.reactions[0],  //like
               postedBy: this.currentUser,
@@ -321,6 +329,7 @@ export class ClaimDetailComponent implements OnInit {
         // console.log(this.alreadyDisliked);
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpageAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -349,6 +358,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log(this.alreadyDisliked);
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpageAppId,
             vote: {
               vote: this.reactions[1],  //dislike
               postedBy: this.currentUser,

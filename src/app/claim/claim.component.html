@@ -53,14 +53,7 @@
                    <!-- <label style="color: red;" [hidden]="businessName.valid || businessName.pristine">*</label>-->
                     <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }" >* This is required</small>
                   </div>
-                </div>
-                <!-- <div>
-                  <div>
-                    <label translate>Your Logo</label>
-                      <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
-                  </div>
-                  <input type="file" (change)="detectFiles($event)">
-                </div> -->
+                </div>                
                 <label for="street" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
                 <div class="row">
                   <div class="col-sm-8">
@@ -249,6 +242,21 @@
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <label for="image_uploads" translate>Choose images(<2MB) to upload (PNG, JPG)
+            <span class="btn btn-mdb-color btn-sm" translate>Browse</span>
+          </label>          
+          <input style="display: none;" type="file" id="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)" title="Choose">
+          <div *ngIf="isOversize"><small translate class="show-error" translate>* picture(s) too large</small></div>
+          <div *ngIf="isAlreadyAdded"><small translate class="show-error" translate>* picture(s) already added</small></div>
+          <div *ngIf="isOverTotal"><small translate class="show-error" translate>* you have reached the max allowable uploads</small></div>
+          <div>
+            <div class="img-wrap" *ngFor="let url of urls">
+              <span class="close" (click)="deleteFile(url)">&times;</span>
+              <img [src]="url.url" class="rounded mb-3" width="150" height="150" data-id="{{url.id}}">
+            </div>
+          </div>        
         </div>
         <br>
         <button type="submit" class="btn btn-success"  translate>{{isUpdate? 'Update': 'Submit'}}</button>

@@ -21,8 +21,8 @@ export class MongoService {
         return this.http.post(this.API + 'updateListing/', listing)
         // .map((response: Response) =>response.json())
     }
-    GetListings() {
-        return this.http.get(this.API + 'getListings/')
+    GetListings(appId) {
+        return this.http.get(this.API + 'getListings/' + appId)
         // .map((response: Response) => response.json())
     }
 
@@ -36,26 +36,32 @@ export class MongoService {
         return this.http.get(this.API + 'getListingsBySubcat/' + subcat)
         // .map((response: Response) => response.json())              
     }
-    GetListing(id) {
+    GetListing(id, appId) {
         console.log(id);
+        let params = new URLSearchParams();
+        params.append('id', id);
+        params.append('appId', appId);
         // let params = new HttpParams().set('id', id);
-        return this.http.get(this.API + 'getListing/' + id)
+        return this.http.get(this.API + 'getListing/' + id + "/" + appId)
         // .map((response: Response) => response.json())
     }
-    deleteListing(id) {
+    deleteListing(id, appId) {
       console.log('--listing id passed  for delete request:' + id);
-        return this.http.post(this.API + 'deleteListing/', {'id': id})
+        return this.http.post(this.API + 'deleteListing/', {'id': id, 'appId': appId})
         // .map((response: Response) =>response.json())
     }
-    getViewCount(id) {
+    getViewCount(id, appId) {
         console.log(id);
+        let params = new URLSearchParams();
+        params.append('id', id);
+        params.append('appId', appId);
         // let params = new HttpParams().set('id', id);
-        return this.http.get(this.API + 'getViewCount/' + id)
+        return this.http.get(this.API + 'getViewCount/', { search: params })
         // .map((response: Response) => response.json())
     }
-    incrementViewCount(id){
+    incrementViewCount(id, appId){
         console.log(id);
-        return this.http.post(this.API + 'incrementViewCount/', {'id': id})
+        return this.http.post(this.API + 'incrementViewCount/', {'id': id, 'appId': appId})
     }
     addComment(comment){
         console.log(comment);
@@ -77,8 +83,11 @@ export class MongoService {
         console.log(vote);
         return this.http.post(this.API + 'deleteVote/', vote)
     }
-    searchListings(searchText:string){
+    searchListings(searchText:string, appId){
         console.log(searchText);
-        return this.http.get(this.API + 'searchListings/' + searchText)
+        let params = new URLSearchParams();
+        params.append('searchtext', searchText);
+        params.append('appId', appId);
+        return this.http.get(this.API + 'searchListings/', { search: params })
     }
 }

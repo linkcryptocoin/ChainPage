@@ -8,6 +8,7 @@ import * as alaSQLSpace from 'alasql';
 import { error } from 'util';
 import { Comment } from '../_models/comment';
 import { Http } from '@angular/http';
+import { environment } from 'environments/environment';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-post-detail',
@@ -83,7 +84,7 @@ export class PostDetailsComponent implements OnInit {
     this.dislikes = 0;
     this.comments = [];
     this.ownComment = "";
-    this.mongoService.GetListing(this.claimId)
+    this.mongoService.GetListing(this.claimId, environment.ChainpostAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response);
@@ -164,6 +165,7 @@ export class PostDetailsComponent implements OnInit {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpostAppId,
             comment: {
               comment: commentText,
               postedBy: user.local.email,
@@ -199,6 +201,7 @@ export class PostDetailsComponent implements OnInit {
       else {
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpostAppId,
           comment: {
             _id: this.ownComment._id,
             comment: commentText,
@@ -238,6 +241,7 @@ export class PostDetailsComponent implements OnInit {
         // console.log("already liked: " + this.alreadyLiked);
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpostAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -267,6 +271,7 @@ export class PostDetailsComponent implements OnInit {
           // console.log("not yet liked: " + this.alreadyLiked)
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpostAppId,
             vote: {
               vote: this.reactions[0],  //like
               postedBy: this.currentUserEmail,
@@ -306,6 +311,7 @@ export class PostDetailsComponent implements OnInit {
         // console.log(this.alreadyDisliked);
         let data = {
           _id: this.claimId,
+          appId: environment.ChainpostAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -334,6 +340,7 @@ export class PostDetailsComponent implements OnInit {
           // console.log(this.alreadyDisliked);
           let data = {
             _id: this.claimId,
+            appId: environment.ChainpostAppId,
             vote: {
               vote: this.reactions[1],  //dislike
               postedBy: this.currentUserEmail,

@@ -9,7 +9,12 @@ export const environment = {
   web3HttpProvider: "http://34.238.58.243:8506",
   OothAPI: 'http://23.238.58.243:8091/auth/',
   MongoAPI: 'http://23.238.58.243:8080/api/',
-  SwarmProvider: 'http://23.238.58.243:5001',
+  SwarmProvider: 'http://34.238.58.243:5001/',
+  // SwarmProvider: 'http://swarm-gateways.net/',
   inactivitySec: 300,
-  pingIntervalSec: 15
+  pingIntervalSec: 15,
+  chainPageImageMaxSize: 2000000,
+  chainPageImageMaxCount: 4,
+  ChainpageAppId: 1,
+  ChainpostAppId: 2
 };

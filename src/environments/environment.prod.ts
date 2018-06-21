@@ -6,5 +6,9 @@ export const environment = {
   MongoAPI: 'http://linkcryptocoin.com:8080/api/',
   SwarmProvider: 'https://linkgear.net:5000',
   inactivitySec: 300,
-  pingIntervalSec: 15
+  pingIntervalSec: 15,
+  chainPageImageMaxSize: 2000000,
+  chainPageImageMaxCount: 4,
+  ChainpageAppId: 1,
+  ChainpostAppId: 2
 };
