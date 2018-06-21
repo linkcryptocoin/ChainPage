@@ -26,22 +26,22 @@
 
 
               <!--  title text -->
-              <div class="md-form">
+              <div class="md-form" [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
                   <i class="fa fa-check prefix grey-text"></i>
-                  <input type="text" name="Title" #Title="ngModel"  [(ngModel)]="model.Title" class="form-control">
-                  <label for="PostTitle">Title</label>
-              </div>
-
-              <br>
+                  <input  required type="text" name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate  [(ngModel)]="model.Title" class="form-control">
+                  <label for="PostTitle" translate>Title</label>
+                               </div>
+                  <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate >Title is required</small>             
+               <br>
               <!-- category -->
+              
 
-
-              <div class="md-form row">
+              <div class="md-form" style="margin-left:-15px;" [ngClass]="{ 'has-error': PostForm.submitted && !Channel.valid }">
 
                   <i class="col-sm-2 fa fa-certificate prefix grey-text"></i>
 
 
-                  <select class="col-sm-offset-2 col-xs-12" #Channel="ngModel"  [(ngModel)]="model.Channel"  name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
+                  <select required class="col-sm-offset-2 col-xs-12" #Channel="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Channel.valid }"  [(ngModel)]="model.Channel"  name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
                       <option value="" disabled selected>Choose your option</option>
                       <option value="1">Food</option>
                       <option value="2">Culture</option>
@@ -66,12 +66,12 @@
                       <option value="21">Military</option>
                       <option value="22">Games</option>
                   </select>
-                  <label style="padding-left: 15px;" for="Channel" class="active">Channel</label>
+                  <br>
+                   <small *ngIf="PostForm.submitted && !Channel.valid" style="display:inherit;margin-left: 60px;" [ngClass]="{ 'show-error': PostForm.submitted && !Channel.valid }" translate >Channel is required</small>
+                  <label style="padding-left: 15px;" for="Channel" class="active" translate>Channel</label>
                   <!-- color: #007bff -->
               </div>
               <br>
-
-
               <!-- post  -->
               <div class="md-form row">
                   <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
@@ -83,7 +83,7 @@
 
 
                   </div>
-                  <label style="padding-left: 15px;" for="editor" class="active">Your Post</label>
+                  <label style="padding-left: 15px;" for="editor" class="active" translate>Your Post</label>
 
               </div>
               <br>
@@ -95,7 +95,7 @@
                   <i class="col-sm-2 fa fa-tags prefix grey-text"></i>
               <tag-input [(ngModel)]="model.Tags" name="Tags" #Tags="ngModel"  [editable]="true" [separatorKeyCodes]="[32, 188]" style="margin-left:60px;"  placeholder="Enter tag(s) Here..."
                   [modelAsStrings]="true"  >  </tag-input>
-                   <label style="padding-left: 15px;" for="Tags" class="active">Tags</label>
+                   <label style="padding-left: 15px;" for="Tags" class="active" translate>Tags</label>
                   </div>
              <br><br><br>
              <!-- <pre> Tags-Outcome:
@@ -105,11 +105,11 @@
               <!-- submit  cancel&-->
               <div class="row">
                   <div class="text-center col-md-8 col-xs-12">
-                      <button class="btn btn-outline-secondary  waves-effect" type="submit">Post
+                      <button class="btn btn-outline-secondary  waves-effect" type="submit" translate>Post
                           <i class="fa fa-paper-plane-o ml-2"></i>
                       </button>
                  &nbsp; &nbsp; &nbsp;
-                      <button class="btn btn-outline-danger  waves-effect" type="submit">Cancel
+                      <button class="btn btn-outline-danger  waves-effect" type="submit" translate>Cancel
                           <i class="fa fa-ban ml-2"></i>
                       </button>
                   </div>
