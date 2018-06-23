@@ -31,10 +31,10 @@
                   <input  required type="text" name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate  [(ngModel)]="model.Title" class="form-control">
                   <label for="PostTitle" translate>Title</label>
                                </div>
-                  <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate >Title is required</small>             
+                  <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate >Title is required</small>
                <br>
               <!-- category -->
-              
+
 
               <div class="md-form" style="margin-left:-15px;" [ngClass]="{ 'has-error': PostForm.submitted && !Channel.valid }">
 
@@ -76,7 +76,7 @@
               <div class="md-form row">
                   <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
                   <div class=" col-sm-12" style="margin-left:40px; ">
-                      <quill-editor [(ngModel)]="model.Narrative"   #Narrative="ngModel"  ></quill-editor>
+                      <quill-editor [(ngModel)]="model.Narrative" name="ngModel"   #Narrative="ngModel"  ></quill-editor>
                       <!-- <textarea name="body" id="Content_Editor" style="overflow: hidden;" #Body="ngModel"   [(ngModel)]="model.Body"   class=" form-control">
 </textarea> -->
 

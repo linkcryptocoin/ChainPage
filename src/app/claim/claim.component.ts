@@ -114,7 +114,7 @@ export class ClaimComponent implements OnInit {
   getClaim(id: string) {
     this.mongoService.GetListing(id, environment.ChainpageAppId)
       .subscribe(response => {
-        // console.log(response)
+        console.log(response)
         this.model = response.json();
         let id = -1;
         this.swarmService.getFileUrls(this.model.pictures)
@@ -136,7 +136,7 @@ export class ClaimComponent implements OnInit {
   }
 
   detectFiles(event) {
-    // this.urls = [];    
+    // this.urls = [];
     // this.files = [];
     this.isOversize = false;
     this.isOverTotal = false;
@@ -156,7 +156,7 @@ export class ClaimComponent implements OnInit {
           this.isOversize = true;
           continue;
         }
-        else {          
+        else {
           let id: number;
           //if no files are selected yet, just insert the files to array
           if (this.files === undefined || this.files.length === 0) {
@@ -206,7 +206,7 @@ export class ClaimComponent implements OnInit {
     }
     return false;
   }
-  deleteFile(url) {    
+  deleteFile(url) {
     // console.log(url)
     //remove from urls (remove from display)
     this.urls = this.urls.filter(ele => ele.id !== url.id);

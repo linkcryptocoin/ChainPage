@@ -22,14 +22,14 @@ import { ISubscription } from 'rxjs/Subscription';
 export class ChainPostComponent implements OnInit {
  private _opened: boolean = false;
  categories: any[] = [];
- 
+
  private _toggleSidebar() {
-     console.log("shout out from toggle bar");
+    // console.log("shout out from toggle bar");
     this._opened = !this._opened;
   }
 
   private CloseSidebar(){
-       console.log("shout out from cloooooose toggle bar");
+     //  console.log("shout out from cloooooose toggle bar");
       this._opened = this._opened;
 
   }
@@ -47,9 +47,9 @@ export class ChainPostComponent implements OnInit {
         //console.log(data);
       });
 
-        
+
     }
-    
-    
+
+
     ngOnInit() { }
 }

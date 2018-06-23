@@ -18,7 +18,7 @@ var httpsRun = false;
 var prearg = "";
 process.argv.forEach(function (val, index, array) {
    //console.log(`prearg = ${prearg}, val = ${val}`);
-   if (/^(-{1,2}port)$/.test(prearg) && !isNaN(val)) 
+   if (/^(-{1,2}port)$/.test(prearg) && !isNaN(val))
       gPort = parseInt(val);
    else if (/^(-{1,2}chainpageurl)$/.test(prearg) && val)
       gChainPageUrl = val;
@@ -91,24 +91,24 @@ var ListingSchema = new Schema({
 // ListingSchema.index({name: 'text', businessName: 'text',
 // street: 'text', city: 'text', state: 'text', zip: 'text',
 // country: 'text', email: 'text', service: 'text', servicingArea: 'text',
-// businessMainCategory: 'text', businessSubCategory: 'text', 
+// businessMainCategory: 'text', businessSubCategory: 'text',
 // service: 'text', servicingArea: 'text'
 // });
 ListingSchema.index({'$**': 'text'});
 
 var ChainPostSchema = new Schema({
-    Title:{ type: String },     
-    Channel: { type: String },     
-    Narrative: { type: String },     
-    formType: { type: String },    
+    Title:{ type: String },
+    Channel: { type: String },
+    Narrative: { type: String },
+    formType: { type: String },
     Tags:[String],
     //data example for tags: ["goods","services"]
-    postedBy: { type: String },    
-    postedTime: { type: Number },    
-    pictures: [String],     
-    viewCount: {type : Number},     
-    comments: [CommentSchema],     
-    votes: [VoteSchema],    
+    postedBy: { type: String },
+    postedTime: { type: Number },
+    pictures: [String],
+    viewCount: {type : Number},
+    comments: [CommentSchema],
+    votes: [VoteSchema],
     });
 ChainPostSchema.index({Tags: 'text'});
 
@@ -120,10 +120,12 @@ app.post("/api/saveListing", function (req, res) {
     var model;
     if(req.body.appId == ChainpageAppId){
         model = modelChainPage;
-    }
+        }
     else if(req.body.appId == ChainpostAppId){
         model = modelChainPost;
-    }
+        console.log("====model====:"+model);
+     }
+
     model.save(function (err, data) {
         if (err) {
             res.send(err);
@@ -155,7 +157,7 @@ app.post("/api/updateListing", function (req, res) {
                     , formType: req.body.formType, postedBy: req.body.postedBy
                     , postedTime: req.body.postedTime, pictures: req.body.pictures
                 }
-            }, 
+            },
             { upsert : true },
             function (err) {
                 if (err) {
@@ -175,13 +177,13 @@ app.post("/api/updateListing", function (req, res) {
                     Title: req.body.Title
                     , Channel: req.body.Channel
                     , Narrative: req.body.Narrative
-                    , formType: req.body.formType                    
+                    , formType: req.body.formType
                     , Tags: req.body.Tags
                     , postedBy: req.body.postedBy
                     , postedTime: req.body.postedTime
-                    , pictures: req.body.pictures                    
+                    , pictures: req.body.pictures
                 }
-            }, 
+            },
             { upsert : true },
             function (err) {
                 if (err) {
@@ -192,7 +194,7 @@ app.post("/api/updateListing", function (req, res) {
                 }
             });
     }
-    
+
 })
 
 app.post("/api/deleteListing", function (req, res) {
@@ -476,4 +478,4 @@ else {
     app.listen(gPort, function () {
         console.log(`dbServer app listening on port ${gPort}.`)
     })
-}  
+}
