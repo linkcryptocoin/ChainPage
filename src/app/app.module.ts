@@ -48,7 +48,7 @@ import { QuillModule } from 'ngx-quill';
 import { InputMaskModule } from 'ng2-inputmask';
 import { TagInputModule } from 'ngx-chips';
 import {  ReactiveFormsModule } from '@angular/forms';
-
+import { LightboxModule } from 'ngx-lightbox';
 
 const SERVICES = [
   MetaCoinService,
@@ -82,7 +82,8 @@ const SERVICES = [
     NgxQRCodeModule,
     NgIdleKeepaliveModule.forRoot(),
     I18nCountrySelectModule.forRoot(),
-    Select2Module
+    Select2Module,
+    LightboxModule 
   ],
   declarations: [
     AppComponent,

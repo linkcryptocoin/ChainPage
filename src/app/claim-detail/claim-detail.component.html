@@ -39,8 +39,13 @@
         <label for="businessHour" translate>{{model.businessHour}}</label>
       </div>
     </div>
-    <div>
+    <!-- <div>
         <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="150">
+    </div> -->
+    <div class="row">
+      <div class="col-sm-4 col-md-3" *ngFor="let image of albums; let i=index">
+        <img style="cursor: pointer;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
+      </div>
     </div>
     <br>
     <div *ngIf="!currentUser">

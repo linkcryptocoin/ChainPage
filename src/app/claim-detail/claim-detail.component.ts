@@ -4,11 +4,12 @@ import { UserService, BigchanDbService, AlertService, OothService, VoteService, 
 import { Globals } from "../globals";
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ISubscription } from "rxjs/Subscription";
-import * as alaSQLSpace from 'alasql';
-import { error } from 'util';
-import { Comment } from '../_models/comment';
+// import * as alaSQLSpace from 'alasql';
+// import { error } from 'util';
+// import { Comment } from '../_models/comment';
 import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
+import { Lightbox } from 'ngx-lightbox';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
@@ -40,14 +41,13 @@ export class ClaimDetailComponent implements OnInit {
   alreadyLiked: boolean = false;
   alreadyDisliked: boolean = false;
   ownVote: any;
-  urls: String[];
+  private albums: any[] = [];
   private account: string;
   private userId: string;
   private tokenBalance: number;
   constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
-    private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
-    private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService
-    , private mongoService: MongoService, private swarmService: SwarmService) {
+    private lightbox: Lightbox, private toasterService: ToasterService,
+    private router: Router, private mongoService: MongoService, private swarmService: SwarmService) {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 5;
@@ -78,6 +78,10 @@ export class ClaimDetailComponent implements OnInit {
       this.getDetails();
     });
   }
+  open(index: number): void {
+    // open lightbox
+    this.lightbox.open(this.albums, index);
+  }
   private getDetails() {
     // console.log(this.claimId)
     //reset counts
@@ -90,7 +94,19 @@ export class ClaimDetailComponent implements OnInit {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
-          this.urls = this.swarmService.getFileUrls(this.model.pictures);
+          this.swarmService.getFileUrls(this.model.pictures)
+          .forEach(img => {
+            const src = img;
+            //const caption = 'Image caption here';
+            const thumb = img;
+            const album = {
+              src: src,
+              //caption: caption,
+              thumb: thumb
+            };
+
+            this.albums.push(album);
+          });
           // console.log(this.urls)
           //check if current user is the author of the listing
           // console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)

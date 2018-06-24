@@ -22,12 +22,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
+        "styles.css",        
         "../node_modules/mdbootstrap/css/bootstrap.min.css",
-        "../node_modules/mdbootstrap/css/mdb.min.css"
-
-
-
+        "../node_modules/mdbootstrap/css/mdb.min.css",
+        "../node_modules/ngx-lightbox/lightbox.css"
       ],
       "scripts": [
         "../node_modules/alasql/dist/alasql.min.js",
