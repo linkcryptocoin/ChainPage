@@ -119,10 +119,10 @@ app.post("/api/saveListing", function (req, res) {
     //var mod = new modelChainPage(req.body);
     var model;
     if(req.body.appId == ChainpageAppId){
-        model = modelChainPage;
+        model = new modelChainPage(req.body);
         }
     else if(req.body.appId == ChainpostAppId){
-        model = modelChainPost;
+        model = new modelChainPost(req.body);
         console.log("====model====:"+model);
      }
 

@@ -84,7 +84,7 @@ export class PostComponent implements OnInit {
               let id: String = JSON.parse(JSON.stringify(response))._body;
               id = id.replace(/"/g, "");
               this.toasterService.pop('success', 'Posted successful');
-              this.router.navigate(['/home/Post-Detail'], { queryParams: { id: id } });
+              this.router.navigate(['/chainpost/Post-detail'], { queryParams: { id: id } });
             }
             else {
               this.toasterService.pop("error", "fail to submit Post");

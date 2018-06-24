@@ -29,7 +29,7 @@ const appRoutes: Routes = [
       { path: 'Post-listings', component: PostListingsComponent },
       { path: 'Post-listings:/cat', component: PostListingsComponent },
       { path: 'Post', component: PostComponent, canActivate: [AuthGuard] },
-      { path: 'Post-Detail', component: PostDetailsComponent }
+      { path: 'Post-detail', component: PostDetailsComponent }
 
     ]},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
