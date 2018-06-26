@@ -26,24 +26,24 @@
   </div>
   <div class="col-12 row">
     <ul class="col-sm-12 col-md-8">
-      <li class="changecolor hoverable" *ngFor="let claim of claimsPage">
+      <li class="changecolor hoverable" *ngFor="let Posts of PostsPage">
         <h5>
-          <a [routerLink]="['/chainpost/Post-detail']" [queryParams]="{id: claim._id}">
+          <a [routerLink]="['/chainpost/Post-detail']" [queryParams]="{id: Posts._id}">
             <b>
-             <i class="fa fa-check-circle grey-text"></i> PostTitle | translate
+             <i class="fa fa-check-circle grey-text"></i> {{Posts.Title }} | translate
             </b>
           </a>
 
           <!-- <a  (click)="Remove_Listing(claim._id)"> <i class="fa fa-trash pull-right" style="float: right; color: red" aria-hidden="true"></i></a> -->
         </h5>
-        <strong><i class="col-sm-2 fa fa-tag grey-text">  Category</i> </strong> : {{claim.service}}
-
+        <strong><i class="col-sm-2 fa fa-tag grey-text">  Channel</i> </strong> : {{Posts.Channel}} &nbsp;&nbsp;&nbsp;
+        <strong><i class="col-sm-2 fa fa-tag grey-text">  PostedBy</i> </strong> : {{Posts.postedBy}}
         <div style="margin-top: 1px;margin-left: 1px;">
           <i class="far fa-thumbs-up fa-lg  grey-text col-3">
-            <i style="font-size: medium;">{{claim.likes}} likes</i>
+            <i style="font-size: medium;">{{Posts.likes}} likes</i>
           </i>
           <i class="far fa-thumbs-down  grey-text fa-lg col-3">
-            <i style="font-size: medium;">{{claim.dislikes}} dislikes</i>
+            <i style="font-size: medium;">{{Posts.dislikes}} dislikes</i>
           </i>
         </div>
         <!-- <br> {{claim.data.street}}

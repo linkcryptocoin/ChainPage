@@ -1,22 +1,24 @@
-<div class="container col-md-12">
+<div class="container col-md-offset-1 col-md-11" >
     <!-- <form #claimForm="ngForm"> -->
     <div class="form-group">
       <div>
-        <h5 translate>General Info
-          <a [hidden]="!isAuthor" translate [routerLink]="['/home/claim']" [queryParams]="{id: claimId}">Edit</a>
-        </h5>
+        <h5 translate>Post Details:
+             <button class="btn btn-outline-danger  waves-effect" style="float:right;" [hidden]="!isAuthor" translate [routerLink]="['/chainpost']" [queryParams]="{id: PostId}">Delete</button>
+             <button class="btn btn-outline-secondary  waves-effect" style="float:right;" [hidden]="!isAuthor" translate [routerLink]="['/chainpost/Post']" [queryParams]="{id: PostId}">Edit</button>
+            </h5>
 
         <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
 
-        <label for="name" translate>{{model.Title}}</label>
+        <label for="Title" translate><strong>Title: </strong>{{model.Title}}</label>
         <br>
-        <label for="street">{{model.Channel}}</label>
+        <label for="Channel"><strong>Channel: </strong>{{model.Channel}}</label>
         <br>
-        <label for="city">{{model.Narrative}}</label>
+        <label for="Narrative"><strong>Narrative: </strong> <div [innerHtml]='model.Narrative'></div></label>
+
         <br>
-        <label for="email">{{model.email}}</label>
-        <br>
-        <a [href]="formatURL(model.webPage)" target="_blank">{{model.webPage}}</a>
+        <label for="Tags"><strong>Tags: </strong>{{model.Tags}}</label>
+       <!-- <br>
+        <a [href]="formatURL(model.webPage)" target="_blank">{{model.webPage}}</a> -->
       </div>
       <br>
       <div *ngIf="!currentUser">

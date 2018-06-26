@@ -21,7 +21,7 @@ export class PostDetailsComponent implements OnInit {
   private reactions: string[] = ['like', 'dislike']
   currentUser: string = undefined;
   currentUserEmail: string = undefined;
-  claimId: string;
+  PostId: string;
   country: string;
   category: string;
   model: any = {};
@@ -70,28 +70,28 @@ export class PostDetailsComponent implements OnInit {
     //get query param
     this.route.queryParams.subscribe(params => {
       // console.log(params['id']);
-      this.claimId = params['id'];
+      this.PostId = params['id'];
       // this.country = params['cid'];
       // this.category = params['catid'];
-      // this.getClaimDetails(this.claimId);
+      // this.getClaimDetails(this.PostId);
       this.getDetails();
     });
   }
   private getDetails() {
-    // console.log(this.claimId)
+    // console.log(this.PostId)
     //reset counts
     this.likes = 0;
     this.dislikes = 0;
     this.comments = [];
     this.ownComment = "";
-    this.mongoService.GetListing(this.claimId, environment.ChainpostAppId)
+    this.mongoService.GetListing(this.PostId, environment.ChainpostAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
           //check if current user is the author of the listing
           console.log("current user: " + this.currentUserEmail + " author: " + this.model.postedBy)
-          if(this.currentUserEmail == this.model.postedBy){
+          if(this.currentUser == this.model.postedBy){
             this.isAuthor = true;
           }
           //retrieve comments
@@ -152,7 +152,7 @@ export class PostDetailsComponent implements OnInit {
     console.log(this.commentsPage);
   }
   async onSubmit(commentText: string) {
-    // console.log("onSubmit: " + this.claimId)
+    // console.log("onSubmit: " + this.PostId)
     if (sessionStorage.getItem("oothtoken") != undefined && sessionStorage.getItem("oothtoken").toString().trim() != "") {
       // console.log(this.oothService.getUser());
       // console.log("calling onSubmit()");
@@ -164,7 +164,7 @@ export class PostDetailsComponent implements OnInit {
       if (!this.ownComment) {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
           let data = {
-            _id: this.claimId,
+            _id: this.PostId,
             appId: environment.ChainpostAppId,
             comment: {
               comment: commentText,
@@ -200,7 +200,7 @@ export class PostDetailsComponent implements OnInit {
       // update comment
       else {
         let data = {
-          _id: this.claimId,
+          _id: this.PostId,
           appId: environment.ChainpostAppId,
           comment: {
             _id: this.ownComment._id,
@@ -240,7 +240,7 @@ export class PostDetailsComponent implements OnInit {
       if (this.alreadyLiked) {
         // console.log("already liked: " + this.alreadyLiked);
         let data = {
-          _id: this.claimId,
+          _id: this.PostId,
           appId: environment.ChainpostAppId,
           vote: {
             _id: this.ownVote._id
@@ -270,7 +270,7 @@ export class PostDetailsComponent implements OnInit {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageUpVote) {
           // console.log("not yet liked: " + this.alreadyLiked)
           let data = {
-            _id: this.claimId,
+            _id: this.PostId,
             appId: environment.ChainpostAppId,
             vote: {
               vote: this.reactions[0],  //like
@@ -310,7 +310,7 @@ export class PostDetailsComponent implements OnInit {
       if (this.alreadyDisliked) {
         // console.log(this.alreadyDisliked);
         let data = {
-          _id: this.claimId,
+          _id: this.PostId,
           appId: environment.ChainpostAppId,
           vote: {
             _id: this.ownVote._id
@@ -339,7 +339,7 @@ export class PostDetailsComponent implements OnInit {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageDownVote) {
           // console.log(this.alreadyDisliked);
           let data = {
-            _id: this.claimId,
+            _id: this.PostId,
             appId: environment.ChainpostAppId,
             vote: {
               vote: this.reactions[1],  //dislike

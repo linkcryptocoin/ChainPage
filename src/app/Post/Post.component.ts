@@ -25,12 +25,9 @@ export class PostComponent implements OnInit {
   model: any = {};
   Posts: Post[] = [];
   submitted = false;
-  categories: any[] = [];
+  channels: any[] = [];
   validatingForm: FormGroup;
-
-
-  catarr: any[]= [];
-  PostId: string;
+  postId: string;
   isUpdate: boolean = false;
   maincategoryid: this;
   constructor(
@@ -46,15 +43,22 @@ export class PostComponent implements OnInit {
       'Title': [null, Validators.minLength(3)],
   });
 
-    this.currentUser = sessionStorage.getItem('currentUser');
-   // this.model.submitBy = this.currentUser;
-
-    this.http.get('/assets/cat.json')
+  this.http.get('/assets/postcat.json')
       .subscribe(data => {
-        this.categories = data.json();
+        this.channels = data.json();
         //console.log(data);
-
       });
+
+    this.currentUser = sessionStorage.getItem('currentUser');
+    this.model.submitBy = this.currentUser;
+    this.route.queryParams.subscribe(params => {
+      // console.log(params['id']);
+      this.postId = params['id'];
+      if (this.postId) {
+        this.getPost(this.postId);
+      }
+    });
+
 
   }
 
@@ -73,8 +77,22 @@ export class PostComponent implements OnInit {
     this.model.postedBy = this.currentUser;
     this.model.postedTime = Date.now();
     console.log("model = " + JSON.stringify(this.model));
+    if (this.isUpdate == true) {
+      // console.log(this.model);
+      this.model.appId = environment.ChainpostAppId;
+      this.mongoService.updateListing(this.model)
+        .subscribe(response => {
+          // console.log(response);
+          this.toasterService.pop('success', 'Update successful');
+          this.router.navigate(['/chainpost/Post-detail'], { queryParams: { id: this.postId } });
+        },
+          err => {
+            this.toasterService.pop("error", "fail to update listing");
+          }
+        );
+    }
+    else {
 
-     // console.log(this.model);
       this.model.appId = environment.ChainpostAppId;
       this.mongoService.saveListing(this.model)
         .subscribe(
@@ -95,7 +113,23 @@ export class PostComponent implements OnInit {
           }
         );
 
+    }
+     // console.log(this.model);
+
+
   }
+
+
+  getPost(id: string){
+    this.mongoService.GetListing(id, environment.ChainpostAppId)
+    .subscribe(response => {
+      console.log(response)
+      this.model = response.json();
+
+      this.isUpdate = true;
+    });
+  }
+
   isAuthor(user: string): boolean {
     //console.log(this.currentUser.username == user);
     return this.currentUser == user;
