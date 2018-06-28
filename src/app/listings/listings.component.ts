@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
+import { UserService, AlertService, SwarmService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { User, Claim } from '../_models/index';
@@ -14,6 +14,7 @@ import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
 import { environment } from 'environments/environment';
+import { isNullOrUndefined } from 'util';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './listings.component.html',
@@ -24,7 +25,7 @@ export class ListingsComponent implements OnInit {
   private subscription: ISubscription;
   currentUser: User;
   model: any = {};
-
+  imgUrl: String;
   votes: any[] = [];
   claims: any[] = [];
   submitted = false;
@@ -45,7 +46,7 @@ export class ListingsComponent implements OnInit {
   numoflikes: number = 0;
   numofdislikes: number = 0;
   constructor(
-    private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
+    private route: ActivatedRoute, private swarmService: SwarmService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
     private userService: UserService, private toasterService: ToasterService,
     private alertService: AlertService,
@@ -189,8 +190,10 @@ export class ListingsComponent implements OnInit {
     }
     this.listings = [];
     for (var j = 0; j < this.claims.length; j++) {
-      //console.log(thi);
+      console.log(this.claims[j].pictures[0]);
       this.listings[j] = {
+        imgUrl: isNullOrUndefined(this.claims[j].pictures[0]) || this.claims[j].pictures[0] == "" ?
+                  "" : this.swarmService.getFileUrls(new Array(this.claims[j].pictures[0])),
         _id: this.claims[j]._id,
         businessMainCategory: this.claims[j].businessMainCategory,
         businessName: this.claims[j].businessName,
