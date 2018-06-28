@@ -26,7 +26,7 @@ export class PostListingsComponent implements OnInit {
   model: any = {};
 
   votes: any[] = [];
-  claims: any[] = [];
+  Posts: any[] = [];
   submitted = false;
   categories: any[] = [];
   countries: any[] = [];
@@ -38,7 +38,7 @@ export class PostListingsComponent implements OnInit {
   previousPage: any;
   pageSize: number;
   maxSize: number;
-  claimsPage: any[] = [];
+  PostsPage: any[] = [];
   listings: any[] = [];
   likes: number = 0;
   dislikes: number = 0;
@@ -120,35 +120,15 @@ export class PostListingsComponent implements OnInit {
     });
     return likeCount;
   }
-  private getBusinessName(name?: string): any {
-    return (name != null && name != undefined) ? name : "ZZZZZ";
-  }
-  private showListings(response: Response) {
-    this.claims = response.json();
 
-    this.claims.sort((obj1, obj2) => {
-      if (this.getLikeCount(obj2) < this.getLikeCount(obj1)) {
-        return -1;
-      }
-      else if (this.getLikeCount(obj2) > this.getLikeCount(obj1)) {
-        return 1;
-      }
-      else {
-        if (this.getBusinessName(obj1.businessName) < this.getBusinessName(obj2.businessName)) {
-          return -1;
-        }
-        else if (this.getBusinessName(obj1.businessName) > this.getBusinessName(obj2.businessName)) {
-          return 1;
-        }
-        else {
-          return 0;
-        }
-      }
-    });
+  private showListings(response: Response) {
+    this.Posts = response.json();
+
+
     // console.log(this.claims[1].businessName + " = " + this.getLikeCount(this.claims[1]))
-    this.totalItems = this.claims.length;
-    this.model = this.claims;
-    // console.log( JSON.stringify(this.model));
+    this.totalItems = this.Posts.length;
+    this.model = this.Posts;
+     console.log( JSON.stringify(this.model));
     for (var i = 0; i < this.model.length; i++) {
       this.numoflikes = 0;
       this.numofdislikes = 0;
@@ -169,19 +149,19 @@ export class PostListingsComponent implements OnInit {
       };
     }
     this.listings = [];
-    for (var j = 0; j < this.claims.length; j++) {
-      //console.log(thi);
+    for (var j = 0; j < this.Posts.length; j++) {
+      //console.log(this.Posts.length);
       this.listings[j] = {
-        _id: this.claims[j]._id,
-        businessMainCategory: this.claims[j].businessMainCategory,
-        businessName: this.claims[j].businessName,
-        service: this.claims[j].service,
-        phone: this.claims[j].phone,
-        likes: this.votes[j].likes,
-        dislikes: this.votes[j].dislikes
+        _id: this.Posts[j]._id,
+        Title: this.Posts[j].Title,
+  Channel: this.Posts[j].Channel,
+  postedBy: this.Posts[j].postedBy,
+  likes: this.votes[j].likes,
+  dislikes: this.votes[j].dislikes
       };
     }
-    this.claimsPage = this.listings.slice(0, this.pageSize);
+    this.PostsPage = this.listings.slice(0, this.pageSize);
+    console.log("PostPage : " + this.listings);
   }
 
   Search(searchTxt: string) {
@@ -191,10 +171,10 @@ export class PostListingsComponent implements OnInit {
       this.mongoService.searchListings(searchTxt, environment.ChainpostAppId)
         .subscribe(response => {
           // console.log(response);
-          this.claims = response.json();
-          this.totalItems = this.claims.length;
-          // console.log(this.claims)
-          this.model = this.claims;
+          this.Posts = response.json();
+          this.totalItems = this.Posts.length;
+          // console.log(this.Posts)
+          this.model = this.Posts;
           // console.log( JSON.stringify(this.model));
 
           for (var i = 0; i < this.model.length; i++) {
@@ -218,23 +198,22 @@ export class PostListingsComponent implements OnInit {
             };
           }
 
-          //  console.log("claims length: " + this.claims.length)
+          //  console.log("Posts length: " + this.Posts.length)
           this.listings = [];
           //  console.log(this.listings);
-          for (var j = 0; j < this.claims.length; j++) {
+          for (var j = 0; j < this.Posts.length; j++) {
             //console.log(thi);
             this.listings[j] = {
-              _id: this.claims[j]._id,
-              businessMainCategory: this.claims[j].businessMainCategory,
-              businessName: this.claims[j].businessName,
-              service: this.claims[j].service,
-              phone: this.claims[j].phone,
-              likes: this.votes[j].likes,
-              dislikes: this.votes[j].dislikes
+              _id: this.Posts[j]._id,
+              Title: this.Posts[j].Title,
+        Channel: this.Posts[j].Channel,
+        postedBy: this.Posts[j].postedBy,
+        likes: this.votes[j].likes,
+        dislikes: this.votes[j].dislikes
             };
           }
           console.log(this.listings);
-          this.claimsPage = this.listings.slice(0, this.pageSize);
+          this.PostsPage = this.listings.slice(0, this.pageSize);
           //console.log("votes:"+JSON.stringify(this.votes));
           //console.log("listings:"+JSON.stringify(this.listings));
         })
@@ -245,9 +224,9 @@ export class PostListingsComponent implements OnInit {
         .subscribe(response => {
           if (response.status == 200) {
             // console.log(response.json());
-            this.claims = response.json();
-            this.totalItems = this.claims.length;
-            this.model = this.claims;
+            this.Posts = response.json();
+            this.totalItems = this.Posts.length;
+            this.model = this.Posts;
             // console.log( JSON.stringify(this.model));
 
             for (var i = 0; i < this.model.length; i++) {
@@ -272,19 +251,18 @@ export class PostListingsComponent implements OnInit {
             }
 
             this.listings = [];
-            for (var j = 0; j < this.claims.length; j++) {
+            for (var j = 0; j < this.Posts.length; j++) {
               //console.log(thi);
               this.listings[j] = {
-                _id: this.claims[j]._id,
-                businessMainCategory: this.claims[j].businessMainCategory,
-                businessName: this.claims[j].businessName,
-                service: this.claims[j].service,
-                phone: this.claims[j].phone,
-                likes: this.votes[j].likes,
-                dislikes: this.votes[j].dislikes
+                _id: this.Posts[j]._id,
+                Title: this.Posts[j].Title,
+          Channel: this.Posts[j].Channel,
+          postedBy: this.Posts[j].postedBy,
+          likes: this.votes[j].likes,
+          dislikes: this.votes[j].dislikes
               };
             }
-            this.claimsPage = this.listings.slice(0, this.pageSize);
+            this.PostsPage = this.listings.slice(0, this.pageSize);
             //console.log("votes:"+JSON.stringify(this.votes));
             //console.log("listings:"+JSON.stringify(this.listings));
           }
@@ -309,7 +287,7 @@ export class PostListingsComponent implements OnInit {
     console.log("this.pageSize * " + this.pageSize * (pageNum - 1) + this.pageSize)
 
 
-    this.claimsPage = this.listings.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
+    this.PostsPage = this.listings.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
 
 
   }
@@ -350,8 +328,8 @@ export class PostListingsComponent implements OnInit {
     //alert("approved");
   }
   // private getAllTransactionsByAsset(search: string) {
-  //   //clear claims first
-  //   this.claims = [];
+  //   //clear Posts first
+  //   this.Posts = [];
   //   let data:any = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
   //                   .take(1);
   //   console.log(data);
@@ -370,7 +348,7 @@ export class PostListingsComponent implements OnInit {
   //           // search by query param
   //           if (this.catParam != undefined) {
   //             if (claim.data.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //               this.claims.push(claim);
+  //               this.Posts.push(claim);
   //             }
   //           }
   //           else {
@@ -384,22 +362,22 @@ export class PostListingsComponent implements OnInit {
   //                 }
   //               });
   //               if (matchFound) {
-  //                 this.claims.push(claim);
+  //                 this.Posts.push(claim);
   //               }
   //             }
   //             else {
   //               // console.log("get all");
-  //               this.claims.push(claim);
+  //               this.Posts.push(claim);
   //             }
   //           }
   //         });
-  //         console.log(alasql("SELECT a.data.postedTime FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]));
+  //         console.log(alasql("SELECT a.data.postedTime FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.Posts, this.Posts]));
   //         // debugger;
-  //         this.claims = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.claims, this.claims]);
-  //         this.totalItems = this.claims.length;
+  //         this.Posts = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.Posts, this.Posts]);
+  //         this.totalItems = this.Posts.length;
   //         // console.log(this.totalItems);
   //         // sort
-  //         this.claims.sort((claim1, claim2) => {
+  //         this.Posts.sort((claim1, claim2) => {
   //           // console.log(claim1);
   //           if (claim1.data.businessName.toLowerCase() > claim2.data.businessName.toLowerCase()) {
   //             return 1;
@@ -409,8 +387,8 @@ export class PostListingsComponent implements OnInit {
   //           }
   //           return 0;
   //         });
-  //         this.claimsPage = this.claims.slice(0, this.pageSize);
-  //         console.log(this.claimsPage);
+  //         this.PostsPage = this.Posts.slice(0, this.pageSize);
+  //         console.log(this.PostsPage);
   //       },
   //       error => {
   //         console.log(error.status);
@@ -419,8 +397,8 @@ export class PostListingsComponent implements OnInit {
   //     );
   // }
   // private getAllTransactionsByMeta(search: string) {
-  //   //clear claims first
-  //   this.claims = [];
+  //   //clear Posts first
+  //   this.Posts = [];
   //   this.subscription = this.bigchaindbService.getAllTransactionsByMeta(this.globals.chainFormName)
   //     .subscribe(data => {
   //       //let returnData = JSON.stringify(data);
@@ -429,9 +407,9 @@ export class PostListingsComponent implements OnInit {
   //         this.getTransactionsById(element.id, search);
   //         //let claim = element.data;
   //         // claim.id = element.id;
-  //         //this.claims.push(claim);
+  //         //this.Posts.push(claim);
   //       });
-  //       //this.claims == returnData.data;
+  //       //this.Posts == returnData.data;
   //     });
   //   //console.log(result)
   // }
@@ -448,7 +426,7 @@ export class PostListingsComponent implements OnInit {
   //       // search by query param
   //       if (this.catParam != undefined) {
   //         if (claim.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //           this.claims.push(claim);
+  //           this.Posts.push(claim);
   //         }
   //       }
   //       else {
@@ -462,18 +440,18 @@ export class PostListingsComponent implements OnInit {
   //             }
   //           });
   //           if (matchFound) {
-  //             this.claims.push(claim);
+  //             this.Posts.push(claim);
   //           }
   //         }
   //         else {
   //           // console.log("get all");
-  //           this.claims.push(claim);
+  //           this.Posts.push(claim);
   //         }
   //       }
-  //       this.totalItems = this.claims.length;
+  //       this.totalItems = this.Posts.length;
   //       console.log(this.totalItems);
   //       // sort
-  //       this.claims.sort((claim1, claim2) => {
+  //       this.Posts.sort((claim1, claim2) => {
   //         if (claim1.businessName.toLowerCase() > claim2.businessName.toLowerCase()) {
   //           return 1;
   //         }
@@ -482,8 +460,8 @@ export class PostListingsComponent implements OnInit {
   //         }
   //         return 0;
   //       });
-  //       this.claimsPage = this.claims.slice(0, this.pageSize);
-  //       //console.log(this.claimsPage)
+  //       this.PostsPage = this.Posts.slice(0, this.pageSize);
+  //       //console.log(this.PostsPage)
   //     });
   //   //console.log(result)
   // }

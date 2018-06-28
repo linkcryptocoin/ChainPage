@@ -20,6 +20,8 @@ import { environment } from 'environments/environment.prod';
   templateUrl: './claim.component.html',
   styleUrls: ['./claim.component.css']
 })
+
+
 export class ClaimComponent implements OnInit {
   isOversize: boolean = false;
   isOverTotal: boolean = false;
