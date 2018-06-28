@@ -16,26 +16,26 @@ export class SwarmService {
 
     // public bzz: any;
     constructor(private http: Http, private toasterService: ToasterService, ) {
-        // console.log("in swarm constructor");
-        if (typeof this.web3 !== 'undefined') {
-            // console.log("existing provider at " + this.web3.currentProvider)
-            this.web3 = new Web3(this.web3.currentProvider);
-        } else {
-            // set the provider you want from Web3.providers
-            // console.log("connection to web3 at " + environment.web3HttpProvider)
-            this.web3 = new Web3(new Web3.providers.HttpProvider(environment.web3HttpProvider));
-        }
-        if (this.web3.isConnected()) {
-            // console.log(`web3.version: ${this.web3.version.api}`);
-            // console.log(this.web3.bzz);
-            // this.web3.bzz.setProvider(environment.SwarmProvider);
-            // this.web3.bzz.upload('Hello World', 'plain/text', function (err, ret) {
-            //     if (err) {
-            //         console.log(err);
-            //     }
-            //     console.log(ret)
-            //   })
-        }
+        // // console.log("in swarm constructor");
+        // if (typeof this.web3 !== 'undefined') {
+        //     // console.log("existing provider at " + this.web3.currentProvider)
+        //     this.web3 = new Web3(this.web3.currentProvider);
+        // } else {
+        //     // set the provider you want from Web3.providers
+        //     // console.log("connection to web3 at " + environment.web3HttpProvider)
+        //     this.web3 = new Web3(new Web3.providers.HttpProvider(environment.web3HttpProvider));
+        // }
+        // if (this.web3.isConnected()) {
+        //     // console.log(`web3.version: ${this.web3.version.api}`);
+        //     // console.log(this.web3.bzz);
+        //     // this.web3.bzz.setProvider(environment.SwarmProvider);
+        //     // this.web3.bzz.upload('Hello World', 'plain/text', function (err, ret) {
+        //     //     if (err) {
+        //     //         console.log(err);
+        //     //     }
+        //     //     console.log(ret)
+        //     //   })
+        // }
     }
     getFileUrls(hashes: String[]): String[] {
         let urls = [];

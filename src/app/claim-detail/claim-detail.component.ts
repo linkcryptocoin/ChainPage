@@ -4,12 +4,14 @@ import { UserService, BigchanDbService, AlertService, OothService, VoteService, 
 import { Globals } from "../globals";
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { ISubscription } from "rxjs/Subscription";
+import { FormControl } from '@angular/forms';
 // import * as alaSQLSpace from 'alasql';
 // import { error } from 'util';
 // import { Comment } from '../_models/comment';
 import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 import { Lightbox } from 'ngx-lightbox';
+import { NguCarousel, NguCarouselStore } from '@ngu/carousel';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
@@ -17,6 +19,14 @@ import { Lightbox } from 'ngx-lightbox';
   styleUrls: ['./claim-detail.component.css']
 })
 export class ClaimDetailComponent implements OnInit {
+  public carouselBanner : NguCarousel;
+  public carouselTileOneItems: Array<any> = [];
+  imgags: string[];
+  storeCarouselData: NguCarouselStore;
+  stateCtrl: FormControl;
+  states: { name: string; img: string }[];
+
+
   private subscription: ISubscription;
   private isAuthor: boolean = false;
   private reactions: string[] = ['like', 'dislike']
@@ -675,6 +685,45 @@ export class ClaimDetailComponent implements OnInit {
     // this.subscription.unsubscribe();
   }
   ngOnInit() {
+    this.carouselBanner  = {
+      grid: { xs: 2, sm: 3, md: 4, lg: 4, all: 0 },
+      speed: 600,
+      slide: 1,
+      point: {
+        visible: true
+      },
+      load: 2,
+      // loop: true,
+      touch: true,
+      easing: 'ease',
+      animation: 'lazy'
+    }
+    this.carouselTileOneLoad();
   }
-
+  public carouselTileOneLoad() {
+    const len = this.carouselTileOneItems.length;
+    if (len <= 30) {
+      for (let i = len; i < len + 15; i++) {
+        // this.carouselTileOneItems.push(
+        //   this.imgags[Math.floor(Math.random() * this.imgags.length)]
+        // );
+        this.carouselTileOneItems = this.albums;
+      }
+      console.log('adf');
+    }
+  }
+  onMoveData(data) {
+    // console.log(data);
+  }
+  getCarouselData(ent) {
+    this.storeCarouselData = ent;
+  }
+  public myfunc(event: Event) {
+    // carouselLoad will trigger this funnction when your load value reaches
+    // it is helps to load the data by parts to increase the performance of the app
+    // must use feature to all carousel
+ }
+ onmoveFn(data: NguCarouselStore) {
+  console.log(data);
+}
 }
