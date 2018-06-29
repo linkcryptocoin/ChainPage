@@ -85,7 +85,7 @@ export class ChainPostComponent implements OnInit {
 
 
       //console.log("channel_cats : "+ this.Channel_cats);
-      this.subscription = this.mongoService.GetListings(environment.ChainpostAppId)
+      this.subscription = this.mongoService.GetListings(this.globals.ChainpostAppId)
       .subscribe(response => {
         if (response.status == 200) {
           console.log(response.json());

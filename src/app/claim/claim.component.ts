@@ -114,7 +114,7 @@ export class ClaimComponent implements OnInit {
     }
   }
   getClaim(id: string) {
-    this.mongoService.GetListing(id, environment.ChainpageAppId)
+    this.mongoService.GetListing(id, this.globals.ChainpageAppId)
       .subscribe(response => {
         console.log(response)
         this.model = response.json();
@@ -253,7 +253,7 @@ export class ClaimComponent implements OnInit {
     // console.log(this.model)
     if (this.isUpdate == true) {
       // console.log(this.model);
-      this.model.appId = environment.ChainpageAppId;
+      this.model.appId = this.globals.ChainpageAppId;
       this.mongoService.updateListing(this.model)
         .subscribe(response => {
           // console.log(response);
@@ -268,7 +268,7 @@ export class ClaimComponent implements OnInit {
     else {
       //upload to mongodb
       // console.log(this.model);
-      this.model.appId = environment.ChainpageAppId;
+      this.model.appId = this.globals.ChainpageAppId;
       this.mongoService.saveListing(this.model)
         .subscribe(
           response => {

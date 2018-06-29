@@ -79,7 +79,7 @@ export class PostComponent implements OnInit {
     console.log("model = " + JSON.stringify(this.model));
     if (this.isUpdate == true) {
       // console.log(this.model);
-      this.model.appId = environment.ChainpostAppId;
+      this.model.appId = this.globals.ChainpostAppId;
       this.mongoService.updateListing(this.model)
         .subscribe(response => {
           // console.log(response);
@@ -93,7 +93,7 @@ export class PostComponent implements OnInit {
     }
     else {
 
-      this.model.appId = environment.ChainpostAppId;
+      this.model.appId = this.globals.ChainpostAppId;
       this.mongoService.saveListing(this.model)
         .subscribe(
           response => {
@@ -121,7 +121,7 @@ export class PostComponent implements OnInit {
 
 
   getPost(id: string){
-    this.mongoService.GetListing(id, environment.ChainpostAppId)
+    this.mongoService.GetListing(id, this.globals.ChainpostAppId)
     .subscribe(response => {
       console.log(response)
       this.model = response.json();

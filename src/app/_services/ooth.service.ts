@@ -242,24 +242,43 @@ export class OothService {
         // alert(`${body.message} ${body.result}`) 
         return body.result;
     }
-
+    async onUserAction(app, action) {
+        console.log(`app: ${app} action: ${action}`)
+         const user = await this.getUser()
+         const userId = user._id;
+         const res = await fetch(this.API_PATH + 'local/t-userAction', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({
+                   userId,
+                   app,
+                   action,
+             }),
+             credentials: 'include',
+         })
+         console.log(res)
+         const body = await res.json()
+         console.log(`${body.message} ${body.result}`) 
+     }
     // deduct token from current account
-    async deductToken(account: string, amount: number) {
-        const res = await fetch(this.API_PATH + 'local/t-deductRewards', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userId: account,
-                token: amount
-            }),
-            credentials: 'include',
-        });
-        const body = await res.json();
-        console.log("body: " + JSON.stringify(body))
-        let balance = Math.round(parseFloat(body.result) * 100) / 100;
-        this.getAccountBalance.emit(balance);
-        return body;
-    }
+    // async deductToken(account: string, amount: number) {
+    //     const res = await fetch(this.API_PATH + 'local/t-deductRewards', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             userId: account,
+    //             token: amount
+    //         }),
+    //         credentials: 'include',
+    //     });
+    //     const body = await res.json();
+    //     console.log("body: " + JSON.stringify(body))
+    //     let balance = Math.round(parseFloat(body.result) * 100) / 100;
+    //     this.getAccountBalance.emit(balance);
+    //     return body;
+    // }
 }

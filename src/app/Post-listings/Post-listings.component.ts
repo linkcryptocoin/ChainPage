@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService, AlertService, BigchanDbService, MongoService } from '../_services/index';
+import { OothService, MongoService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { User, Claim } from '../_models/index';
@@ -45,13 +45,14 @@ export class PostListingsComponent implements OnInit {
   numoflikes: number = 0;
   numofdislikes: number = 0;
   constructor(
-    private route: ActivatedRoute, private bigchaindbService: BigchanDbService,
+    private route: ActivatedRoute, private oothService: OothService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
-    private userService: UserService, private toasterService: ToasterService,
-    private alertService: AlertService,
-    private http: Http//, private voteService: VoteService
+    private toasterService: ToasterService
   ) {
 
+    //reward user for visiting post page
+    this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.login);
+    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;
@@ -96,7 +97,7 @@ export class PostListingsComponent implements OnInit {
       }
       else {
         // console.log("else");
-        this.subscription = this.mongoService.GetListings(environment.ChainpostAppId)
+        this.subscription = this.mongoService.GetListings(this.globals.ChainpostAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
@@ -168,7 +169,7 @@ export class PostListingsComponent implements OnInit {
     // console.log("Search text: " + searchTxt);
     // this.catParam = undefined;
     if (searchTxt) {
-      this.mongoService.searchListings(searchTxt, environment.ChainpostAppId)
+      this.mongoService.searchListings(searchTxt, this.globals.ChainpostAppId)
         .subscribe(response => {
           // console.log(response);
           this.Posts = response.json();
@@ -220,7 +221,7 @@ export class PostListingsComponent implements OnInit {
     }
     else {
       // console.log("else");
-      this.subscription = this.mongoService.GetListings(environment.ChainpostAppId)
+      this.subscription = this.mongoService.GetListings(this.globals.ChainpostAppId)
         .subscribe(response => {
           if (response.status == 200) {
             // console.log(response.json());
@@ -327,150 +328,6 @@ export class PostListingsComponent implements OnInit {
   approveClaim(id: number) {
     //alert("approved");
   }
-  // private getAllTransactionsByAsset(search: string) {
-  //   //clear Posts first
-  //   this.Posts = [];
-  //   let data:any = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
-  //                   .take(1);
-  //   console.log(data);
-  //   this.subscription = this.bigchaindbService.getAllTransactionsByAsset(this.globals.chainFormName)
-  //     .subscribe(
-  //       data => {
-  //         //let returnData = JSON.stringify(data);
-  //         // console.log(data);
-  //         (JSON.parse(JSON.stringify(data))).forEach(claim => {
-  //           let matchFound = false;
-  //           if(claim.data.id === "NA"){
-  //             claim.data.id = claim.id;
-  //           }
-  //           // console.log(claim.id);
-  //           // console.log(claim.data.id);
-  //           // search by query param
-  //           if (this.catParam != undefined) {
-  //             if (claim.data.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //               this.Posts.push(claim);
-  //             }
-  //           }
-  //           else {
-  //             if (search != undefined && search != "") {
-  //               // console.log("search here");
-  //               Object.keys(claim.data).forEach(key => {
-  //                 // console.log(claim.data[key].toString().toLowerCase().includes(search));
-  //                 if (claim.data[key].toString().toLowerCase().includes(search)) {
-  //                   matchFound = true;
-  //                   return;
-  //                 }
-  //               });
-  //               if (matchFound) {
-  //                 this.Posts.push(claim);
-  //               }
-  //             }
-  //             else {
-  //               // console.log("get all");
-  //               this.Posts.push(claim);
-  //             }
-  //           }
-  //         });
-  //         console.log(alasql("SELECT a.data.postedTime FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.Posts, this.Posts]));
-  //         // debugger;
-  //         this.Posts = alasql("SELECT a.* FROM ? AS a LEFT JOIN ? AS b ON a.data.id = b.data.id AND a.data.postedTime < b.data.postedTime Where b.data.id IS null", [this.Posts, this.Posts]);
-  //         this.totalItems = this.Posts.length;
-  //         // console.log(this.totalItems);
-  //         // sort
-  //         this.Posts.sort((claim1, claim2) => {
-  //           // console.log(claim1);
-  //           if (claim1.data.businessName.toLowerCase() > claim2.data.businessName.toLowerCase()) {
-  //             return 1;
-  //           }
-  //           if (claim1.data.businessName.toLowerCase() < claim2.data.businessName.toLowerCase()) {
-  //             return -1;
-  //           }
-  //           return 0;
-  //         });
-  //         this.PostsPage = this.Posts.slice(0, this.pageSize);
-  //         console.log(this.PostsPage);
-  //       },
-  //       error => {
-  //         console.log(error.status);
-  //       }
-
-  //     );
-  // }
-  // private getAllTransactionsByMeta(search: string) {
-  //   //clear Posts first
-  //   this.Posts = [];
-  //   this.subscription = this.bigchaindbService.getAllTransactionsByMeta(this.globals.chainFormName)
-  //     .subscribe(data => {
-  //       //let returnData = JSON.stringify(data);
-  //       JSON.parse(JSON.stringify(data)).forEach(element => {
-  //         //console.log(element.id)
-  //         this.getTransactionsById(element.id, search);
-  //         //let claim = element.data;
-  //         // claim.id = element.id;
-  //         //this.Posts.push(claim);
-  //       });
-  //       //this.Posts == returnData.data;
-  //     });
-  //   //console.log(result)
-  // }
-  // private getTransactionsById(id: string, search: string) {
-  //   this.subscription = this.bigchaindbService.getTransactionsById(id)
-  //     .subscribe(data => {
-  //       //let returnData = JSON.stringify(data);
-  //       //console.log(data);
-  //       let claim = (JSON.parse(JSON.stringify(data))).asset.data;
-  //       claim.id = (JSON.parse(JSON.stringify(data))).id;
-  //       // console.log(search);
-  //       // debugger;
-  //       let matchFound = false;
-  //       // search by query param
-  //       if (this.catParam != undefined) {
-  //         if (claim.businessCategory.toLowerCase() == this.catParam.toLowerCase()) {
-  //           this.Posts.push(claim);
-  //         }
-  //       }
-  //       else {
-  //         if (search != undefined && search != "") {
-  //           console.log("search here");
-  //           Object.keys(claim).forEach(key => {
-  //             // console.log(claim[key].toString().toLowerCase().includes(search));
-  //             if (claim[key].toString().toLowerCase().includes(search)) {
-  //               matchFound = true;
-  //               return;
-  //             }
-  //           });
-  //           if (matchFound) {
-  //             this.Posts.push(claim);
-  //           }
-  //         }
-  //         else {
-  //           // console.log("get all");
-  //           this.Posts.push(claim);
-  //         }
-  //       }
-  //       this.totalItems = this.Posts.length;
-  //       console.log(this.totalItems);
-  //       // sort
-  //       this.Posts.sort((claim1, claim2) => {
-  //         if (claim1.businessName.toLowerCase() > claim2.businessName.toLowerCase()) {
-  //           return 1;
-  //         }
-  //         if (claim1.businessName.toLowerCase() < claim2.businessName.toLowerCase()) {
-  //           return -1;
-  //         }
-  //         return 0;
-  //       });
-  //       this.PostsPage = this.Posts.slice(0, this.pageSize);
-  //       //console.log(this.PostsPage)
-  //     });
-  //   //console.log(result)
-  // }
-  // Search(searchTxt: string) {
-  //   // console.log("Search text: " + searchTxt);
-  //   this.catParam = undefined;
-  //   this.getAllTransactionsByAsset(searchTxt.toLowerCase().trim());
-  // }
-
   ngOnInit() {
 
   }
@@ -489,7 +346,7 @@ export class PostListingsComponent implements OnInit {
 
     console.log("----ID Param Value---------" + id);
 
-    this.subscription = this.mongoService.deleteListing(id, environment.ChainpostAppId)
+    this.subscription = this.mongoService.deleteListing(id, this.globals.ChainpostAppId)
       .subscribe(response => {
         if (response.status == 200) {
           this.toasterService.pop("success", "Listing deleted")

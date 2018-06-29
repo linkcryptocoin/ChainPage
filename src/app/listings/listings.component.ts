@@ -106,7 +106,7 @@ export class ListingsComponent implements OnInit {
       }
       else {
         // console.log("else");
-        this.subscription = this.mongoService.GetListings(environment.ChainpageAppId)
+        this.subscription = this.mongoService.GetListings(this.globals.ChainpageAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
@@ -212,7 +212,7 @@ export class ListingsComponent implements OnInit {
     // console.log("Search text: " + searchTxt);
     // this.catParam = undefined;
     if (searchTxt) {
-      this.mongoService.searchListings(searchTxt, environment.ChainpageAppId)
+      this.mongoService.searchListings(searchTxt, this.globals.ChainpageAppId)
         .subscribe(response => {
           // console.log(response);
           this.claims = response.json();
@@ -265,7 +265,7 @@ export class ListingsComponent implements OnInit {
     }
     else {
       // console.log("else");
-      this.subscription = this.mongoService.GetListings(environment.ChainpageAppId)
+      this.subscription = this.mongoService.GetListings(this.globals.ChainpageAppId)
         .subscribe(response => {
           if (response.status == 200) {
             // console.log(response.json());
@@ -392,7 +392,7 @@ export class ListingsComponent implements OnInit {
 
     console.log("----ID Param Value---------" + id);
 
-    this.subscription = this.mongoService.deleteListing(id, environment.ChainpageAppId)
+    this.subscription = this.mongoService.deleteListing(id, this.globals.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           this.toasterService.pop("success", "Listing deleted")
@@ -431,7 +431,7 @@ export class ListingsComponent implements OnInit {
   // }
 
   incrementViewCount(id) {
-    this.mongoService.incrementViewCount(id, environment.ChainpageAppId)
+    this.mongoService.incrementViewCount(id, this.globals.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response.json());

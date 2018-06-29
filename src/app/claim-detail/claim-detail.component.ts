@@ -99,7 +99,7 @@ export class ClaimDetailComponent implements OnInit {
     this.dislikes = 0;
     this.comments = [];
     this.ownComment = "";
-    this.mongoService.GetListing(this.claimId, environment.ChainpageAppId)
+    this.mongoService.GetListing(this.claimId, this.globals.ChainpageAppId)
       .subscribe(response => {
         if (response.status == 200) {
           // console.log(response);
@@ -209,7 +209,7 @@ export class ClaimDetailComponent implements OnInit {
         if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
           let data = {
             _id: this.claimId,
-            appId: environment.ChainpageAppId,
+            appId: this.globals.ChainpageAppId,
             comment: {
               comment: commentText,
               postedBy: this.currentUser,
@@ -226,7 +226,8 @@ export class ClaimDetailComponent implements OnInit {
                 //deduct token
                 if (!this.ownComment) {
                   console.log("deduct new comment token from " + sessionStorage.getItem("currentUserId"));
-                  this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
+                  // this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
+                  this.oothService.onUserAction(this.globals.ChainpageAppId, this.globals.action.comment);
                 }
                 //reload comments
                 this.getDetails();
@@ -245,7 +246,7 @@ export class ClaimDetailComponent implements OnInit {
       else {
         let data = {
           _id: this.claimId,
-          appId: environment.ChainpageAppId,
+          appId: this.globals.ChainpageAppId,
           comment: {
             _id: this.ownComment._id,
             comment: commentText,
@@ -285,7 +286,7 @@ export class ClaimDetailComponent implements OnInit {
         // console.log("already liked: " + this.alreadyLiked);
         let data = {
           _id: this.claimId,
-          appId: environment.ChainpageAppId,
+          appId: this.globals.ChainpageAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -315,7 +316,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log("not yet liked: " + this.alreadyLiked)
           let data = {
             _id: this.claimId,
-            appId: environment.ChainpageAppId,
+            appId: this.globals.ChainpageAppId,
             vote: {
               vote: this.reactions[0],  //like
               postedBy: this.currentUser,
@@ -330,7 +331,8 @@ export class ClaimDetailComponent implements OnInit {
                 // this.likes++;
                 console.log("user id: " + sessionStorage.getItem("currentUserId"));
                 //deduct token
-                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageUpVote);
+                this.oothService.onUserAction(this.globals.ChainpageAppId, this.globals.action.like)
+                //this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageUpVote);
                 //reload votes
                 this.getDetails();
                 this.alreadyLiked = !this.alreadyLiked;
@@ -355,7 +357,7 @@ export class ClaimDetailComponent implements OnInit {
         // console.log(this.alreadyDisliked);
         let data = {
           _id: this.claimId,
-          appId: environment.ChainpageAppId,
+          appId: this.globals.ChainpageAppId,
           vote: {
             _id: this.ownVote._id
           }
@@ -384,7 +386,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log(this.alreadyDisliked);
           let data = {
             _id: this.claimId,
-            appId: environment.ChainpageAppId,
+            appId: this.globals.ChainpageAppId,
             vote: {
               vote: this.reactions[1],  //dislike
               postedBy: this.currentUser,
@@ -399,7 +401,8 @@ export class ClaimDetailComponent implements OnInit {
                 // this.likes++;
                 // console.log("account: " + this.account);
                 //deduct token
-                this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageDownVote);
+                this.oothService.onUserAction(this.globals.ChainpageAppId, this.globals.action.dislike);
+                //this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageDownVote);
                 //reload votes
                 this.getDetails();
                 this.alreadyDisliked = !this.alreadyDisliked;
