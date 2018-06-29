@@ -19,8 +19,9 @@
             <!--  title text -->
             <div class="md-form" [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
                 <i class="fa fa-check prefix grey-text"></i>
-                <label for="PostTitle" class="active" translate>Title</label>
-                <input required type="text" placeholder="{{'Enter Post Title' | translate}}" name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate [(ngModel)]="model.Title" class="form-control">
+                <label for="PostTitle" class=" active " translate>Title</label>
+                <input required type="text" id="PostTitle"  name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate [(ngModel)]="model.Title" class="form-control">
+                <label for="PostTitle" class=" active " translate>Title</label>
 
             </div>
             <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate>Title is required</small>
