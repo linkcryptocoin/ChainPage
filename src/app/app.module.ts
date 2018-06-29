@@ -49,6 +49,7 @@ import { InputMaskModule } from 'ng2-inputmask';
 import { TagInputModule } from 'ngx-chips';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
+import { NguCarouselModule } from '@ngu/carousel';
 
 const SERVICES = [
   MetaCoinService,
@@ -83,7 +84,8 @@ const SERVICES = [
     NgIdleKeepaliveModule.forRoot(),
     I18nCountrySelectModule.forRoot(),
     Select2Module,
-    LightboxModule 
+    LightboxModule,
+    NguCarouselModule
   ],
   declarations: [
     AppComponent,

@@ -1,43 +1,41 @@
-﻿
-
-<div class="sidenavchainpost">
+﻿<div class="sidenavchainpost">
     <div class="row">
-       <div class="col-xs-4 col-sm-8">
-          <!-- <app-post-side-nav></app-post-side-nav> -->
-        
-      
+        <div class="col-xs-4 col-sm-8">
+            <!-- <app-post-side-nav></app-post-side-nav> -->
+
+
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8">
- <!-- Container for sidebar(s) + page content -->
-     
- <!--    <br>-->
+            <!-- Container for sidebar(s) + page content -->
 
-       <ng-sidebar-container style="height:1000vh;" >
+            <!--    <br>-->
 
-      <!-- A sidebar -->
-      <ng-sidebar [(opened)]="_opened" style='background-color:gray;width:300px;' >
-          <div class='SideNav_Content_Section' style="float: left;">
-               <button (click)="_toggleSidebar()">Close sidebar</button>
-       
-    <label *ngFor="let postcat of categories" data="postcat.Category"  [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
+            <ng-sidebar-container style="height:1000vh;">
+
+                <!-- A sidebar -->
+                <ng-sidebar [(opened)]="_opened" style='background-color:gray;width:300px;'>
+                    <div class='SideNav_Content_Section' style="float: left;">
+                        <button (click)="_toggleSidebar()" translate>Close sidebar</button>
+
+                        <label *ngFor="let postcat of categories" data="postcat.Category" [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
          </label>
-                   
 
 
-          </div>
-      </ng-sidebar>
 
-      <!-- Page content -->
-      <div ng-sidebar-content (click)="CloseSidebar()" class='Main_Content_Section'>
-        <button (click)="_toggleSidebar()">Toggle sidebar</button>
-         <router-outlet></router-outlet>
-      </div>
+                    </div>
+                </ng-sidebar>
 
-    </ng-sidebar-container>
+                <!-- Page content -->
+                <div ng-sidebar-content (click)="CloseSidebar()" class='Main_Content_Section'>
+                    <button (click)="_toggleSidebar()" translate>Toggle sidebar</button>
+                    <router-outlet></router-outlet>
+                </div>
 
-           
+            </ng-sidebar-container>
 
-            
+
+
+
         </div>
         <!-- <div class="col-xs-2 col-sm-2 col-md-2 col-lg-3 nopadding">
             <ul>
@@ -47,5 +45,3 @@
         </div> -->
     </div>
 </div>
-
-

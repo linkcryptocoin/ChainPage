@@ -39,14 +39,30 @@
         <label for="businessHour" translate>{{model.businessHour}}</label>
       </div>
     </div>
-    <!-- <div>
-        <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="150">
-    </div> -->
-    <div class="row">
+    <!-- <div class="row no-gutters">
       <div class="col-sm-4 col-md-3" *ngFor="let image of albums; let i=index">
-        <img style="cursor: pointer;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
+        <img style="cursor: pointer;width: 100%;height: 100px;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
       </div>
-    </div>
+    </div> -->
+      <ngu-carousel #myCarousels1 [inputs]="carouselBanner" (carouselLoad)="carouselTileOneLoad()" (onMove)="onMoveData($event)"
+      [reset]="rsts" (initData)="getCarouselData($event)">
+      <ngu-tile NguCarouselItem *ngFor="let image of albums; let i=index">
+        <!-- <div class="wBg">
+          <div class="tile" [style.background]="'url(' + image.thumb + ')'" (click)="open(i)">
+            <h1>{{i}}</h1>
+          </div>
+        </div> -->
+        <img style="cursor: pointer;width: 100%;height: 100px;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
+      </ngu-tile>
+      <a NguCarouselPrev class="carousel-control-prev">
+          <i class="fa fa-chevron-left fa-lg text-muted pt-5"></i>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a NguCarouselNext class="carousel-control-next text-faded">
+          <i class="fa fa-chevron-right fa-lg text-muted pt-5"></i>
+          <span class="sr-only">Next</span>
+      </a>     
+    </ngu-carousel>
     <br>
     <div *ngIf="!currentUser">
       <div>
