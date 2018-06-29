@@ -50,6 +50,7 @@ import { TagInputModule } from 'ngx-chips';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
 import { NguCarouselModule } from '@ngu/carousel';
+
 const SERVICES = [
   MetaCoinService,
   Web3Service,
