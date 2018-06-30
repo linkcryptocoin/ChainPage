@@ -26,14 +26,14 @@ export class MongoService {
         // .map((response: Response) => response.json())
     }
 
-    GetListingsByCat(cat) {
+    GetListingsByCat(cat, appId) {
         // let params = new HttpParams().set('cat', cat);
-        return this.http.get(this.API + 'getListingsByCat/' + cat)
+        return this.http.get(this.API + 'getListingsByCat/' + cat + "/" + appId)
         // .map((response: Response) => response.json())
     }
-    GetListingsBySubcat(subcat) {
+    GetListingsBySubcat(subcat, appId) {
         // let params = new HttpParams().set('cat', cat);
-        return this.http.get(this.API + 'getListingsBySubcat/' + subcat)
+        return this.http.get(this.API + 'getListingsBySubcat/' + subcat + "/" + appId)
         // .map((response: Response) => response.json())              
     }
     GetListing(id, appId) {
@@ -83,11 +83,11 @@ export class MongoService {
         console.log(vote);
         return this.http.post(this.API + 'deleteVote/', vote)
     }
-    searchListings(searchText:string, appId){
-        console.log(searchText);
-        let params = new URLSearchParams();
-        params.append('searchtext', searchText);
-        params.append('appId', appId);
-        return this.http.get(this.API + 'searchListings/', { search: params })
+    searchListings(searchtext:string, appId){
+        console.log(searchtext);
+        // let params = new URLSearchParams();
+        // params.append('searchtext', searchText);
+        // params.append('appId', appId);
+        return this.http.get(this.API + 'searchListings/' + searchtext + "/" + appId);
     }
 }

@@ -235,7 +235,14 @@ app.get("/api/getListings/:appId", function (req, res) {
     });
 })
 
-app.get("/api/getListingsByCat/:cat", function (req, res) {
+app.get("/api/getListingsByCat/:cat/:appId", function (req, res) {
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.find({ businessMainCategory: req.params.cat }, function (err, data) {
         if (err) {
             res.send(err);
@@ -246,7 +253,14 @@ app.get("/api/getListingsByCat/:cat", function (req, res) {
     });
 })
 
-app.get("/api/getListingsBySubcat/:subcat", function (req, res) {
+app.get("/api/getListingsBySubcat/:subcat/:appId", function (req, res) {
+    var model;
+    if(req.params.appId == ChainpageAppId){
+        model = modelChainPage;
+    }
+    else if(req.params.appId == ChainpostAppId){
+        model = modelChainPost;
+    }
     model.find({ businessSubCategory: req.params.subcat }, function (err, data) {
         if (err) {
             res.send(err);
@@ -447,6 +461,7 @@ app.post("/api/deleteVote", function (req, res) {
 
 app.get("/api/searchListings/:searchtext/:appId", function (req, res) {
     var model;
+    console.log(req.params.searchtext + "" + req.params.appId)
     if(req.params.appId == ChainpageAppId){
         model = modelChainPage;
     }

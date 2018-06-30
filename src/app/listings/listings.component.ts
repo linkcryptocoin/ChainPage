@@ -81,7 +81,7 @@ export class ListingsComponent implements OnInit {
       // load listings from MongoDB
       if (this.catParam) {
         // console.log("here")
-        this.subscription = this.mongoService.GetListingsByCat(this.catParam)
+        this.subscription = this.mongoService.GetListingsByCat(this.catParam, this.globals.ChainpageAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
@@ -93,7 +93,7 @@ export class ListingsComponent implements OnInit {
           })
       }
       else if (this.subcatPram) {
-        this.subscription = this.mongoService.GetListingsBySubcat(this.subcatPram)
+        this.subscription = this.mongoService.GetListingsBySubcat(this.subcatPram, this.globals.ChainpageAppId)
           .subscribe(response => {
             if (response.status == 200) {
               // console.log(response.json());
