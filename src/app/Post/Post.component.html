@@ -20,7 +20,7 @@
             <div class="md-form" [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
                 <i class="fa fa-check prefix grey-text"></i>
                 <label for="PostTitle" class=" active " translate>Title</label>
-                <input required type="text" id="PostTitle"  name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate [(ngModel)]="model.Title" class="form-control">
+                <input required type="text" id="PostTitle" name="Title" #Title="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Title.valid }" validate [(ngModel)]="model.Title" class="form-control">
                 <label for="PostTitle" class=" active " translate>Title</label>
 
             </div>
@@ -62,15 +62,14 @@
 
             <br><br>
 
-              <br>
-             <div class="md-form row">
-                  <i class="col-sm-2 fa fa-tags prefix grey-text"></i>
-              <tag-input [(ngModel)]="model.Tags" name="Tags" #Tags="ngModel"  [editable]="true" [separatorKeyCodes]="[32, 188]" style="margin-left:60px;"
-                  [modelAsStrings]="true"  >  </tag-input>
-                   <label style="padding-left: 15px;" for="Tags" class="active" translate>Tags</label>
-                  </div>
-             <br><br><br>
-             <!-- <pre> Tags-Outcome:
+            <br>
+            <div class="md-form row">
+                <i class="col-sm-2 fa fa-tags prefix grey-text"></i>
+                <tag-input [(ngModel)]="model.Tags" name="Tags" #Tags="ngModel" [editable]="true" [separatorKeyCodes]="[32, 188]" style="margin-left:60px;" [modelAsStrings]="true" translate> </tag-input>
+                <label style="padding-left: 15px;" for="Tags" class="active" translate>Tags</label>
+            </div>
+            <br><br><br>
+            <!-- <pre> Tags-Outcome:
              {{model.Tags | json}}
             </pre> -->
 
