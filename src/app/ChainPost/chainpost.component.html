@@ -1,11 +1,11 @@
 ﻿<div class="sidenavchainpost">
     <div class="row">
-        <div class="col-xs-4 col-sm-8">
+        <div class="col-xs-3 col-sm-3">
             <!-- <app-post-side-nav></app-post-side-nav> -->
 
 
         </div>
-        <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="col-xs-9 col-sm-9 col-md-10">
             <!-- Container for sidebar(s) + page content -->
 
             <!--    <br>-->
@@ -17,12 +17,10 @@
                     <div class='SideNav_Content_Section' style="float: left;">
                         <button (click)="_toggleSidebar()" translate>Close sidebar</button>
 
-                        <label *ngFor="let postcat of categories" data="postcat.Category" [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.Description}" translate [(ngModel)]="postcat.Category" ngDefaultControl>{{postcat.Description}}
+                        <label *ngFor="let postcat of DynamicChannelcats" data="postcat.ChannelName" [routerLink]="['/chainpost']" [queryParams]="{postcat: postcat.ChannelName}" translate [(ngModel)]="postcat.ChannelName" ngDefaultControl>{{postcat.ChannelName}}
          </label>
 
-
-
-                    </div>
+        </div>
                 </ng-sidebar>
 
                 <!-- Page content -->

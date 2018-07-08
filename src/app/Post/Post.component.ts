@@ -123,7 +123,7 @@ export class PostComponent implements OnInit {
   getPost(id: string){
     this.mongoService.GetListing(id, this.globals.ChainpostAppId)
     .subscribe(response => {
-      console.log(response)
+     // console.log(response)
       this.model = response.json();
 
       this.isUpdate = true;
