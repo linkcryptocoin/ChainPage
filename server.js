@@ -239,18 +239,27 @@ app.get("/api/getListingsByCat/:cat/:appId", function (req, res) {
     var model;
     if(req.params.appId == ChainpageAppId){
         model = modelChainPage;
+        model.find({ businessMainCategory: req.params.cat }, function (err, data) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(data);
+            }
+        });
     }
     else if(req.params.appId == ChainpostAppId){
         model = modelChainPost;
+        model.find({ Channel: req.params.cat }, function (err, data) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(data);
+            }
+        });
     }
-    model.find({ businessMainCategory: req.params.cat }, function (err, data) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(data);
-        }
-    });
+    
 })
 
 app.get("/api/getListingsBySubcat/:subcat/:appId", function (req, res) {
