@@ -52,7 +52,7 @@ export class PostListingsComponent implements OnInit {
 
     //reward user for visiting post page
     this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.login);
-    
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;
@@ -64,7 +64,7 @@ export class PostListingsComponent implements OnInit {
     this.pageSize = 5;
     this.subscription = this.route.queryParams.subscribe(params => {
       //console.log(params['cat']);
-      this.catParam = params['cat'];
+      this.catParam = params['postcat'];
       this.subcatPram = params['subcat'];
       console.log(this.catParam);
       // load listings from BigChainDB
