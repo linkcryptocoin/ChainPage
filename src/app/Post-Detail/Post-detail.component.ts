@@ -90,14 +90,14 @@ export class PostDetailsComponent implements OnInit {
           // console.log(response);
           this.model = response.json();
           //check if current user is the author of the listing
-          console.log("current user: " + this.currentUserEmail + " author: " + this.model.postedBy)
-          if(this.currentUser == this.model.postedBy){
+          console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
+          if(this.currentUser == this.model.postedBy || this.currentUserEmail == this.model.postedBy){
             this.isAuthor = true;
           }
           //retrieve comments
           // console.log(this.model.comments)
           this.model.comments.forEach(element => {
-            if (element.postedBy == this.currentUserEmail) {
+            if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
               this.ownComment = element;
               // console.log("ownComment: " + this.ownComment)
             }
@@ -111,7 +111,7 @@ export class PostDetailsComponent implements OnInit {
           //retrieve votes
           this.model.votes.forEach(element => {
             // get the current user's vote
-            if (element.postedBy == this.currentUserEmail) {
+            if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
               this.ownVote = element;
               if (element.vote == "like") {
                 this.alreadyLiked = true;
@@ -168,7 +168,7 @@ export class PostDetailsComponent implements OnInit {
             appId: this.globals.ChainpostAppId,
             comment: {
               comment: commentText,
-              postedBy: user.local.email,
+              postedBy: this.currentUser,//user.local.email,
               postedTime: Date.now()
             }
           };
@@ -275,7 +275,7 @@ export class PostDetailsComponent implements OnInit {
             appId: this.globals.ChainpostAppId,
             vote: {
               vote: this.reactions[0],  //like
-              postedBy: this.currentUserEmail,
+              postedBy: this.currentUser, //this.currentUserEmail,
               postedTime: Date.now()
             }
           };
@@ -345,7 +345,7 @@ export class PostDetailsComponent implements OnInit {
             appId: this.globals.ChainpostAppId,
             vote: {
               vote: this.reactions[1],  //dislike
-              postedBy: this.currentUserEmail,
+              postedBy: this.currentUser, //this.currentUserEmail,
               postedTime: Date.now()
             }
           };
