@@ -9,6 +9,7 @@ import { error } from 'util';
 import { Comment } from '../_models/comment';
 import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
+import { Title } from '@angular/platform-browser';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-post-detail',
@@ -46,7 +47,7 @@ export class PostDetailsComponent implements OnInit {
   constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
     private bigchaindbService: BigchanDbService, private toasterService: ToasterService,
     private bigchainService: BigchanDbService, private router: Router, private voteService: VoteService
-    , private mongoService: MongoService) {
+    , private mongoService: MongoService, private titleService: Title) {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 5;
@@ -89,6 +90,8 @@ export class PostDetailsComponent implements OnInit {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
+          //set title
+          this.titleService.setTitle(this.model.Title);
           //check if current user is the author of the listing
           console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
           if(this.currentUser == this.model.postedBy || this.currentUserEmail == this.model.postedBy){

@@ -14,6 +14,7 @@ import { ISubscription } from "rxjs/Subscription";
 import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
 import { environment } from 'environments/environment.prod';
+import { Title } from '@angular/platform-browser';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './Post-listings.component.html',
@@ -47,9 +48,9 @@ export class PostListingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, private oothService: OothService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService, private titleService:Title
   ) {
-
+    this.titleService.setTitle("ChainPost");
     //reward user for visiting post page
     this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.login);
 

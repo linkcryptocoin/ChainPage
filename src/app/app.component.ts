@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Web3Service, MetaCoinService } from '../services/services'
 import { OothService } from './_services/index';
 import { canBeNumber } from '../util/validation';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 declare var window: any;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import { globals } from 'globals';
 import { Globals } from './globals';
 import { environment } from '../environments/environment';
+import { Title }     from '@angular/platform-browser';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-root',
@@ -42,10 +43,15 @@ export class AppComponent {
     private metaCoinService: MetaCoinService,
     private translate: TranslateService, private modalService: NgbModal,
     private idle: Idle, private keepalive: Keepalive, private globals: Globals,
-    private oothservice: OothService
+    private oothservice: OothService, private titleService: Title
   ) {
     translate.setDefaultLang('cn');
-
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log("lang changed")
+      translate.get('page_title').subscribe((res: string) => {
+        titleService.setTitle(res);
+      });
+    });
     idle.onIdleStart.subscribe(() => {
       if (this.modalRef != undefined) {
         this.modalRef.close();

@@ -15,6 +15,8 @@ import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
 import { environment } from 'environments/environment';
 import { isNullOrUndefined } from 'util';
+import { Title } from '@angular/platform-browser';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './listings.component.html',
@@ -49,10 +51,18 @@ export class ListingsComponent implements OnInit {
     private route: ActivatedRoute, private swarmService: SwarmService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
     private userService: UserService, private toasterService: ToasterService,
-    private alertService: AlertService,
-    private http: Http//, private voteService: VoteService
+    private alertService: AlertService, private titleService: Title,
+    private http: Http, private translate: TranslateService
   ) {
-
+    //set title
+    this.titleService.setTitle("ChainPage");
+    // translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    //   console.log("lang changed")
+    //   translate.get('page_title').subscribe((res: string) => {
+    //     titleService.setTitle(res);
+    //   });
+    // });
+    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       this.model.submitBy = this.currentUser.email;

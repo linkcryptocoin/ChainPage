@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -129,7 +129,8 @@ const SERVICES = [
     MongoService,
     SwarmService,
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    Title
   ],
   entryComponents: [ModalContent],
   bootstrap: [AppComponent]

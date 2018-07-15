@@ -12,6 +12,7 @@ import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 import { Lightbox } from 'ngx-lightbox';
 import { NguCarousel, NguCarouselStore } from '@ngu/carousel';
+import { Title } from '@angular/platform-browser';
 @Component({
   moduleId: module.id.toString(),
   selector: 'app-claim-detail',
@@ -56,7 +57,7 @@ export class ClaimDetailComponent implements OnInit {
   private userId: string;
   private tokenBalance: number;
   constructor(private http: Http, private route: ActivatedRoute, private globals: Globals, private oothService: OothService,
-    private lightbox: Lightbox, private toasterService: ToasterService,
+    private lightbox: Lightbox, private toasterService: ToasterService, private titleService: Title,
     private router: Router, private mongoService: MongoService, private swarmService: SwarmService) {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
@@ -104,6 +105,8 @@ export class ClaimDetailComponent implements OnInit {
         if (response.status == 200) {
           // console.log(response);
           this.model = response.json();
+          //set title
+          this.titleService.setTitle(this.model.name + "--" + this.model.businessName)
           this.swarmService.getFileUrls(this.model.pictures)
           .forEach(img => {
             const src = img;
