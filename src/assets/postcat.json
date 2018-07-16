@@ -86,5 +86,9 @@
  {
   "Category": 1021,
   "Description": "Games"
+},
+ {
+  "Category": 1022,
+  "Description": "SuperNodes"
 }
 ]
