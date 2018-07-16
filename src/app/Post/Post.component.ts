@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post, User, Vote } from '../_models/index'
-import { UserService, AlertService, BigchanDbService, MongoService, SwarmService } from '../_services/index';
+import { UserService, AlertService, BigchanDbService, MongoService, SwarmService,OothService } from '../_services/index';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,7 +33,7 @@ export class PostComponent implements OnInit {
   constructor(
     private router: Router, private route: ActivatedRoute, private translate: TranslateService,
     private userService: UserService, private bigchaindbService: BigchanDbService,
-    private globals: Globals, private mongoService: MongoService,
+    private globals: Globals, private mongoService: MongoService,private oothService: OothService,
     private alertService: AlertService, private toasterService: ToasterService,
     private http: Http, private swarmService: SwarmService, private fb: FormBuilder
   ) {
@@ -101,6 +101,8 @@ export class PostComponent implements OnInit {
             if (response.status === 200) {
               let id: String = JSON.parse(JSON.stringify(response))._body;
               id = id.replace(/"/g, "");
+              //reward user for submitting a post
+              this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.post);
               this.toasterService.pop('success', 'Posted successful');
               this.router.navigate(['/chainpost/Post-detail'], { queryParams: { id: id } });
             }
