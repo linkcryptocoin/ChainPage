@@ -14,5 +14,5 @@ export const environment = {
   inactivitySec: 300,
   pingIntervalSec: 15,
   chainPageImageMaxSize: 2000000,
-  chainPageImageMaxCount: 4
+  chainPageImageMaxCount: 1
 };
