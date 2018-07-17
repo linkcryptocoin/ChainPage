@@ -44,3 +44,8 @@ li:hover {
 .fa-thumbs-down-clicked {
   color: red;
 }
+/* temp fix for image display */
+:host ::ng-deep div .narrative img{
+  max-width: 100% !important;
+  height: auto;
+}
