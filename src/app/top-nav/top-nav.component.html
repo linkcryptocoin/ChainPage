@@ -9,90 +9,61 @@
             <li class="nav-item active">
                 <a class="nav-link" [routerLink]="['/home']" translate>ChainPage</a>
             </li>
-           <!-- <li class="nav-item">
-                <a class="nav-link" translate>ChainMart</a>
-            </li> -->
             <li class="nav-item active">
-                <a class="nav-link"  [routerLink]="['/chainpost']"  translate>ChainPost</a>
+                <a class="nav-link" [routerLink]="['/chainpost']" translate>ChainPost</a>
             </li>
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="http://linkgear.net:91" translate>GeGeExplorer</a>
-            </li> -->
             <li class="nav-item active">
                 <a class="nav-link" href="http://linkgear.net/wallet" translate>LinkGearWallet</a>
             </li>
         </ul>
-        <!-- <div *ngIf="currentUserAccount != undefined && currentUserAccount != ''">
-            <ngx-qrcode [qrc-element-type]="img" qrc-class="qrSize" [qrc-element-type]="elementType" [qrc-value]="currentUserAccount">
-            </ngx-qrcode>
-            <h6>Token balance: {{tokenBalance}}</h6>
-        </div> -->
-        <!-- <img src="../../{{selectedFlag}}" style="width:30px; height: 20px;margin: 5px"> -->
-        <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
-            <option *ngFor="let lang of language" value="{{lang.Id}}">
-                {{lang.Description}}
-            </option>
-        </select>
-        <span style="margin-left: 10px;">
-            <h6 *ngIf="currentUser != undefined">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)" class="nav-lang">
+                            <option *ngFor="let lang of language" value="{{lang.Id}}">
+                                {{lang.Id == 1?"EN":lang.Description}}
+                            </option>
+                </select>
+            </li>
+            <li *ngIf="currentUser != undefined">
+                <div class="nav-profile">
+                    Hi,
+                    <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
+                        <b>{{currentUser}} </b>
+                    </a>
+
+                </div>
+            </li>
+            <li *ngIf="currentUser == undefined">
+                <div class="nav-log">
+                    <div class="nav-log-a">
+                        <a [routerLink]="['/login']" translate>Login</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div *ngIf="currentUser != undefined" class="nav-log">
+                    <div class="nav-log-a">
+                        <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- <span style="margin-left: 10px;"> -->
+        <!-- <div class="row">
+            <div *ngIf="currentUser != undefined" class="nav-profile col-xs-4">
                 Hi
                 <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
                     <b>{{currentUser}} </b>
-                    <!-- <b>{{currentUserEmail}} </b> -->
                 </a>
-                <!-- <i>{{currentUserAccount}}</i> -->
-                <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>
-            </h6>
-            <h6 *ngIf="currentUser == undefined">
-                <a [routerLink]="['/login']" translate>Login</a>
-            </h6>
-            <!-- <select name="theme" [class]="'form-control' + (size ? ' form-control-' + size : '')" [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)">
-                    <option [ngValue]="null">{{defaultLabel}}</option>
-                    <option *ngFor="let country of myCountries" [ngValue]="country.value">{{country.display}}</option>
-                </select> -->
-            <!-- <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-                <div *ngFor="let lang of language" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button class="dropdown-item"><img style="width:30px; height: 30px;" src="../../{{lang.src}}">{{lang.Description}}</button>
+                <div class="nav-log">
+                    <div class="nav-log-a"><a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a></div>
                 </div>
-            </div> -->
-            <!-- <select2 [data]="languages"></select2> -->
-        </span>
+            </div>
+            <div *ngIf="currentUser == undefined" class="nav-log col-xs-4">
+                <div class="nav-log-a"><a [routerLink]="['/login']" translate>Login</a></div>
+            </div>
+        </div> -->
+        <!-- </span> -->
     </div>
 </nav>
-<!-- <nav class="navbar navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#" translate>Link Gear</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/home']" translate>Chain Page</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" translate>Market</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" translate>Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-        <span class="navbar-text">
-            <h4 *ngIf="currentUser != undefined">
-                Hi
-                <b>{{currentUser}} </b>
-                <a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a>
-            </h4>
-            <h4 *ngIf="currentUser == undefined">
-                <a [routerLink]="['/login']" translate>Login</a>
-            </h4>
-            <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)">
-                <option *ngFor="let lang of language" value="{{lang.Id}}">{{lang.Description}}</option>
-            </select>
-        </span>
-    </div>
-</nav> -->
