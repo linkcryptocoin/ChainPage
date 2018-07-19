@@ -18,6 +18,15 @@ run the following commands
 8. `npm i -g @angular/cli`
 9. `ng serve`. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Local Test Mode
+### Without local mongodb
+1. ng serve --port 4200       (terminal 1)
+2. node server.js --dbserver 34.238.58.243 --ChainPageUrl http://localhost:4200  (terminal 2)
+
+### With a local mongodb
+1. ng serve --port 4200       (terminal 1)
+2. node server.js --ChainPageUrl http://localhost:4200  (terminal 2)
+
 ## Server mode
 1. `ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true`
 2. `ng serve --port 8092 --host 0.0.0.0 --disableHostCCheck:true --public http://linkcryptocoin.com:8092`
