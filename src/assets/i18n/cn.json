@@ -9,10 +9,12 @@
     "Posts": "链圈",
     "ChainPost": "链圈",
     "Home": "主页",
+    "Register Here": "从这里注册",
     "GET STARTED": "进入",
     "New Listing": "添加商家",
     "Login": "登录",
     "Logout": "退出",
+    "Channel": "频道",
     "Overseas Chinese Community Focused": "服务海外华人",
     "Search": "搜索",
     "Food & Drink": "餐饮",
@@ -246,5 +248,6 @@
     "Our community members can post things seeking help of services or goods.": "我们的社区成员可以发布寻求服务或商品帮助的东西。",
     "The LinkGear foundation will work with local community leaders in each large Chinatown district to provide better community services to overseas Chinese populations": "领格区块链基地将联合海外各个华人商圈和社团，通过阁阁链为当地华人提供更便利的社区服务",
     "Please keep this password in a safe place, as it is also your token private key.": "请千万保存好这密码，这是您的钱包私钥。",
-    "(We are seeking 21 Super Nodes and contact to us if you are interested)": "（其他20个区域正在招募中，请联系我们）"
+    "(We are seeking 21 Super Nodes and contact to us if you are interested)": "（其他20个区域正在招募中，请联系我们）",
+    "GeGeChain is the first Overseas Chinese community, please help us grow to take actions:": "阁阁链是海外华人首个区块链社区互助平台，注册并参与平台建设可以获取阁阁通证："
 }
