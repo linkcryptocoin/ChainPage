@@ -107,7 +107,8 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <strong>{{c.postedBy}}</strong>
-                                    <span class="text-muted">posted on {{c.postedTime | date :'medium'}}</span>
+                                    {{'posted on' | translate}}
+                                    <span class="text-muted">{{c.postedTime | date :'medium'}}</span>
                                 </div>
                                 <div class="panel-body">
                                     {{c.comment}}
