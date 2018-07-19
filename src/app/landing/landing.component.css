@@ -35,7 +35,7 @@
     color: #707070;
     font-size: 30pt;
     font-weight: bold;
-    padding-top: 150px;
+    padding-top: 80px;
 }
 
 .chain-img {
@@ -125,9 +125,8 @@ hr {
     padding: 60px 40px;
     color: rgba(255, 255, 255, 1.00);
     margin-bottom: -20px;
-    border-bottom-right-radius: 6px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 6px;
+    position: absolute;
+    width: 100%;
 }
 
 .footer-bs .footer-brand,
