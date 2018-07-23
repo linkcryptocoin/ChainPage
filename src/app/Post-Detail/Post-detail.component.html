@@ -2,8 +2,11 @@
     <!-- <form #claimForm="ngForm"> -->
     <div class="form-group">
         <div>
-            <span style="font-weight: bold;">GeGeChain is the first Overseas Chinese community, please help us grow,
-                <a [routerLink]="['/register']">register here</a> to take actions.</span>
+            <span style="font-weight: bold;">{{'GeGeChain is the first Overseas Chinese community, please help us grow to take actions:' | translate}}</span>
+            <a style="font-weight: bold;" [routerLink]="['/register']" translate>Register Here</a>
+        </div>
+        <div>            
+            <a href="../../assets/documents/disclaims.pdf " target="_blank " translate>Post Disclaims</a>
         </div>
         <div>
             <h5 translate>
@@ -109,7 +112,8 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <strong>{{c.postedBy}}</strong>
-                                    <span class="text-muted">posted on {{c.postedTime | date :'medium'}}</span>
+                                    {{'posted on' | translate}}
+                                    <span class="text-muted">{{c.postedTime | date :'medium'}}</span>
                                 </div>
                                 <div class="panel-body">
                                     {{c.comment}}
