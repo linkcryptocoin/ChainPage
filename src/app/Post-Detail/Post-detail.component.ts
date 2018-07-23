@@ -99,17 +99,25 @@ export class PostDetailsComponent implements OnInit {
           }
           //retrieve comments
           // console.log(this.model.comments)
-          this.model.comments.forEach(element => {
-            if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
-              this.ownComment = element;
-              // console.log("ownComment: " + this.ownComment)
-            }
-            else {
-              // console.log(element)
-              this.comments.push(element);
-            }
+          // this.model.comments.forEach(element => {
+          //   if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
+          //     this.ownComment = element;
+          //     // console.log("ownComment: " + this.ownComment)
+          //   }
+          //   else {
+          //     // console.log(element)
+          //     this.comments.push(element);
+          //   }
+          // });
+          // this.commentsPage = this.comments.slice(0, this.pageSize);
+          ////display all comments
+          this.model.comments = this.model.comments.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return b.postedTime - a.postedTime;
           });
-          this.commentsPage = this.comments.slice(0, this.pageSize);
+          this.commentsPage = this.model.comments.slice(0, this.pageSize);
+
           // console.log("comments: " + this.commentsPage);
           //retrieve votes
           this.model.votes.forEach(element => {
@@ -164,74 +172,104 @@ export class PostDetailsComponent implements OnInit {
       let user = await this.oothService.getUser();
       // console.log(user.local.email);
       // add new comment
-      if (!this.ownComment) {
-        // if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
-          let data = {
-            _id: this.PostId,
-            appId: this.globals.ChainpostAppId,
-            comment: {
-              comment: commentText,
-              postedBy: this.currentUser,//user.local.email,
-              postedTime: Date.now()
+      let data = {
+        _id: this.PostId,
+        appId: this.globals.ChainpostAppId,
+        comment: {
+          comment: commentText,
+          postedBy: this.currentUser,//user.local.email,
+          postedTime: Date.now()
+        }
+      };
+      // console.log((JSON.stringify(data)));
+      this.mongoService.addComment(data)
+        .subscribe(response => {
+          if (response.status == 200) {
+            this.toasterService.pop('success', 'Comment submitted successfully');
+            this.submitted = true;
+            console.log("account: " + this.account);
+            //deduct token
+            if (!this.ownComment) {
+              console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));
+              this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.comment);
+              // this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
             }
-          };
-          // console.log((JSON.stringify(data)));
-          this.mongoService.addComment(data)
-            .subscribe(response => {
-              if (response.status == 200) {
-                this.toasterService.pop('success', 'Comment submitted successfully');
-                this.submitted = true;
-                console.log("account: " + this.account);
-                //deduct token
-                if (!this.ownComment) {
-                  console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));
-                  this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.comment);
-                  // this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
-                }
-                //reload comments
-                this.getDetails();
-                return true;
-              }
-              else {
-                this.toasterService.pop("error", response.statusText);
-              }
-            })
-        // }
-        // else {
-        //   this.toasterService.pop("error", "You don't have enough tokens");
-        // }
-      }
-      // update comment
-      else {
-        let data = {
-          _id: this.PostId,
-          appId: this.globals.ChainpostAppId,
-          comment: {
-            _id: this.ownComment._id,
-            comment: commentText,
-            postedTime: Date.now()
+            //reload comments
+            this.getDetails();
+            return true;
           }
-        };
-        this.mongoService.updateComment(data)
-          .subscribe(response => {
-            if (response.status == 200) {
-              this.toasterService.pop('success', 'Comment submitted successfully');
-              this.submitted = true;
-              // console.log("account: " + this.account);
-              //deduct token
-              // if (!this.ownComment) {
-              //   console.log("deduct new comment token from " + this.account);
-              //   this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageComment);
-              // }
-              //reload comments
-              this.getDetails();
-              return true;
-            }
-            else {
-              this.toasterService.pop("error", response.statusText);
-            }
-          })
-      }
+          else {
+            this.toasterService.pop("error", response.statusText);
+          }
+        })
+      // if (!this.ownComment) {
+      //   // if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageComment) {
+      //     let data = {
+      //       _id: this.PostId,
+      //       appId: this.globals.ChainpostAppId,
+      //       comment: {
+      //         comment: commentText,
+      //         postedBy: this.currentUser,//user.local.email,
+      //         postedTime: Date.now()
+      //       }
+      //     };
+      //     // console.log((JSON.stringify(data)));
+      //     this.mongoService.addComment(data)
+      //       .subscribe(response => {
+      //         if (response.status == 200) {
+      //           this.toasterService.pop('success', 'Comment submitted successfully');
+      //           this.submitted = true;
+      //           console.log("account: " + this.account);
+      //           //deduct token
+      //           if (!this.ownComment) {
+      //             console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));
+      //             this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.comment);
+      //             // this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
+      //           }
+      //           //reload comments
+      //           this.getDetails();
+      //           return true;
+      //         }
+      //         else {
+      //           this.toasterService.pop("error", response.statusText);
+      //         }
+      //       })
+      //   // }
+      //   // else {
+      //   //   this.toasterService.pop("error", "You don't have enough tokens");
+      //   // }
+      // }
+      // // update comment
+      // else {
+      //   let data = {
+      //     _id: this.PostId,
+      //     appId: this.globals.ChainpostAppId,
+      //     comment: {
+      //       _id: this.ownComment._id,
+      //       comment: commentText,
+      //       postedTime: Date.now()
+      //     }
+      //   };
+      //   this.mongoService.updateComment(data)
+      //     .subscribe(response => {
+      //       if (response.status == 200) {
+      //         this.toasterService.pop('success', 'Comment submitted successfully');
+      //         this.submitted = true;
+      //         // console.log("account: " + this.account);
+      //         //deduct token
+      //         // if (!this.ownComment) {
+      //         //   console.log("deduct new comment token from " + this.account);
+      //         //   this.oothService.deductToken(this.account, this.globals.tokenDeductAmmount_ChainpageComment);
+      //         // }
+      //         //reload comments
+      //         this.getDetails();
+      //         return true;
+      //       }
+      //       else {
+      //         this.toasterService.pop("error", response.statusText);
+      //       }
+      //     })
+      // }
       // console.log(result);
     }
     else {

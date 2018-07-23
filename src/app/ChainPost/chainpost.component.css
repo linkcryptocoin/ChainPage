@@ -22,4 +22,8 @@
     background-color: #555;
 }
 
+:host ::ng-deep .ng-sidebar__content{
+    overflow: hidden !important;
+    position: relative !important;
+}
 
