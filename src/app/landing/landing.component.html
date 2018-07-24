@@ -15,54 +15,69 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <img class="chain-img col-lg-8 col-xs-8" src="..\assets\chainpage1.jpg">
+        <div class="col-lg-6 col-sm-6 col-xs-4">
+            <img class="chain-img " src="..\assets\chainpage1.jpg">
         </div>
-        <div class="col-lg-6 chain-main">
-            <h1 class="chain-title">{{'ChainPage' | translate}}</h1>
-            <hr align="left">
-            <p class=" chain-des ">
-                {{ 'A list of businesses who provide products and services to Chinese overseas communities.' | translate }}
-            </p>
-            <p>
-                <a class="chain-link " [routerLink]="[ '/home'] ">
+        <div class="col-lg-6  col-sm-6 col-xs-4 chain-main">
+            <div class="chain-sec">
+                <h1 class="chain-title">{{'ChainPage' | translate}}</h1>
+                <hr align="left">
+                <p class=" chain-des ">
+                    {{ 'A list of businesses who provide products and services to Chinese overseas communities.' | translate }}
+                </p>
+                <p>
+                    <a class="chain-link" [routerLink]="[ '/home'] ">
                 {{'Go to ChainPage' | translate}}  <i class="fa fa-arrow-right " aria-hidden="true "></i>
                 </a>
-            </p>
+                </p>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
-            <img class="chain-img col-lg-8 col-xs-8" src="..\assets\chainpost.jpg">
+        <div class="col-lg-6 col-sm-6 col-xs-4">
+            <img class="chain-img" src="..\assets\chainpost.jpg">
         </div>
-        <div class="col-lg-6 chain-main">
-            <h1 class="chain-title">{{'ChainPost' | translate}}</h1>
-            <hr align="left">
-            <p class=" chain-des ">
-                {{ 'Our community members can post things seeking help of services or goods.' | translate }}
-            </p>
-            <p>
-                <a class="chain-link " [routerLink]="[ '/chainpost'] ">
+        <div class="col-lg-6 col-sm-6 col-xs-4 chain-main">
+            <div class="chain-sec">
+                <h1 class="chain-title">{{'ChainPost' | translate}}</h1>
+                <hr align="left">
+                <p class=" chain-des ">
+                    {{ 'Our community members can post things seeking help of services or goods.' | translate }}
+                </p>
+                <p>
+                    <a class="chain-link " [routerLink]="[ '/chainpost'] ">
                     {{'Go to ChainPost' | translate}}  <i class="fa fa-arrow-right " aria-hidden="true "></i>
                 </a>
-            </p>
+                </p>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
-            <img class="chain-img col-lg-8 col-xs-8" src="..\assets\chainmart.jpg">
+        <div class="col-lg-6 col-sm-6 col-xs-4">
+            <img class="chain-img" src="..\assets\chainmart.jpg">
         </div>
-        <div class="col-lg-6 chain-main">
-            <h1 class="chain-title">{{'ChainMart' | translate}}</h1>
-            <hr align="left">
-            <p class=" chain-des ">
-                {{ 'A list of items that are on sale by vendors. A buyer has to use ligear tokens to reserve the orders. Coming in August, 2018.' | translate }}
-            </p>
-            <p>
-                <a class="chain-link " [routerLink]="[ '/chainpost'] ">
+        <div class="col-lg-6 col-sm-6 col-xs-4 chain-main">
+            <div class="chain-sec">
+                <h1 class="chain-title">{{'ChainMart' | translate}}</h1>
+                <hr align="left">
+                <p class=" chain-des ">
+                    {{ 'A list of items that are on sale by vendors. A buyer has to use ligear tokens to reserve the orders. Coming in August, 2018.' | translate }}
+                </p>
+                <p>
+                    <a class="chain-link " [routerLink]="[ '/chainpost'] ">
                     {{'Go to ChainMart' | translate}}  <i class="fa fa-arrow-right " aria-hidden="true "></i>
                 </a>
-            </p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="chain-bottom">
+    <div class="bottom-des">
+        <p>Join our community now,</p>
+        <p>explore, post and make friends</p>
+        <div class="chain-signup col-lg-8 col-sm-8 col-12">
+            <p>{{'SIGN UP FREE' | translate}}</p>
         </div>
     </div>
 </div>

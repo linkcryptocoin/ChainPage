@@ -17,14 +17,14 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li class="nav-right">
                 <select [(ngModel)]="selectedLanguage" (ngModelChange)="onChange($event)" class="nav-lang">
                             <option *ngFor="let lang of language" value="{{lang.Id}}">
                                 {{lang.Id == 1?"EN":lang.Description}}
                             </option>
                 </select>
             </li>
-            <li *ngIf="currentUser != undefined">
+            <li class="nav-right" *ngIf="currentUser != undefined">
                 <div class="nav-profile">
                     Hi,
                     <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
@@ -48,22 +48,5 @@
                 </div>
             </li>
         </ul>
-
-        <!-- <span style="margin-left: 10px;"> -->
-        <!-- <div class="row">
-            <div *ngIf="currentUser != undefined" class="nav-profile col-xs-4">
-                Hi
-                <a [routerLink]="['/profile']" [queryParams]="{user: currentUser}">
-                    <b>{{currentUser}} </b>
-                </a>
-                <div class="nav-log">
-                    <div class="nav-log-a"><a [routerLink]="['/home']" (click)="LogOut()" translate>Logout</a></div>
-                </div>
-            </div>
-            <div *ngIf="currentUser == undefined" class="nav-log col-xs-4">
-                <div class="nav-log-a"><a [routerLink]="['/login']" translate>Login</a></div>
-            </div>
-        </div> -->
-        <!-- </span> -->
     </div>
 </nav>
