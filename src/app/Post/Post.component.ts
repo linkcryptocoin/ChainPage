@@ -103,7 +103,7 @@ export class PostComponent implements OnInit {
               id = id.replace(/"/g, "");
               //reward user for submitting a post
               this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.post);
-              this.toasterService.pop('success', 'Posted successful');
+              this.toasterService.pop('success', 'Posted successful. 20 tokens earned!');
               this.router.navigate(['/chainpost/Post-detail'], { queryParams: { id: id } });
             }
             else {

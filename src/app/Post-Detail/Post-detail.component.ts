@@ -185,7 +185,7 @@ export class PostDetailsComponent implements OnInit {
       this.mongoService.addComment(data)
         .subscribe(response => {
           if (response.status == 200) {
-            this.toasterService.pop('success', 'Comment submitted successfully');
+            this.toasterService.pop('success', 'Comment submitted successfully. 20 tokens earned!');
             this.submitted = true;
             console.log("account: " + this.account);
             //deduct token
@@ -323,7 +323,7 @@ export class PostDetailsComponent implements OnInit {
           this.mongoService.addVote(data)
             .subscribe(response => {
               if (response.status == 200) {
-                this.toasterService.pop('success', 'Vote submitted successfully');
+                this.toasterService.pop('success', 'Vote submitted successfully. 5 tokens earned!');
                 this.submitted = true;
                 // this.likes++;
                 console.log("user id: " + sessionStorage.getItem("currentUserId"));
@@ -393,7 +393,7 @@ export class PostDetailsComponent implements OnInit {
           this.mongoService.addVote(data)
             .subscribe(response => {
               if (response.status == 200) {
-                this.toasterService.pop('success', 'Vote submitted successfully');
+                this.toasterService.pop('success', 'Vote submitted successfully. 5 tokens earned!');
                 this.submitted = true;
                 // this.likes++;
                 // console.log("account: " + this.account);
