@@ -4,6 +4,10 @@
     background-color: #3c3d41 !important;
 }
 
+.navbar {
+    border-bottom: 1px solid #707070 !important;
+}
+
 .nav-link:hover {
     color: #FF8F00 !important;
 }
@@ -63,4 +67,9 @@
     color: #FF8F00
 }
 
-@media screen and (max-width:766px) {}
+@media screen and (max-width:766px) {
+    .navbar-right li {
+        padding-bottom: 15px;
+        padding-left: 10px;
+    }
+}

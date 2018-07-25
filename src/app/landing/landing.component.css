@@ -14,8 +14,8 @@
 
 .chain-start {
     border: 1px solid #FF8F00;
-    width: 350px;
-    height: 70px;
+    width: 200px;
+    height: 60px;
     border-radius: 100px;
     text-align: center;
     background-color: #FF8F00;
@@ -27,12 +27,22 @@
     border: 1px solid #FF6600;
 }
 
-.chain-start p {
-    padding-top: 20px;
+.chain-btn {
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.start-sec {
+    padding-top: 15px;
 }
 
 .chain-gege h1 {
-    padding-bottom: 20px;
+    color: #ff8f00!important;
+    font-weight: bold;
+}
+
+.chain-maindes {
+    padding-top: 20px;
 }
 
 .chain-title {
@@ -101,8 +111,8 @@ hr {
 
 .chain-signup {
     border: 3px solid #FFFFFF;
-    width: 200px;
-    height: 40px;
+    width: 160px;
+    height: 35px;
     border-radius: 100px;
     text-align: center;
     background-color: #FF8F00;
@@ -110,9 +120,11 @@ hr {
     color: #FFFFFF;
 }
 
-.chain-signup p {
+.bottom-btn {
     font-size: 15px !important;
-    padding-top: 5px
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-top: 5px !important;
 }
 
 .chain-signup:hover {
@@ -124,7 +136,7 @@ hr {
     margin: 0 auto;
 }
 
-.chain-signup:hover p {
+.chain-signup:hover a {
     color: #ff8f00;
 }
 

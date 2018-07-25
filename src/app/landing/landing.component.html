@@ -3,12 +3,19 @@
         <div class="row">
             <div class="col-lg-6"></div>
             <div class="chain-gege col-lg-6">
-                <h1>{{'GegeChain' | translate}}</h1>
-                <p>First, Fast, Blockchain...</p>
-                <p>{{'Make Blockchain work for YOU.' | translate}}</p>
-                <p>{{'Overseas Chinese Community Focused' | translate}}</p>
+                <h1>{{'BlockChain' | translate}}</h1>
+                <h1>{{'at your fingertips' | translate}}</h1>
+                <div class="chain-maindes">
+                    <p>{{'Linkgear is the first de-centralized community for' | translate}}</p>
+                    <p>{{'overseas Chinese' | translate}}</p>
+                </div>
                 <div class="chain-start col-lg-8 col-sm-8 col-12">
-                    <p>{{'GET STARTED' | translate}}</p>
+                    <div *ngIf="currentUser == undefined" class="start-sec">
+                        <a [routerLink]="['/register']" class="chain-btn" translate>SIGN UP FREE</a>
+                    </div>
+                    <div *ngIf="currentUser != undefined" class="start-sec">
+                        <p class="chain-btn" translate>Welcome Back</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -22,7 +29,7 @@
             <div class="chain-sec">
                 <h1 class="chain-title">{{'ChainPage' | translate}}</h1>
                 <hr align="left">
-                <p class=" chain-des ">
+                <p class=" chain-des">
                     {{ 'A list of businesses who provide products and services to Chinese overseas communities.' | translate }}
                 </p>
                 <p>
@@ -77,15 +84,16 @@
         <p>Join our community now,</p>
         <p>explore, post and make friends</p>
         <div class="chain-signup col-lg-8 col-sm-8 col-12">
-            <p>{{'SIGN UP FREE' | translate}}</p>
+            <a [routerLink]="['/register']" class="bottom-btn" translate>SIGN UP FREE</a>
+            <!-- <p>{{'SIGN UP FREE' | translate}}</p> -->
         </div>
     </div>
 </div>
-<div class="jumbotron ">
-    <div class="col-sm-12 ">
-        <footer class="footer-bs ">
+<div class="jumbotron">
+    <div class="col-sm-12">
+        <footer class="footer-bs">
             <div class="row ">
-                <div class="col-md-3 footer-brand animated fadeInLeft ">
+                <div class="col-md-3 footer-brand">
                     <img src="../../assets/linkGearGGold.png" style="width: 100px" id="chain-logo">
                 </div>
                 <div class="col-md-3 footer-nav animated fadeInUp ">
@@ -106,7 +114,7 @@
                     </ul>
 
                 </div>
-                <div class="col-md-3 footer-social animated fadeInDown ">
+                <div class="col-md-3 footer-social">
                     <h4>{{'Contact Information'|translate}}</h4>
                     <ul>
 
@@ -127,7 +135,7 @@
 
                     </ul>
                 </div>
-                <div class="col-md-3 footer-ns animated fadeInRight ">
+                <div class="col-md-3 footer-ns">
                     <p>{{'Make Blockchain work for YOU.' | translate}}</p>
                     <p>{{'Overseas Chinese Community Focused' | translate}}</p>
                     <p>{{'The LinkGear foundation will work with local community leaders in each large Chinatown district to provide better community services to overseas Chinese populations' | translate}}</p>
