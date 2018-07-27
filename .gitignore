@@ -32,7 +32,7 @@
 npm-debug.log
 testem.log
 /typings
-
+.node-xmlhttprequest-sync-6352
 # e2e
 /e2e/*.js
 /e2e/*.map
