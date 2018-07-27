@@ -4,10 +4,23 @@
     background-color: #3c3d41 !important;
 }
 
+.navbar {
+    border-bottom: 1px solid #707070 !important;
+}
+
+.nav-link:hover {
+    color: #FF8F00 !important;
+}
+
+.nav-item {
+    width: 200px !important;
+}
+
 .nav-link,
 .navbar-brand {
     color: #FFFFFF !important;
     font-weight: bold;
+    font-size: 20px;
 }
 
 .nav-log {
@@ -20,6 +33,14 @@
     text-align: center;
 }
 
+.nav-log:hover {
+    background-color: #FF8F00;
+}
+
+.nav-log:hover a {
+    color: #FFFFFF;
+}
+
 .nav-log a {
     color: #FF8F00;
 }
@@ -28,16 +49,10 @@
     padding-top: 5px
 }
 
-.nav-item {
-    padding-left: 100px
-}
-
 .nav-lang {
     margin-right: 15px;
     margin-top: 5px;
     font-family: Helvetica;
-    /* font-weight: bold; */
-    /* color: #FF8F00; */
 }
 
 .nav-profile {
@@ -50,4 +65,11 @@
 
 .nav-profile a {
     color: #FF8F00
+}
+
+@media screen and (max-width:766px) {
+    .navbar-right li {
+        padding-bottom: 15px;
+        padding-left: 10px;
+    }
 }

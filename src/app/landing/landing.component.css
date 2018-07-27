@@ -14,20 +14,35 @@
 
 .chain-start {
     border: 1px solid #FF8F00;
-    width: 350px;
-    height: 70px;
+    width: 200px;
+    height: 60px;
     border-radius: 100px;
     text-align: center;
     background-color: #FF8F00;
     margin-top: 50px;
 }
 
-.chain-start p {
-    padding-top: 20px;
+.chain-start:hover {
+    background-color: #FF6600;
+    border: 1px solid #FF6600;
+}
+
+.chain-btn {
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.start-sec {
+    padding-top: 15px;
 }
 
 .chain-gege h1 {
-    padding-bottom: 20px;
+    color: #ff8f00!important;
+    font-weight: bold;
+}
+
+.chain-maindes {
+    padding-top: 20px;
 }
 
 .chain-title {
@@ -40,12 +55,19 @@
 
 .chain-img {
     display: block;
-    margin: 0 auto;
+    margin: 0 100px 0 auto;
+    width: 400px !important;
 }
 
 .chain-des {
     display: block;
     margin: 0 auto;
+    margin: 0 150px 0 auto;
+}
+
+.chain-sec {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .chain-link {
@@ -53,18 +75,87 @@
     font-weight: bold;
 }
 
+.chain-link:hover {
+    text-decoration: underline !important;
+}
+
 .chain-main p {
     margin-top: 20px;
 }
 
-.chain-main {
-    padding-left: 50px;
+@media screen and (max-width: 991px) {
+    .chain-main {
+        padding-left: 50px;
+    }
+    .chain-img {
+        display: block;
+        margin: 0 0 0 0;
+        width: 400px !important;
+    }
 }
 
 hr {
     background: #ff8f00;
     width: 60px;
     height: 3px;
+}
+
+
+/* ---- */
+
+.chain-bottom {
+    background: #ff8f00;
+    height: 300px;
+    position: relative;
+}
+
+.chain-signup {
+    border: 3px solid #FFFFFF;
+    width: 160px;
+    height: 35px;
+    border-radius: 100px;
+    text-align: center;
+    background-color: #FF8F00;
+    margin-top: 50px;
+    color: #FFFFFF;
+}
+
+.bottom-btn {
+    font-size: 15px !important;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-top: 5px !important;
+}
+
+.chain-signup:hover {
+    background-color: #FFFFFF;
+}
+
+.chain-signup {
+    display: block;
+    margin: 0 auto;
+}
+
+.chain-signup:hover a {
+    color: #ff8f00;
+}
+
+.bottom-des {
+    padding-top: 100px;
+    width: 640px;
+    height: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -300px
+}
+
+.bottom-des p {
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 
@@ -243,4 +334,9 @@ hr {
     margin-left: auto;
     margin-right: auto;
     color: #707070 !important;
+}
+
+.jumbotron h4 {
+    color: #707070 !important;
+    font-weight: bold;
 }
