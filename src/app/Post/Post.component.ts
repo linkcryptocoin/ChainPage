@@ -46,7 +46,7 @@ export class PostComponent implements OnInit {
   this.http.get('/assets/postcat.json')
       .subscribe(data => {
         this.channels = data.json();
-        //console.log(data);
+        console.log(data);
       });
 
     this.currentUser = sessionStorage.getItem('currentUser');

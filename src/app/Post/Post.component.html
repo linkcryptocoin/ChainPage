@@ -34,7 +34,7 @@
                 <i class="col-sm-2 fa fa-certificate prefix grey-text"></i>
 
 
-                <select required class="col-sm-offset-2 col-xs-12" #Channel="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Channel.valid }" [(ngModel)]="model.Channel" name="Channel" style="margin-left:60px;height: 40px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
+                <select required  class="col-sm-offset-2 col-sm-12" #Channel="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Channel.valid }" [(ngModel)]="model.Channel" name="Channel" style="margin-left:60px;height: 60px; border-color: lightgray;border-left:none;border-right:none;border-top:none; ">
                       <option value="" disabled selected translate>Choose your option</option>
                       <option *ngFor="let ch of channels" [value]="ch.Description" translate>{{ch.Description}}</option>
                   </select>
