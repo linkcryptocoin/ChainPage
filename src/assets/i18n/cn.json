@@ -1,7 +1,7 @@
 {
     "LinkGear": "领格",
     "LinkGear-GegeChain(Demo)": "领格-阁阁链",
-    "LinkGear Inside": "领格内刊",
+    "LinkGear Internal": "领格内刊",
     "BlockChain": "区块链",
     "at your fingertips": "触手可及",
     "GeGeChain is the first de-centralized community for": "阁阁链去中心社区",
@@ -135,6 +135,9 @@
     "Travel": "旅行",
     "Vehicle sales": "汽车销售",
     "General Info": "基本信息",
+    "Job Info": "招聘信息",
+    "Help Wanted": "求助",
+    "Ads and Promotions": "广告促销",
     "Name": "姓名",
     "Contact Person": "联系人",
     "Business Name": "公司名称",

@@ -93,6 +93,18 @@
 },
 {
   "Category": 1023,
-  "Description": "LinkGear Inside"
+  "Description": "LinkGear Internal"
+},
+{
+  "Category": 1024,
+  "Description": "Job Info"
+},
+{
+  "Category": 1025,
+  "Description": "Help Wanted"
+},
+{
+  "Category": 1026,
+  "Description": "Ads and Promotions"
 }
 ]
