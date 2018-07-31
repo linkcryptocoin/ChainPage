@@ -4,7 +4,7 @@ export const environment = {
   // web3HttpProvider: "http://172.31.83.105:8501",
   OothAPI: 'https://linkgear.net:8091/auth/',
   MongoAPI: 'https://linkgear.net:8080/api/',
-  SwarmProvider: 'http://linkgear.net:5000/',
+  SwarmProvider: 'https://www.linkgear.net/swarm/',
   inactivitySec: 300,
   pingIntervalSec: 15,
   chainPageImageMaxSize: 2000000,
