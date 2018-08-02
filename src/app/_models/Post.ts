@@ -9,7 +9,9 @@ export class Post {
         public Narrative: String,
         public Tags: String ,
         public postedTime: Number ,
-        public comments: Comment[],
+        public DateTime: String ,
+        public Address: String ,
+       public comments: Comment[],
         public votes: Vote[]
     ) {}
 }

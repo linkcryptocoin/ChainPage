@@ -20,6 +20,7 @@ import { environment } from 'environments/environment.prod';
 })
 export class PostComponent implements OnInit {
 
+  private isEvent: boolean = false;
   urls = new Array<string>();
   currentUser: string;
   model: any = {};
@@ -62,6 +63,27 @@ export class PostComponent implements OnInit {
 
   }
 
+  channeldropdown(newValue: string) {
+
+    console.log('channeldropdown: ' + newValue);
+
+    if (newValue === "Events")
+    {
+
+      this.isEvent = true;
+
+
+    }
+    else{
+
+      this.isEvent = false;
+
+    }
+
+
+
+  }
+
 
   async onSubmit() {
     //upload logo first
@@ -78,7 +100,7 @@ export class PostComponent implements OnInit {
     this.model.postedTime = Date.now();
     console.log("model = " + JSON.stringify(this.model));
     if (this.isUpdate == true) {
-      // console.log(this.model);
+      console.log(this.model);
       this.model.appId = this.globals.ChainpostAppId;
       this.mongoService.updateListing(this.model)
         .subscribe(response => {
@@ -93,6 +115,8 @@ export class PostComponent implements OnInit {
     }
     else {
 
+      console.log(this.model);
+      
       this.model.appId = this.globals.ChainpostAppId;
       this.mongoService.saveListing(this.model)
         .subscribe(
