@@ -40,7 +40,7 @@ export class SwarmService {
     getFileUrls(hashes: String[]): String[] {
         let urls = [];
         Array.prototype.forEach.call(hashes, hash => {
-            urls.push(environment.SwarmProvider + "bzz:/" + hash);
+            urls.push(environment.SwarmProvider + "bzz:/" + hash + "/");
         });
         // console.log(urls)
         return urls;
