@@ -79,8 +79,29 @@
                 </div>
             </div>
             <div *ngIf="selectedPage == profilePages[1]">
-                <div>
-                    {{'settings page - under construction'|translate}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Transfer Tokens</h5>
+                            <form #transferForm="ngForm">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="toAddress" translate>To: </label>
+                                        <input type="text" id="toAddress" required ngModel>
+                                    </div>
+                                    <div class="col">
+                                        <label for="tbAmount" translate>Amount: </label>
+                                        <input type="text" id="tbAmount" required ngModel>
+                                    </div>
+                                    <div class="col">
+                                        <label for="tbPass" translate>Password: </label>
+                                        <input type="text" id="btPass" required ngModel>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary btn-small">Send</a>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
