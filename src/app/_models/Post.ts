@@ -8,9 +8,9 @@ export class Post {
         public postedBy: String ,
         public Narrative: String,
         public Tags: String ,
-        public postedTime: Number ,
+        public postedTime: Number ,/*
         public DateTime: String ,
-        public Address: String ,
+        public Address: String ,*/
        public comments: Comment[],
         public votes: Vote[]
     ) {}

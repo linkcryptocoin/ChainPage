@@ -44,8 +44,9 @@
                 <!-- [hidden]="!isAuthor"  color: #007bff -->
             </div>
             <br>
-              <!--  event date time  -->
-              <div class="md-form"  [hidden]="!isEvent"  [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
+
+                <!--  event date time  -->
+             <!-- <div class="md-form"  [hidden]="!isEvent"  [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
                 <i class="fas fa-calendar-alt prefix grey-text"></i>
                 <label for="PostTitle" class=" active " translate>DateTime</label>
                 <input required type="text" id="eventDateTime" name="DateTime" placeholder="MM/DD/YYYY" #DateTime="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !DateTime.valid }" validate [(ngModel)]="model.DateTime" class="form-control">
@@ -54,8 +55,9 @@
             </div>
             <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate>DateTime required</small>
             <br  [hidden]="!isEvent" >
+          -->
              <!--  address  -->
-             <div class="md-form"  [hidden]="!isEvent"  [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
+          <!--   <div class="md-form"  [hidden]="!isEvent"  [ngClass]="{ 'has-error': PostForm.submitted && !Title.valid }">
               <i class="fa fa-check prefix grey-text"></i>
               <label for="PostTitle" class=" active " translate>Address</label>
               <input required type="text" id="eventAddress" name="Title" #Address="ngModel" [ngClass]="{ 'show-error-border': PostForm.submitted && !Address.valid }" validate [(ngModel)]="model.Address" class="form-control">
@@ -64,7 +66,9 @@
           </div>
           <small *ngIf="PostForm.submitted && !Title.valid" class="validatefields" [ngClass]="{ 'show-error': PostForm.submitted && !Title.valid }" translate>Address is required</small>
           <br  [hidden]="!isEvent" >
-            <!-- post  -->
+        -->
+
+        <!-- post  -->
             <div class="md-form row">
                 <i class="col-sm-2  fa fa-info-circle prefix grey-text"></i>
                 <div class=" col-sm-12" style="margin-left:40px; ">
