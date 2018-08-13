@@ -36,7 +36,7 @@
             <li *ngIf="currentUser == undefined">
                 <div class="nav-log">
                     <div class="nav-log-a">
-                        <a [routerLink]="['/login']" translate>Login</a>
+                        <a (click)="Login()" translate>Login</a>
                     </div>
                 </div>
             </li>
