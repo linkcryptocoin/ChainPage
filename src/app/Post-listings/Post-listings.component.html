@@ -50,5 +50,7 @@
             </li>
         </ul>
     </div>
-
+    <div class="col-12 row">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
 </div>
