@@ -267,7 +267,7 @@ export class OothService {
         const user = await this.getUser();
         const userId = user._id; 
         
-        return fetch('/auth/local/t-userSendToken', {
+        return fetch(this.API_PATH + 'local/t-userSendToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

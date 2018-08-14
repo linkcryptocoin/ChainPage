@@ -94,10 +94,10 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroup-sizing-sm">To Whom:</span>
                                                 </div>
-                                                <input type="text" name="toAddress" class="form-control" [(ngModel)]="toAddress" required>
-                                                <div class="invalid-tooltip">
-                                                        Please choose a unique and valid username.
-                                                      </div>
+                                                <input type="text" name="toAddress" #Address="ngModel" class="form-control" [(ngModel)]="toAddress" required>
+                                                <div>
+                                                    <small *ngIf="transferForm.submitted && !Address.valid" class="show-error" translate>*</small>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -105,7 +105,10 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroup-sizing-sm">Amount:</span>
                                                 </div>
-                                                <input type="number" name="amount" class="form-control" ngModel required>
+                                                <input type="number" name="token" #Amount="ngModel" class="form-control" [(ngModel)]="token" required>
+                                                <div>
+                                                    <small *ngIf="transferForm.submitted && !Amount.valid" class="show-error" translate>*</small>
+                                                </div>
                                             </div>
                                             <!-- <label for="tbAmount" translate>Amount: </label>
                                             <input type="number" name="tbAmount" min="1" id="tbAmount" required> -->
@@ -116,9 +119,15 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
                                                 </div>
-                                                <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
+                                                <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel
+                                                    required>
                                                 <div class="input-group-append">
-                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a>
+                                                    <a (click)="togglePass()">
+                                                        <i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small>
                                                 </div>
                                             </div>
                                             <!-- <label for="tbPass" translate>Password: </label>
@@ -128,7 +137,7 @@
                                             <button type="submit" class="btn btn-mdb-color btn-sm">Send</button>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </form>
                         </div>
