@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
   sendToken(){
-    if(confirm("Are you sure you want to transfer tokens to another account?")) {
+    //if(confirm("Are you sure you want to transfer tokens to another account?")) {
       //alert("Sending..")
       console.log(this.token)
       this.oothService.transferToken(this.toAddress, this.token)
@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
           });              
         }
       });
-    }    
+    //}    
   }
   onPageClick(value){
     // console.log(value);
