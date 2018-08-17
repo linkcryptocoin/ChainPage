@@ -262,6 +262,27 @@ export class OothService {
          const body = await res.json()
          console.log(`${body.message} ${body.result}`) 
      }
+     // User reward
+     async transferToken(toAddress: string, token: number) {
+        const user = await this.getUser();
+        const userId = user._id; 
+        
+        return fetch('/auth/local/t-userSendToken', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                  userId,
+                  toAddress,
+                  token,
+            }),
+            credentials: 'include',
+        })
+
+        //const body = await res.json()
+        //console.log(`${body.message} ${body.result}`) 
+    }
     // deduct token from current account
     // async deductToken(account: string, amount: number) {
     //     const res = await fetch(this.API_PATH + 'local/t-deductRewards', {

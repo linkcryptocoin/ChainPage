@@ -23,6 +23,7 @@
 
             </div>
 
+<<<<<<< HEAD
             <ngu-carousel #myCarousels1 [inputs]="carouselBanner" (carouselLoad)="carouselTileOneLoad()" (onMove)="onMoveData($event)" [reset]="rsts" (initData)="getCarouselData($event)">
                 <ngu-tile NguCarouselItem *ngFor="let image of albums; let i=index">
                     <img style="cursor: pointer;width: 100%;height: 100px;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable" />
@@ -43,6 +44,69 @@
           <i style="font-size: medium;">{{likes}} likes</i>
                     </i>
                     <i class="far fa-thumbs-down fa-lg col-3">
+=======
+      <label for="name" translate>{{model.name}} -- {{model.businessName}} ({{model.phone}})</label>
+      
+      <label for="street">{{model.street}}</label>
+      <br>
+      <label for="city">{{model.city}}, {{model.state}} {{model.zip}} {{model.country}}</label>
+      <br>
+      <label for="email">{{model.email}}</label>
+      <br>
+      <a [href]="formatURL(model.webPage)" target="_blank">{{model.webPage}}</a>
+    </div>
+    <br>
+    <div>
+      <h5 translate>Business Info</h5>
+      <div>
+        <label for="businessCategory" translate>Main Category</label>:
+        <label for="businessCategory" translate>{{model.businessMainCategory}}</label>
+        <br>
+        <label for="businessCategory" translate>Sub Category</label>:
+        <label for="businessCategory" class="inline" translate>{{model.businessSubCategory}}</label>
+        <br>
+        <label for="service" translate>Business Description</label>:
+        <label for="service" translate>{{model.service}}</label>
+        <br>
+        <label for="servicingArea" translate>Servicing Area</label>:
+        <label for="servicingArea" translate>{{model.servicingArea}}</label>
+        <br>
+        <label for="businessHour" translate>Business Hour</label>:
+        <label for="businessHour" translate>{{model.businessHour}}</label>
+      </div>
+    </div>
+    <!-- <div class="row no-gutters">
+      <div class="col-sm-4 col-md-3" *ngFor="let image of albums; let i=index">
+        <img style="cursor: pointer;width: 100%;height: 100px;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
+      </div>
+    </div> -->
+      <ngu-carousel #myCarousels1 [inputs]="carouselBanner" (carouselLoad)="carouselTileOneLoad()" (onMove)="onMoveData($event)"
+      [reset]="rsts" (initData)="getCarouselData($event)">
+      <ngu-tile NguCarouselItem *ngFor="let image of albums; let i=index">
+        <!-- <div class="wBg">
+          <div class="tile" [style.background]="'url(' + image.thumb + ')'" (click)="open(i)">
+            <h1>{{i}}</h1>
+          </div>
+        </div> -->
+        <img style="cursor: pointer;width: 100%;height: 100px;" [src]="image.thumb" (click)="open(i)" class="img-thumbnail hoverable"/>
+      </ngu-tile>
+      <a NguCarouselPrev class="carousel-control-prev">
+          <i class="fa fa-chevron-left fa-lg text-muted pt-5"></i>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a NguCarouselNext class="carousel-control-next text-faded">
+          <i class="fa fa-chevron-right fa-lg text-muted pt-5"></i>
+          <span class="sr-only">Next</span>
+      </a>     
+    </ngu-carousel>
+    <br>
+    <div *ngIf="!currentUser">
+      <div>
+        <i class="far fa-thumbs-up fa-lg col-3" data-toggle="modal" data-target="#modalLoginForm">
+          <i style="font-size: medium;">{{likes}} likes</i>
+        </i>
+        <i class="far fa-thumbs-down fa-lg col-3" data-toggle="modal" data-target="#modalLoginForm">
+>>>>>>> b49b7286212bd58b374d1253df580880cdffbf5d
           <i style="font-size: medium;">{{dislikes}} dislikes</i>
                     </i>
                 </div>
@@ -123,4 +187,44 @@
 
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+  </div>
+  <!-- </form> -->
+</div>
+<!-- <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" translate>Login</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="defaultForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-email" translate>Email</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass" translate>Password</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-default" translate>Login</button>
+                <button class="btn btn-deep-orange" translate>Register</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch Modal Login Form</a>
+</div> -->
+>>>>>>> b49b7286212bd58b374d1253df580880cdffbf5d

@@ -129,6 +129,10 @@ export class TopNavComponent implements OnInit {
   //   console.log(this.currentUser);
   //   return this.oothService.isLoggedIn;
   // }
+  Login(){
+    console.log(this.router.url)
+    this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+  }
   LogOut() {
     // reset login status
     this.oothService.Logout()

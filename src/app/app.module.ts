@@ -45,7 +45,7 @@ import { ProfileComponent } from './profile/profile.component'; // optional, pro
 import { ConfirmEqualValidatorDirective } from './_directives/confirm-equal-validator.directive';
 import { Select2Module } from 'ng2-select2';
 import { QuillModule } from 'ngx-quill';
-import { InputMaskModule } from 'ng2-inputmask';
+//import { InputMaskModule } from 'ng2-inputmask';
 import { TagInputModule } from 'ngx-chips';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
@@ -63,7 +63,7 @@ const SERVICES = [
     FormsModule,
     ReactiveFormsModule,
      QuillModule,
-      InputMaskModule,
+      //InputMaskModule,
     FormsModule,
     HttpClientModule,
     routing,

@@ -79,8 +79,60 @@
                 </div>
             </div>
             <div *ngIf="selectedPage == profilePages[1]">
-                <div>
-                    {{'settings page - under construction'|translate}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Transfer Tokens</h5>
+                            <form (ngSubmit)="transferForm.form.valid && sendToken()" name="transferForm" #transferForm="ngForm">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <!-- <label for="toAddress" translate>To: </label>
+                                            <input type="text" name="toAddress" id="toAddress" ngModel #address="ngModel" required validate>
+                                            <small *ngIf="transferForm.submitted && !address.valid">*</small> -->
+                                            <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">To Whom:</span>
+                                                </div>
+                                                <input type="text" name="toAddress" class="form-control" [(ngModel)]="toAddress" required>
+                                                <div class="invalid-tooltip">
+                                                        Please choose a unique and valid username.
+                                                      </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="md-form input-group input-group-sm mt-0 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Amount:</span>
+                                                </div>
+                                                <input type="number" name="amount" class="form-control" ngModel required>
+                                            </div>
+                                            <!-- <label for="tbAmount" translate>Amount: </label>
+                                            <input type="number" name="tbAmount" min="1" id="tbAmount" required> -->
+                                        </div>
+                                        <div class="col-6">
+                                            <!-- <label for="tbPass" translate>Password: </label> -->
+                                            <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                                </div>
+                                                <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
+                                                <div class="input-group-append">
+                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a>
+                                                </div>
+                                            </div>
+                                            <!-- <label for="tbPass" translate>Password: </label>
+                                            <input type="password" id="btPass" required> -->
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" class="btn btn-mdb-color btn-sm">Send</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
