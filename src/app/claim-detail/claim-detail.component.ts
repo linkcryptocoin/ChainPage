@@ -39,6 +39,7 @@ export class ClaimDetailComponent implements OnInit {
   model: any = {};
   submitted: boolean = false;
   comments: any[] = [];
+  commentsNum: number;
   totalItems: number;
   page: number;
   previousPage: any;
@@ -153,6 +154,7 @@ export class ClaimDetailComponent implements OnInit {
               this.comments.push(element);
             }
           });
+          this.model.commentsNum = this.model.comments.length;
           this.commentsPage = this.comments.slice(0, this.pageSize);
           // console.log("comments: " + this.commentsPage);
           //retrieve votes

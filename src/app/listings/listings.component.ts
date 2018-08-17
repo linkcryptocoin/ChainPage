@@ -203,7 +203,7 @@ export class ListingsComponent implements OnInit {
       console.log(this.claims[j].pictures[0]);
       this.listings[j] = {
         imgUrl: isNullOrUndefined(this.claims[j].pictures[0]) || this.claims[j].pictures[0] == "" ?
-                  "" : this.swarmService.getFileUrls(new Array(this.claims[j].pictures[0])),
+                  "../../assets/linkGearGGold.png" : this.swarmService.getFileUrls(new Array(this.claims[j].pictures[0])),
         _id: this.claims[j]._id,
         businessMainCategory: this.claims[j].businessMainCategory,
         businessName: this.claims[j].businessName,
@@ -211,7 +211,8 @@ export class ListingsComponent implements OnInit {
         phone: this.claims[j].phone,
         likes: this.votes[j].likes,
         dislikes: this.votes[j].dislikes,
-        viewCount: this.claims[j].viewCount == null || this.claims[j].viewCount == undefined? 0:  this.claims[j].viewCount
+        viewCount: this.claims[j].viewCount == null || this.claims[j].viewCount == undefined? 0:  this.claims[j].viewCount,
+        comments: this.claims[j].comments.length
       };
     }
     this.claimsPage = this.listings.slice(0, this.pageSize);

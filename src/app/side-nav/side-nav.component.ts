@@ -28,47 +28,40 @@ export class SideNavComponent implements OnInit {
 isClass1Visible: false;
 //variable to hold boolean value to style2
 isClass2Visible: false;
+
   constructor(
     private http: Http, private globals: Globals,
     private authenticationService: AuthenticationService, private router: Router,
     private route: ActivatedRoute, private translate: TranslateService) {
-
-    //console.log("side-nav: " + globals.isLoggedIn);
-    // if (this.currentUser != undefined) {
-    //   console.log(this.currentUser.username);
-    // }
-    // else{console.log("side-nav: no user")}
     this.http.get('/assets/cat.json')
       .subscribe(data => {
         this.categories = data.json();
-        //console.log(data);
+         for(let cat of this.categories){
+          cat.subcategories = [];
+          let param = cat.Category
+          this.http.get('/assets/subCat.json')
+          .subscribe(data => {
+            cat.subcategories = data.json().filter((item)=> item.Category == param);
+            console.log(cat.subcategories);
+          })
+         }
       });
-
   }
   
   OpenSection2(item)
   {
-
-    // this.isClass2Visible = false;
-      //this.isClass2Visible = !false;
-      
       this.catParam = item;
       console.log("----CatID Param Value---------"+this.catParam);
       
       this.http.get('/assets/subCat.json')
         .subscribe(data => {
           this.subcategories = data.json().filter((item)=> item.Category == this.catParam);
+          console.log(this.subcategories);
         });
 
   }
 
-
-OnSection2Click()
-{
-   
  
-  
-} 
   ngOnInit() {
   }
 

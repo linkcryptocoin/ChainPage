@@ -27,31 +27,20 @@
     border: 2px solid #FF8F00;
     font-family: Helvetica;
     font-weight: bold;
-    width: 100px;
-    height: 40px;
     border-radius: 100px;
-    text-align: center;
+    background-color: #3c3d41!important;
+    color: #FF8F00 !important;
+    font-size: 12px;
 }
 
 .nav-log:hover {
-    background-color: #FF8F00;
-}
-
-.nav-log:hover a {
-    color: #FFFFFF;
-}
-
-.nav-log a {
-    color: #FF8F00;
-}
-
-.nav-log-a {
-    padding-top: 5px
+    background-color: #FF8F00 !important;
+    color: #FFFFFF !important;
 }
 
 .nav-lang {
     margin-right: 15px;
-    margin-top: 5px;
+    margin-top: 15px;
     font-family: Helvetica;
 }
 
@@ -60,7 +49,7 @@
     font-family: Helvetica;
     font-size: 15x;
     padding-right: 10px;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 
 .nav-profile a {
