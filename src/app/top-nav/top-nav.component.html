@@ -34,15 +34,7 @@
                 </div>
             </li>
             <li *ngIf="currentUser == undefined">
-<<<<<<< HEAD
                 <button class="btn btn-info btn-md nav-log" [routerLink]="['/login']" translate>Login</button>
-=======
-                <div class="nav-log">
-                    <div class="nav-log-a">
-                        <a (click)="Login()" translate>Login</a>
-                    </div>
-                </div>
->>>>>>> b49b7286212bd58b374d1253df580880cdffbf5d
             </li>
             <li *ngIf="currentUser != undefined">
                 <button class="btn btn-info btn-md nav-log" [routerLink]="['/home']" (click)="LogOut()" translate>Logout</button>
