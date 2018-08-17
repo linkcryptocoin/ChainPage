@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { ToasterService } from 'angular2-toaster';
 import { OothService } from '../_services';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,7 +18,8 @@ export class ProfileComponent implements OnInit {
   accountEmail:string;
   toAddress:string;
   token: number;
-  constructor(private oothService: OothService, private route: ActivatedRoute) { 
+  constructor(private oothService: OothService, private route: ActivatedRoute
+            , private toasterService: ToasterService, private translate: TranslateService) { 
     this.accountNumber = sessionStorage.getItem("currentUserAccount");
     this.accountEmail = sessionStorage.getItem("currentUserEmail");
     this.route.queryParams.subscribe(params => {      
@@ -41,14 +44,27 @@ export class ProfileComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
   sendToken(){
-    if(confirm("Are you sure you want to transfer tokens to another account?")) {
+    //if(confirm("Are you sure you want to transfer tokens to another account?")) {
       //alert("Sending..")
-      console.log(this.toAddress)
+      console.log(this.token)
       this.oothService.transferToken(this.toAddress, this.token)
       .then(res => {
-        console.log(res)
+        if(res.status == 200){
+          this.translate.get('Tokens transferred successfully!')
+          .subscribe(trans => {
+            console.log(trans);
+            this.toasterService.pop("success", "Tokens transferred successfully!");
+          });          
+        }
+        else{
+          this.translate.get('Failed to transfer tokens!')
+          .subscribe(trans => {
+            console.log(trans);
+            this.toasterService.pop("error", "Failed to transfer tokens!");
+          });              
+        }
       });
-    }    
+    //}    
   }
   onPageClick(value){
     // console.log(value);
