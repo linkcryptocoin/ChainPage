@@ -56,7 +56,13 @@ export class LoginComponent implements OnInit {
             }
             else{
                 console.log("redirect to: "+this.returnUrl)
-                this.router.navigate([this.returnUrl]);
+                // var arr = this.returnUrl.split("?");
+                // if(arr.length == 1){
+                //     this.router.navigate([arr[0]]); 
+                // }   
+                // else if(arr.length > 1){
+                    this.router.navigateByUrl(this.returnUrl);
+                // }               
             }
         });
     }

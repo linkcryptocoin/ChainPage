@@ -48,7 +48,7 @@ export class PostListingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, private oothService: OothService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
-    private toasterService: ToasterService, private titleService:Title
+    private toasterService: ToasterService, private titleService: Title
   ) {
     this.titleService.setTitle("ChainPost");
     //reward user for visiting post page
@@ -130,7 +130,7 @@ export class PostListingsComponent implements OnInit {
     // console.log(this.claims[1].businessName + " = " + this.getLikeCount(this.claims[1]))
     this.totalItems = this.Posts.length;
     this.model = this.Posts;
-     console.log( JSON.stringify(this.model));
+    console.log(JSON.stringify(this.model));
     for (var i = 0; i < this.model.length; i++) {
       this.numoflikes = 0;
       this.numofdislikes = 0;
@@ -156,12 +156,25 @@ export class PostListingsComponent implements OnInit {
       this.listings[j] = {
         _id: this.Posts[j]._id,
         Title: this.Posts[j].Title,
-  Channel: this.Posts[j].Channel,
-  postedBy: this.Posts[j].postedBy,
-  likes: this.votes[j].likes,
-  dislikes: this.votes[j].dislikes
+        Channel: this.Posts[j].Channel,
+        postedBy: this.Posts[j].postedBy,
+        likes: this.votes[j].likes,
+        dislikes: this.votes[j].dislikes,
+        postedTime: this.Posts[j].postedTime
       };
     }
+    //order post in posted time - descending order
+    this.listings.sort((obj1, obj2) => {
+      if (obj1.postedTime > obj2.postedTime) {
+        return -1;
+      }
+      else if (obj1.postedTime < obj2.postedTime) {
+        return 1;
+      }
+      else{
+        return 0;
+      }
+    });
     this.PostsPage = this.listings.slice(0, this.pageSize);
     console.log("PostPage : " + this.listings);
   }
@@ -208,10 +221,10 @@ export class PostListingsComponent implements OnInit {
             this.listings[j] = {
               _id: this.Posts[j]._id,
               Title: this.Posts[j].Title,
-        Channel: this.Posts[j].Channel,
-        postedBy: this.Posts[j].postedBy,
-        likes: this.votes[j].likes,
-        dislikes: this.votes[j].dislikes
+              Channel: this.Posts[j].Channel,
+              postedBy: this.Posts[j].postedBy,
+              likes: this.votes[j].likes,
+              dislikes: this.votes[j].dislikes
             };
           }
           console.log(this.listings);
@@ -258,10 +271,10 @@ export class PostListingsComponent implements OnInit {
               this.listings[j] = {
                 _id: this.Posts[j]._id,
                 Title: this.Posts[j].Title,
-          Channel: this.Posts[j].Channel,
-          postedBy: this.Posts[j].postedBy,
-          likes: this.votes[j].likes,
-          dislikes: this.votes[j].dislikes
+                Channel: this.Posts[j].Channel,
+                postedBy: this.Posts[j].postedBy,
+                likes: this.votes[j].likes,
+                dislikes: this.votes[j].dislikes
               };
             }
             this.PostsPage = this.listings.slice(0, this.pageSize);
