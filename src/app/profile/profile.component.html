@@ -121,7 +121,7 @@
                                                 </div>
                                                 <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
                                                 <div class="input-group-append">
-                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a> =======
+                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a>
                                                     <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
                                                     <div class="input-group-append">
                                                         <a (click)="togglePass()">
@@ -129,7 +129,7 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small> >>>>>>> 5b4b18bab029b725e8b2931f67f635c4a3950b91
+                                                        <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small>
                                                     </div>
                                                 </div>
                                                 <!-- <label for="tbPass" translate>Password: </label>
@@ -140,11 +140,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </form>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
