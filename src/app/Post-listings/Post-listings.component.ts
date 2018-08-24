@@ -130,11 +130,7 @@ export class PostListingsComponent implements OnInit {
     // console.log(this.claims[1].businessName + " = " + this.getLikeCount(this.claims[1]))
     this.totalItems = this.Posts.length;
     this.model = this.Posts;
-<<<<<<< HEAD
-    console.log(JSON.stringify(this.model));
-=======
     // console.log(JSON.stringify(this.model));
->>>>>>> 5b4b18bab029b725e8b2931f67f635c4a3950b91
     for (var i = 0; i < this.model.length; i++) {
       this.numoflikes = 0;
       this.numofdislikes = 0;
