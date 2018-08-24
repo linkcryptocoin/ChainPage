@@ -119,27 +119,26 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
                                                 </div>
-                                                <<<<<<< HEAD <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
+                                                <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
+                                                <div class="input-group-append">
+                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a> =======
+                                                    <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
                                                     <div class="input-group-append">
-                                                        <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a> =======
-                                                        <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
-                                                        <div class="input-group-append">
-                                                            <a (click)="togglePass()">
-                                                                <i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small> >>>>>>> 5b4b18bab029b725e8b2931f67f635c4a3950b91
-                                                        </div>
+                                                        <a (click)="togglePass()">
+                                                            <i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+                                                        </a>
                                                     </div>
-                                                    <!-- <label for="tbPass" translate>Password: </label>
+                                                    <div>
+                                                        <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small> >>>>>>> 5b4b18bab029b725e8b2931f67f635c4a3950b91
+                                                    </div>
+                                                </div>
+                                                <!-- <label for="tbPass" translate>Password: </label>
                                             <input type="password" id="btPass" required> -->
                                             </div>
                                             <div class="col-6">
                                                 <button type="submit" class="btn btn-mdb-color btn-sm">Send</button>
                                             </div>
                                         </div>
-                                        <<<<<<< HEAD=======>>>>>>> 5b4b18bab029b725e8b2931f67f635c4a3950b91
                                     </div>
                             </form>
                             </div>
