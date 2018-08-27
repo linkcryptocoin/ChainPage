@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationService, OothService } from '../_services/index';
-import {Globals} from '../globals'
+import { Globals } from '../globals'
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 @Component({
     moduleId: module.id.toString(),
@@ -29,41 +29,29 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    login(){
-        // this.loading = true;
-        // // this.globals.isLoggedIn = true;
-        // // sessionStorage.setItem("isLoggedIn", "true");
-        // //console.log("login: " + this.globals.isLoggedIn);
-        // this.authenticationService.login(this.model.username, this.model.password)
-        //     .subscribe(
-        //         data => {
-        //             console.log(data)
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
-        //console.log('login')
-        this.oothService.Logout();        
+    login() {
+        this.oothService.Logout();
         this.oothService.Login(this.model.email, this.model.password)
-        .then(res => {//console.log(this.model.email + " " + this.model.password)
-        console.log(res)    
-        if(res.status  === 'error'){
-                // console.log("error: "+res.status)
-                this.toasterService.pop("error", res.message.message)
-                this.loading = false;
-            }
-            else{
-                console.log("redirect to: "+this.returnUrl)
-                // var arr = this.returnUrl.split("?");
-                // if(arr.length == 1){
-                //     this.router.navigate([arr[0]]); 
-                // }   
-                // else if(arr.length > 1){
+            .then(res => {//console.log(this.model.email + " " + this.model.password)
+                console.log(res)
+                if (res.status === 'error') {
+                    // console.log("error: "+res.status)
+                    this.toasterService.pop("error", res.message.message);
+                    this.loading = false;
+                }
+                else {
+                    console.log("redirect to: " + this.returnUrl);
+                    // var arr = this.returnUrl.split("?");
+                    // if(arr.length == 1){
+                    //     this.router.navigate([arr[0]]); 
+                    // }   
+                    // else if(arr.length > 1){
                     this.router.navigateByUrl(this.returnUrl);
-                // }               
-            }
-        });
+                    // }               
+                }
+            })
+            .catch(error => {
+                this.toasterService.pop("error", error);
+            });
     }
 }
