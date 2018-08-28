@@ -54,6 +54,12 @@
    "Merchant category": 5977
  },
  {
+  "Subcategory": 2109,
+  "Description": "Title Services",
+  "Category": 1001,
+  "Merchant category": 5977
+},
+ {
    "Subcategory": 2209,
    "Description": "Buy and Sell",
    "Category": 1002,
