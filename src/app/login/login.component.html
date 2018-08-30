@@ -2,7 +2,7 @@
     <h2 translate>Login</h2>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <label for="email" translate>Email</label>
+            <label for="email" translate>Email (not UserName)</label>
             <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
             <div *ngIf="f.submitted && !email.valid" class="alert alert-danger" translate>Email is required</div>
         </div>
