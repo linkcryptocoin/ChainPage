@@ -10,12 +10,12 @@
        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
             <label for="region" translate>Region</label><label for="region2" translate>(We are seeking 21 Super Nodes and contact to us if you are interested)</label>
              <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
-                <option value="Baltimore">Greater Baltimore Area</option>
-                <option value="Chicago">Greater Chicago Area</option>
-                <option value="NYC">Greater New York Area</option>
-                <option value="Toronto">Greater Toronto Area</option>  
-                <option selected="selected" value="WashingtonDC">Greater Washington DC</option>              
-                <option value="Others">Others</option>
+                <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
+                <option value="Baltimore">{{"Maryland Area" | translate}}</option>
+                <option value="NYC">{{"Greater New York Area" | translate}}</option>
+                <option value="Toronto">{{"Greater Toronto Area" | translate}}</option>  
+                <option selected="selected" value="WashingtonDC">{{"Greater Washington DC Area" | translate}}</option>              
+                <option value="Others">{{"Other Area" | translate}}</option>
             </select>
              <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" translate >Region is required</small>
         </div>
