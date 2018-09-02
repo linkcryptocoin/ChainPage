@@ -45,7 +45,7 @@
     <div class="form-group" [class.has-error]="password.touched && password.invalid">
           <label for="password" class="control-label" translate>Password</label>
           <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }"   (change)="confirmPassword.control.updateValueAndValidity()" [(ngModel)]="model.password" #password="ngModel">
-         <small for="must"><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></small>
+         <small for="must"><b><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></b></small>
 
          <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> {{'Password is required' | translate}}
           </small>
