@@ -49,11 +49,13 @@ export class RegisterComponent {
 
     register() {
         console.log(this.model.email);
-        this.oothService.register(this.model.userName, this.model.email, this.model.password)
+        this.oothService.register(this.model.userName, this.model.email, this.model.password, this.model.type, this.model.region)
             .then(res => {
-                if (res && res === 'error') {
+                //if (res && res === 'error') {
+                if (res && res.status === 'error') {
                     // console.log("error: "+res.status)
-                    this.toasterService.pop("error", res);
+                    //this.toasterService.pop("error", res);
+                    this.toasterService.pop("error", res.message);
                     this.loading = false;
                 }
                 else {

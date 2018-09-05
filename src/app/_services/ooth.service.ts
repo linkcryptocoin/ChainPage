@@ -35,7 +35,7 @@ export class OothService {
 
     }
 
-    async register(dname: string, email: string, password: string) {
+    async register(dname: string, email: string, password: string, type: string, region: string) {
         //e.preventDefault()
         //const email = document.getElementById('register-email').nodeValue
         //const password = document.getElementById('register-password').nodeValue
@@ -47,7 +47,9 @@ export class OothService {
             body: JSON.stringify({
                 email,
                 password,
-                dname
+                dname,
+                type,
+                region
             }),
             credentials: 'include',
         })
@@ -55,7 +57,9 @@ export class OothService {
         const body = await res.json()
         if (body.status === 'error') {
             console.log(body.message)
-            return body.status;
+            //return body.status;
+            const message = body.status + ": " + body.message;
+            return {"status": body.status, "message": message};
         }
         console.log(body);
         this.router.navigate(['/login']);
