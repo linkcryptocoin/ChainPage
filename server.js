@@ -219,13 +219,15 @@ app.post("/api/deleteListing", function (req, res) {
 app.get("/api/getListings/:appId", function (req, res) {
     // console.log(req.params.appId)
     var model;
+    var filter = {};
     if(req.params.appId == ChainpageAppId){
         model = modelChainPage;
     }
     else if(req.params.appId == ChainpostAppId){
         model = modelChainPost;
+        filter = {Narrative: 0};
     }
-    model.find({}, function (err, data) {
+    model.find({}, filter, function (err, data) {
         if (err) {
             res.send(err);
         }
