@@ -77,67 +77,90 @@
                     <ngx-qrcode [qrc-element-type]="img" qrc-class="qrSize" [qrc-element-type]="elementType" [qrc-value]="accountNumber">
                     </ngx-qrcode>
                 </div>
-            </div>
-            <div *ngIf="selectedPage == profilePages[1]">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Transfer Tokens</h5>
-                            <form (ngSubmit)="transferForm.form.valid && sendToken()" name="transferForm" #transferForm="ngForm">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <!-- <label for="toAddress" translate>To: </label>
-                                            <input type="text" name="toAddress" id="toAddress" ngModel #address="ngModel" required validate>
-                                            <small *ngIf="transferForm.submitted && !address.valid">*</small> -->
-                                            <div class="md-form input-group input-group-sm mt-0 mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">To Whom:</span>
-                                                </div>
-                                                <input type="text" name="toAddress" #Address="ngModel" class="form-control" [(ngModel)]="toAddress" required>
-                                                <div>
-                                                    <small *ngIf="transferForm.submitted && !Address.valid" class="show-error" translate>*</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="md-form input-group input-group-sm mt-0 mb-2">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Amount:</span>
-                                                </div>
-                                                <input type="number" name="token" #Amount="ngModel" class="form-control" [(ngModel)]="token" required>
-                                                <div>
-                                                    <small *ngIf="transferForm.submitted && !Amount.valid" class="show-error" translate>*</small>
-                                                </div>
-                                            </div>
-                                            <!-- <label for="tbAmount" translate>Amount: </label>
-                                            <input type="number" name="tbAmount" min="1" id="tbAmount" required> -->
-                                        </div>
-                                        <div class="col-6">
-                                            <!-- <label for="tbPass" translate>Password: </label> -->
-                                            <div class="md-form input-group input-group-sm mt-0 mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
-                                                </div>
-                                                <input id="tbPass" name="tbPass" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
-                                                <div class="input-group-append">
-                                                    <a (click)="togglePass()"><i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></a>
-                                                    <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
-                                                    <div class="input-group-append">
-                                                        <a (click)="togglePass()">
-                                                            <i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
-                                                        </a>
+                <br>
+                <!-- <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body card-head">
+                                <h4>Transfer Tokens</h4>
+                                <form (ngSubmit)="transferForm.form.valid && sendToken()" name="transferForm" #transferForm="ngForm">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">To Whom:</span>
                                                     </div>
+                                                    <input type="text" name="toAddress" #Address="ngModel" class="form-control" [(ngModel)]="toAddress" required>
                                                     <div>
-                                                        <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small>
+                                                        <small *ngIf="transferForm.submitted && !Address.valid" class="show-error" translate>*</small>
                                                     </div>
                                                 </div>
-                                                <!-- <label for="tbPass" translate>Password: </label>
-                                            <input type="password" id="btPass" required> -->
                                             </div>
                                             <div class="col-6">
-                                                <button type="submit" class="btn btn-mdb-color btn-sm">Send</button>
+                                                <div class="md-form input-group input-group-sm mt-0 mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Amount:</span>
+                                                    </div>
+                                                    <input type="number" name="token" #Amount="ngModel" class="form-control" [(ngModel)]="token" required>
+                                                    <div>
+                                                        <small *ngIf="transferForm.submitted && !Amount.valid" class="show-error" translate>*</small>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="col-6">
+                                                <div class="md-form input-group input-group-sm mt-0 mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <input id="tbPass" name="tbPass" #Password="ngModel" [type]="showPassword ? 'text' : 'password'" class="form-control" ngModel required>
+                                                        <div class="input-group-append">
+                                                            <a (click)="togglePass()">
+                                                                <i [ngClass]="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <small *ngIf="transferForm.submitted && !Password.valid" class="show-error" translate>*</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button type="submit" class="btn btn-mdb-color btn-sm">Send</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> -->
+            </div>
+            <div *ngIf="selectedPage == profilePages[1]">                
+                <div class="col-sm-12">
+                    <!-- second card -->
+                    <div class="card">
+                        <div class="card-body card-head">
+                            <!-- <button class="btn btn-blue-grey btn-sm float-right">Edit</button> -->
+                            <h4>Update Profile</h4>                            
+                            <form (ngSubmit)="profileForm.form.valid && updateProfile()" name="profileForm" #profileForm="ngForm">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label class="text-info">Current Region: </label>
+                                        </div>
+                                        <div class="col-5">
+                                            <select class="form-control" name="region">
+                                                <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
+                                                <option value="Baltimore">{{"Maryland Area" | translate}}</option>
+                                                <option value="NYC">{{"Greater New York Area" | translate}}</option>
+                                                <option value="Toronto">{{"Greater Toronto Area" | translate}}</option>
+                                                <option selected="selected" value="WashingtonDC">{{"Greater Washington DC Area" | translate}}</option>
+                                                <option value="Others">{{"Other Area" | translate}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                                <button type="submit" class="btn btn-mdb-color btn-sm">Update</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
