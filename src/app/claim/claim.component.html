@@ -222,6 +222,9 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <input type="checkbox" [(ngModel)]="model.service" name="notification" #notification="ngModel"> check here if you want to be notified when a comment is posted
+            </div>
             <div class="submitBtn">
                 <button type="submit" class="btn btn-success" translate>{{isUpdate? 'Update': 'Submit'}}</button>
             </div>
