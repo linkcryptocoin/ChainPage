@@ -1,14 +1,16 @@
-.show-error
-{
-  color: darkred;
+.show-error {
+    color: darkred;
 }
 
-.show-error-border
-{
-  border-color: darkred;
-}
-.show-success-border
-{
-  border-color: darkgreen;
+.show-error-border {
+    border-color: darkred;
 }
 
+.show-success-border {
+    border-color: darkgreen;
+}
+
+.required:after {
+    content: "*";
+    color: red;
+}

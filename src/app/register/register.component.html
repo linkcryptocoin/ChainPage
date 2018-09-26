@@ -7,9 +7,9 @@
             <div *ngIf="f.submitted && !firstName.valid" class="alert alert-danger">First Name is required</div>
         </div> -->
 
-       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
-            <label for="region" translate>Region</label><label for="region2" translate>(We are seeking 21 Super Nodes and contact to us if you are interested)</label>
-             <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !region.valid }">
+            <label for="region" class="required" translate>Region</label><label for="region2" translate>(We are seeking 21 Super Nodes and contact to us if you are interested)</label>
+            <select class="form-control" name="region" [ngClass]="{ 'show-error-border': f.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
                 <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
                 <option value="Baltimore">{{"Maryland Area" | translate}}</option>
                 <option value="NYC">{{"Greater New York Area" | translate}}</option>
@@ -17,64 +17,65 @@
                 <option selected="selected" value="WashingtonDC">{{"Greater Washington DC Area" | translate}}</option>              
                 <option value="Others">{{"Other Area" | translate}}</option>
             </select>
-             <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" translate >Region is required</small>
+            <small *ngIf="f.submitted && !region.valid" class="" [ngClass]="{ 'show-error': f.submitted && !region.valid }" translate>Region is required</small>
         </div>
-         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
-            <label for="type" translate>Type</label>
-             <select class="form-control" name="type" [ngClass]="{ 'show-error-border': f.submitted && !type.valid }" [(ngModel)]="model.type" #type="ngModel" required>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
+            <label for="type" class="required" translate>Type</label>
+            <select class="form-control" name="type" [ngClass]="{ 'show-error-border': f.submitted && !type.valid }" [(ngModel)]="model.type" #type="ngModel" required>
                 <option selected="selected" value="Business" translate>Business</option>
                 <option value="Person" translate>Person</option>
             </select>
-             <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" translate >Type is required</small>
+            <small *ngIf="f.submitted && !type.valid" class="" [ngClass]="{ 'show-error': f.submitted && !type.valid }" translate>Type is required</small>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
-            <label for="userName" translate>User Name</label>
+            <label for="userName" class="required" translate>User Name</label>
             <input type="text" class="form-control" name="userName" [ngClass]="{ 'show-error-border': f.submitted && !userName.valid }" [(ngModel)]="model.userName" #userName="ngModel" required />
             <small *ngIf="f.submitted && !userName.valid" class="" [ngClass]="{ 'show-error': f.submitted && !userName.valid }" translate>User Name is required</small>
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <label for="email" translate>Email</label>
+            <label for="email" class="required" translate>Email</label>
             <input type="email" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="email" [ngClass]="{ 'show-error-border': f.submitted && !email.valid }" [(ngModel)]="model.email" #email="ngModel" required />
             <small *ngIf="f.submitted &&  email.errors?.required" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }" translate>Email is required</small>
             <!--<span *ngIf="f.submitted && !email.valid" class="" [ngClass]="{ 'show-error': f.submitted && !email.valid }">Email is invalid</span>
--->         <small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" translate >Email is invalid</small>
- </div>
-<div ngModelGroup="passwordGroup"
-     [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
-    <div class="form-group" [class.has-error]="password.touched && password.invalid">
-          <label for="password" class="control-label" translate>Password</label>
-          <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }"   (change)="confirmPassword.control.updateValueAndValidity()" [(ngModel)]="model.password" #password="ngModel">
-         <small for="must"><b><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></b></small>
+--><small *ngIf="email.errors?.pattern && email.touched" [ngClass]="{'show-error': email.errors?.pattern && email.touched}" translate>Email is invalid</small>
+        </div>
+        <div ngModelGroup="passwordGroup" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+            <div class="form-group" [class.has-error]="password.touched && password.invalid">
+                <label for="password" class="control-label required" translate>Password</label>
+                <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }" (change)="confirmPassword.control.updateValueAndValidity()"
+                    [(ngModel)]="model.password" #password="ngModel">
+                <small for="must"><b><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></b></small>
 
-         <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> {{'Password is required' | translate}}
+                <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> {{'Password is required' | translate}}
           </small>
-        </p>  
-        <p> <small  *ngIf="strong == false && password.touched" [ngClass]="{ 'show-error': (strong == false ? password.valid  : !password.valid) || !password.valid}" >
+                </p>
+                <p> <small *ngIf="strong == false && password.touched" [ngClass]="{ 'show-error': (strong == false ? password.valid  : !password.valid) || !password.valid}">
           {{'Password must include at least one Uppercase, Lowercase and Number.' | translate}}</small>
-</p>
-            <small  *ngIf="password.errors?.minlength" [ngClass]="{ 'show-error': password.errors?.minlength && !password.valid }" >
+                </p>
+                <small *ngIf="password.errors?.minlength" [ngClass]="{ 'show-error': password.errors?.minlength && !password.valid }">
           {{'Password minimum length is 8 characters.' | translate}}</small>
-     </div>
+            </div>
 
 
- <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
-          <label for="confirmPassword" class="control-label" translate>Confirm Password</label>
-          <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="password" class="form-control"  [ngClass]="{ 'show-error-border': f.submitted && !confirmPassword.valid }"
-         [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
-          <small  *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) "class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }" translate >{{'Confirm Password is required' | translate}}
+            <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+                <label for="confirmPassword" class="control-label required" translate>Confirm Password</label>
+                <input name="confirmPassword" appConfirmEqualValidator="password" required id="confirmPassword" type="password" class="form-control" [ngClass]="{ 'show-error-border': f.submitted && !confirmPassword.valid }" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
+                <small *ngIf="(f.submitted && confirmPassword.errors?.required) || (confirmPassword.touched && confirmPassword.errors?.required) " class="" [ngClass]="{ 'show-error': (f.submitted && !confirmPassword.valid) || (confirmPassword.touched && confirmPassword.errors?.required) }"
+                    translate>{{'Confirm Password is required' | translate}}
           </small>
-          <small translate *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }" >
+                <small translate *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required" class="" [ngClass]="{ 'show-error': confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required }">
             Password mis-match</small>
-</div>
-      </div>
+            </div>
+        </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary" translate>Register</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
             <a [routerLink]="['/login']" class="btn btn-link">{{'Cancel'|translate}}</a>
         </div>
 
 
-    
+
     </form>
 </div>

@@ -45,3 +45,8 @@
 .submitBtn .btn-success {
     background-color: #ff8f00!important;
 }
+
+.required:after {
+    content: "*";
+    color: red;
+}

@@ -14,7 +14,7 @@
                 <div [ngClass]="{ 'has-error': claimForm.submitted && !country.valid }">
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label for="country" translate>Country</label>
+                            <label for="country" class="required" translate>Country</label>
                             <select (change)="countryDropDownChanged($event.target.value)" (ngModelChange)="onChange($event)" [ngClass]="{ 'show-error-border': claimForm.submitted && !country.valid }" class="form-control" id="country" required [(ngModel)]="model.country" [ngClass]="{ 'show-error-border': claimForm.submitted && !country.valid }"
                                 name="country" #country="ngModel">
                                     <option *ngFor="let c of countries" [value]="c.Country">{{c.Country}}</option>
@@ -25,16 +25,30 @@
 
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="name" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Contact Person</label>
-                            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" [ngClass]="{ 'show-error-border': claimForm.submitted && !name.valid }" name="name" #name="ngModel">
+                            <label for="region" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Region</label>
+                            <select class="form-control" name="region" id="region" [ngClass]="{ 'show-error-border': claimForm.submitted && !region.valid }" [(ngModel)]="model.region" #region="ngModel" required>
+                                    <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
+                                    <option value="Baltimore">{{"Maryland Area" | translate}}</option>
+                                    <option value="NYC">{{"Greater New York Area" | translate}}</option>
+                                    <option value="Toronto">{{"Greater Toronto Area" | translate}}</option>  
+                                    <option selected="selected" value="WashingtonDC">{{"Greater Washington DC Area" | translate}}</option>              
+                                    <option value="Others">{{"Other Area" | translate}}</option>
+                                </select>
                             <div class="col-sm-6">
-                                <small *ngIf="claimForm.submitted && !name.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !name.valid }">* This is required</small>
+                                <small *ngIf="claimForm.submitted && !region.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !region.valid }">* This is required</small>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label for="businessName" [ngClass]="{ 'has-error': claimForm.submitted && !businessName.valid }" translate>Business Name</label>
+                            <label for="name" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !name.valid }" translate>Contact Person</label>
+                            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" [ngClass]="{ 'show-error-border': claimForm.submitted && !name.valid }" name="name" #name="ngModel">
+                            <div class="col-sm-6">
+                                <small *ngIf="claimForm.submitted && !name.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !name.valid }">* This is required</small>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="businessName" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !businessName.valid }" translate>Business Name</label>
                             <input type="text" class="form-control" id="businessName" required [(ngModel)]="model.businessName" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessName.valid }" name="businessName" #businessName="ngModel">
                             <div class="col-sm-6">
                                 <small *ngIf="claimForm.submitted && !businessName.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessName.valid }">* This is required</small>
@@ -49,7 +63,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="street" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
+                        <label for="street" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !street.valid }" translate>Street</label>
                         <input type="text" class="form-control" id="street" required [(ngModel)]="model.street" [ngClass]="{ 'show-error-border': claimForm.submitted && !street.valid }" name="street" #street="ngModel">
                         <div class="col-sm-8">
                             <small *ngIf="claimForm.submitted && !street.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !street.valid }">* This is required</small>
@@ -57,7 +71,7 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !city.valid }">
-                            <label for="city" translate>City</label>
+                            <label for="city" class="required" translate>City</label>
                             <input type="text" class="form-control" id="city" required [(ngModel)]="model.city" [ngClass]="{ 'show-error-border': claimForm.submitted && !city.valid }" name="city" #city="ngModel">
                             <div class="col-sm-8">
                                 <small *ngIf="claimForm.submitted && !city.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !city.valid }">* This is required</small>
@@ -66,7 +80,7 @@
                     </div>
                     <div class="form-group col-sm-2">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !state.valid }">
-                            <label for="state" translate>State/Province</label>
+                            <label for="state" class="required" translate>State/Province</label>
                             <select class="form-control" id="state" required [(ngModel)]="model.state" [ngClass]="{ 'show-error-border': claimForm.submitted && !state.valid }" name="state" #state="ngModel">
                                 <option *ngFor="let s of state_province" [value]="s.abbreviation">{{s.abbreviation}}</option>
                               </select>
@@ -77,7 +91,7 @@
                     </div>
                     <div class="form-group col-sm-2">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !zip.valid }">
-                            <label for="zip" translate>Zip Code</label>
+                            <label for="zip" class="required" translate>Zip Code</label>
                             <input type="text" class="form-control" id="zip" required [(ngModel)]="model.zip" [ngClass]="{ 'show-error-border': claimForm.submitted && !zip.valid }" name="zip" #zip="ngModel">
                             <div class="col-sm-14">
                                 <small *ngIf="claimForm.submitted && !zip.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !zip.valid }">* This is required</small>
@@ -93,7 +107,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !email.valid }">
-                            <label for="email" translate>Email</label>
+                            <label for="email" class="required" translate>Email</label>
                             <input type="text" class="form-control" id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required [(ngModel)]="model.email" [ngClass]="{ 'show-error-border': claimForm.submitted && !email.valid }" name="email" #email="ngModel">
                             <div class="col-sm-6">
                                 <small *ngIf="claimForm.submitted && !email.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !email.valid }">* This is required</small>
@@ -103,7 +117,7 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !phone.valid }">
-                            <label for="phone" translate>Phone</label>
+                            <label for="phone" class="required" translate>Phone</label>
                             <input type="text" mask="(000)000-0000" class="form-control" id="phone" required [(ngModel)]="model.phone" [ngClass]="{ 'show-error-border': claimForm.submitted && !phone.valid }" name="phone" #phone="ngModel">
                             <div class="col-sm-6">
                                 <small *ngIf="claimForm.submitted && !phone.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !phone.valid }">* This is required</small>
@@ -114,7 +128,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !webPage.valid }">
-                            <label for="webPage" translate>WebPage</label>
+                            <label for="webPage" class="required" translate>WebPage</label>
                             <input type="text" id="webPage" class="form-control" id="webPage" pattern="^((http|https):\/\/[w|W]+(\.[a-zA-Z0-9]+)+.*)$" [(ngModel)]="model.webPage" [ngClass]="{ 'show-error-border': claimForm.submitted && !webPage.dirty }" name="webPage" #webPage="ngModel">
                             <div class="col-sm-6">
                                 <small *ngIf="claimForm.submitted && !webPage.dirty" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !webPage.dirty }">* This is required</small>
@@ -130,7 +144,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <label for="businessMainCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
+                        <label for="businessMainCategory" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !businessCategory.valid }" translate>Main Category</label>
                         <select class="form-control" id="businessMainCategory" required (change)="MainCategoryDropDownChanged($event.target.value)" [(ngModel)]="model.businessMainCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessCategory.valid }" name="businessMainCategory"
                             #businessCategory="ngModel">
                             <option *ngFor="let cat of categories" [value]="cat.Description" translate>{{cat.Description}}</option>
@@ -140,7 +154,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-6">
-                        <label for="businessSubCategory" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
+                        <label for="businessSubCategory" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !businessSubCategory.valid }" translate>Sub Category</label>
                         <select class="form-control" id="businessSubCategory" required [(ngModel)]="model.businessSubCategory" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessSubCategory.valid }" name="businessSubCategory" #businessSubCategory="ngModel">
                             <option  value="" translate></option>
                             <option *ngFor="let subcat of subcategories" [value]="subcat.Description" translate>{{subcat.Description}}</option>
@@ -152,7 +166,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <label for="servicingArea" [ngClass]="{ 'has-error': claimForm.submitted && !servicingArea.valid }" translate>Servicing Area</label>
+                        <label for="servicingArea" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !servicingArea.valid }" translate>Servicing Area</label>
                         <input type="text" class="form-control" id="servicingArea" required [(ngModel)]="model.servicingArea" [ngClass]="{ 'show-error-border': claimForm.submitted && !servicingArea.valid }" name="servicingArea" #servicingArea="ngModel">
                         <div class="col-sm-6">
                             <small *ngIf="claimForm.submitted && !servicingArea.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !servicingArea.valid }">* This is required</small>
@@ -161,7 +175,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <label for="businessHour" [ngClass]="{ 'has-error': claimForm.submitted && !businessHour.valid }" translate>Business Hour</label>
+                        <label for="businessHour" class="required" [ngClass]="{ 'has-error': claimForm.submitted && !businessHour.valid }" translate>Business Hour</label>
                         <input type="text" class="form-control" id="businessHour" required [(ngModel)]="model.businessHour" [ngClass]="{ 'show-error-border': claimForm.submitted && !businessHour.valid }" name="businessHour" #businessHour="ngModel">
                         <div class="col-sm-6">
                             <small *ngIf="claimForm.submitted && !businessHour.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !businessHour.valid }">* This is required</small>
@@ -182,7 +196,7 @@
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <div [ngClass]="{ 'has-error': claimForm.submitted && !service.valid }">
-                            <label for="service" translate>Description</label>
+                            <label for="service" class="required" translate>Description</label>
                             <textarea class="form-control" style="resize: none;" rows="6" id="service" required [(ngModel)]="model.service" [ngClass]="{ 'show-error-border': claimForm.submitted && !service.valid }" name="service" #service="ngModel"></textarea>
                             <div class="col-sm-6">
                                 <small *ngIf="claimForm.submitted && !service.valid" translate class="" [ngClass]="{ 'show-error': claimForm.submitted && !service.valid }">* This is required</small>
