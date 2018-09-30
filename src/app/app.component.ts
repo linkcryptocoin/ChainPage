@@ -1,6 +1,6 @@
 import { Component, HostListener, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { Web3Service, MetaCoinService } from '../services/services'
+// import { Web3Service, MetaCoinService } from '../services/services'
 import { OothService } from './_services/index';
 import { canBeNumber } from '../util/validation';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -39,8 +39,8 @@ export class AppComponent {
 
   constructor(
     private _ngZone: NgZone, private toasterService: ToasterService,
-    private web3Service: Web3Service, private router: Router,
-    private metaCoinService: MetaCoinService,
+    // private web3Service: Web3Service, private metaCoinService: MetaCoinService,
+    private router: Router,
     private translate: TranslateService, private modalService: NgbModal,
     private idle: Idle, private keepalive: Keepalive, private globals: Globals,
     private oothservice: OothService, private titleService: Title

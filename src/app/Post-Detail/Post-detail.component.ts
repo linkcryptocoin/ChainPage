@@ -188,6 +188,11 @@ export class PostDetailsComponent implements OnInit {
             this.toasterService.pop('success', 'Comment submitted successfully. 20 tokens earned!');
             this.submitted = true;
             console.log("account: " + this.account);
+            //email author about new comment if allowed
+            if (this.model.notification) {
+              this.oothService.sendEmail(sessionStorage.getItem('currentUserEmail'), this.globals.ChainPostNewCommentSubject
+                , this.globals.ChainPostNewCommentMessage + window.location);
+            }
             //deduct token
             if (!this.ownComment) {
               console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));

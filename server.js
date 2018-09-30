@@ -86,7 +86,8 @@ var ListingSchema = new Schema({
     votes: [VoteSchema],
     pictures: [String],
     viewCount: { type: Number },
-    region: { type: String }
+    region: { type: String },
+    notification: { type: Boolean}
 });
 // ListingSchema.index({name: 'text', businessName: 'text',
 // street: 'text', city: 'text', state: 'text', zip: 'text',
@@ -109,6 +110,7 @@ var ChainPostSchema = new Schema({
     viewCount: { type: Number },
     comments: [CommentSchema],
     votes: [VoteSchema],
+    notification: { type: Boolean}
 });
 ChainPostSchema.index({ Tags: 'text' });
 
@@ -161,7 +163,8 @@ app.post("/api/updateListing", function(req, res) {
                     formType: req.body.formType,
                     postedBy: req.body.postedBy,
                     postedTime: req.body.postedTime,
-                    pictures: req.body.pictures
+                    pictures: req.body.pictures,
+                    notification: req.body.notification
                 }
             }, { upsert: true },
             function(err) {
@@ -182,7 +185,8 @@ app.post("/api/updateListing", function(req, res) {
                     Tags: req.body.Tags,
                     postedBy: req.body.postedBy,
                     postedTime: req.body.postedTime,
-                    pictures: req.body.pictures
+                    pictures: req.body.pictures,
+                    notification: req.body.notification
                 }
             }, { upsert: true },
             function(err) {

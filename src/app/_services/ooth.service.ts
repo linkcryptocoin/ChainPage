@@ -13,10 +13,10 @@ function getApiPath() {
     // for a local run, use qa Idp
     if (location.hostname === 'localhost')
         host = '34.238.58.243';
-    else 
+    else
         host = location.hostname;
     //readonly API_PATH = 'http://linkcryptocoin.com:8091/auth/';
-    return location.protocol + '//' + host + ':8091/auth/'; 
+    return location.protocol + '//' + host + ':8091/auth/';
 }
 @Injectable()
 export class OothService {
@@ -59,7 +59,7 @@ export class OothService {
             console.log(body.message)
             //return body.status;
             const message = body.status + ": " + body.message;
-            return {"status": body.status, "message": message};
+            return { "status": body.status, "message": message };
         }
         console.log(body);
         this.router.navigate(['/login']);
@@ -248,44 +248,62 @@ export class OothService {
     }
     async onUserAction(app, action) {
         console.log(`app: ${app} action: ${action}`)
-         const user = await this.getUser()
-         const userId = user._id;
-         const res = await fetch(this.API_PATH + 'local/t-userAction', {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json'
-             },
-             body: JSON.stringify({
-                   userId,
-                   app,
-                   action,
-             }),
-             credentials: 'include',
-         })
-         console.log(res)
-         const body = await res.json()
-         console.log(`${body.message} ${body.result}`) 
-     }
-     // User reward
-     async transferToken(toAddress: string, token: number) {
+        const user = await this.getUser()
+        const userId = user._id;
+        const res = await fetch(this.API_PATH + 'local/t-userAction', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId,
+                app,
+                action,
+            }),
+            credentials: 'include',
+        })
+        console.log(res)
+        const body = await res.json()
+        console.log(`${body.message} ${body.result}`)
+    }
+    // User reward
+    async transferToken(toAddress: string, token: number) {
         const user = await this.getUser();
-        const userId = user._id; 
-        
+        const userId = user._id;
+
         return fetch(this.API_PATH + 'local/t-userSendToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                  userId,
-                  toAddress,
-                  token,
+                userId,
+                toAddress,
+                token,
             }),
             credentials: 'include',
         })
 
         //const body = await res.json()
         //console.log(`${body.message} ${body.result}`) 
+    }
+    // AWS email
+    // Send an email
+    async sendEmail(receiver, subject, message) {
+        const res = await fetch(this.API_PATH + 'local/t-sendEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                receiver,
+                subject,
+                message
+            }),
+            credentials: 'include',
+        })
+        const body = await res.json()
+        alert(`${body.result}: ${body.message}`);
     }
     // deduct token from current account
     // async deductToken(account: string, amount: number) {

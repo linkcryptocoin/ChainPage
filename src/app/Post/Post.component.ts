@@ -59,8 +59,6 @@ export class PostComponent implements OnInit {
         this.getPost(this.postId);
       }
     });
-
-
   }
 
   channeldropdown(newValue: string) {
@@ -138,20 +136,16 @@ export class PostComponent implements OnInit {
             this.toasterService.pop("error", "fail to submit Post");
           }
         );
-
     }
      // console.log(this.model);
-
-
   }
-
 
   getPost(id: string){
     this.mongoService.GetListing(id, this.globals.ChainpostAppId)
     .subscribe(response => {
-     // console.log(response)
+      console.log(response)
       this.model = response.json();
-
+      console.log(this.model.notification)
       this.isUpdate = true;
     });
   }

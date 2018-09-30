@@ -9,7 +9,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
-import { ContractComponent } from './contract/contract.component';
+// import { ContractComponent } from './contract/contract.component';
 import { ClaimComponent } from './claim/claim.component';
 import { ClaimDetailComponent } from './claim-detail/claim-detail.component';
 import { ListingsComponent } from './listings/listings.component';
@@ -20,7 +20,7 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent, children:[
         { path: '', component: ListingsComponent },
         { path: 'listing:/cat', component: ListingsComponent },
-        { path: 'contract', component: ContractComponent, canActivate: [AuthGuard] },
+        // { path: 'contract', component: ContractComponent, canActivate: [AuthGuard] },
         { path: 'claim', component: ClaimComponent, canActivate: [AuthGuard] },
         { path: 'claim-detail', component: ClaimDetailComponent }
     ] },

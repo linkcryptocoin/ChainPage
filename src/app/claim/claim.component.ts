@@ -23,6 +23,7 @@ import { environment } from 'environments/environment.prod';
 
 
 export class ClaimComponent implements OnInit {
+  
   isOversize: boolean = false;
   isOverTotal: boolean = false;
   isAlreadyAdded: boolean = false;
@@ -116,8 +117,9 @@ export class ClaimComponent implements OnInit {
   getClaim(id: string) {
     this.mongoService.GetListing(id, this.globals.ChainpageAppId)
       .subscribe(response => {
-        console.log(response)
+        // console.log(response)
         this.model = response.json();
+        console.log(this.model.notification);
         let id = -1;
         this.swarmService.getFileUrls(this.model.pictures)
           .forEach(url => {
@@ -250,7 +252,8 @@ export class ClaimComponent implements OnInit {
     // }
     this.model.postedBy = this.currentUser;
     this.model.postedTime = Date.now();
-    // console.log(this.model)
+    //this.model.notification = this.toNotify;    
+    console.log(this.model.notification)
     if (this.isUpdate == true) {
       // console.log(this.model);
       this.model.appId = this.globals.ChainpageAppId;

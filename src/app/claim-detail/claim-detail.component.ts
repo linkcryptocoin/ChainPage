@@ -20,7 +20,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./claim-detail.component.css']
 })
 export class ClaimDetailComponent implements OnInit {
-  public carouselBanner : NguCarousel;
+  public carouselBanner: NguCarousel;
   public carouselTileOneItems: Array<any> = [];
   imgags: string[];
   storeCarouselData: NguCarouselStore;
@@ -109,18 +109,18 @@ export class ClaimDetailComponent implements OnInit {
           //set title
           this.titleService.setTitle(this.model.name + "--" + this.model.businessName)
           this.swarmService.getFileUrls(this.model.pictures)
-          .forEach(img => {
-            const src = img;
-            //const caption = 'Image caption here';
-            const thumb = img;
-            const album = {
-              src: src,
-              //caption: caption,
-              thumb: thumb
-            };
+            .forEach(img => {
+              const src = img;
+              //const caption = 'Image caption here';
+              const thumb = img;
+              const album = {
+                src: src,
+                //caption: caption,
+                thumb: thumb
+              };
 
-            this.albums.push(album);
-          });
+              this.albums.push(album);
+            });
           // console.log(this.urls)
           //check if current user is the author of the listing
           // console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
@@ -228,6 +228,11 @@ export class ClaimDetailComponent implements OnInit {
                 this.toasterService.pop('success', 'Comment submitted successfully');
                 this.submitted = true;
                 console.log("account: " + this.account);
+                //email author about new comment if allowed
+                if (this.model.notification) {
+                  this.oothService.sendEmail(sessionStorage.getItem('currentUserEmail'), this.globals.ChainPageNewCommentSubject
+                    , this.globals.ChainPageNewCommentMessage + window.location);
+                }
                 //deduct token
                 if (!this.ownComment) {
                   console.log("deduct new comment token from " + sessionStorage.getItem("currentUserId"));
@@ -426,8 +431,8 @@ export class ClaimDetailComponent implements OnInit {
       // console.log(this.alreadyDisliked);
     }
   }
-  formatURL(url: string): string{
-    if(url != undefined && (!url.startsWith("http:///") || !url.startsWith("https:///"))){
+  formatURL(url: string): string {
+    if (url != undefined && (!url.startsWith("http:///") || !url.startsWith("https:///"))) {
       return "http://" + url;
     }
     else {
@@ -693,7 +698,7 @@ export class ClaimDetailComponent implements OnInit {
     // this.subscription.unsubscribe();
   }
   ngOnInit() {
-    this.carouselBanner  = {
+    this.carouselBanner = {
       grid: { xs: 2, sm: 3, md: 4, lg: 4, all: 0 },
       speed: 600,
       slide: 1,
@@ -717,7 +722,6 @@ export class ClaimDetailComponent implements OnInit {
         // );
         this.carouselTileOneItems = this.albums;
       }
-      console.log('adf');
     }
   }
   onMoveData(data) {
@@ -730,8 +734,8 @@ export class ClaimDetailComponent implements OnInit {
     // carouselLoad will trigger this funnction when your load value reaches
     // it is helps to load the data by parts to increase the performance of the app
     // must use feature to all carousel
- }
- onmoveFn(data: NguCarouselStore) {
-  console.log(data);
-}
+  }
+  onmoveFn(data: NguCarouselStore) {
+    console.log(data);
+  }
 }

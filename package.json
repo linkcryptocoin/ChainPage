@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "^5.2.9",
     "@angular/platform-server": "^5.2.9",
     "@angular/router": "^5.2.9",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@ng-idle/core": "^2.0.0-beta.15",
     "@ng-idle/keepalive": "^2.0.0-beta.15",
     "@ngu/carousel": "^1.4.8",

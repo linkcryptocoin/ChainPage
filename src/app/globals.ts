@@ -11,4 +11,8 @@ export class Globals {
   readonly ChainpageAppId = 1;
   readonly ChainpostAppId = 2;
   readonly action = { comment: "comment", like: "like", dislike: "dislike", post: "post", login: "login" };
+  readonly ChainPageNewCommentSubject = "New comment posted";
+  readonly ChainPageNewCommentMessage = "A new comment has been posted for your listing\n";
+  readonly ChainPostNewCommentSubject = "New comment posted";
+  readonly ChainPostNewCommentMessage = "A new comment has been posted for your post\n";
 }

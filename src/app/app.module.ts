@@ -22,9 +22,9 @@ import { PostSideNavComponent } from './Post-Side-nav-bar/Post-side-nav.componen
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 
-import { MetaCoinService, Web3Service } from '../services/services';
+// import { MetaCoinService, Web3Service } from '../services/services';
 import { ClaimComponent } from './claim/claim.component';
-import { ContractComponent } from './contract/contract.component';
+// import { ContractComponent } from './contract/contract.component';
 import { SideNavComponent } from './side-nav/side-nav.component'
 import { Globals } from './globals'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -51,10 +51,10 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
 import { NguCarouselModule } from '@ngu/carousel';
 
-const SERVICES = [
-  MetaCoinService,
-  Web3Service,
-]
+// const SERVICES = [
+//   MetaCoinService,
+//   Web3Service,
+// ]
 @NgModule({
   imports: [
     BrowserModule,
@@ -100,7 +100,7 @@ const SERVICES = [
 
     RegisterComponent,
     ClaimComponent,
-    ContractComponent,
+    // ContractComponent,
     SideNavComponent,
     TopNavComponent,
     ClaimDetailComponent,
@@ -111,7 +111,7 @@ const SERVICES = [
     ConfirmEqualValidatorDirective
   ],
   providers: [
-    SERVICES,
+    // SERVICES,
     AuthGuard,
     AlertService,
     AuthenticationService,
