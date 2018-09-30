@@ -50,8 +50,8 @@ export class PostDetailsComponent implements OnInit {
     , private mongoService: MongoService, private titleService: Title) {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
-    this.maxSize = 5;
-    this.pageSize = 5;
+    this.maxSize = 100;
+    this.pageSize = 100;
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserEmail = sessionStorage.getItem("currentUserEmail");
     this.oothService.getTokenBalance(this.account)
