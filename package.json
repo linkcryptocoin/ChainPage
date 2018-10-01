@@ -36,6 +36,7 @@
     "angular2-moment": "^1.8.0",
     "angular2-tag-input": "^1.2.3",
     "angular2-toaster": "^5.0.1",
+    "aws-sdk": "^2.310.0",
     "bigchaindb-driver": "^4.0.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.1.3",
