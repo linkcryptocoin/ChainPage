@@ -223,11 +223,14 @@
                 </div>
             </div>
             <div>
-                <input type="checkbox" [(ngModel)]="model.notification" name="notification" #notification="ngModel" translate> check here if you want to be notified when a new comment is posted
+                <input type="checkbox" [(ngModel)]="model.notification" name="notification" #notification="ngModel"> <label translate>check here if you want to be notified when a new comment is posted</label>
             </div>
             <div class="submitBtn">
                 <button type="submit" class="btn btn-success" translate>{{isUpdate? 'Update': 'Submit'}}</button>
-                <button class="btn btn-outline-danger  waves-effect" [routerLink]="['/home/claim-detail']" [queryParams]="{id: claimId}" type="submit" translate>Cancel
+                <button *ngIf="isUpdate" class="btn btn-outline-danger  waves-effect" [routerLink]="['/home/claim-detail']" [queryParams]="{id: claimId}" type="submit" translate>Cancel
+                    <i class="fa fa-ban ml-2"></i>
+                </button>
+                <button *ngIf="!isUpdate" class="btn btn-outline-danger  waves-effect" [routerLink]="['/home']" type="submit" translate>Cancel
                     <i class="fa fa-ban ml-2"></i>
                 </button>
             </div>
