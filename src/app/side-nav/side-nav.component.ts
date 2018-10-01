@@ -42,7 +42,6 @@ isClass2Visible: false;
           this.http.get('/assets/subCat.json')
           .subscribe(data => {
             cat.subcategories = data.json().filter((item)=> item.Category == param);
-            console.log(cat.subcategories);
           })
          }
       });
