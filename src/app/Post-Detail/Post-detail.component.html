@@ -1,136 +1,83 @@
-<div class="container col-md-offset-1 col-md-10">
-    <!-- <form #claimForm="ngForm"> -->
+<div class="container col-12">
     <div class="form-group">
-        <div>
-            <span style="font-weight: bold;">{{'GeGeChain is the first Overseas Chinese community, please help us grow, to take actions: if you have already registered, just click on Login; otherwise please' | translate}}</span>
-            <a style="font-weight: bold;" [routerLink]="['/register']" translate>Register Here</a>
-        </div>
-        <div>            
-            <a href="../../assets/documents/disclaims.pdf " target="_blank " translate>Post Disclaims</a>
-        </div>
-        <div>
-            <h5 translate>
-                <!--    <button class="btn btn-outline-danger  waves-effect" style="float:right;" [hidden]="!isAuthor" translate [routerLink]="['/chainpost']" [queryParams]="{id: PostId}">Delete</button>
-         -->
-                <button style="float: right;" class="btn btn-outline-secondary  waves-effect" [hidden]="!isAuthor" translate [routerLink]="['/chainpost/Post']"
-                    [queryParams]="{id: PostId}">Edit</button>
-            </h5>
-
-            <!-- <button translate class="btn btn-danger" (click)="deleteClaim(model.id)" [routerLink]="['/home']">Delete</button> -->
-
-            <label for="Title">
-                <strong>{{'Title' | translate}}: </strong>{{model.Title}}</label>
-            <br>
-            <label for="Channel">
-                <strong>{{'Channel' | translate}}: </strong>{{model.Channel | translate}}</label>
-            <br>
-            <label for="Narrative">
-                <strong>{{'Narrative' | translate}}: </strong>
-                <div class="narrative" [innerHtml]='model.Narrative'></div>
-            </label>
-
-            <br>
-            <label for="Tags" translate>
-                <strong>{{'Tags' | translate}}: </strong>{{model.Tags}}</label>
-            <!-- <br>
-        <a [href]="formatURL(model.webPage)" target="_blank">{{model.webPage}}</a> -->
-        </div>
-        <br>
-        <div *ngIf="!currentUser">
+        <div class="Post-Disclaims">
             <div>
-                <i class="far fa-thumbs-up fa-lg col-3">
-                    <i style="font-size: medium;" translate>{{likes}} likes</i>
-                </i>
-                <i class="far fa-thumbs-down fa-lg col-3">
-                    <i style="font-size: medium;">{{dislikes}} dislikes</i>
-                </i>
+                <span style="font-weight: bold;">{{'GeGeChain is the first Overseas Chinese community, please help us grow, to take actions: if you have already registered, just click on Login; otherwise please' | translate}}</span>
+                <a style="font-weight: bold;" [routerLink]="['/register']" translate>Register Here</a>
+            </div>
+            <div>
+                <a href="../../assets/documents/disclaims.pdf " target="_blank " translate>Post Disclaims</a>
             </div>
         </div>
-        <div *ngIf="currentUser != undefined">
-            <div>
-                <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-3" placement="top"
-                    ngbTooltip="you liked it">
-                    <i style="font-size: medium;">{{likes}} likes</i>
-                    <br>
-                    <label style="font-size: small" translate>(earn 5 tokens)</label>
-                </i>
-                <!-- <a  click="alert('thumbs up')">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUoSURBVFhH3VhtT5tlFG6iH/Vn+JKYqP/AH6DRT3xytKWAmS8LA/pOB2iYLFlhbm4kQF+eQhkMyqDdGODmYmARNVmEvTAYOnAzM5vOGdqyDzCP53q4S6HctPdDmR92kittn94v13M/51znnMf03Jqlw/62JeiqrdB8oxWad8kacqUtAdcagO98bRH/WQPOGnOn/U0x7dmaLeB42dLpdNo0z73KLl/yiwvHn3T8EKW+68N0bmGMxhYv6sB3XGvn/z7nMR/xWMxh8o6Skw0vieX2zt5paHiRT8JuDbmT3rg/3TMzSN8sfauM8aVL1DM9SHVxf6qM1+B1arCmWL44s7R7XreFPAv2WHMyNpuQEjCCgZsJqol9mSwPe+Y+DDheE9vsztiXPrCFPclTk9pT2WbFAGvyjafMAcf7YjtjVhpy2Mo1b7rv2pB0g71A78wQ8UmumIMus9hWzfSTY3Iqj/Ts3HnyDh2hCs2tfw7NjUjH7YQYP3J+Smnlk9R9jh/r6WtqgeAdaqb4VCs9eRih4e9bdZKycfmAvRA8BX0SkcVycPvUlYiyz5UFXbT6VxfR3936J37LxhXC15PhNZvmvpU3uiEliFbZAjLE5y/Q/ohXJwesMUF2D+lYFdTEDif5BqsFna0GAS0Le5aNSEnL5XZqGz+yQfDB3SAdOF0vHasCSBBr5LJUzK0BlwsiLJsoQ/TnGH0W9dE/f4Q3CE7PtlHdLnxwM7zD/hSTtAtaWePAuAe1l03KRfz2KH3SfYhmbrVtkAMil4/Sse86pXNUgRtnLr8JWuu2L+h6C/kSKUk2KRf1iaM0cKVlC7l/H3XTgeghXTZkc1QBDuBi7nC+IeixtHBVgqQum5CLnukYVffW0+qf65GbwdUbbWQOOAsCUV5IL5nLiiXoPCjomUyVEd8oqhLZ4Fw0jR6nkR+PbSFnBJCiQnoJLpVa3YigZzKVR+oWz1xXS2kHexvp96WAdHNVpB9oSHHS9QGk10rNe0fQQ2pzp89zDScbnAssvPJQk26sgqePuqh/wk+es83S9YEEByEyi6DHPtjpXBtbVAsQ+JFsYxU8vh+iqh4fOWJNNDy/sw+O3blI5qBzVdD7/wgC4z99VVArtxE08oiLJVjI/4Btj7hcUw+SYgiq+B+AIOFaNBskRmRmtwRV/Q9on4pyfenNyowRoS7mBFX8D4BQc21QJeiJVBfxpVRSXTEEVxT8DxwqNV9qS6qD8cS7SGOySZuxW4LI1YOcv1GBy9bNIMocmMuSoJU1lDjoW2WTNgO9x+P72RJLFS0jTVTV10jDBXoWlFucr2sFrazpBSuHNopG2cQM6hN+SkwZz8W//NpOn3K1I1szg/4bcbJy0bzj2wc+xRo01bLJGaCc+ri7jkm26pEpIyPD/EJ+gvC96oGmJLcM2eDINb1pCnvmuYHJ2zRBJhrO+ZHQdZ9UAchpV89I1wNOTIT0pqmkv+QFQUduaP3Q8au2nXuB9bbTkyrtcL8qaOQ3NNFopoutjlVguHHPWGnIaeFwX3mWJ4keiMnh1cc+sa0xK+1wvMeRnTo5kd8njQIBcWIytAbVsASc74rtdmfWkOMVOG8tN9X9N+PSDY1ggKWkeuBwkk9uFmuLbYozRDc6fpahZYg5WkOVtJgBxiJDiJ53GVKyZy8wNxsEFK9xkYrQGiKp66+AuTxafwV8SQfqOVzDf408BmPLQ95Fc8hp31GE99qQzNEaovtC7WZlmUBlDpQF3SlcQ8mEMdsS//NjJtN/cn+fanFEkFsAAAAASUVORK5CYII=">
-          </a> -->
-                <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-3"
-                    placement="top" ngbTooltip="you didn't like it">
-                    <i style="font-size: medium;">{{dislikes}} dislikes</i>
-                    <br>
-                    <label style="font-size: small" translate>(earn 5 tokens)</label>
-                </i>
-                <!-- <button click="alert('thumbs down')">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT3SURBVFhH3VjdT5tVGG+il/pn6ExM1OvdLF379mNjsLBuyOhWMHqhM4NBOzKzsewLNhLYhUbjVAzOK+8XY6LxhqUfbGFDUmAqIAXMNmgz3rZE1/H4/F5O6QeHvuelnRd7kl94257zPD/OeT5f2wsrI5r2Ttjp7Br1eH6Mut1zEU3LhB2OHIDnqMczi9/CmtYZ3rv3LbHt+crI7t2vsvHTMZcrMbpvnz7d1ra2FAxS8sIFSl+7RtmBAQN4xndLoRBNt7aujXq9Ovbw3tCve/a8ItTVTljpyxGXKxjVND3e0pJZ7umhtevX1TE4SMvnzlH86NE069H5lDuhU6ivTm67XG9E3O7fx48c0VOXLskJWAB0jB86pEddrqkRu32XMLMziTgcDaxIT3R0PJMZqwbQyaeZDtvt9cKcNWFy77HzZ5Lnz0sN1AIrrJttZNnWcWFWTYyTY3K1uFIzpC5fBsmM8knC53CtK1YDoQrAFgLQ1CcRWZwOHpj53GpfH022HqOY10MckUq401BHD8+ckeoD5tvbc3ySkxWjG6kE0SpTkAfI3anfT4tD3fTPn18SJW8qYTU8YJCU6czjHkc3u9cpQadUkED5mFfN/G6y1U+LX5+WkqgEPTpoShC2wQFcBK2CRJ3ObiRh2cZixDxu+nfmhpREJUyFAjTW2EBPrlyR6s0j3tycjjidQUGrIBwYCWR72aZiwJ9kBEyxcpMSX3TRby1NUr15gAMXhr8ErQ2J2O1vo7aiJMk2FWPHBBm5hW8oyjcg07sJ5oDaHbXb3xT0bDZ0JSjq0g1lqIbg399/QhPHmqV6i8FcsnzNHYKezYa2CF2JbHE5dkoQEX/Xd4DGm3z0pLdXqjsPcIm53bcEPZstxr0b2iPZ4nJUc4Lry9/R/GenTP0Q5ZU5zQh6xhVn0v390sXlqIYg8DRh7ofoJ9GWCXpMkLvgrEKAANUSNPzQX9kPM9z0sg8+FfT+P4KqfriVoIUrxvXkFoekBFSg4odbrthKkIz5DlL2/qdS46ow88MtQWIlzTx4v40Wv+2WGlbB+qNhWrgRrJgPl7q60CMW0oyVRI1SNNZ0kJ49HC4xnPyp1/BPM/BkZ5Cr5INI1MypXdDbKHUxrzetUuqAyYCf/aizhCBq7d3GA0aHLNujDOYALiWlDsIFel51nNTZidE6pX7pKyE523+C5j4+Id2jisdnzxI3LnOCVkHQ4mBulW2SAVeNEytuvVI/99HEcfNaWwlot+ByglZB0CQitK0MSrMffUh/9HywSXAt/jmTrpeuVUHy4sXtG1YIO3EnhmrZZhn0q1dptM67SXD98TAHgVO61hTse/caG/WS4CgXDCw8NE3PnzypPKgjKpE6DIL8F59l68zANo2h6YfDh18SdOSC0Q8Tv+rYOeF/lxa+ClFuacg0v20H2ILNqMPxuqBRWTBEG4O7QspAPgOpmNdtmt9ksDy454X/mwBvzD7PAR6ZgFNKNqxpfmHWmtx2OOo4/aR5qK7tyyMOCMPnNA1z8H5hbmfCUfUanPe+z6enOA1IDVoAdCBa+eTi0C3MVCeIbkz8yFFI5sZ4qlgWDfBaVAgkYehAKoFOob52YiRzTQuhFGE0RFE3XgFze2S8AmYigPEKmL/Db1OBQFa8Ap5Ftdo2CddaUMzZYAemL8YMfJUT/cZLdH7Gd+wat7BmS+F/ccRm+w+R4sgw2Rur4AAAAABJRU5ErkJggg==">
-          </button> -->
-            </div>
-            <br>
-            <div class="form-group">
+        <div class="post-Detail">
+            <div class="row">
+                <div class="post-icon">
+                    <i class="fas fa-user-circle fa-4x"></i>
+                </div>
                 <div>
-                    <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentText.value); commentForm.reset()">
-                        <label for="commentTextarea" translate>Your comment (min 10 characters)(earn 20 tokens):</label>
-                        <br>
-                        <!-- <textarea class="form-control" [ngModel]="ownComment?.comment" name="comment" required minlength="10" id="commentTextarea"
-                            #commentText="ngModel"></textarea> -->
-                        <textarea class="form-control" [ngModel]="comment" name="comment" required minlength="10" id="commentTextarea"
-                        #commentText="ngModel"></textarea>
-                        <br>
-                        <div>
-                            <button class="btn btn-primary" [disabled]="!commentForm.form.valid" translate>Submit</button>
-                        </div>
-                        <!-- <div *ngIf="!ownComment">
-                            <button class="btn btn-primary" [disabled]="!commentForm.form.valid" translate>Submit</button>
-                        </div>
-                        <div *ngIf="ownComment">
-                            <button class="btn btn-primary" [disabled]="!commentForm.form.valid || commentText.pristine" translate>Update</button>
-                        </div> -->
-                    </form>
+                    <p><b>{{model.postedBy}}</b></p>
+                    <p class="postDate">{{model.postDate}}</p>
+                </div>
+                <div class="col-9">
+                    <button style="float: right;" class="btn float-right" [hidden]="!isAuthor" translate [routerLink]="['/chainpost/Post']" [queryParams]="{id: PostId}">Edit</button>
                 </div>
             </div>
-        </div>
-        <br>
-        <div>
-            <label for="commentTextarea" translate>Comments:</label>
-            <br>
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-            <ul>
-                <li *ngFor="let c of commentsPage">
-                    <div class="row col-12">
-                        <div class="col-sm-1">
-                            <i class="fas fa-user-circle fa-2x"></i>
-                            <!-- <div class="thumbnail">
-                  <img class="img-responsive user-photo" style="width: 10px; height: 10px;" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                </div> -->
-                            <!-- /thumbnail -->
-                        </div>
-                        <!-- /col-sm-1 -->
+            <div>
+                <h1>{{model.Title}}</h1>
+            </div>
+            <div class="row postindex">
+                <div>{{model.comments.length}} {{(model.comments.length>1)? " Replies" : " Reply"}}</div>
+                <div>{{likes}} {{likes>1? " Likes" : " Like"}}</div>
+                <div>{{dislikes}} {{dislikes>1? " dislikes" : " dislike"}}</div>
 
-                        <div class="col-sm-11">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <strong>{{c.postedBy}}</strong>
-                                    {{'posted on' | translate}}
-                                    <span class="text-muted">{{c.postedTime | date :'medium'}}</span>
-                                </div>
-                                <div class="panel-body">
-                                    {{c.comment}}
-                                </div>
-                                <!-- /panel-body -->
+            </div>
+            <div>
+                <div class="narrative" [innerHtml]='model.Narrative'></div>
+            </div>
+            <div>
+                <div *ngIf="currentUser != undefined">
+                    <i (click)="thumbsUp()" [ngClass]="{ 'fa-thumbs-up-clicked': alreadyLiked }" class="far fa-thumbs-up fa-lg col-4" placement="top" ngbTooltip="you liked it">
+                            <i style="font-size: medium;">{{likes}} likes</i>
+                    <label style="font-size: small" translate>(earn 5 tokens)</label>
+                    </i>
+                    <i (click)="thumbsDown()" [ngClass]="{ 'fa-thumbs-down-clicked': alreadyDisliked }" class="far fa-thumbs-down fa-lg col-4" placement="top" ngbTooltip="you didn't like it">
+                            <i style="font-size: medium;">{{dislikes}} dislikes</i>
+                    <label style="font-size: small" translate>(earn 5 tokens)</label>
+                    </i>
+                </div>
+            </div>
+            <div class="post-comment">
+                <h4 translate>Replies</h4>
+                <div class="form-group">
+                    <div>
+                        <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentText.value); commentForm.reset()">
+                            <label for="commentTextarea" translate>Your comment (min 10 characters)(earn 20 tokens):</label>
+                            <textarea class="form-control comment-post" [ngModel]="comment" name="comment" required minlength="10" id="commentTextarea" #commentText="ngModel"></textarea>
+                            <div>
+                                <button class="btn btn-primary" [disabled]="!commentForm.form.valid" translate>Submit</button>
                             </div>
-                            <!-- /panel panel-default -->
-                        </div>
-                        <!-- /col-sm-5 -->
+                        </form>
                     </div>
-                    <!-- <span>
-              {{c.comment}}
-            </span> -->
-                </li>
-            </ul>
-            <!-- <label>{{commentText.value}}</label> -->
+                </div>
+                <ul>
+                    <li *ngFor="let c of commentsPage">
+                        <div class="row col-12">
+                            <div class="col-sm-11">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-user-circle fa-2x"></i> <span class="username">{{c.postedBy}}</span>
+                                        <span class="text-muted float-right"> {{c.postedTime | date :'medium'}}</span>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{c.comment}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize" [pageSize]="pageSize" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                </ul>
+            </div>
         </div>
     </div>
-    <!-- </form> -->
 </div>

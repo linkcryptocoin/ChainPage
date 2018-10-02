@@ -41,6 +41,7 @@ export class PostDetailsComponent implements OnInit {
   alreadyLiked: boolean = false;
   alreadyDisliked: boolean = false;
   ownVote: any;
+  author: string;
   private account: string;
   private userId: string;
   private tokenBalance: number;
@@ -94,6 +95,8 @@ export class PostDetailsComponent implements OnInit {
           this.titleService.setTitle(this.model.Title);
           //check if current user is the author of the listing
           console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
+          var postDate = new Date(this.model.postedTime);
+          this.model.postDate =  postDate.toLocaleDateString();
           if(this.currentUser == this.model.postedBy || this.currentUserEmail == this.model.postedBy){
             this.isAuthor = true;
           }
