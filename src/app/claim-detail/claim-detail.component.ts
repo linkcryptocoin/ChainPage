@@ -230,8 +230,16 @@ export class ClaimDetailComponent implements OnInit {
                 console.log("account: " + this.account);
                 //email author about new comment if allowed
                 if (this.model.notification) {
-                  this.oothService.sendEmail(sessionStorage.getItem('currentUserEmail'), this.globals.ChainPageNewCommentSubject
-                    , this.globals.ChainPageNewCommentMessage + window.location);
+                  console.log("sending email to author ...");
+                  this.oothService.sendEmail(this.model.postedBy, this.globals.ChainPageNewCommentSubject
+                    , this.globals.ChainPageNewCommentMessageToAuthor + window.location + '<br/><br/>New Comment by ' + this.currentUser + ':<br/>' + commentText);
+
+                }
+                //send email to comment provider if he is not the author
+                if (this.model.postedBy !== this.currentUser) {
+                  console.log("sending email to commenter ...");
+                  this.oothService.sendEmail(this.currentUser, this.globals.ChainPostNewCommentSubject
+                    , this.globals.ChainPageNewCommentMessageToProvider + window.location);
                 }
                 //deduct token
                 if (!this.ownComment) {

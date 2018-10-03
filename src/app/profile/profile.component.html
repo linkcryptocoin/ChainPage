@@ -145,23 +145,24 @@
                             <form (ngSubmit)="profileForm.form.valid && updateProfile()" name="profileForm" #profileForm="ngForm">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-3">
+                                        <!-- <div class="col-3">
                                             <label class="text-info">Current Region: </label>
                                         </div>
                                         <div class="col-5">
                                             <select class="form-control" name="region">
-                                                <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
+                                                <option *ngFor="let node of supernodes" value="node.key" translate>{{node}}</option> -->
+                                                <!-- <option value="Chicago">{{"Greater Chicago Area"| translate}}</option>
                                                 <option value="Baltimore">{{"Maryland Area" | translate}}</option>
                                                 <option value="NYC">{{"Greater New York Area" | translate}}</option>
                                                 <option value="Toronto">{{"Greater Toronto Area" | translate}}</option>
                                                 <option selected="selected" value="WashingtonDC">{{"Greater Washington DC Area" | translate}}</option>
-                                                <option value="Others">{{"Other Area" | translate}}</option>
-                                            </select>
+                                                <option value="Others">{{"Other Area" | translate}}</option> -->
+                                            <!-- </select>
                                         </div>
                                         <div class="col-4">
                                                 <button type="submit" class="btn btn-mdb-color btn-sm">Update</button>
                                             
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </form>

@@ -189,6 +189,7 @@ export class OothService {
             alert(body.message)
             return body.status;
         }
+        console.log(body.user)
         return body.user;
     }
     async isLoggedIn() {
@@ -303,7 +304,44 @@ export class OothService {
             credentials: 'include',
         })
         const body = await res.json()
-        alert(`${body.result}: ${body.message}`);
+    }
+    // Gege Info
+    // Get gege Info
+    async getInfo() {
+        const dummy = "";
+        const res = await fetch(this.API_PATH + 'local/t-getInfo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dummy
+            }),
+            credentials: 'include',
+        })
+        const info = await res.json()
+        return info;
+    }
+    // Update user profile
+    async onUpdateUser() {
+        const user = await this.getUser()
+        const userId = user._id;
+        const type = 'Business';
+        const region = 'Toronto';
+
+        const res = await fetch(this.API_PATH + 'local/updateUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId,
+                type,
+                region
+            }),
+            credentials: 'include',
+        })
+        const body = await res.json()
     }
     // deduct token from current account
     // async deductToken(account: string, amount: number) {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import { OothService } from '../_services';
 import { TranslateService } from '@ngx-translate/core';
+import { SupoerNode } from '../_models/index'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   accountEmail:string;
   toAddress:string;
   token: number;
+  supernodes: SupoerNode[];
   constructor(private oothService: OothService, private route: ActivatedRoute
             , private toasterService: ToasterService, private translate: TranslateService) { 
     this.accountNumber = sessionStorage.getItem("currentUserAccount");
@@ -27,6 +29,11 @@ export class ProfileComponent implements OnInit {
     });
     this.profilePages = new Array("Account Information", "Account Settings");
     this.selectedPage = this.profilePages[0];
+    this.oothService.getInfo()
+      .then(res => {        
+        this.supernodes = res.supernodes;
+        console.log(this.supernodes[0].region);
+      });
     // let balanceSession = sessionStorage.getItem('tokenBalance');
     //     if (balanceSession) {
     //       this.tokenBalance = Number.parseFloat(balanceSession);

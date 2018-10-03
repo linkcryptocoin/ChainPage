@@ -200,7 +200,7 @@ export class ListingsComponent implements OnInit {
     }
     this.listings = [];
     for (var j = 0; j < this.claims.length; j++) {
-      console.log(this.claims[j].pictures[0]);
+      // console.log(this.claims[j].pictures[0]);
       this.listings[j] = {
         imgUrl: isNullOrUndefined(this.claims[j].pictures[0]) || this.claims[j].pictures[0] == "" ?
                   "../../assets/linkGearGGold.png" : this.swarmService.getFileUrls(new Array(this.claims[j].pictures[0])),
