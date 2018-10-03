@@ -15,6 +15,7 @@ import * as alaSQLSpace from 'alasql';
 import { error, element } from 'protractor';
 import { environment } from 'environments/environment.prod';
 import { Title } from '@angular/platform-browser';
+import { getLocaleDateFormat } from '@angular/common';
 @Component({
   moduleId: module.id.toString(),
   templateUrl: './Post-listings.component.html',
@@ -45,6 +46,7 @@ export class PostListingsComponent implements OnInit {
   dislikes: number = 0;
   numoflikes: number = 0;
   numofdislikes: number = 0;
+  comments: number=0;
   constructor(
     private route: ActivatedRoute, private oothService: OothService,
     private router: Router, private globals: Globals, private mongoService: MongoService,
@@ -152,7 +154,7 @@ export class PostListingsComponent implements OnInit {
     }
     this.listings = [];
     for (var j = 0; j < this.Posts.length; j++) {
-      //console.log(this.Posts.length);
+      let postDate = new Date(this.Posts[j].postedTime);
       this.listings[j] = {
         _id: this.Posts[j]._id,
         Title: this.Posts[j].Title,
@@ -160,7 +162,9 @@ export class PostListingsComponent implements OnInit {
         postedBy: this.Posts[j].postedBy,
         likes: this.votes[j].likes,
         dislikes: this.votes[j].dislikes,
-        postedTime: this.Posts[j].postedTime
+        postedTime: this.Posts[j].postedTime,
+        comments:this.Posts[j].comments.length,
+        showPostTime: postDate.toLocaleDateString()
       };
     }
     //order post in posted time - descending order

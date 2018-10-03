@@ -1,47 +1,55 @@
-* {margin: 0; padding: 0;}
-
-
-
-
-
- ul.pagination > li a:hover:focus {
-  background-color: blueviolet;
- }
-
-
-
-div {
-  margin: 20px;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-ul {
-  list-style-type: none;
-  width: 300px;
+.searchBox {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-}
-
-li img {
-  float: left;
-  margin: 0 15px 0 0;
-}
-
-li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
-
-li {
-  padding: 10px;
-  overflow: auto;
-}
-
-li:hover {
-  background: #eee;
-  /* cursor: pointer; */
-}
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+.btn {
+    background-color: #FF8F00 !important;
+    box-shadow: none!important;
+}
+
+.btn:hover {
+    background-color: #FF6600 !important;
+}
+
+.searchBox input {
+    border: 1px solid #FF8F00 !important;
+}
+
+.container {
+    margin-left: 100px;
+}
+
+.page {
+    background-color: #f5f5f5 !important;
+}
+
+ngb-pagination /deep/ .pagination {
+    margin-bottom: 0 !important;
+}
+
+ngb-pagination /deep/ .pagination .page-item.active a {
+    box-shadow: none !important;
+    background-color: transparent;
+    color: #FF8F00;
+    font: bold
+}
+
+ngb-pagination /deep/ .pagination .page-item.active .page-link:hover {
+    background-color: transparent;
+    color: #FF8F00;
+}
+
+ngb-pagination /deep/ .pagination {
+    float: right !important;
 }
