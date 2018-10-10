@@ -162,6 +162,7 @@ export class PostListingsComponent implements OnInit {
         postedBy: this.Posts[j].postedBy,
         likes: this.votes[j].likes,
         dislikes: this.votes[j].dislikes,
+        viewCount: this.Posts[j].viewCount == null || this.Posts[j].viewCount == undefined? 0:  this.Posts[j].viewCount,
         postedTime: this.Posts[j].postedTime,
         comments:this.Posts[j].comments.length,
         showPostTime: postDate.toLocaleDateString()
@@ -402,5 +403,15 @@ export class PostListingsComponent implements OnInit {
   //   this.voteService.getVotes(id);
   // }
 
-
+  incrementViewCount(id) {
+    this.mongoService.incrementViewCount(id, this.globals.ChainpostAppId)
+      .subscribe(response => {
+        if (response.status == 200) {
+          // console.log(response.json());
+        }
+        else {
+          this.toasterService.pop("error", response.statusText);
+        }
+      });
+  }
 }
