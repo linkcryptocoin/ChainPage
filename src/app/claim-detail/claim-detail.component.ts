@@ -63,7 +63,7 @@ export class ClaimDetailComponent implements OnInit {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 100;
-    this.pageSize = 100;
+    this.pageSize = 20;
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserEmail = sessionStorage.getItem("currentUserEmail");
     this.oothService.getTokenBalance(this.account)
@@ -144,6 +144,7 @@ export class ClaimDetailComponent implements OnInit {
           }
           //retrieve comments
           // console.log(this.model.comments)
+          this.totalItems = this.model.comments.length;
           this.model.comments = this.model.comments.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
@@ -230,6 +231,7 @@ export class ClaimDetailComponent implements OnInit {
           // console.log((JSON.stringify(data)));
           this.mongoService.addComment(data)
             .subscribe(response => {
+              console.log(response);
               if (response.status == 200) {
                 this.toasterService.pop('success', 'Comment submitted successfully');
                 this.submitted = true;

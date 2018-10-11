@@ -323,11 +323,11 @@ export class OothService {
         return info;
     }
     // Update user profile
-    async onUpdateUser() {
+    async onUpdateUser(newRegion: string) {
         const user = await this.getUser()
         const userId = user._id;
-        const type = 'Business';
-        const region = 'Toronto';
+        const type = user.local.type;
+        const region = newRegion;
 
         const res = await fetch(this.API_PATH + 'local/updateUser', {
             method: 'POST',

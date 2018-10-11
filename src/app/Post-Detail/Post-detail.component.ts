@@ -101,6 +101,7 @@ export class PostDetailsComponent implements OnInit {
             this.isAuthor = true;
           }
           //retrieve comments
+          this.totalItems = this.model.comments.length;
           // console.log(this.model.comments)
           // this.model.comments.forEach(element => {
           //   if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
@@ -187,6 +188,7 @@ export class PostDetailsComponent implements OnInit {
       // console.log((JSON.stringify(data)));
       this.mongoService.addComment(data)
         .subscribe(response => {
+          console.log(response)
           if (response.status == 200) {
             this.toasterService.pop('success', 'Comment submitted successfully. 20 tokens earned!');
             this.submitted = true;
