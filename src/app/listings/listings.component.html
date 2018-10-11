@@ -5,6 +5,7 @@
             <input type="text" id="search" #searchTxt class="form-control">
             <span class="input-group-btn">
             <button class="btn btn-primary btn-md" (click)="Search(searchTxt.value)" translate>Search</button>
+            <button class="btn btn-info  btn-md" [routerLink]="[ '/home'] " translate>All Listing</button>
             <button class="btn btn-info  btn-md" [routerLink]="['/home/claim']" translate>New Listing</button>
         </span>
         </div>

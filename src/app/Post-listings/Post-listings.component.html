@@ -5,6 +5,7 @@
                 <input type="text" id="txtSearch" #searchTxt class="form-control">
                 <span class="input-group-btn">
                     <button class="btn btn-primary btn-md" (click)="Search(txtSearch.value)"  translate>Search</button>
+                    <button class="btn btn-info  btn-md" [routerLink]="['/chainpost']" translate>All Post</button>
                     <button class="btn btn-info  btn-md" [routerLink]="['/chainpost/Post']" translate>New Post</button>
                 </span>
             </div>
@@ -23,10 +24,11 @@
                     </tr>
                     <tr *ngFor="let Posts of PostsPage">
                         <th scope="row" class="th-sm">
-                            <a [routerLink]="['/chainpost/Post-detail']" [queryParams]="{id: Posts._id}">{{Posts.Title}}</a>
+                            <a [routerLink]="['/chainpost/Post-detail']" [queryParams]="{id: Posts._id}" (click)="incrementViewCount(Posts._id)">{{Posts.Title}}</a>
                         </th>
                         <td>{{Posts.postedBy}}</td>
                         <td>{{Posts.comments}} {{(Posts.comments>1)? " Replies" : " Reply"}}</td>
+                        <td>{{Posts.viewCount}} {{(Posts.viewCount>1)? " Views" : " View"}}</td>
                         <td>{{Posts.showPostTime}}</td>
                     </tr>
                     <tr class="page">
