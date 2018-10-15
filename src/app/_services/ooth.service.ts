@@ -35,7 +35,7 @@ export class OothService {
 
     }
 
-    async register(dname: string, email: string, password: string, type: string, region: string) {
+    async register(dname: string, email: string, password: string, type: string, region: string, referral: string) {
         //e.preventDefault()
         //const email = document.getElementById('register-email').nodeValue
         //const password = document.getElementById('register-password').nodeValue
@@ -49,7 +49,8 @@ export class OothService {
                 password,
                 dname,
                 type,
-                region
+                region,
+                referral
             }),
             credentials: 'include',
         })
