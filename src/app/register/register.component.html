@@ -45,7 +45,7 @@
                 <label for="password" class="control-label required" translate>Password</label>
                 <input id="password" (change)="CheckStrength(password)" required type="password" minlength="8" class="form-control" name="password" [ngClass]="{ 'show-error-border': f.submitted && !password.valid }" (change)="confirmPassword.control.updateValueAndValidity()"
                     [(ngModel)]="model.password" #password="ngModel">
-                <small for="must"><b><i>{{'Please keep this password in a safe place, as it is also your token private key.'| translate}} </i></b></small>
+                <small for="must"><b><i>{{'Please keep this password in a safe place, as it is also your token private key for LinkGearWallent. According to the Ethereum contract, the system cannot recover or change this password.'| translate}} </i></b></small>
 
                 <p> <small class="" *ngIf="(f.submitted && !password.valid) || (password.touched && password.errors?.required)" class="" [ngClass]="{ 'show-error': (password.touched && password.errors?.required) || (f.submitted && !password.valid)  }"> {{'Password is required' | translate}}
           </small>
@@ -68,6 +68,9 @@
             Password mis-match</small>
             </div>
         </div>
+        <div class="form-group">
+            <label for="referral" translate>Referral's username</label>
+            <input type="text" class="form-control" name="referral" [(ngModel)]="model.referral" #referral="ngModel" /></div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary" translate>Register</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="

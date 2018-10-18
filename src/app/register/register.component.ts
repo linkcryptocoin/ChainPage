@@ -49,7 +49,7 @@ export class RegisterComponent {
 
     register() {
         console.log(this.model.email);
-        this.oothService.register(this.model.userName, this.model.email, this.model.password, this.model.type, this.model.region)
+        this.oothService.register(this.model.userName, this.model.email, this.model.password, this.model.type, this.model.region, this.model.referral)
             .then(res => {
                 //if (res && res === 'error') {
                 if (res && res.status === 'error') {
