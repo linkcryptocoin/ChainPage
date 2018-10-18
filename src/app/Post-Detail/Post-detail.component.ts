@@ -52,7 +52,7 @@ export class PostDetailsComponent implements OnInit {
     this.account = sessionStorage.getItem("currentUserAccount");
     this.page = 1;
     this.maxSize = 100;
-    this.pageSize = 100;
+    this.pageSize = 20;
     this.currentUser = sessionStorage.getItem("currentUser");
     this.currentUserEmail = sessionStorage.getItem("currentUserEmail");
     this.oothService.getTokenBalance(this.account)
@@ -93,6 +93,7 @@ export class PostDetailsComponent implements OnInit {
           this.model = response.json();
           //set title
           this.titleService.setTitle(this.model.Title);
+          console.log("title: " + this.model.Title)
           //check if current user is the author of the listing
           console.log("current user: " + this.currentUser + " author: " + this.model.postedBy)
           var postDate = new Date(this.model.postedTime);
@@ -102,6 +103,8 @@ export class PostDetailsComponent implements OnInit {
           }
           //retrieve comments
           this.totalItems = this.model.comments.length;
+          this.comments = this.model.comments;
+          this.commentsPage = this.comments.slice(0, this.pageSize);
           // console.log(this.model.comments)
           // this.model.comments.forEach(element => {
           //   if (element.postedBy == this.currentUserEmail || element.postedBy == this.currentUser) {
@@ -163,8 +166,9 @@ export class PostDetailsComponent implements OnInit {
     }
   }
   loadData(pageNum: number) {
+    //console.log(this.comments);
     this.commentsPage = this.comments.slice(this.pageSize * (pageNum - 1), this.pageSize * (pageNum - 1) + this.pageSize)
-    console.log(this.commentsPage);
+    //console.log(this.commentsPage);
   }
   async onSubmit(commentText: string) {
     // console.log("onSubmit: " + this.PostId)
@@ -188,11 +192,11 @@ export class PostDetailsComponent implements OnInit {
       // console.log((JSON.stringify(data)));
       this.mongoService.addComment(data)
         .subscribe(response => {
-          console.log(response)
+          //console.log(response)
           if (response.status == 200) {
             this.toasterService.pop('success', 'Comment submitted successfully. 20 tokens earned!');
             this.submitted = true;
-            console.log("account: " + this.account);
+            //console.log("account: " + this.account);
             //email author about new comment if allowed
             if (this.model.notification) {
               console.log("sending email to author ...");
@@ -208,7 +212,7 @@ export class PostDetailsComponent implements OnInit {
             }
             //deduct token
             if (!this.ownComment) {
-              console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));
+              //console.log("reward new comment token from " + sessionStorage.getItem("currentUserId"));
               this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.comment);
               // this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageComment);
             }
@@ -326,7 +330,7 @@ export class PostDetailsComponent implements OnInit {
           })
       }
       else {
-        console.log("token balance: " + this.tokenBalance)
+        //console.log("token balance: " + this.tokenBalance)
         // if (this.tokenBalance >= this.globals.tokenDeductAmmount_ChainpageUpVote) {
           // console.log("not yet liked: " + this.alreadyLiked)
           let data = {
@@ -344,7 +348,7 @@ export class PostDetailsComponent implements OnInit {
                 this.toasterService.pop('success', 'Vote submitted successfully. 5 tokens earned!');
                 this.submitted = true;
                 // this.likes++;
-                console.log("user id: " + sessionStorage.getItem("currentUserId"));
+                //console.log("user id: " + sessionStorage.getItem("currentUserId"));
                 //deduct token
                 this.oothService.onUserAction(this.globals.ChainpostAppId, this.globals.action.like)
                 //this.oothService.deductToken(sessionStorage.getItem("currentUserId"), this.globals.tokenDeductAmmount_ChainpageUpVote);

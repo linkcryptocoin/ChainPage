@@ -103,10 +103,10 @@ export class OothService {
         }
         // generate token and save to session
         await this.onGenerateVerificationToken();
-        console.log('body console---' + body.user.local);
-        console.log('-----Account.local---' + body.user.local.account);
-        console.log('-----Username.local---' + body.user.local.dname);
-        console.log('-----Account.email---' + body.user.local.email);
+        // console.log('body console---' + body.user.local);
+        // console.log('-----Account.local---' + body.user.local.account);
+        // console.log('-----Username.local---' + body.user.local.dname);
+        // console.log('-----Account.email---' + body.user.local.email);
 
         return body
     }
@@ -248,7 +248,7 @@ export class OothService {
         return body.result;
     }
     async onUserAction(app, action) {
-        console.log(`app: ${app} action: ${action}`)
+        // console.log(`app: ${app} action: ${action}`)
         const user = await this.getUser()
         const userId = user._id;
         const res = await fetch(this.API_PATH + 'local/t-userAction', {
@@ -263,9 +263,9 @@ export class OothService {
             }),
             credentials: 'include',
         })
-        console.log(res)
+        // console.log(res)
         const body = await res.json()
-        console.log(`${body.message} ${body.result}`)
+        // console.log(`${body.message} ${body.result}`)
     }
     // User reward
     async transferToken(toAddress: string, token: number) {
