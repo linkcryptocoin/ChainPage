@@ -50,6 +50,7 @@ import { TagInputModule } from 'ngx-chips';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
 import { NguCarouselModule } from '@ngu/carousel';
+import { ActivationComponent } from './activation/activation.component';
 
 // const SERVICES = [
 //   MetaCoinService,
@@ -108,7 +109,8 @@ import { NguCarouselModule } from '@ngu/carousel';
     ListingsComponent,
     ModalContent,
     ProfileComponent,
-    ConfirmEqualValidatorDirective
+    ConfirmEqualValidatorDirective,
+    ActivationComponent
   ],
   providers: [
     // SERVICES,

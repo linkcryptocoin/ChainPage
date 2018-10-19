@@ -14,9 +14,11 @@ import { ClaimComponent } from './claim/claim.component';
 import { ClaimDetailComponent } from './claim-detail/claim-detail.component';
 import { ListingsComponent } from './listings/listings.component';
 import { ProfileComponent } from './profile/profile.component';
+import {ActivationComponent} from './activation/activation.component'
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'landing', component: LandingComponent },
+    { path: 'activate', component: ActivationComponent },
     { path: 'home', component: HomeComponent, children:[
         { path: '', component: ListingsComponent },
         { path: 'listing:/cat', component: ListingsComponent },
