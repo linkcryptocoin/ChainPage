@@ -344,6 +344,22 @@ export class OothService {
         })
         const body = await res.json()
     }
+    // Activate a user profile
+    async onActivateUser(username: string) {
+        const dname = username;
+
+        const res = await fetch(this.API_PATH + 'local/activateUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dname
+            }),
+            credentials: 'include',
+        })
+        const body = await res.json()
+    }
     // deduct token from current account
     // async deductToken(account: string, amount: number) {
     //     const res = await fetch(this.API_PATH + 'local/t-deductRewards', {
