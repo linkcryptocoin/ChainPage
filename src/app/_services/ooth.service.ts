@@ -345,16 +345,15 @@ export class OothService {
         const body = await res.json()
     }
     // Activate a user profile
-    async onActivateUser(username: string) {
-        const dname = username;
-
+    async onActivateUser(user: string, action: string) {
         const res = await fetch(this.API_PATH + 'local/activateUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                dname
+                user,
+                action
             }),
             credentials: 'include',
         })

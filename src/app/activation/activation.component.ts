@@ -17,6 +17,7 @@ export class ActivationComponent implements OnInit {
       this.userName = params['user'];
       this.action = params['action'];
       console.log(this.userName, this.action);
+      oothService.onActivateUser(this.userName, this.action);
     });
   }
 
