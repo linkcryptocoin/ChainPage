@@ -11,7 +11,11 @@ ul {
     font-family: Helvetica;
 }
 
-.fa-thumbs-up {
+.fa-thumbs-up-clicked {
+    color: #FF8F00 !important;
+}
+
+.fa-thumbs-down-clicked {
     color: #FF8F00 !important;
 }
 
